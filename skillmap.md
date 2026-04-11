@@ -7,9 +7,8 @@
 * highlightcolor: #f4c542
 
 ## the-garage
-* name: Stage 1 — The Garage
+* name: The Garage
 * description: Design your car, tune its setup, and run a shakedown test. Balance Performance Points and Efficiency Points before hitting the track.
-* completionUrl: /static/skillmap/certificates/the-garage.pdf
 
 ### garage-activity1
 
@@ -38,9 +37,8 @@
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity3
 
 ## on-the-road
-* name: Stage 2 — On the Road
+* name: On the Road
 * description: Drive your car through a test track with obstacles, pit stops, and changing conditions. Adapt like a real engineering team.
-* completionUrl: /static/skillmap/certificates/on-the-road.pdf
 
 ### road-activity1
 
@@ -69,9 +67,8 @@
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity3
 
 ## the-finish-line
-* name: Stage 3 — The Finish Line
-* description: Complete a final challenge, reflect on your engineering choices, and celebrate in the winner's circle.
-* completionUrl: /static/skillmap/certificates/the-finish-line.pdf
+* name: The Finish Line
+* description: Complete a final challenge, reflect on your engineering choices, and celebrate in the winners circle.
 
 ### finish-activity1
 
@@ -93,7 +90,7 @@
 
 ### finish-activity3
 
-* name: Winner's Circle
+* name: Winners Circle
 * type: tutorial
 * description: Celebrate your achievements and connect your choices to STEM careers.
 * tags: easy, celebration, careers, stem
