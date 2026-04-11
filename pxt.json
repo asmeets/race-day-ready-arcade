@@ -19,7 +19,8 @@
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
         "darts": "*",
         "arcade-text": "github:microsoft/arcade-text#v1.3.0",
-        "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0"
+        "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0",
+        "ArcadeMIDI": "github:unsignedarduino/arcademidi#af121437d59fd6b2cec54501ac437db1eaa766f5"
     },
     "files": [
         "README.md",
@@ -34,7 +35,11 @@
         "tutorials/on-the-road/activity3.md",
         "tutorials/the-finish-line/activity1.md",
         "tutorials/the-finish-line/activity2.md",
-        "tutorials/the-finish-line/activity3.md"
+        "tutorials/the-finish-line/activity3.md",
+        "images.g.jres",
+        "images.g.ts",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
     ],
     "testDependencies": {},
     "targetVersions": {
@@ -47,20 +52,20 @@
     "preferredEditor": "blocksprj",
     "palette": [
         "#000000",
-        "#f4f7f8",
-        "#d9e4ea",
-        "#b8c9d3",
-        "#7f95a0",
-        "#16202a",
-        "#003b49",
-        "#0a5fb4",
-        "#00b7a8",
-        "#7ce7dc",
-        "#1e8e5a",
-        "#c98a00",
-        "#f4c542",
-        "#c53a2f",
-        "#ff6b57",
-        "#ffffff"
+        "#FFFFFF",
+        "#FF2121",
+        "#FF93C4",
+        "#FF8135",
+        "#FFF609",
+        "#249CA3",
+        "#78DC52",
+        "#003FAD",
+        "#87F2FF",
+        "#8E2EC4",
+        "#A4839F",
+        "#5C406c",
+        "#E5CDC4",
+        "#91463d",
+        "#000000"
     ]
 }
