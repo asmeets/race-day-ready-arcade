@@ -1,17 +1,36 @@
 {
     "name": "Junior Engineers: Race Day Ready",
     "version": "0.0.1",
+    "dependencies": {
+        "device": "*",
+        "multiplayer": "*",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0",
+        "arcade-story": "github:microsoft/arcade-storytelling#v1.0.3",
+        "settings-blocks": "github:microsoft/pxt-settings-blocks#v1.0.0",
+        "sevenseg": "*",
+        "browser-events": "*",
+        "controller": "*",
+        "animation": "*",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
+        "arcade-minimap": "github:microsoft/arcade-minimap#v0.6.1",
+        "arcade-background-scroll": "github:microsoft/arcade-background-scroll#v0.1.2",
+        "sprite-scaling": "*",
+        "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
+        "darts": "*",
+        "arcade-text": "github:microsoft/arcade-text#v1.3.0",
+        "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0"
+    },
     "files": [
         "main.blocks",
         "main.ts"
     ],
+    "testDependencies": {},
+    "targetVersions": {
+        "target": "4.0.14",
+        "targetId": "arcade"
+    },
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "blocksprj",
-    "dependencies": {
-        "device": "*",
-        "multiplayer": "*"
-    },
-    "testDependencies": {}
+    "preferredEditor": "blocksprj"
 }

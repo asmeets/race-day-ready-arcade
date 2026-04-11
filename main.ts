@@ -1,1 +1,1 @@
-info.setScore(0)
+
