@@ -32,6 +32,7 @@ Trust those repo customizations first before broad exploration.
 - `makecode-arcade-classroom-remix` for student remix tasks and facilitator-led changes.
 - `makecode-arcade-accessibility-review` for readability, controls, and event readiness.
 - `makecode-arcade-learning-design` for tutorials, skillmaps, block-friendly activities, and pedagogy.
+- `makecode-arcade-project-documentation` for keeping the companion wiki aligned with gameplay, learning, facilitation, and planning updates.
 - `makecode-arcade-asset-packs` for reusable Arcade art, tilemaps, sounds, and packaging.
 - `makecode-arcade-custom-blocks` for project-local or reusable blocks in `custom.ts` or extensions.
 - `makecode-arcade-extension-selection` for evaluating existing Arcade extensions before building custom implementations.
