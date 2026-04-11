@@ -61,6 +61,21 @@ The game and the repository are shaped by a few non-negotiables:
 
 ## Working With the Repo
 
+### Primary Build Path: Skillmap
+
+This project is being structured so the primary student-facing build flow runs through a MakeCode Arcade skillmap.
+
+Current intended flow:
+
+- learners open the project skillmap in Arcade
+- each activity teaches one clear mechanic or engineering tradeoff
+- students build in Blocks first, then test and remix
+- completed tutorials unlock the next step in the pathway
+
+Skillmap entry URL:
+
+- https://arcade.makecode.com/--skillmap#github:asmeets/race-day-ready-arcade/skillmap
+
 ### Open in MakeCode Arcade
 
 When the playable Arcade project files are present in this repository, the easiest way to explore the game is to import the repo into Microsoft MakeCode Arcade.
@@ -71,6 +86,8 @@ General workflow:
 - choose the GitHub import option
 - paste this repository URL
 - open the project and run it in the simulator
+
+For guided student use, prefer opening the skillmap URL above instead of importing the repository directly.
 
 If this repository only contains documentation and customization files, that means the Arcade project scaffold is still being assembled. Once files such as `pxt.json`, `main.ts`, asset resources, or tilemaps are added, the repo can be opened directly in Arcade as a project.
 

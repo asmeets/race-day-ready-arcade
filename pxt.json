@@ -22,8 +22,19 @@
         "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0"
     },
     "files": [
+        "README.md",
+        "skillmap.md",
         "main.blocks",
-        "main.ts"
+        "main.ts",
+        "tutorials/the-garage/activity1.md",
+        "tutorials/the-garage/activity2.md",
+        "tutorials/the-garage/activity3.md",
+        "tutorials/on-the-road/activity1.md",
+        "tutorials/on-the-road/activity2.md",
+        "tutorials/on-the-road/activity3.md",
+        "tutorials/the-finish-line/activity1.md",
+        "tutorials/the-finish-line/activity2.md",
+        "tutorials/the-finish-line/activity3.md"
     ],
     "testDependencies": {},
     "targetVersions": {
