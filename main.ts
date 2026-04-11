@@ -1,0 +1,1 @@
+info.setScore(0)
