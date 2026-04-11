@@ -4,6 +4,7 @@ Build, tune, and race a classroom-ready F1-inspired experience where every desig
 
 ## Quick Links
 
+- Play the Game: https://arcade.makecode.com/--skillmap#github:asmeets/race-day-ready-arcade/skillmap
 - Issues: https://github.com/asmeets/race-day-ready-arcade/issues
 - Wiki: https://github.com/asmeets/race-day-ready-arcade/wiki
 - Project Board: https://github.com/users/asmeets/projects/4
