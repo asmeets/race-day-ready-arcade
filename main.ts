@@ -1,5 +1,9 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    GameStarted = 1
+})
 let ShowMySprite = false
 let GameStarted = 0
+GameStarted = 0
 scene.setBackgroundImage(img`
     fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -130,5 +134,8 @@ game.onUpdateInterval(500, function () {
     if (GameStarted == 0) {
         Get_Started_Logo.setFlag(SpriteFlag.Invisible, ShowMySprite)
         ShowMySprite = !(ShowMySprite)
+    } else {
+        Get_Started_Logo.setFlag(SpriteFlag.Invisible, ShowMySprite)
+        Title_Logo.setFlag(SpriteFlag.Invisible, ShowMySprite)
     }
 })
