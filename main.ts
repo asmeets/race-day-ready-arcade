@@ -127,6 +127,8 @@ let Get_Started_Logo = sprites.create(assets.image`myImage`, SpriteKind.Text)
 Title_Logo.setPosition(80, 20)
 Get_Started_Logo.setPosition(80, 110)
 game.onUpdateInterval(500, function () {
-    Get_Started_Logo.setFlag(SpriteFlag.Invisible, ShowMySprite)
-    ShowMySprite = !(ShowMySprite)
+    if (GameStarted == 0) {
+        Get_Started_Logo.setFlag(SpriteFlag.Invisible, ShowMySprite)
+        ShowMySprite = !(ShowMySprite)
+    }
 })
