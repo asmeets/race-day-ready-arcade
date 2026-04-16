@@ -1,6 +1,6 @@
 {
     "name": "Junior Engineers: Race Day Ready",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Race Day Ready Arcade is a game design project where you build and remix your own F1-inspired racing experience in MakeCode Arcade. As you play and change the game, you’ll explore real engineering tradeoffs like speed versus control, power versus efficiency, and risk versus consistency. The goal is not just to make the fastest car, but to make smart design choices and see how small code changes affect the whole race.\n\nThis project is meant to help you think like a game designer, software developer, and race engineer. You can test ideas, spot problems, improve your design, and learn how coding connects to real careers in technology, engineering, data, strategy, and accessibility.",
     "dependencies": {
         "device": "*",
