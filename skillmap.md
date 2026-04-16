@@ -5,6 +5,7 @@
 * secondarycolor: #0a5fb4
 * tertiarycolor: #f4f7f8
 * highlightcolor: #f4c542
+* backgroundurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/background.png
 
 ## race-day-journey
 * name: Race Day Journey
