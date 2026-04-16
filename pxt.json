@@ -50,6 +50,14 @@
         "arcade"
     ],
     "preferredEditor": "blocksprj",
+    "theme": {
+        "skin": "blue",
+        "background-color": "#f4f7f8",
+        "button-stroke": "#0a5fb4",
+        "text-color": "#16202a",
+        "button-fill": "#00b7a8",
+        "dpad-fill": "#0a5fb4"
+    },
     "palette": [
         "#000000",
         "#FFFFFF",
