@@ -1,21 +1,21 @@
 # race-day-ready
 * name: Junior Engineers: Race Day Ready
-* description: Join a junior innovation team to design, test, and race an F1 car in Miami. Balance speed, handling, and efficiency while exploring real engineering careers.
+* description: Join a junior innovation team to design, test, and race an F1 car in Miami. Balance performance, efficiency, and strategy while exploring real engineering careers.
 * primarycolor: #00b7a8
 * secondarycolor: #0a5fb4
 * tertiarycolor: #f4f7f8
 * highlightcolor: #f4c542
 
-## the-garage
-* name: The Garage
-* description: Design your car, tune its setup, and run a shakedown test. Balance Performance Points and Efficiency Points before hitting the track.
+## race-day-journey
+* name: Race Day Journey
+* description: Move from the Garage to the track and all the way to the winner's circle through one guided path of tutorials, tests, and remix-ready decisions.
 
 ### garage-activity1
 
 * name: Mission Briefing
 * type: tutorial
-* description: Get recruited, build your test car, and set up the dashboard.
-* tags: easy, sprites, controls, score
+* description: Join the junior innovation team, learn the mission, and get ready to make your first engineering decisions.
+* tags: easy, mission, controls, score, onboarding
 * next: garage-activity2
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity1
 
@@ -23,29 +23,26 @@
 
 * name: Setup and Tradeoffs
 * type: tutorial
-* description: Tune speed and efficiency. Make your first engineering tradeoff.
-* tags: easy, variables, tradeoffs, tuning
+* description: Tune your setup and make your first tradeoff across performance, efficiency, and strategy.
+* tags: easy, variables, tradeoffs, tuning, strategy
 * next: garage-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity2
 
 ### garage-activity3
 
-* name: Garage Test Run
+* name: Garage Shakedown
 * type: tutorial
-* description: Run a shakedown test to check your car before the real track session.
-* tags: easy, testing, hazards, iteration
+* description: Run a short shakedown test and see what your setup choices actually changed.
+* tags: easy, testing, iteration, feedback
+* next: road-activity1
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity3
-
-## on-the-road
-* name: On the Road
-* description: Drive your car through a test track with obstacles, pit stops, and changing conditions. Adapt like a real engineering team.
 
 ### road-activity1
 
 * name: Hit the Track
 * type: tutorial
-* description: Take your car onto the test track and dodge obstacles under real conditions.
-* tags: easy, driving, obstacles, score
+* description: Take your car onto the track and feel how your setup behaves under live conditions.
+* tags: easy, driving, obstacles, score, movement
 * next: road-activity2
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity1
 
@@ -53,8 +50,8 @@
 
 * name: Pit Stop Briefings
 * type: tutorial
-* description: Add pit stops with career-connected briefings and small upgrades.
-* tags: intermediate, careers, strategy, overlaps
+* description: Pause at pit stops to connect gameplay choices to real team roles, strategy, and upgrades.
+* tags: intermediate, careers, strategy, briefings, overlaps
 * next: road-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity2
 
@@ -62,20 +59,17 @@
 
 * name: Changing Conditions
 * type: tutorial
-* description: Add weather changes and see how conditions affect speed, grip, and efficiency.
-* tags: intermediate, variables, conditions, adaptation
+* description: Adapt to weather, grip, and changing conditions that force smarter decisions on the move.
+* tags: intermediate, variables, conditions, adaptation, environment
+* next: finish-activity1
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity3
-
-## the-finish-line
-* name: The Finish Line
-* description: Complete a final challenge, reflect on your engineering choices, and celebrate in the winners circle.
 
 ### finish-activity1
 
 * name: Final Challenge
 * type: tutorial
-* description: Use everything you learned to earn the best combined score.
-* tags: intermediate, challenge, tradeoffs, iteration
+* description: Use everything you learned to earn the best combined result across performance, efficiency, and strategy.
+* tags: intermediate, challenge, tradeoffs, iteration, scoring
 * next: finish-activity2
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity1
 
@@ -83,8 +77,8 @@
 
 * name: Reflect and Review
 * type: tutorial
-* description: Review your results and think about what you would change next.
-* tags: easy, reflection, data, feedback
+* description: Review your results, connect them to your choices, and decide what you would change next.
+* tags: easy, reflection, data, feedback, analysis
 * next: finish-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity2
 
@@ -92,6 +86,6 @@
 
 * name: Winners Circle
 * type: tutorial
-* description: Celebrate your achievements and connect your choices to STEM careers.
-* tags: easy, celebration, careers, stem
+* description: Celebrate what you learned and connect your choices to STEM, careers, and future remixing.
+* tags: easy, celebration, careers, stem, reflection
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity3
