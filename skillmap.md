@@ -16,6 +16,7 @@
 * name: Mission Briefing
 * type: tutorial
 * description: Join the junior innovation team, learn the mission, and get ready to make your first engineering decisions.
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-mission-briefing.png
 * tags: easy, mission, controls, score, onboarding
 * next: garage-activity2
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity1
