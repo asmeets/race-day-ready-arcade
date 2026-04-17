@@ -52,11 +52,11 @@
     "preferredEditor": "blocksprj",
     "theme": {
         "skin": "blue",
-        "background-color": "#f4f7f8",
-        "button-stroke": "#0a5fb4",
-        "text-color": "#16202a",
-        "button-fill": "#00b7a8",
-        "dpad-fill": "#0a5fb4"
+        "background-color": "#eaf4fb",
+        "button-stroke": "#003b49",
+        "text-color": "#0f1c24",
+        "button-fill": "#0a5fb4",
+        "dpad-fill": "#003b49"
     },
     "palette": [
         "#000000",
