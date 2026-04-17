@@ -88,7 +88,7 @@
 * name: Reflect and Review
 * type: tutorial
 * description: Review your results, connect them to your choices, and decide what you would change next.
-* position: 14 6
+* position: 13 6
 * tags: easy, reflection, data, feedback, analysis
 * next: finish-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity2
@@ -98,6 +98,6 @@
 * name: Winners Circle
 * type: tutorial
 * description: Celebrate what you learned and connect your choices to STEM, careers, and future remixing.
-* position: 15 5
+* position: 14 5
 * tags: easy, celebration, careers, stem, reflection
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity3
