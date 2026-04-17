@@ -28,7 +28,7 @@
 * name: Setup and Tradeoffs
 * type: tutorial
 * description: Tune your setup and make your first tradeoff across performance, efficiency, and strategy.
-* position: 3 6
+* position: 2 5
 * tags: easy, variables, tradeoffs, tuning, strategy
 * next: garage-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity2
@@ -38,7 +38,7 @@
 * name: Garage Shakedown
 * type: tutorial
 * description: Run a short shakedown test and see what your setup choices actually changed.
-* position: 5 5
+* position: 4 5
 * tags: easy, testing, iteration, feedback
 * next: road-activity1
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity3
@@ -78,7 +78,7 @@
 * name: Final Challenge
 * type: tutorial
 * description: Use everything you learned to earn the best combined result across performance, efficiency, and strategy.
-* position: 13 6
+* position: 12 6
 * tags: intermediate, challenge, tradeoffs, iteration, scoring
 * next: finish-activity2
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity1
@@ -88,7 +88,7 @@
 * name: Reflect and Review
 * type: tutorial
 * description: Review your results, connect them to your choices, and decide what you would change next.
-* position: 14 7
+* position: 16 7
 * tags: easy, reflection, data, feedback, analysis
 * next: finish-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity2
@@ -98,6 +98,6 @@
 * name: Winners Circle
 * type: tutorial
 * description: Celebrate what you learned and connect your choices to STEM, careers, and future remixing.
-* position: 15 7
+* position: 14 6
 * tags: easy, celebration, careers, stem, reflection
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity3
