@@ -28,7 +28,7 @@
 * name: Setup and Tradeoffs
 * type: tutorial
 * description: Tune your setup and make your first tradeoff across performance, efficiency, and strategy.
-* position: 3 5
+* position: 3 6
 * tags: easy, variables, tradeoffs, tuning, strategy
 * next: garage-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity2
@@ -38,7 +38,7 @@
 * name: Garage Shakedown
 * type: tutorial
 * description: Run a short shakedown test and see what your setup choices actually changed.
-* position: 5 6
+* position: 5 5
 * tags: easy, testing, iteration, feedback
 * next: road-activity1
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity3
@@ -58,7 +58,7 @@
 * name: Pit Stop Briefings
 * type: tutorial
 * description: Pause at pit stops to connect gameplay choices to real team roles, strategy, and upgrades.
-* position: 9 6
+* position: 9 5
 * tags: intermediate, careers, strategy, briefings, overlaps
 * next: road-activity3
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity2
@@ -68,7 +68,7 @@
 * name: Changing Conditions
 * type: tutorial
 * description: Adapt to weather, grip, and changing conditions that force smarter decisions on the move.
-* position: 11 5
+* position: 11 4
 * tags: intermediate, variables, conditions, adaptation, environment
 * next: finish-activity1
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity3
@@ -78,7 +78,7 @@
 * name: Final Challenge
 * type: tutorial
 * description: Use everything you learned to earn the best combined result across performance, efficiency, and strategy.
-* position: 13 5
+* position: 13 6
 * tags: intermediate, challenge, tradeoffs, iteration, scoring
 * next: finish-activity2
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity1
@@ -98,6 +98,6 @@
 * name: Winners Circle
 * type: tutorial
 * description: Celebrate what you learned and connect your choices to STEM, careers, and future remixing.
-* position: 16 6
+* position: 15 7
 * tags: easy, celebration, careers, stem, reflection
 * url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity3
