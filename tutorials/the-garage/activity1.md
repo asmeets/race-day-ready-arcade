@@ -1,16 +1,16 @@
 # Mission Briefing
 
-### @explicitHints true
+### @explicitHints false
 
-## Welcome @unplugged
+## Welcome to Race Day, Engineers! @showdialog
 
-**Welcome to Junior Engineers: Race Day Ready!**
+![Welcome to Miami](../../assets/skillmap/welcome.png)
 
-You have been recruited as part of a junior innovation team. Your mission: help prepare an F1 car for a high-stakes test session in Miami.
+You have been recruited to join the Mercedes racing team. Your mission is to help prepare their F1 car for a high-stakes test session in Miami.
 
-Your engineer guide will walk you through each step. You will design, test, and improve your car setup while earning **Performance Points** and **Efficiency Points**.
+You will meet team members in different roles who will guide you through the journey. This is a choose-your-own-adventure experience where your decisions shape the run. You will design, test, and improve your car setup while earning **Performance Points** and **Efficiency Points**.
 
-Let's start in the garage.
+Let's head into the garage first and meet your guide, Avery, a Track Engineer.
 
 ## Step 1
 
@@ -22,10 +22,11 @@ scene.setBackgroundColor(6)
 
 ## Step 2
 
-Show the mission briefing so the player knows what to do.
+Show the mission briefing so the player knows what to do and where you are testing.
 
 ```blocks
 game.splash("Junior Engineers", "Prepare your car for Miami!")
+game.splash("Miami Test Day", "Heat: High. Track: Street circuit.")
 ```
 
 ## Step 3
