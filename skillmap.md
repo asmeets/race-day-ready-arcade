@@ -5,8 +5,8 @@
 * secondarycolor: #0a5fb4
 * tertiarycolor: #f4f7f8
 * highlightcolor: #f4c542
-* backgroundurl: /assets/skillmap/background.png
-* bannerurl: /assets/skillmap/banner.png
+* backgroundurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/background.png
+* bannerurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/banner.png
 
 ## race-day-journey
 * name: Race Day Journey
@@ -18,98 +18,98 @@
 * name: Mission Briefing
 * type: tutorial
 * description: Join the junior innovation team, learn the mission, and get ready to make your first engineering decisions.
-* imageUrl: /assets/skillmap/node-mission-briefing.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-mission-briefing.png
 * position: 1 7
 * tags: easy, mission, controls, score, onboarding
 * next: garage-activity2
-* url: /skillmap/race-day-journey/garage-activity1
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity1.md
 
 ### garage-activity2
 
 * name: Setup and Tradeoffs
 * type: tutorial
 * description: Tune your setup and make your first tradeoff across performance, efficiency, and strategy.
-* imageUrl: /assets/skillmap/node-setup-tradeoffs.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-setup-tradeoffs.png
 * position: 2 4
 * tags: easy, variables, tradeoffs, tuning, strategy
 * next: garage-activity3
-* url: /skillmap/race-day-journey/garage-activity2
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity2.md
 
 ### garage-activity3
 
 * name: Garage Shakedown
 * type: tutorial
 * description: Run a short shakedown test and see what your setup choices actually changed.
-* imageUrl: /assets/skillmap/node-garage-shakedown.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-garage-shakedown.png
 * position: 4 5
 * tags: easy, testing, iteration, feedback
 * next: road-activity1
-* url: /skillmap/race-day-journey/garage-activity3
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-garage/activity3.md
 
 ### road-activity1
 
 * name: Hit the Track
 * type: tutorial
 * description: Take your car onto the track and feel how your setup behaves under live conditions.
-* imageUrl: /assets/skillmap/node-hit-the-track.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-hit-the-track.png
 * position: 7 7
 * tags: easy, driving, obstacles, score, movement
 * next: road-activity2
-* url: /skillmap/race-day-journey/road-activity1
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity1.md
 
 ### road-activity2
 
 * name: Pit Stop Briefings
 * type: tutorial
 * description: Pause at pit stops to connect gameplay choices to real team roles, strategy, and upgrades.
-* imageUrl: /assets/skillmap/node-pit-stop-briefings.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-pit-stop-briefings.png
 * position: 8 5
 * tags: intermediate, careers, strategy, briefings, overlaps
 * next: road-activity3
-* url: /skillmap/race-day-journey/road-activity2
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity2.md
 
 ### road-activity3
 
 * name: Changing Conditions
 * type: tutorial
 * description: Adapt to weather, grip, and changing conditions that force smarter decisions on the move.
-* imageUrl: /assets/skillmap/node-changing-conditions.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-changing-conditions.png
 * position: 10 4
 * tags: intermediate, variables, conditions, adaptation, environment
 * next: finish-activity1
-* url: /skillmap/race-day-journey/road-activity3
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/on-the-road/activity3.md
 
 ### finish-activity1
 
 * name: Final Challenge
 * type: tutorial
 * description: Use everything you learned to earn the best combined result across performance, efficiency, and strategy.
-* imageUrl: /assets/skillmap/node-final-challenge.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-final-challenge.png
 * position: 12 7
 * tags: intermediate, challenge, tradeoffs, iteration, scoring
 * next: finish-activity2
-* url: /skillmap/race-day-journey/finish-activity1
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity1.md
 
 ### finish-activity2
 
 * name: Reflect and Review
 * type: tutorial
 * description: Review your results, connect them to your choices, and decide what you would change next.
-* imageUrl: /assets/skillmap/node-reflect-review.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-reflect-review.png
 * position: 14 5
 * tags: easy, reflection, data, feedback, analysis
 * next: finish-activity3
-* url: /skillmap/race-day-journey/finish-activity2
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity2.md
 
 ### finish-activity3
 
 * name: Winners Circle
 * type: tutorial
 * description: Celebrate what you learned and connect your choices to STEM, careers, and future remixing.
-* imageUrl: /assets/skillmap/node-winners-circle.png
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/node-winners-circle.png
 * position: 13 6
 * tags: easy, celebration, careers, stem, reflection
-* url: /skillmap/race-day-journey/finish-activity3
+* url: https://github.com/asmeets/race-day-ready-arcade/tutorials/the-finish-line/activity3.md
 * next: race-day-finish
 
 ### race-day-finish

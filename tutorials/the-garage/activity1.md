@@ -4,7 +4,7 @@
 
 ## Welcome to Race Day, Engineers! @showdialog
 
-![Welcome to Miami](../../assets/skillmap/welcome.png)
+![Welcome to Miami](https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/welcome.png)
 
 You have been recruited to join the Mercedes racing team. Your mission is to help prepare their F1 car for a high-stakes test session in Miami.
 
