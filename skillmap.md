@@ -5,7 +5,7 @@
 * secondarycolor: #b40707
 * tertiarycolor: #EAF3F8
 * highlightcolor: #42cdf4
-* backgroundurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/background.png
+* backgroundurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/background.gif
 * bannerurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/banner.png
 
 ## race-day-ready
