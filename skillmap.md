@@ -1,9 +1,9 @@
 # race-day-ready
 * name: Race Day Ready
-* description: You've been invited to join the Mercedes racing team to design, test, and race an F1 car in Miami. Along the way, you will balance performance, efficiency, and strategy while exploring real engineering careers. Your mission is to help prepare their F1 car for a high-stakes test session in Miami.
+* description: You've been invited to join the Mercedes racing team to design, test, and race an F1 car in Miami. Your mission is to help prepare their vehicle for a high-stakes run on the test track. Along the way, you will balance performance, efficiency, and strategy while exploring real engineering careers. 
 * primarycolor: #ffd84d
 * secondarycolor: #b40707
-* tertiarycolor: #f4f7f8
+* tertiarycolor: #EAF3F8
 * highlightcolor: #42cdf4
 * backgroundurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/background.png
 * bannerurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/banner.png
