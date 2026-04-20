@@ -1,6 +1,5 @@
 # Changing Conditions
 
-### @explicitHints true
 ### @diffs true
 
 ```validation.global
@@ -12,7 +11,7 @@
 
 Strong designs still have to respond to the environment. When grip changes, the best decision changes too.
 
-In this activity, you will model rain, lower traction, and the need to adapt.
+In this activity, you will model rain, lower traction, and adaptation.
 
 ```template
 let driveSpeed = 110
@@ -36,11 +35,17 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 1
+## Step 1 - Start Weather Stage
 
-Start the weather stage.
+Initialize dry conditions and run state.
+
+* Open `Race Day Ready` and start weather stage.
+* Set weather to dry and reset collisions.
+* Load saved drive speed and reapply style.
+* Open `||info:Info||` and set score, life, countdown.
 
 ```blocks
+//@highlight
 //@validate-exists
 raceDayTools.startStage(raceDayTools.RaceStage.Weather)
 //@validate-exists
@@ -57,15 +62,16 @@ info.setLife(raceDayTools.savedEfficiency())
 info.startCountdown(25)
 ```
 
-~hint
-Students begin with a working car so they can focus on what changes when the environment changes.
-hint~
+## Step 2 - Switch to Rain
 
-## Step 2
+Trigger a condition change after 10 seconds.
 
-Change the weather.
+* Open `||timer:Timer||` and add `after` block.
+* Set it to `10000` ms.
+* In the stage check, set weather to rain and adjust background.
 
 ```blocks
+//@highlight
 //@validate-exists
 timer.after(10000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
@@ -78,15 +84,16 @@ timer.after(10000, function () {
 })
 ```
 
-~hint
-The delayed weather change gives students time to feel the dry setup before the conditions shift.
-hint~
+## Step 3 - Reduce Control in Rain
 
-## Step 3
+Lower control when traction drops.
 
-Reduce control in rain.
+* Open `||game:Game||` and add update event every `1000` ms.
+* If weather is rain, reduce movement speed.
+* Otherwise, keep normal speed.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(1000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
@@ -101,15 +108,16 @@ game.onUpdateInterval(1000, function () {
 })
 ```
 
-~hint
-This is the physics idea in code form: lower grip means less control.
-hint~
+## Step 4 - Add Rain Hazards
 
-## Step 4
+Make wet hazards visible in gameplay.
 
-Add rain hazards.
+* Open `||game:Game||` and spawn puddles every `2500` ms.
+* Open `||sprites:Sprites||` and add player/enemy overlap.
+* Record collisions and destroy puddles with spray effect.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(2500, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
@@ -134,15 +142,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 ```
 
-~hint
-Use simple wet hazards to make traction loss visible. Students should be able to connect the puddle to the risk.
-hint~
+## Step 5 - Reward Adaptation
 
-## Step 5
+Award strategy for adapting to rain.
 
-Reward adaptation.
+* Open `||info:Info||` and add `on countdown end`.
+* If rain happened and collisions stayed low, award strategy.
+* Save run results.
 
 ```blocks
+//@highlight
 //@validate-exists
 info.onCountdownEnd(function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
@@ -152,17 +161,13 @@ info.onCountdownEnd(function () {
         }
         //@validate-exists
         raceDayTools.saveCurrentRunResults()
-        game.splash("Conditions review", "Grip changed, so the strategy changed.")
+        game.splash("Conditions review", "Grip changed, so strategy changed.")
     }
 })
 ```
 
-~hint
-The strategy reward here is about adaptation. Students earn it by responding well when the system changes.
-hint~
-
 ## Complete
 
-Physics idea: friction and traction affect how much control a driver has.
+Physics idea: friction and traction change how much control the driver has.
 
 Roles in this node: strategist, telemetry analyst, and performance engineer.

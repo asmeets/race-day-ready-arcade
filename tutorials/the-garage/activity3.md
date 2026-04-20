@@ -1,6 +1,5 @@
 # Garage Shakedown
 
-### @explicitHints true
 ### @diffs true
 
 ```validation.global
@@ -10,9 +9,9 @@
 
 ## Shakedown Run @showdialog
 
-A shakedown is a short test used to check whether a setup behaves the way the team expected.
+A shakedown is a short test used to check whether your setup behaves the way the team expected.
 
-In this activity, you will test the saved setup, collect evidence, and save the result for the track session.
+In this activity, you will run a quick test, capture evidence, and save results for the track.
 
 ```template
 let driveSpeed = 110
@@ -38,11 +37,17 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 1
+## Step 1 - Start the Shakedown
 
-Start the shakedown.
+Configure the short test run.
+
+* Open `||scene:Scene||` and set a garage test background.
+* Open `Race Day Ready` and start garage shakedown stage.
+* Reset collisions and load saved efficiency cost.
+* Open `||info:Info||` and set score, life, and countdown.
 
 ```blocks
+//@highlight
 //@validate-exists
 scene.setBackgroundColor(1)
 //@validate-exists
@@ -59,15 +64,16 @@ info.setLife(raceDayTools.savedEfficiency())
 info.startCountdown(15)
 ```
 
-~hint
-The starter code gives students their saved car and profile. This step only adds the shakedown test rules.
-hint~
+## Step 2 - Add Performance Scoring
 
-## Step 2
+Award points during clean survival.
 
-Award performance points.
+* Open `||game:Game||` and add `on game update every`.
+* Set interval to `1000` ms.
+* Inside the event, check stage and increase score.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(1000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
@@ -77,15 +83,16 @@ game.onUpdateInterval(1000, function () {
 })
 ```
 
-~hint
-This turns survival time into performance evidence. Students can see steady points build when the system is working.
-hint~
+## Step 3 - Spawn Test Hazards
 
-## Step 3
+Generate cones for test pressure.
 
-Spawn cones.
+* Open `||game:Game||` and add another update event.
+* Set interval to `2000` ms.
+* Open `||sprites:Sprites||` and create a cone enemy in that event.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(2000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
@@ -102,15 +109,16 @@ game.onUpdateInterval(2000, function () {
 })
 ```
 
-~hint
-Keep hazards simple in the garage. The goal is to test the setup, not overwhelm the player.
-hint~
+## Step 4 - Record Collisions
 
-## Step 4
+Convert collisions into measurable cost.
 
-Model collisions.
+* Open `||sprites:Sprites||` and add overlap between player and enemy.
+* Check that the stage is garage shakedown.
+* Record collision impact using saved efficiency drain.
 
 ```blocks
+//@highlight
 //@validate-exists
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
@@ -121,15 +129,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 ```
 
-~hint
-This step links the saved setup to the test result. A more aggressive setup should feel riskier here.
-hint~
+## Step 5 - Save Results
 
-## Step 5
+Store shakedown evidence for the next stage.
 
-Save the result.
+* Open `||info:Info||` and add `on countdown end`.
+* If collisions are low, award strategy.
+* Save current run results.
 
 ```blocks
+//@highlight
 //@validate-exists
 info.onCountdownEnd(function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
@@ -144,12 +153,8 @@ info.onCountdownEnd(function () {
 })
 ```
 
-~hint
-Ending the test by saving results is what makes reflection and comparison possible in the next stages.
-hint~
-
 ## Complete
 
-You just did the first engineering loop: predict, test, measure, and store the result.
+You completed the first engineering loop: predict, test, measure, store.
 
 Roles in this node: test engineer, reliability engineer, and data engineer.
