@@ -1,55 +1,124 @@
 # Reflect and Review
 
 ### @explicitHints true
+### @diffs true
 
-## Introduction @unplugged
+```validation.global
+# BlocksExistValidator
+* markers: validate-exists
+```
 
-Great engineers do not just race. They reflect.
+## Results Review @showdialog
 
-In this activity, you will add a results screen that shows the player what they achieved and connects their choices to real engineering thinking.
+Real teams do not stop at the finish line. They review the run, compare evidence, and decide what to test next.
+
+In this activity, you will turn saved race data into an engineering debrief.
+
+```template
+raceDayTools.loadRaceProfile(80, 5)
+raceDayTools.setTeamName("Apex Lab")
+raceDayTools.setCarName("Velocity")
+raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
+raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
+raceDayTools.setNextTestFocus("Review the data and test again.")
+```
 
 ## Step 1
 
-When the countdown ends, show a results splash.
+Create review variables.
 
 ```blocks
-info.onCountdownEnd(function () {
-    game.splash("Race Complete!", "Check your results")
-})
+//@validate-exists
+let reviewScore = 0
+//@validate-exists
+let reviewEfficiency = 0
+//@validate-exists
+let reviewStrategy = 0
+//@validate-exists
+let pitStopsVisited = 0
 ```
+
+~hint
+These variables hold the race data you are about to read. This makes the data-analysis step clearer in Blocks.
+hint~
 
 ## Step 2
 
-Display the final score as a game-over screen so players can see their Performance Points.
+Read saved results.
 
 ```blocks
-info.onCountdownEnd(function () {
-    game.over(true, effects.confetti)
-})
+//@validate-exists
+raceDayTools.startStage(raceDayTools.RaceStage.Review)
+reviewScore = raceDayTools.lastPerformanceResult()
+reviewEfficiency = raceDayTools.lastEfficiencyResult()
+reviewStrategy = raceDayTools.lastStrategyResult()
+pitStopsVisited = raceDayTools.savedPitStopCount()
 ```
+
+~hint
+This step turns saved gameplay data into variables students can inspect and discuss.
+hint~
 
 ## Step 3
 
-Before the game ends, add a quick reflection prompt. Engineers always ask: what would I change?
+Show the data.
 
 ```blocks
-info.onCountdownEnd(function () {
-    game.splash("Engineer check:", "What would you tune next?")
-    game.over(true, effects.confetti)
-})
+//@validate-exists
+game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 ```
+
+~hint
+Keep the first report simple. Students should notice the categories before they interpret them.
+hint~
 
 ## Step 4
 
-Think about your choices:
+Choose the next test focus.
 
-- Did you go fast or play it safe?
-- Did you visit pit stops or skip them?
-- Was your Efficiency score high or low?
-- What would a data analyst say about your results?
+```validation.local
+# BlocksExistValidator
+* Enabled: false
+```
+
+```blocks
+//@validate-exists
+if (reviewEfficiency < 3) {
+    //@validate-exists
+    raceDayTools.setNextTestFocus("Protect efficiency during longer runs.")
+} else if (reviewStrategy < 3) {
+    //@validate-exists
+    raceDayTools.setNextTestFocus("Adapt sooner when conditions change.")
+} else {
+    //@validate-exists
+    raceDayTools.setNextTestFocus("Your setup stayed balanced under pressure.")
+}
+game.splash("Next test focus", raceDayTools.nextTestFocus())
+```
+
+~hint
+This step shows how a program can interpret results and turn them into a next-step recommendation.
+hint~
+
+## Step 5
+
+Connect the result to a role.
+
+```blocks
+//@validate-exists
+if (pitStopsVisited > 0) {
+    game.splash(raceDayTools.roleLens(), "You used pit information during the run.")
+} else {
+    game.splash(raceDayTools.roleLens(), "Next time, use more mid-run data.")
+}
+```
+
+~hint
+The role lens helps students explain the result from a team perspective, not just as a score.
+hint~
 
 ## Complete
 
-You reviewed your race like a real engineer.
+Computer science idea: stored values become usable evidence when the program reads them back and makes a decision.
 
-Every test session teaches something. The best teams use their results to improve the next run.
+Engineering idea: review is part of the system, not an extra step after the work.
