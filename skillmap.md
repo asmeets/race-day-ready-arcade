@@ -5,6 +5,8 @@
 * secondarycolor: #b40707
 * tertiarycolor: #EAF3F8
 * highlightcolor: #42cdf4
+* completednodecolor: #067d14
+* allowcodecarryover: True
 * backgroundurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/background.gif
 * bannerurl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/banner.png
 
@@ -104,9 +106,16 @@
 * next: race-day-finish
 
 ### race-day-finish
-* name: Stand on the Podium
-* type: certificate
+* name: Stand on the Podium!
 * kind: completion
+* type: certificate
+* url: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/certificates/race-day-ready.pdf
+* imageUrl: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/certificates/race-day-ready.png
 * position: 12 6
-* url: /assets/skillmap/certificates/race-day-ready.pdf
-
+* rewards:
+    * certificate:
+        * url: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/certificates/race-day-ready.pdf
+        * preview: PNG
+    * completion-badge:
+        * image: https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/badges/badge-race-day-ready.png
+        * name: Race Day Ready
