@@ -1,6 +1,5 @@
 # Final Challenge
 
-### @explicitHints true
 ### @diffs true
 
 ```validation.global
@@ -10,9 +9,9 @@
 
 ## Final Challenge @showdialog
 
-The final run should use the evidence you gathered earlier: saved setup, saved efficiency, saved strategy, and what you learned from changing conditions.
+The final run should use saved setup, efficiency, strategy, and what you learned from changing conditions.
 
-In this activity, you will combine the systems into one cumulative race.
+In this activity, you will combine systems into one cumulative race.
 
 ```template
 let driveSpeed = 110
@@ -36,11 +35,17 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 1
+## Step 1 - Load Final Challenge State
 
-Load the final challenge.
+Prepare the full run.
+
+* Open `||scene:Scene||` and set final challenge background.
+* Open `Race Day Ready` and start final challenge stage.
+* Load saved speed, reset collisions, apply saved style.
+* Open `||info:Info||` and set score, life, countdown.
 
 ```blocks
+//@highlight
 //@validate-exists
 scene.setBackgroundColor(8)
 //@validate-exists
@@ -60,15 +65,15 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 game.splash(raceDayTools.carName(), "Final challenge loaded.")
 ```
 
-~hint
-This starter keeps the earlier customization and setup choices. The final challenge should feel like a payoff, not a reset.
-hint~
+## Step 2 - Spawn Obstacles
 
-## Step 2
+Add continuous risk pressure.
 
-Spawn obstacles.
+* Open `||game:Game||` and add update event every `2500` ms.
+* In stage check, spawn enemy obstacles and set downward velocity.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(2500, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
@@ -86,15 +91,15 @@ game.onUpdateInterval(2500, function () {
 })
 ```
 
-~hint
-Keep one obstacle system here. Students already understand hazards, so the new learning comes from combining systems.
-hint~
+## Step 3 - Spawn Pit Opportunities
 
-## Step 3
+Add recovery opportunities.
 
-Spawn pit chances.
+* Open `||game:Game||` and add another update event every `7000` ms.
+* Spawn `SpriteKind.Food` pit markers.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(7000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
@@ -111,15 +116,15 @@ game.onUpdateInterval(7000, function () {
 })
 ```
 
-~hint
-Pit opportunities create a meaningful strategy decision in the same run instead of separating it into another scene.
-hint~
+## Step 4 - Score Risk and Recovery
 
-## Step 4
+Combine collision cost and pit-stop recovery.
 
-Score risk and recovery.
+* Add overlap for player vs enemy to record collision cost.
+* Add overlap for player vs food to reward life, score, and strategy.
 
 ```blocks
+//@highlight
 //@validate-exists
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
@@ -144,15 +149,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 ```
 
-~hint
-This step makes the final run multi-objective. Students can see risk, recovery, and strategy affecting the outcome together.
-hint~
+## Step 5 - Save Final Run Data
 
-## Step 5
+Store the outcome for reflection.
 
-Save the final data.
+* Open `||info:Info||` and add `on countdown end`.
+* Save current run results.
 
 ```blocks
+//@highlight
 //@validate-exists
 info.onCountdownEnd(function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
@@ -163,12 +168,8 @@ info.onCountdownEnd(function () {
 })
 ```
 
-~hint
-Saving the final data here gives the review tutorial something real to analyze.
-hint~
-
 ## Complete
 
 This node turns the project into a systems challenge instead of a single-score sprint.
 
-Roles in this node: lead engineer, strategist, and the cross-functional race team.
+Roles in this node: lead engineer, strategist, and cross-functional race team.
