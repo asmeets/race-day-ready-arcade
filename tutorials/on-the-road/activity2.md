@@ -1,83 +1,138 @@
 # Pit Stop Briefings
 
 ### @explicitHints true
+### @diffs true
 
-## Introduction @unplugged
+```validation.global
+# BlocksExistValidator
+* markers: validate-exists
+```
 
-Every great team uses pit stops to make smart decisions.
+## Pit Wall Decisions @showdialog
 
-In this activity, you will add pit stops to the track. Each pit stop gives the player a short career-connected briefing and a chance to improve their car.
+A pit stop is not only maintenance. It is also a decision point where teams use data, timing, and communication to choose what happens next.
 
-This is where engineering meets strategy.
+In this activity, you will add one pit-stop system that combines a career briefing with a saved gameplay effect.
+
+```template
+let driveSpeed = 110
+let raceCar = sprites.create(img`
+    . . . 6 6 6 6 . .
+    . . 6 8 8 8 6 . .
+    . 6 6 6 6 6 6 6 .
+    . 6 5 6 6 6 5 6 .
+    6 6 6 6 6 6 6 6 6
+    . 6 6 6 6 6 6 6 .
+    . 6 5 6 6 6 5 6 .
+    . . 6 6 6 6 6 . .
+    . . . 6 6 6 . . .
+`, SpriteKind.Player)
+raceDayTools.loadRaceProfile(80, 5)
+raceDayTools.setTeamName("Apex Lab")
+raceDayTools.setCarName("Velocity")
+raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
+raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
+raceDayTools.applySavedCarStyle(raceCar)
+controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+info.setScore(0)
+info.setLife(raceDayTools.savedEfficiency())
+```
 
 ## Step 1
 
-Create a pit stop sprite that appears on the track.
+Start the pit-stop stage.
 
 ```blocks
-let pitStop = sprites.create(img`
-    . . 8 8 8 8 . .
-    . 8 8 f f 8 8 .
-    8 8 f f f f 8 8
-    8 8 f f f f 8 8
-    . 8 8 f f 8 8 .
-    . . 8 8 8 8 . .
-`, SpriteKind.Food)
-pitStop.setPosition(randint(20, 140), randint(20, 100))
+//@validate-exists
+raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
+//@validate-exists
+game.splash("Pit wall", "Use data before you make the next call.")
 ```
+
+~hint
+This stage change helps later event blocks know when pit-stop logic should run.
+hint~
 
 ## Step 2
 
-When the player reaches the pit stop, show a career briefing.
+Spawn pit markers.
 
 ```blocks
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    otherSprite.destroy()
-    game.splash("Pit Stop: Data Analyst", "Use results to improve performance")
+//@validate-exists
+game.onUpdateInterval(8000, function () {
+    if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
+        //@validate-exists
+        let pitStop = sprites.create(img`
+            . . 8 8 8 8 . .
+            . 8 8 f f 8 8 .
+            8 8 f f f f 8 8
+            8 8 f f f f 8 8
+            . 8 8 f f 8 8 .
+            . . 8 8 8 8 . .
+        `, SpriteKind.Food)
+        pitStop.setPosition(randint(20, 140), randint(20, 100))
+        pitStop.lifespan = 4000
+    }
 })
 ```
+
+~hint
+Pit markers should feel different from hazards. They represent decision points, not punishment.
+hint~
 
 ## Step 3
 
-Give the player a small upgrade at each pit stop. Restore one Efficiency Point.
+Handle pit choices.
 
 ```blocks
+//@validate-exists
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    otherSprite.destroy()
-    info.changeLifeBy(1)
-    game.splash("Pit Stop: Engineer", "Upgrade applied!")
+    if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
+        otherSprite.destroy()
+        //@validate-exists
+        raceDayTools.recordPitStopVisit()
+        //@validate-exists
+        raceDayTools.awardStrategyPoints(1)
+        if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
+            //@validate-exists
+            info.changeLifeBy(1)
+            game.splash(raceDayTools.roleLens(), "High pace needs extra energy support.")
+        } else {
+            //@validate-exists
+            info.changeScoreBy(2)
+            game.splash(raceDayTools.roleLens(), "Balanced pace lets you push at the right moment.")
+        }
+    }
 })
 ```
+
+~hint
+This is a good place to connect gameplay to roles. The same stop can teach strategy, data, and operations at once.
+hint~
 
 ## Step 4
 
-Add a timer that spawns new pit stops so students encounter multiple career briefings.
+Save the updated state.
 
 ```blocks
-game.onUpdateInterval(8000, function () {
-    let newPit = sprites.create(img`
-        . . 8 8 8 8 . .
-        . 8 8 f f 8 8 .
-        8 8 f f f f 8 8
-        8 8 f f f f 8 8
-        . 8 8 f f 8 8 .
-        . . 8 8 8 8 . .
-    `, SpriteKind.Food)
-    newPit.setPosition(randint(20, 140), randint(20, 100))
+//@validate-exists
+game.onUpdateInterval(1000, function () {
+    if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
+        //@validate-exists
+        raceDayTools.saveCurrentRunResults()
+    }
 })
 ```
 
-## Step 5
-
-Think about which career briefings you would add. Some ideas:
-
-- **Software Engineer:** controls, game logic, reliability
-- **Aero Engineer:** downforce vs. speed tradeoffs
-- **UX Designer:** making the game clear and fair
-- **Sustainability Lead:** efficiency as a real constraint
+~hint
+Saving the updated state after pit choices keeps those choices visible in the final run and review.
+hint~
 
 ## Complete
 
-You added pit stops with career connections to the race.
+You built a real decision point into the race.
 
-Each stop is a chance to learn something new and improve the car. That is how real teams work: test, stop, think, improve.
+Engineering idea: optimization means choosing the best next move with limited time and information.
+
+Roles in this node: strategist, pit crew, data analyst, and operations lead.

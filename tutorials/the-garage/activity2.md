@@ -1,73 +1,165 @@
 # Setup and Tradeoffs
 
-### @explicitHints true
+### @diffs true
 
-## Introduction @unplugged
-
-Great work getting the car ready.
-
-Now it is time to think like a real engineer. You will tune your car's speed and handling, and make your first design tradeoff.
-
-**Remember:** faster is not always better. The best engineers find the right balance.
-
-## Step 1
-
-Create a variable for your car's drive speed. This is the value you will tune.
-
-```blocks
-let driveSpeed = 80
+```validation.global
+# BlocksExistValidator
+* markers: validate-exists
 ```
 
-## Step 2
+## Setup Tradeoffs @showdialog
 
-Use your speed variable to control car movement.
+Performance engineers do not ask only, "How do we go faster?" They also ask, "What will this change cost somewhere else?"
+
+In this activity, you will tune speed, model an efficiency tradeoff, and save your setup for the next stage.
+
+```template
+let driveSpeed = 80
+let efficiencyDrain = 1
+let raceCar = sprites.create(img`
+    . . . 6 6 6 6 . .
+    . . 6 8 8 8 6 . .
+    . 6 6 6 6 6 6 6 .
+    . 6 5 6 6 6 5 6 .
+    6 6 6 6 6 6 6 6 6
+    . 6 6 6 6 6 6 6 .
+    . 6 5 6 6 6 5 6 .
+    . . 6 6 6 6 6 . .
+    . . . 6 6 6 . . .
+`, SpriteKind.Player)
+raceDayTools.loadRaceProfile(80, 5)
+raceDayTools.setTeamName("Apex Lab")
+raceDayTools.setCarName("Velocity")
+raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
+raceDayTools.applySavedCarStyle(raceCar)
+controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+info.setScore(0)
+info.setLife(raceDayTools.savedEfficiency())
+```
+
+## Step 1 - Load the Setup
+
+Bring saved setup data into this activity.
+
+* Open `Race Day Ready`.
+* Add `start stage` and set it to garage setup.
+* Add the block that reads saved drive speed into `driveSpeed`.
+* Open `||game:Game||` and add a short prediction splash.
 
 ```blocks
+//@highlight
+//@validate-exists
+raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
+driveSpeed = raceDayTools.savedDriveSpeed()
+//@validate-exists
+game.splash("Predict first", "What will more speed do to control and energy?")
+```
+
+## Step 2 - Tune Speed
+
+Apply a faster setup.
+
+* Open `||variables:Variables||`.
+* Set `driveSpeed` to `110`.
+* Open `||controller:Controller||` and use `driveSpeed` in movement.
+
+```blocks
+//@highlight
+//@validate-exists
+driveSpeed = 110
+//@validate-exists
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 ```
 
-## Step 3
+## Step 3 - Create the Efficiency Variable
 
-Now think like a race engineer. **Before you change anything, predict what will happen.**
+Create the variable before using it in logic.
 
-Try increasing `driveSpeed` to **120**. Will the car be easier or harder to control?
+* Open `||variables:Variables||`.
+* If needed, click `Make a Variable` and create `efficiencyDrain`.
+* Add `set efficiencyDrain to 1`.
 
 ```blocks
-let driveSpeed = 120
+//@highlight
+//@validate-exists
+let efficiencyDrain = 1
 ```
 
-## Step 4
+## Step 4 - Add the Tradeoff Rule
 
-Create a variable for efficiency. This tracks whether your choices are sustainable.
+Model the cost of speed.
+
+* Open `||logic:Logic||` and add `if then else`.
+* Use `driveSpeed > 100` as the condition.
+* In `then`, set `efficiencyDrain` to `2`.
+* In `else`, set `efficiencyDrain` to `1`.
 
 ```blocks
-let efficiencyRating = 5
-info.setLife(efficiencyRating)
+//@highlight
+//@validate-exists
+if (driveSpeed > 100) {
+    efficiencyDrain = 2
+} else {
+    efficiencyDrain = 1
+}
 ```
 
-## Step 5
+## Step 5 - Choose a Role Lens
 
-Add a rule: higher speed costs more energy. Every second, reduce efficiency if speed is high.
+Pick the role perspective for this run.
 
-```blocks
-game.onUpdateInterval(2000, function () {
-    if (driveSpeed > 100) {
-        efficiencyRating += -1
-        info.setLife(efficiencyRating)
-    }
-})
+```validation.local
+# BlocksExistValidator
+* Enabled: false
 ```
 
-## Step 6
-
-Show the engineer guide's advice.
+* Open `Race Day Ready`.
+* Set one role lens.
+* Show the saved driver profile.
 
 ```blocks
-game.splash("Engineer says:", "Balance speed and efficiency!")
+//@highlight
+//@validate-exists
+raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
+raceDayTools.showSavedDriverProfile()
+```
+
+```ghost
+raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
+raceDayTools.setRoleLens(raceDayTools.RoleLens.SoftwareEngineer)
+raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
+```
+
+## Step 6 - Save the Setup
+
+Store the tradeoff choice for later stages.
+
+* Keep the `if` structure so setup focus depends on speed.
+* Save the setup as `Pace` for high speed or `Balance` for lower speed.
+
+```blocks
+//@highlight
+if (driveSpeed > 100) {
+    //@validate-exists
+    raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Pace)
+    game.splash("Performance engineer", "You chose raw pace. Watch energy use.")
+} else {
+    //@validate-exists
+    raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Balance)
+    game.splash("Sustainability engineer", "You chose a more efficient setup.")
+}
+```
+
+```ghost
+raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Balance)
+raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Pace)
 ```
 
 ## Complete
 
-You just made your first engineering tradeoff.
+You built a real engineering tradeoff.
 
-More speed used more energy. A real F1 team faces this exact decision. Test different speed values and watch what happens to your Efficiency Points.
+Physics idea: increasing speed raises system demand.
+
+Computer science idea: variables plus conditionals let one program adapt to different design choices.

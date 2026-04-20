@@ -27,6 +27,7 @@
         "skillmap.md",
         "main.blocks",
         "main.ts",
+        "custom.ts",
         "tutorials/the-garage/activity1.md",
         "tutorials/the-garage/activity2.md",
         "tutorials/the-garage/activity3.md",
