@@ -1,6 +1,5 @@
 # Reflect and Review
 
-### @explicitHints true
 ### @diffs true
 
 ```validation.global
@@ -10,9 +9,9 @@
 
 ## Results Review @showdialog
 
-Real teams do not stop at the finish line. They review the run, compare evidence, and decide what to test next.
+Real teams do not stop at the finish line. They review evidence and decide what to test next.
 
-In this activity, you will turn saved race data into an engineering debrief.
+In this activity, you will read saved race data and generate a next-test recommendation.
 
 ```template
 raceDayTools.loadRaceProfile(80, 5)
@@ -23,11 +22,16 @@ raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 raceDayTools.setNextTestFocus("Review the data and test again.")
 ```
 
-## Step 1
+## Step 1 - Create Review Variables
 
-Create review variables.
+Create variables to hold run data.
+
+* Open `||variables:Variables||`.
+* Create `reviewScore`, `reviewEfficiency`, `reviewStrategy`, and `pitStopsVisited`.
+* Set each variable to `0`.
 
 ```blocks
+//@highlight
 //@validate-exists
 let reviewScore = 0
 //@validate-exists
@@ -38,15 +42,16 @@ let reviewStrategy = 0
 let pitStopsVisited = 0
 ```
 
-~hint
-These variables hold the race data you are about to read. This makes the data-analysis step clearer in Blocks.
-hint~
+## Step 2 - Read Saved Results
 
-## Step 2
+Load saved data into those variables.
 
-Read saved results.
+* Open `Race Day Ready`.
+* Start review stage.
+* Read last performance, efficiency, strategy, and pit-stop count.
 
 ```blocks
+//@highlight
 //@validate-exists
 raceDayTools.startStage(raceDayTools.RaceStage.Review)
 reviewScore = raceDayTools.lastPerformanceResult()
@@ -55,33 +60,35 @@ reviewStrategy = raceDayTools.lastStrategyResult()
 pitStopsVisited = raceDayTools.savedPitStopCount()
 ```
 
-~hint
-This step turns saved gameplay data into variables students can inspect and discuss.
-hint~
+## Step 3 - Show Data Summary
 
-## Step 3
+Display one concise debrief line.
 
-Show the data.
+* Open `||game:Game||`.
+* Add splash text with the three result values.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 ```
 
-~hint
-Keep the first report simple. Students should notice the categories before they interpret them.
-hint~
+## Step 4 - Choose Next Test Focus
 
-## Step 4
-
-Choose the next test focus.
+Set a recommendation from evidence.
 
 ```validation.local
 # BlocksExistValidator
 * Enabled: false
 ```
 
+* Open `||logic:Logic||` and build an `if / else if / else` chain.
+* If efficiency is low, set an efficiency-focused recommendation.
+* Else if strategy is low, set an adaptation-focused recommendation.
+* Else set a balanced recommendation.
+
 ```blocks
+//@highlight
 //@validate-exists
 if (reviewEfficiency < 3) {
     //@validate-exists
@@ -96,15 +103,21 @@ if (reviewEfficiency < 3) {
 game.splash("Next test focus", raceDayTools.nextTestFocus())
 ```
 
-~hint
-This step shows how a program can interpret results and turn them into a next-step recommendation.
-hint~
+## Step 5 - Connect Results to Role
 
-## Step 5
+Tie the run to team behavior.
 
-Connect the result to a role.
+```validation.local
+# BlocksExistValidator
+* Enabled: false
+```
+
+* Open `||logic:Logic||`.
+* If pit stops were visited, show a data-use message.
+* Otherwise show a message about using mid-run data next time.
 
 ```blocks
+//@highlight
 //@validate-exists
 if (pitStopsVisited > 0) {
     game.splash(raceDayTools.roleLens(), "You used pit information during the run.")
@@ -113,12 +126,8 @@ if (pitStopsVisited > 0) {
 }
 ```
 
-~hint
-The role lens helps students explain the result from a team perspective, not just as a score.
-hint~
-
 ## Complete
 
-Computer science idea: stored values become usable evidence when the program reads them back and makes a decision.
+Computer science idea: stored values become usable evidence when the program reads them and makes a decision.
 
-Engineering idea: review is part of the system, not an extra step after the work.
+Engineering idea: review is part of the system, not a separate afterthought.

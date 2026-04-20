@@ -1,6 +1,5 @@
 # Winners Circle
 
-### @explicitHints true
 ### @diffs true
 
 ```validation.global
@@ -10,9 +9,9 @@
 
 ## Winners Circle @showdialog
 
-The last screen should show what the student actually did, what ideas they used, and which careers connect to those decisions.
+The last screen should show what the student did, what ideas they used, and which roles connect to those decisions.
 
-In this activity, you will close the path with a summary based on saved data, not a generic celebration screen.
+In this activity, you will close the path with a summary based on saved data.
 
 ```template
 raceDayTools.loadRaceProfile(80, 5)
@@ -23,11 +22,16 @@ raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 raceDayTools.setNextTestFocus("Review the data and test again.")
 ```
 
-## Step 1
+## Step 1 - Set Final Scene
 
-Set the final scene.
+Create a summary atmosphere.
+
+* Open `||scene:Scene||` and set background color.
+* Open `||effects:Effects||` and start confetti.
+* Open `Race Day Ready` and start winners circle stage.
 
 ```blocks
+//@highlight
 //@validate-exists
 scene.setBackgroundColor(8)
 //@validate-exists
@@ -36,50 +40,53 @@ effects.confetti.startScreenEffect()
 raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
 ```
 
-~hint
-This scene should feel like a summary screen, not just a win screen.
-hint~
+## Step 2 - Create Closing Variables
 
-## Step 2
+Create variables before reading saved values.
 
-Create closing variables.
+* Open `||variables:Variables||`.
+* Create `nextTestFocus` text variable and `finalStrategy` number variable.
 
 ```blocks
+//@highlight
 //@validate-exists
 let nextTestFocus = ""
 //@validate-exists
 let finalStrategy = 0
 ```
 
-~hint
-Make the variables first, then load the saved values into them. That keeps the Blocks flow easier to follow.
-hint~
+## Step 3 - Read Closing Data
 
-## Step 3
+Load saved reflection values.
 
-Read the closing data.
+* Open `Race Day Ready`.
+* Set `nextTestFocus` from saved recommendation.
+* Set `finalStrategy` from saved strategy result.
+* Show saved driver profile.
 
 ```blocks
+//@highlight
 nextTestFocus = raceDayTools.nextTestFocus()
 finalStrategy = raceDayTools.lastStrategyResult()
 //@validate-exists
 raceDayTools.showSavedDriverProfile()
 ```
 
-~hint
-Bring the saved profile back here so students feel that the ending belongs to their version of the project.
-hint~
+## Step 4 - Connect Setup to Career Lens
 
-## Step 4
-
-Connect choices to a role.
+Link setup focus to role framing.
 
 ```validation.local
 # BlocksExistValidator
 * Enabled: false
 ```
 
+* Open `||logic:Logic||`.
+* If setup focus was `Pace`, show performance engineer message.
+* Else show strategist message.
+
 ```blocks
+//@highlight
 //@validate-exists
 if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
     game.splash("Career link", "You worked like a performance engineer.")
@@ -88,33 +95,34 @@ if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
 }
 ```
 
-~hint
-This step connects gameplay choices to careers. The goal is for students to see their decisions as role-based thinking.
-hint~
+## Step 5 - Show CS Takeaway
 
-## Step 5
+State the coding idea clearly.
 
-Show the CS takeaway.
+* Open `||game:Game||`.
+* Add one splash summarizing events, variables, and saved data.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.splash("Computer science mattered", "Events, variables, and saved data carried your choices forward.")
 ```
 
-~hint
-Name the computer science explicitly so students can connect the project to coding, not only to racing.
-hint~
+## Step 6 - End with Next Test Idea
 
-## Step 6
-
-End with the next test idea.
+Close with an iteration-focused message.
 
 ```validation.local
 # BlocksExistValidator
 * Enabled: false
 ```
 
+* Open `||logic:Logic||`.
+* If strategy is strong, show adaptation success.
+* Otherwise show saved next-test focus.
+
 ```blocks
+//@highlight
 //@validate-exists
 if (finalStrategy >= 3) {
     game.splash("Engineering takeaway", "You adapted well across the full run.")
@@ -122,10 +130,6 @@ if (finalStrategy >= 3) {
     game.splash("Engineering takeaway", nextTestFocus)
 }
 ```
-
-~hint
-End with a takeaway that points toward iteration. Engineering is about what to test next, not only what already happened.
-hint~
 
 ## Complete
 
