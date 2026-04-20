@@ -1,6 +1,5 @@
 # Pit Stop Briefings
 
-### @explicitHints true
 ### @diffs true
 
 ```validation.global
@@ -10,7 +9,7 @@
 
 ## Pit Wall Decisions @showdialog
 
-A pit stop is not only maintenance. It is also a decision point where teams use data, timing, and communication to choose what happens next.
+A pit stop is not only maintenance. It is also a decision point where teams use timing and data to decide what happens next.
 
 In this activity, you will add one pit-stop system that combines a career briefing with a saved gameplay effect.
 
@@ -39,26 +38,32 @@ info.setScore(0)
 info.setLife(raceDayTools.savedEfficiency())
 ```
 
-## Step 1
+## Step 1 - Start Pit-Stop Stage
 
-Start the pit-stop stage.
+Activate pit-stop logic.
+
+* Open `Race Day Ready`.
+* Start stage as pit stop.
+* Add a short briefing splash.
 
 ```blocks
+//@highlight
 //@validate-exists
 raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
 //@validate-exists
 game.splash("Pit wall", "Use data before you make the next call.")
 ```
 
-~hint
-This stage change helps later event blocks know when pit-stop logic should run.
-hint~
+## Step 2 - Spawn Pit Markers
 
-## Step 2
+Create pit opportunities over time.
 
-Spawn pit markers.
+* Open `||game:Game||` and add update event.
+* Set interval to `8000` ms.
+* Inside stage check, create pit marker sprites.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(8000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
@@ -77,15 +82,16 @@ game.onUpdateInterval(8000, function () {
 })
 ```
 
-~hint
-Pit markers should feel different from hazards. They represent decision points, not punishment.
-hint~
+## Step 3 - Handle Pit Choices
 
-## Step 3
+Award strategy and apply setup-dependent outcomes.
 
-Handle pit choices.
+* Open `||sprites:Sprites||` and add overlap for player vs food.
+* Record pit visit and strategy points.
+* Use setup focus to branch the reward.
 
 ```blocks
+//@highlight
 //@validate-exists
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
@@ -107,15 +113,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 ```
 
-~hint
-This is a good place to connect gameplay to roles. The same stop can teach strategy, data, and operations at once.
-hint~
+## Step 4 - Save Updated State
 
-## Step 4
+Keep pit-stop decisions available later.
 
-Save the updated state.
+* Open `||game:Game||` and add update event every `1000` ms.
+* Save current run results while in pit-stop stage.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(1000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
@@ -125,13 +131,7 @@ game.onUpdateInterval(1000, function () {
 })
 ```
 
-~hint
-Saving the updated state after pit choices keeps those choices visible in the final run and review.
-hint~
-
 ## Complete
-
-You built a real decision point into the race.
 
 Engineering idea: optimization means choosing the best next move with limited time and information.
 
