@@ -1,6 +1,5 @@
 # Hit the Track
 
-### @explicitHints true
 ### @diffs true
 
 ```validation.global
@@ -10,9 +9,9 @@
 
 ## Track Session @showdialog
 
-Now the setup leaves the garage. The same code and saved values have to work under real driving conditions.
+Now the setup leaves the garage. The same code and saved values must work under real driving conditions.
 
-In this activity, you will load the tuned car, dodge live obstacles, and reward clean driving with both performance and strategy.
+In this activity, you will load the tuned car, dodge obstacles, and reward clean driving.
 
 ```template
 let driveSpeed = 110
@@ -36,18 +35,18 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 1
+## Step 1 - Load Track State
 
-Load the track setup.
+Configure the run using saved setup.
 
-* Open `Scene` and set a track-style background color.
-* Open `Race Day Ready` and drag in the block that starts the track stage.
-* Add the block that loads the saved drive speed.
-* Reset the collision count before the run begins.
-* Reapply the saved car style so the student's car still looks like their version.
-* Open `Info` and set the score, life, and countdown for the run.
+* Open `||scene:Scene||` and set a track background.
+* Open `Race Day Ready` and start track stage.
+* Load saved speed and reset collision count.
+* Reapply saved car style.
+* Open `||info:Info||` and set score, life, and countdown.
 
 ```blocks
+//@highlight
 //@validate-exists
 scene.setBackgroundColor(11)
 //@validate-exists
@@ -67,22 +66,17 @@ info.startCountdown(30)
 game.splash(raceDayTools.teamName(), raceDayTools.carName() + " hits the track.")
 ```
 
-~hint
-If something looks missing in the simulator, compare the workspace to the step image and check that these setup blocks are still in one stack. This step shifts the setting from garage testing to live track conditions.
-hint~
+## Step 2 - Spawn Obstacles
 
-## Step 2
+Add continuous obstacle pressure.
 
-Spawn obstacles.
-
-* Open `Game` and drag in `on game update every 500 ms`.
-* Change the timing value to `2000` milliseconds.
-* This event should sit in an empty part of the workspace, not inside `on start`.
-* Inside the event, use `Race Day Ready` to check whether the game is in the track stage.
-* Open `Sprites` and create an obstacle sprite inside that event.
-* Set the obstacle position, velocity, and auto destroy behavior so it falls down the screen and disappears when it leaves the play area.
+* Open `||game:Game||` and add `on game update every`.
+* Set interval to `2000` ms.
+* In the event, confirm stage is track.
+* Open `||sprites:Sprites||` and create obstacle enemies.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(2000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
@@ -100,15 +94,16 @@ game.onUpdateInterval(2000, function () {
 })
 ```
 
-~hint
-If the obstacle appears only once, check that the sprite creation block is inside the update event. If it appears but does not move, check the velocity block.
-hint~
+## Step 3 - Handle Collisions
 
-## Step 3
+Convert collisions into penalties.
 
-Handle collisions.
+* Open `||sprites:Sprites||` and add overlap for player vs enemy.
+* Check stage before applying penalty.
+* Record collision impact and destroy the obstacle.
 
 ```blocks
+//@highlight
 //@validate-exists
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
@@ -119,33 +114,30 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 ```
 
-~hint
-Use one overlap rule for a clear cause-and-effect loop: contact creates a penalty, and students can observe it immediately.
-hint~
+## Step 4 - Create a Tracking Variable
 
-## Step 4
+Track whether new collisions happened.
 
-Create a tracking variable.
-
-* Open `Variables`.
-* If `lastTrackCollisionCount` is not listed, choose `Make a Variable`.
-* Create the variable, then drag `set lastTrackCollisionCount to 0` into the workspace.
-* Put this variable setup before the clean-driving event so the game has a value to compare against.
+* Open `||variables:Variables||`.
+* If needed, click `Make a Variable` and create `lastTrackCollisionCount`.
+* Set it to `0` before the clean-driving event.
 
 ```blocks
+//@highlight
 //@validate-exists
 let lastTrackCollisionCount = 0
 ```
 
-~hint
-If students skip this step, the clean-driving logic will be harder to understand and debug. This variable stores the previous collision total.
-hint~
+## Step 5 - Reward Clean Driving
 
-## Step 5
+Award points when collision count does not increase.
 
-Reward clean driving.
+* Open `||game:Game||` and add update event every `4000` ms.
+* Compare current collision count to `lastTrackCollisionCount`.
+* If unchanged, award performance and strategy points.
 
 ```blocks
+//@highlight
 //@validate-exists
 game.onUpdateInterval(4000, function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
@@ -161,15 +153,15 @@ game.onUpdateInterval(4000, function () {
 })
 ```
 
-~hint
-This is the strategy layer. Students are rewarded for consistency, not just speed.
-hint~
+## Step 6 - Save Track Results
 
-## Step 6
+Store track evidence for pit-stop and final stages.
 
-Save the track result.
+* Open `||info:Info||` and add `on countdown end`.
+* Save current run results.
 
 ```blocks
+//@highlight
 //@validate-exists
 info.onCountdownEnd(function () {
     if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
@@ -180,12 +172,8 @@ info.onCountdownEnd(function () {
 })
 ```
 
-~hint
-Always save the track result. That lets later pit-stop and review steps build on real evidence from play.
-hint~
-
 ## Complete
 
-Physics idea: more speed increases the time pressure on every steering decision.
+Physics idea: more speed increases time pressure on steering decisions.
 
-Roles in this node: race engineer, driver performance analyst, and controls software engineer.
+Roles in this node: race engineer, performance analyst, and controls software engineer.
