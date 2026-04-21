@@ -9,7 +9,7 @@
 
 ## Garage Briefing @showdialog
 
-![Welcome to Miami](https://raw.githubusercontent.com/asmeets/race-day-ready-arcade/main/assets/skillmap/welcome.png)
+![Welcome to Miami](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/welcome.png)
 
 An F1 car is a system. Driver input, code, speed, energy use, and team decisions all affect the run.
 
