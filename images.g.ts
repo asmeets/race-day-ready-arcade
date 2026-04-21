@@ -64,6 +64,14 @@ namespace myImages {
             case "pitCrewTool": return pitCrewTool;
             case "image31":
             case "telemetryScreen": return telemetryScreen;
+            case "grass": return grass;
+            case "sand": return sand;
+            case "roadPlain": return roadPlain;
+            case "roadStraight": return roadStraight;
+            case "roadBend": return roadBend;
+            case "roadCross": return roadCross;
+            case "roadArrow": return roadArrow;
+            case "roadCheckpoint": return roadCheckpoint;
         }
         return null;
     })
@@ -130,4 +138,20 @@ namespace myImages {
     export const pitCrewTool = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._spriteImage
     export const telemetryScreen = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const grass = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const sand = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const roadPlain = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const roadStraight = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const roadBend = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const roadCross = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const roadArrow = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._spriteImage
+    export const roadCheckpoint = image.ofBuffer(hex``);
 }
