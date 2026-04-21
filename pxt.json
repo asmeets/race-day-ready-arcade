@@ -20,7 +20,6 @@
         "darts": "*",
         "arcade-text": "github:microsoft/arcade-text#v1.3.0",
         "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0",
-        "ArcadeMIDI": "github:unsignedarduino/arcademidi#af121437d59fd6b2cec54501ac437db1eaa766f5"
     },
     "files": [
         "README.md",
@@ -36,11 +35,7 @@
         "tutorials/on-the-road/activity3.md",
         "tutorials/the-finish-line/activity1.md",
         "tutorials/the-finish-line/activity2.md",
-        "tutorials/the-finish-line/activity3.md",
-        "images.g.jres",
-        "images.g.ts",
-        "tilemap.g.jres",
-        "tilemap.g.ts"
+        "tutorials/the-finish-line/activity3.md"
     ],
     "testDependencies": {},
     "targetVersions": {
