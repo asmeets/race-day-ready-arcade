@@ -1,5 +1,5 @@
 {
-    "name": "Junior Engineers: Race Day Ready",
+    "name": "Race Day Ready",
     "version": "0.2.13",
     "description": "Race Day Ready Arcade is a game design project where you build and remix your own F1-inspired racing experience in MakeCode Arcade. As you play and change the game, you’ll explore real engineering tradeoffs like speed versus control, power versus efficiency, and risk versus consistency. The goal is not just to make the fastest car, but to make smart design choices and see how small code changes affect the whole race.\n\nThis project is meant to help you think like a game designer, software developer, and race engineer. You can test ideas, spot problems, improve your design, and learn how coding connects to real careers in technology, engineering, data, strategy, and accessibility.",
     "dependencies": {
@@ -20,6 +20,7 @@
         "darts": "*",
         "arcade-text": "github:microsoft/arcade-text#v1.3.0",
         "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0",
+        "ArcadeMIDI": "github:unsignedarduino/arcademidi#af121437d59fd6b2cec54501ac437db1eaa766f5"
     },
     "files": [
         "README.md",
@@ -35,7 +36,11 @@
         "tutorials/on-the-road/activity3.md",
         "tutorials/the-finish-line/activity1.md",
         "tutorials/the-finish-line/activity2.md",
-        "tutorials/the-finish-line/activity3.md"
+        "tutorials/the-finish-line/activity3.md",
+        "images.g.jres",
+        "images.g.ts",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
     ],
     "testDependencies": {},
     "targetVersions": {
@@ -45,7 +50,7 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "theme": {
         "skin": "blue",
         "background-color": "#eaf4fb",
@@ -71,10 +76,5 @@
         "#E5CDC4",
         "#91463d",
         "#000000"
-    ],
-    "yotta": {
-        "config": {
-            "PXT_GC_CHECKS": 1
-        }
-    }
+    ]
 }
