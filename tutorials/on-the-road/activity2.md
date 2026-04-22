@@ -9,7 +9,7 @@
 
 ## Pit Wall Decisions @showdialog
 
-Hey, I'm Morgan — your strategist. I didn't start out crunching data; I started in track operations, learning timing and logistics by doing the work and talking with the engineers and analysts around me. On a real team, I watch live conditions, weigh safer options against riskier ones, and help everyone make fast calls with different pieces of information. In this gate, you'll build a pit stop that reads the setup choice you saved earlier and turns it into a real decision with real consequences. The call you make here won't just happen and disappear — it will shape how the rest of your run plays out.
+Hey, I'm Morgan, your strategist. I didn't start out crunching data; I started in track operations, learning timing and logistics by doing the work and talking with the engineers and analysts around me. On a real team, I watch live conditions, weigh safer options against riskier ones, and help everyone make fast calls with different pieces of information. In this gate, you'll build a pit stop that reads the setup choice you saved earlier and turns it into a real decision with real consequences. The call you make here won't just happen and disappear. It will shape how the rest of your run plays out.
 
 ```template
 let driveSpeed = 110
@@ -40,7 +40,7 @@ This goes inside `on start` to switch the game into pit mode so pit logic runs c
 * Open `||loops(noclick):on start||` and find the existing setup code at the bottom.
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `on start`, set to **Pit Stop**.
 
-> **Morgan tip:** If pit markers show up on the track, that's a stage-mismatch clue — look for a missing "if stage is Pit Stop" check.
+> **Morgan tip:** If pit markers show up on the track, that's a stage-mismatch clue. Look for a missing "if stage is Pit Stop" check.
 
 ```blocks
 let driveSpeed = 110
@@ -73,7 +73,7 @@ Still inside `on start`, add a one-line prompt so players know they've reached t
 * :game pad: Open `||game:Game||` and add a `splash` block below the stage setter.
 * Set the first field to `Pit wall` and the second field to `Use data before you make the next call.`
 
-> **Morgan tip:** Keep this briefing tight — if you need more than a few seconds to explain it, the prompt should be clearer, not longer.
+> **Morgan tip:** Keep this briefing tight. If you need more than a few seconds to explain it, the prompt should be clearer, not longer.
 
 ```blocks
 let driveSpeed = 110
@@ -107,7 +107,7 @@ Still in `on start`, create a counter so there's evidence of how many pit stops 
 * :paper plane: Open `||variables:Variables||` and make a new variable named `pitStopsVisited`.
 * Drag `set pitStopsVisited to 0` into `on start` below the splash.
 
-> **Morgan tip:** If you skip the counter, you lose evidence — I like having at least one number I can point to: "We used the pit stop ___ times."
+> **Morgan tip:** If you skip the counter, you lose evidence. I like having at least one number I can point to: "We used the pit stop ___ times."
 
 ```blocks
 let driveSpeed = 110
@@ -143,7 +143,7 @@ This is a new event block that runs on its own, separate from `on start`.
 * Inside it, add an `if stage is Pit Stop` check from `||raceDayTools:Driven by STEM||`.
 * Create a `Food` sprite inside that check and set a short `lifespan` to make it a timed decision.
 
-> **Morgan tip:** If markers vanish instantly, your lifespan is probably too short — increase it a little and test again.
+> **Morgan tip:** If markers vanish instantly, your lifespan is probably too short. Increase it a little and test again.
 
 ```blocks
 //@highlight
@@ -176,9 +176,9 @@ This is a new event block that fires when the player sprite overlaps a pit marke
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap Player and Food` block.
 * Inside an `if stage is Pit Stop` check, change `pitStopsVisited` by 1 and award a Strategy point.
-* Add an `if/else` using `setupFocusIs Pace` — apply a pace reward in the true branch, a balance reward in the else branch.
+* Add an `if/else` using `setupFocusIs Pace`. Apply a pace reward in the true branch, a balance reward in the else branch.
 
-> **Morgan tip:** If rewards feel "backwards," double-check what you saved as your setup focus earlier — the pit logic is only as smart as the saved choice it reads.
+> **Morgan tip:** If rewards feel "backwards," double-check what you saved as your setup focus earlier. The pit logic is only as smart as the saved choice it reads.
 
 ```blocks
 //@highlight
@@ -217,7 +217,7 @@ This is a new event block that runs on its own, carrying your pit-stop decision 
 * :game pad: Open `||info:Info||` and add an `on countdown end` block.
 * Inside the `if stage is Pit Stop` check, open `||raceDayTools:Driven by STEM||` and drag in `save current run results`.
 
-> **Morgan tip:** If the next gate doesn't seem to remember your pit stop, that's usually a save timing issue — make sure the save happens after the decision changes something.
+> **Morgan tip:** If the next gate doesn't seem to remember your pit stop, that's usually a save timing issue. Make sure the save happens after the decision changes something.
 
 ```blocks
 //@highlight

@@ -9,7 +9,7 @@
 
 ## Winners Circle @showdialog
 
-Hi, I'm Kai, your operations lead. I got into this work the hands-on way — setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because reliability isn't luck, it's something you build. On a real team I coordinate timelines, make sure resets go smoothly, and create handoffs so the next shift can pick up right where we left off. In this last gate, you'll use your saved data to celebrate what you built, explore where these skills connect to real careers, and leave with a clear next-step idea. Finishing is great — and a good handoff means the work keeps going.
+Hi, I'm Kai, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because reliability isn't luck, it's something you build. On a real team I coordinate timelines, make sure resets go smoothly, and create handoffs so the next shift can pick up right where we left off. In this last gate, you'll use your saved data to celebrate what you built, explore where these skills connect to real careers, and leave with a clear next-step idea. Finishing is great, and a good handoff means the work keeps going.
 
 ```template
 raceDayTools.loadRaceProfile(80, 5)
@@ -18,7 +18,7 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
 
 ## Step 1 – Start Winners Circle stage
 
-The Winners Circle is a closing phase, not a driving challenge — start it now so everything that follows runs in the right context.
+The Winners Circle is a closing phase, not a driving challenge. Start it now so everything that follows runs in the right context.
 
 * Open `||loops(noclick):on start||` and find your setup code.
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
@@ -108,7 +108,7 @@ This step has no single correct answer. Try your own logic.
 * If setup focus was Pace, show `"Career link: performance engineer"`.
 * Otherwise show `"Career link: strategist/sustainability lead"`.
 
-> **Kai tip:** Keep the message inclusive — if your text sounds like "only one right way," try rewriting it as "here's what this choice prioritized."
+> **Kai tip:** Keep the message inclusive. If your text sounds like "only one right way," try rewriting it as "here's what this choice prioritized."
 
 ```validation.local
 # BlocksExistValidator

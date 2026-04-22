@@ -9,7 +9,7 @@
 
 ## Shakedown Run @showdialog
 
-Hey, I'm Jordan — the test engineer on this crew. I didn't start out coding; I came up through hands-on troubleshooting, learning to document problems clearly before I ever touched an automated test. What hooked me was realizing you can turn "I think the car handles well" into "I know it does, and here's the data." That's exactly what a shakedown run is for: a short, controlled test before the real race begins.
+Hey, I'm Jordan, the test engineer on this crew. I didn't start out coding; I came up through hands-on troubleshooting, learning to document problems clearly before I ever touched an automated test. What hooked me was realizing you can turn "I think the car handles well" into "I know it does, and here's the data." That's exactly what a shakedown run is for: a short, controlled test before the real race begins.
 
 In this gate you'll start a 15-second shakedown stage and track every collision, your score, and your remaining life. At the end, you'll save those results so the next stage can react to what you actually learned. Let's turn your guesses into evidence.
 
@@ -84,7 +84,7 @@ info.startCountdown(15)
 
 ## Step 3 - Add Performance Scoring Over Time
 
-This is a timed event — it fires every second on its own, separate from `on start`, to reward clean survival.
+This is a timed event. It fires every second on its own, separate from `on start`, to reward clean survival.
 
 * :game pad: Open `||game:Game||` and add `on game update every` set to `1000` ms.
 * Inside the event, check that the stage is Garage Shakedown.
@@ -105,7 +105,7 @@ game.onUpdateInterval(1000, function () {
 
 ## Step 4 - Spawn Test Hazards
 
-This is a separate timed event — it fires every 2 seconds on its own to keep pressure on the driver.
+This is a separate timed event. It fires every 2 seconds on its own to keep pressure on the driver.
 
 * :game pad: Open `||game:Game||` and add another `on game update every` set to `2000` ms.
 * Inside the event, check the stage, then create an Enemy cone sprite at a random position.
@@ -134,7 +134,7 @@ game.onUpdateInterval(2000, function () {
 
 ## Step 5 - Record Collisions
 
-This is an overlap event — it fires whenever Player and Enemy touch, independently of `on start`.
+This is an overlap event. It fires whenever Player and Enemy touch, independently of `on start`.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap` event for `Player` and `Enemy`.
 * Inside the event, check the stage, then use `||raceDayTools:Driven by STEM||` to record the collision with `efficiencyDrain`.
@@ -156,7 +156,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 
 ## Step 6 - Save Results and Award Strategy
 
-This countdown-end event fires automatically when time runs out — it must exist separately from `on start`.
+This countdown-end event fires automatically when time runs out. It must exist separately from `on start`.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` event.
 * Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Driven by STEM||` to award Strategy `+1`.
@@ -182,6 +182,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-A shakedown tests whether design behavior matches design intent — you just completed the full engineering loop: predict, test, measure, store.
+A shakedown tests whether design behavior matches design intent. You just completed the full engineering loop: predict, test, measure, store.
 
 Roles in this node: test engineer, reliability engineer, and data engineer.

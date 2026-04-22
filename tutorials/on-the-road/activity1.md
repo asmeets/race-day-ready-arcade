@@ -9,7 +9,7 @@
 
 ## Track Session @showdialog
 
-Hey, I'm Casey — I'm the telemetry analyst on this team. I got into this work by tracking game stats and sports stats on my own, then picked up spreadsheets and some basic coding through a community college data course. On a real team, I clean messy data, build simple dashboards, and help engineers answer one big question: did that change actually help? In this gate, you'll drive under live conditions while the game tracks every collision and rewards clean, controlled laps with evidence — not guesses. That's exactly how real engineers decide whether a setup change worked. Get ready to let your data do the talking.
+Hey, I'm Casey, the telemetry analyst on this team. I got into this work by tracking game stats and sports stats on my own, then picked up spreadsheets and some basic coding through a community college data course. On a real team, I clean messy data, build simple dashboards, and help engineers answer one big question: did that change actually help? In this gate, you'll drive under live conditions while the game tracks every collision and rewards clean, controlled laps with evidence, not guesses. That's exactly how real engineers decide whether a setup change worked. Get ready to let your data do the talking.
 
 ```template
 let driveSpeed = 110
@@ -37,7 +37,7 @@ Set the game stage to Track inside `on start` so every later event can check whi
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`.
 * Set the stage value to `Track`.
 
-> **Casey tip:** If obstacles or scoring run at the wrong time, check the stage setting first — that's usually why something is "running right now."
+> **Casey tip:** If obstacles or scoring run at the wrong time, check the stage setting first. That's usually why something is "running right now."
 
 ```blocks
 let driveSpeed = 110
@@ -99,7 +99,7 @@ Pull saved choices into this stage so the same speed and car design carry forwar
 * Drag `apply saved car style` and connect `raceCar` as the target sprite.
 * Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
 
-> **Casey tip:** If life drains at a fixed rate instead of your tuned setup, check that `efficiencyDrain` reads from saved efficiency cost — not a hardcoded number.
+> **Casey tip:** If life drains at a fixed rate instead of your tuned setup, check that `efficiencyDrain` reads from saved efficiency cost, not a hardcoded number.
 
 ```blocks
 let driveSpeed = 110
@@ -177,7 +177,7 @@ Initialize the score, load efficiency as the car's life total, and start the 30-
 * Drag `set life` and connect `saved efficiency` from `||raceDayTools:Driven by STEM||` as the value.
 * Drag `start countdown` and set the time to `30` seconds.
 
-> **Casey tip:** If life stays at `0`, the saved value didn't load — trace where life is set and make sure it reads from saved efficiency.
+> **Casey tip:** If life stays at `0`, the saved value didn't load. Trace where life is set and make sure it reads from saved efficiency.
 
 ```blocks
 let driveSpeed = 110
@@ -215,13 +215,13 @@ info.startCountdown(30)
 
 ## Step 6 - Spawn Obstacles
 
-This is a new event block that runs on its own — it creates incoming obstacles every two seconds while the stage is Track.
+This is a new event block that runs on its own. It creates incoming obstacles every two seconds while the stage is Track.
 
 * :game pad: Open `||game:Game||` and add `on game update every 2000 ms`.
 * Inside the event, check that the stage is `Track` using `||raceDayTools:Driven by STEM||`.
 * Create an `Enemy` obstacle sprite from `||sprites:Sprites||`, give it a random x position, set a downward velocity, and a `lifespan` so old obstacles disappear.
 
-> **Casey tip:** If it feels chaotic, adjust one setting at a time — slower spawn rate, lower speed, or shorter lifespan — so decisions stay readable.
+> **Casey tip:** If it feels chaotic, adjust one setting at a time: slower spawn rate, lower speed, or shorter lifespan. Keep decisions readable.
 
 ```blocks
 //@highlight
@@ -321,7 +321,7 @@ game.onUpdateInterval(4000, function () {
 
 ## Step 9 - Save Results
 
-This is a new event block — when the countdown ends it saves the run data so the next stage can use it.
+This is a new event block. When the countdown ends it saves the run data so the next stage can use it.
 
 * :game pad: Open `||info:Info||` and add `on countdown end`.
 * Inside the event, confirm the stage is `Track`.
@@ -345,6 +345,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-Engineering idea: every collision changes efficiency — tracking that change is how engineers know whether a setup choice actually helped.
+Engineering idea: every collision changes efficiency. Tracking that change is how engineers know whether a setup choice actually helped.
 
 Roles in this node: race engineer, performance analyst, and controls software engineer.
