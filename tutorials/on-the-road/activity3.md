@@ -309,7 +309,7 @@ raceDayTools.weatherIs(raceDayTools.WeatherMode.Dry)
 
 Two standalone event blocks handle spawning and collision separately — puddles appear on a timer, and an overlap event handles what happens when the car hits one.
 
-* Open `||game:Game||` and add an `on game update every (2500) ms` block; create an **Enemy** sprite puddle with a short lifespan.
+* Open `||game:Game||` and add an `on game update every (2500) ms` block; create an **Enemy** puddle sprite from `||sprites:Sprites||` with a short lifespan.
 * Open `||sprites:Sprites||` and add an `on sprite of kind Player overlaps Enemy` event; increase `weatherCollisions`, reduce life by `efficiencyDrain`, and destroy the puddle with an effect.
 
 > **Avery tip:** If the screen fills with puddles, slow the spawn rate or shorten lifespan so the situation stays readable.
@@ -361,7 +361,7 @@ When the countdown ends, this standalone event checks whether the driver adapted
 
 * Open `||info:Info||` and add an `on countdown end` event block.
 * If the stage is **Weather**, `weatherChanged` equals **1**, and `weatherCollisions` is **≤ 1**, use `||raceDayTools:Driven by STEM||` to award **Strategy +1**.
-* Save the current run results and show a **"strategy changed"** splash.
+* Save the current run results and show a **"Run complete"** splash.
 
 > **Avery tip:** If Strategy never awards, check whether `weatherChanged` became 1 and whether `weatherCollisions` stayed at 1 or below.
 

@@ -77,8 +77,8 @@ raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
 
 Still inside `on start`, add a one-line prompt so players know they've reached the pit wall phase.
 
-* Open `||game:Game||` and drag a `splash` block below the stage setter.
-* Set the splash text to `"Pit wall — Use data before you make the next call."`.
+* Open `||game:Game||` and add a `splash` block below the stage setter.
+* Set the first field to `Pit wall` and the second field to `Use data before you make the next call.`
 
 > **Morgan tip:** Keep this briefing tight — if you need more than a few seconds to explain it, the prompt should be clearer, not longer.
 
@@ -230,7 +230,7 @@ raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Balance)
 This is a new event block that runs on its own, carrying your pit-stop decision forward to later gates.
 
 * Open `||info:Info||` and add an `on countdown end` block.
-* Inside the `if stage is Pit Stop` check, open `||raceDayTools:Driven by STEM||` and drag in `save current run results`.
+* Inside the `if stage is Pit Stop` check, open `||Driven by STEM:Driven by STEM||` and drag in `save current run results`.
 
 > **Morgan tip:** If the next gate doesn't seem to remember your pit stop, that's usually a save timing issue — make sure the save happens after the decision changes something.
 
