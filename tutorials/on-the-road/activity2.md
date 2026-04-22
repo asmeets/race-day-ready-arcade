@@ -236,6 +236,8 @@ raceDayTools.recordPitStopVisit()
 
 ## Complete
 
+**Great job!** You built a pit stop system that reads your saved setup focus and turns it into a real mid-run decision. You created a spawner that generates pit markers on a timer, an overlap event that applies different rewards based on your earlier choice, and a save system that carries your strategy forward.
+
 Engineering idea: optimization means choosing the best next move with limited time and information.
 
-Roles in this node: strategist, pit crew, data analyst, and operations lead.
+Roles in this tutorial: strategist, pit crew, data analyst, and operations lead.

@@ -182,6 +182,8 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-A shakedown tests whether design behavior matches design intent. You just completed the full engineering loop: predict, test, measure, store.
+**Well done!** You just ran your first controlled test. You built timed events that spawn hazards and award points, an overlap handler that records collisions, and a countdown-end event that saves the results. You completed the full engineering loop: predict, test, measure, store.
 
-Roles in this node: test engineer, reliability engineer, and data engineer.
+A shakedown tests whether design behavior matches design intent. That's exactly what you just proved.
+
+Roles in this tutorial: test engineer, reliability engineer, and data engineer.

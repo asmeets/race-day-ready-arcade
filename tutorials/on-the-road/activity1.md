@@ -345,6 +345,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-Engineering idea: every collision changes efficiency. Tracking that change is how engineers know whether a setup choice actually helped.
+**Excellent!** You took your tuned setup onto a live track. You built spawner events that create obstacles and boost pickups, collision handlers that drain efficiency, a clean-driving reward system, and a countdown-end event that saved everything for the next stage. Every collision changes efficiency, and tracking that change is how engineers know whether a setup choice actually helped.
 
-Roles in this node: race engineer, performance analyst, and controls software engineer.
+Roles in this tutorial: race engineer, performance analyst, and controls software engineer.
