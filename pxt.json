@@ -22,7 +22,8 @@
         "tutorials/on-the-road/activity3.md",
         "tutorials/the-finish-line/activity1.md",
         "tutorials/the-finish-line/activity2.md",
-        "tutorials/the-finish-line/activity3.md"
+        "tutorials/the-finish-line/activity3.md",
+        "tutorial-info-cache.json"
     ],
     "testDependencies": {},
     "targetVersions": {
