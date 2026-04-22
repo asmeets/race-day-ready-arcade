@@ -45,7 +45,7 @@ Set the session context and record your prediction before you change any values.
 * Enabled: false
 ```
 
-* Open `||raceDayTools:Race Day Ready||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
+* Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
 * Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
 * Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
@@ -151,7 +151,7 @@ Pick the engineer perspective that best matches what you're focusing on in this 
 * Enabled: false
 ```
 
-* Open `||raceDayTools:Race Day Ready||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
+* Open `||raceDayTools:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
 * Add `show saved driver profile` to display the current profile.
 
 > **Riley tip:** There isn't one correct role here — pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
@@ -184,7 +184,7 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
 
 Store your speed and efficiency choices so later gates can build on this setup.
 
-* In `||raceDayTools:Race Day Ready||`, use `save team setup` inside the `if driveSpeed > 100` structure.
+* In `||raceDayTools:Driven by STEM||`, use `save team setup` inside the `if driveSpeed > 100` structure.
 * Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
 * Add a `splash` in each branch that explains the tradeoff choice.
 

@@ -41,7 +41,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Wire up `on start` so every run begins from a clean, known state before any timers fire.
 
-* Open `||raceDayTools:Race Day Ready||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
+* Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
 * Reset the collision count, then load your saved efficiency cost into `efficiencyDrain`.
 * Apply the saved car style to `raceCar`.
 
@@ -141,7 +141,7 @@ game.onUpdateInterval(2000, function () {
 This is an overlap event — it fires whenever Player and Enemy touch, independently of `on start`.
 
 * Open `||sprites:Sprites||` and add an `on overlap` event for `Player` and `Enemy`.
-* Inside the event, check the stage, then use `||raceDayTools:Race Day Ready||` to record the collision with `efficiencyDrain`.
+* Inside the event, check the stage, then use `||raceDayTools:Driven by STEM||` to record the collision with `efficiencyDrain`.
 * Destroy the cone with an effect so the impact is visually obvious.
 
 > **Jordan tip:** If collisions don't seem to "cost" anything, I'd confirm what value you loaded into `efficiencyDrain` before the overlap event runs.
@@ -163,8 +163,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 This countdown-end event fires automatically when time runs out — it must exist separately from `on start`.
 
 * Open `||info:Info||` and add an `on countdown end` event.
-* Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Race Day Ready||` to award Strategy `+1`.
-* Use `||raceDayTools:Race Day Ready||` to save the current run results.
+* Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Driven by STEM||` to award Strategy `+1`.
+* Use `||raceDayTools:Driven by STEM||` to save the current run results.
 
 > **Jordan tip:** If the shakedown ends but nothing saves, I'd look inside your countdown-end event. The save block has to be inside that event to run at the finish.
 

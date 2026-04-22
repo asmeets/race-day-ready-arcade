@@ -46,7 +46,7 @@ let pitStopsVisited = 0
 
 Load saved data into those variables.
 
-* Open `Race Day Ready`.
+* Open `Driven by STEM`.
 * Start review stage.
 * Read last performance, efficiency, strategy, and pit-stop count.
 

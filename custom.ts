@@ -1,7 +1,7 @@
 /**
- * Custom blocks for the Race Day Ready skillmap.
+ * Custom blocks for the Driven by STEM skillmap.
  */
-//% color=#b40707 icon="\uf1b9" block="Race Day Ready" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
+//% color=#b40707 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace raceDayTools {
     const DRIVE_SPEED_KEY = "driveSpeed"
     const EFFICIENCY_KEY = "efficiencyRating"

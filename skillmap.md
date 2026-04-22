@@ -1,5 +1,5 @@
-# race-day-ready
-* name: Race Day Ready
+# driven-by-stem
+* name: Driven by STEM
 * description: You've been invited to join the Mercedes racing team to design, test, and race an F1 car in Miami. Your mission is to help prepare their vehicle for a high-stakes run on the test track. Along the way, you will balance performance, efficiency, and strategy while exploring real engineering careers. 
 * primarycolor: #ffd84d
 * secondarycolor: #b40707
@@ -10,8 +10,8 @@
 * backgroundurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/background.gif
 * bannerurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/banner.png
 
-## race-day-ready
-* name: Race Day Ready
+## driven-by-stem
+* name: Driven by STEM
 * description: Move from the Garage to the track and all the way to the winner's circle through one guided path of tutorials, tests, and remix-ready decisions.
 * layout: manual
 
@@ -109,13 +109,13 @@
 * name: Stand on the Podium!
 * kind: completion
 * type: certificate
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/race-day-ready.pdf
-* imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/race-day-ready.png
+* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/driven-by-stem.pdf
+* imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/driven-by-stem.png
 * position: 12 6
 * rewards:
     * certificate:
-        * url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/race-day-ready.pdf
+        * url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/driven-by-stem.pdf
         * preview: PNG
     * completion-badge:
-        * image: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/badges/badge-race-day-ready.png
-        * name: Race Day Ready
+        * image: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/badges/badge-driven-by-stem.png
+        * name: Driven by STEM

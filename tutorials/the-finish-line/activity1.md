@@ -40,7 +40,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 Prepare the full run.
 
 * Open `||scene:Scene||` and set final challenge background.
-* Open `Race Day Ready` and start final challenge stage.
+* Open `Driven by STEM` and start final challenge stage.
 * Load saved speed, reset collisions, apply saved style.
 * Open `||info:Info||` and set score, life, countdown.
 
