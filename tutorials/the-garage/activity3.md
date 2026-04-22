@@ -9,9 +9,11 @@
 
 ## Shakedown Run @showdialog
 
-Hey, I'm Jordan, the test engineer on this crew. I didn't start out coding; I came up through hands-on troubleshooting, learning to document problems clearly before I ever touched an automated test. What hooked me was realizing you can turn "I think the car handles well" into "I know it does, and here's the data." That's exactly what a shakedown run is for: a short, controlled test before the real race begins.
+![Jordan - Test Engineer](/static/guides/jordan.png)
 
-In this gate you'll start a 15-second shakedown stage and track every collision, your score, and your remaining life. At the end, you'll save those results so the next stage can react to what you actually learned. Let's turn your guesses into evidence.
+Hey, I'm **Jordan**, the test engineer on this crew. I didn't start out coding; I came up through hands-on troubleshooting, learning to **document problems clearly** before I ever touched an automated test. What hooked me was realizing you can turn "I think the car handles well" into **"I know it does, and here's the data."** That's exactly what a shakedown run is for: a short, controlled test before the real race begins.
+
+In this gate you'll start a **15-second shakedown stage** and track every collision, your score, and your remaining life. At the end, you'll **save those results** so the next stage can react to what you actually learned. Let's turn your guesses into evidence.
 
 ```template
 let driveSpeed = 110

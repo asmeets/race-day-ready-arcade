@@ -1,6 +1,6 @@
 # driven-by-stem
-* name: Driven by STEM
-* description: You've been invited to join the Mercedes racing team to design, test, and race an F1 car in Miami. Your mission is to help prepare their vehicle for a high-stakes run on the test track. Along the way, you will balance performance, efficiency, and strategy while exploring real engineering careers. 
+* name: Driven by STEM, powered by Microsoft
+* description: Join Mercedes as an engineer for the day. Code your own F1 simulator, balance speed against efficiency, and test your decisions on the track. Explore real STEM careers while building systems that perform under pressure.
 * primarycolor: #ffd84d
 * secondarycolor: #b40707
 * tertiarycolor: #EAF3F8
@@ -18,7 +18,7 @@
 ### garage-activity1
 * name: Mission Briefing
 * type: tutorial
-* description: Join the junior innovation team, learn the mission, and get ready to make your first engineering decisions.
+* description: Build your race car, wire up the controls, and set up your dashboard so you're ready to test.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-mission-briefing.png
 * position: 0 9
 * tags: beginner, start-here, mission, controls, points
@@ -28,7 +28,7 @@
 ### garage-activity2
 * name: Setup and Tradeoffs
 * type: tutorial
-* description: Tune your setup and make your first tradeoff across performance, efficiency, and strategy.
+* description: Choose your speed setting and discover the tradeoff: higher speed costs more energy.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-setup-tradeoffs.png
 * position: 1 5
 * tags: beginner, car-setup, choices, tune, strategy
@@ -38,7 +38,7 @@
 ### garage-activity3
 * name: Garage Shakedown
 * type: tutorial
-* description: Run a short shakedown test and see what your setup choices actually changed.
+* description: Run a 15-second test to see how clean you can drive and what your setup really does.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-garage-shakedown.png
 * position: 3 6
 * tags: beginner, test-run, compare, feedback, improve
@@ -48,7 +48,7 @@
 ### road-activity1
 * name: Hit the Track
 * type: tutorial
-* description: Take your car onto the track and feel how your setup behaves under live conditions.
+* description: Drive a full track session, dodge obstacles, collect boosts, and let the data show how your setup performs.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-hit-the-track.png
 * position: 5 7
 * tags: beginner, drive, dodge, movement, points
@@ -58,7 +58,7 @@
 ### road-activity2
 * name: Pit Stop Briefings
 * type: tutorial
-* description: Pause at pit stops to connect gameplay choices to real team roles, strategy, and upgrades.
+* description: Build a pit stop system that lets you recover energy mid-run and see how strategy changes results.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-pit-stop-briefings.png
 * position: 7 6
 * tags: level-up, pit-stop, team-roles, upgrades, strategy
@@ -68,7 +68,7 @@
 ### road-activity3
 * name: Changing Conditions
 * type: tutorial
-* description: Adapt to weather, grip, and changing conditions that force smarter decisions on the move.
+* description: Code a weather shift that changes grip mid-run and rewards drivers who adapt quickly.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-changing-conditions.png
 * position: 8 5
 * tags: level-up, weather, grip, adapt, track
@@ -78,7 +78,7 @@
 ### finish-activity1
 * name: Final Challenge
 * type: tutorial
-* description: Use everything you learned to earn the best combined result across performance, efficiency, and strategy.
+* description: Run all your systems together in one integrated challenge where every choice matters.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-final-challenge.png
 * position: 8 7
 * tags: level-up, final-challenge, best-score, strategy, improve
@@ -88,7 +88,7 @@
 ### finish-activity2
 * name: Reflect and Review
 * type: tutorial
-* description: Review your results, connect them to your choices, and decide what you would change next.
+* description: Turn your saved data into a readable summary and find out what to improve next time.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-reflect-review.png
 * position: 9 7
 * tags: wrap-up, results, review, compare, next-steps
@@ -98,7 +98,7 @@
 ### finish-activity3
 * name: Winners Circle
 * type: tutorial
-* description: Celebrate what you learned and connect your choices to STEM, careers, and future remixing.
+* description: Celebrate your results, explore career connections, and see where these skills can take you next.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-winners-circle.png
 * position: 10 7
 * tags: celebrate, careers, stem, remix, reflection
