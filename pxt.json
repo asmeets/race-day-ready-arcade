@@ -1,6 +1,6 @@
 {
     "name": "Driven by STEM",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Driven by STEM is an F1-inspired racing game where you code the car, tune the tradeoffs, and see how your decisions perform on the track.\n\nBuild your own racing simulator from scratch. Balance speed versus control, power versus efficiency, and risk versus consistency. Every code change affects performance, so you’ll test, measure, and improve just like real engineers do.\n\nThis isn’t just about making the fastest car; it's about making smart design choices and understanding why they matter. You’ll think like a game designer, software engineer, and race strategist as you explore real careers in technology, engineering, data analysis, and systems design.\n\nPerfect for: Students ready to code with blocks or JavaScript, explore engineering tradeoffs, and connect gameplay decisions to real STEM careers.",
     "dependencies": {
         "device": "*",
