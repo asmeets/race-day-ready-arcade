@@ -28,7 +28,7 @@ Create a summary atmosphere.
 
 * Open `||scene:Scene||` and set background color.
 * Open `||effects:Effects||` and start confetti.
-* Open `Race Day Ready` and start winners circle stage.
+* Open `Driven by STEM` and start winners circle stage.
 
 ```blocks
 //@highlight
@@ -59,7 +59,7 @@ let finalStrategy = 0
 
 Load saved reflection values.
 
-* Open `Race Day Ready`.
+* Open `Driven by STEM`.
 * Set `nextTestFocus` from saved recommendation.
 * Set `finalStrategy` from saved strategy result.
 * Show saved driver profile.

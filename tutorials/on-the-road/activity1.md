@@ -110,7 +110,7 @@ Pull saved choices into this stage so the same speed and car design carry forwar
 * Drag `apply saved car style` and connect `raceCar` as the target sprite.
 * Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
 
-> **Casey tip:** If the car doesn't feel like your setup, search for any speed values that are hardcoded numbers instead of the `driveSpeed` variable.
+> **Casey tip:** If life drains at a fixed rate instead of your tuned setup, check that `efficiencyDrain` reads from saved efficiency cost — not a hardcoded number.
 
 ```blocks
 let driveSpeed = 110
@@ -242,7 +242,7 @@ This is a new event block that runs on its own — it creates incoming obstacles
 
 * Open `||game:Game||` and add `on game update every 2000 ms`.
 * Inside the event, check that the stage is `Track` using `||raceDayTools:Driven by STEM||`.
-* Create an `Enemy` obstacle sprite, set a downward velocity, and set a `lifespan` so old obstacles disappear.
+* Create an `Enemy` obstacle sprite from `||sprites:Sprites||`, give it a random x position, set a downward velocity, and a `lifespan` so old obstacles disappear.
 
 > **Casey tip:** If it feels chaotic, adjust one setting at a time — slower spawn rate, lower speed, or shorter lifespan — so decisions stay readable.
 
@@ -265,6 +265,9 @@ game.onUpdateInterval(2000, function () {
             . . . . . . . . . . . . . . . .
             . . . . . . . . . . . . . . . .
         `, SpriteKind.Enemy)
+        //@highlight
+        //@validate-exists
+        obs.setPosition(randint(0, 160), 0)
         //@highlight
         //@validate-exists
         obs.vy = 60
@@ -365,6 +368,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-Physics idea: more speed increases time pressure on steering decisions.
+Engineering idea: every collision changes efficiency — tracking that change is how engineers know whether a setup choice actually helped.
 
 Roles in this node: race engineer, performance analyst, and controls software engineer.

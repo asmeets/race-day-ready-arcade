@@ -110,7 +110,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Connect your project to saved data so choices carry forward between tutorials.
 
-* Open `||racedaytools:Race Day Ready||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
+* Open `||racedaytools:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
 * Set `driveSpeed` from the saved value.
 
 > **Sam tip:** If the blocks are missing, scroll the toolbox — custom categories can hide farther down the list.
@@ -146,7 +146,7 @@ driveSpeed = raceDayTools.savedDriveSpeed()
 
 Give the car and team a persistent identity the game will remember.
 
-* Still in `||racedaytools:Race Day Ready||`, set your team name, car name, and car style.
+* Still in `||racedaytools:Driven by STEM||`, set your team name, car name, and car style.
 * Add blocks to apply the saved style to `raceCar` and show the driver profile.
 
 > **Sam tip:** Consistent names and styles help you spot what's actually changing in the code — if everything looks different, it's harder to debug.

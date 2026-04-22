@@ -1,4 +1,4 @@
-# Race Day Ready Arcade
+# Driven by STEM Arcade
 
 Build, tune, and race a classroom-ready F1-inspired experience where every design choice matters. Speed can win the lap, but handling, efficiency, and smart engineering decisions are what make the whole run work.
 
@@ -14,7 +14,7 @@ Build, tune, and race a classroom-ready F1-inspired experience where every desig
 
 ### What This Project Is
 
-Race Day Ready Arcade is a Microsoft MakeCode Arcade project created for the F1 x Mercedes x Microsoft STEM and career exploration activation. It is designed as a playable game and a remixable learning experience for middle school students, facilitators, and live event audiences.
+Driven by STEM Arcade is a Microsoft MakeCode Arcade project created for the F1 x Mercedes x Microsoft STEM and career exploration activation. It is designed as a playable game and a remixable learning experience for middle school students, facilitators, and live event audiences.
 
 The project stays compatible with MakeCode Arcade conventions so it can be opened, explored, and modified without turning into a hard-to-teach codebase.
 
