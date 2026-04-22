@@ -9,7 +9,7 @@
 
 ## Final Challenge @showdialog
 
-Hey, I'm Taylor — Systems Engineer. I got my start in a two-year electronics program, learning by doing, then kept building skills through coursework and certifications while I was already working in the field. On a real team, my job is integration testing: I connect all the subsystems together and make sure the whole experience works, not just one part in isolation. That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer — now you'll run them all at once and see how they hold up together. This is your final run, and every choice you made along the way is about to show up in the result. Let's see what your full system can do.
+Hey, I'm Taylor, Systems Engineer. I got my start in a two-year electronics program, learning by doing, then kept building skills through coursework and certifications while I was already working in the field. On a real team, my job is integration testing: I connect all the subsystems together and make sure the whole experience works, not just one part in isolation. That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer. Now you'll run them all at once and see how they hold up together. This is your final run, and every choice you made along the way is about to show up in the result. Let's see what your full system can do.
 
 ```template
 let driveSpeed = 110
@@ -177,7 +177,7 @@ A repeating update event keeps pressure on throughout the run without requiring 
 * :game pad: Open `||game:Game||` and add a new **on update interval** block set to `2500` ms.
 * Inside the update, check if stage is **Final Challenge**, then spawn an **Enemy** sprite near the top of the screen with downward velocity and auto-destroy enabled.
 
-> **Taylor tip:** If the run feels too chaotic, slow spawns first — if it's readable, you can always ramp it back up.
+> **Taylor tip:** If the run feels too chaotic, slow spawns first. If it's readable, you can always ramp it back up.
 
 ```blocks
 //@highlight
@@ -288,7 +288,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 
 ## Step 9 - Save final run data
 
-The countdown-end event is the only reliable moment to capture results — nothing runs after the timer hits zero.
+The countdown-end event is the only reliable moment to capture results. Nothing runs after the timer hits zero.
 
 * :game pad: Open `||info:Info||` and add an **on countdown end** event block.
 * Inside it, check if stage is **Final Challenge**, then use `||raceDayTools:Driven by STEM||` to save current run results.
@@ -314,6 +314,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-Engineering idea: integration testing means running all subsystems together and checking that they work as a whole — not just each part in isolation.
+Engineering idea: integration testing means running all subsystems together and checking that they work as a whole, not just each part in isolation.
 
 Roles in this node: systems engineer, lead engineer, strategist, and cross-functional race team.

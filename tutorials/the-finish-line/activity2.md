@@ -9,7 +9,7 @@
 
 ## Results Review @showdialog
 
-Hey, I'm Drew — UX and game designer on the team. I got into this field by being the person who always asked “Wait… what am I supposed to do?” I started self-taught, watching tutorials and redesigning menus in my own projects, then added a formal design class and a lot of playtesting with friends. On a real team, I write clearer prompts, pick readable visuals, and run playtests to find exactly where people get confused. In this gate, you'll turn your run into a simple story: one choice, one result, one next test. Designers call it “clear over clever.” Once you can read what your data is actually telling you, you'll be ready to make your final call before the winners circle.
+Hey, I'm Drew, UX and game designer on the team. I got into this field by being the person who always asked "Wait… what am I supposed to do?" I started self-taught, watching tutorials and redesigning menus in my own projects, then added a formal design class and a lot of playtesting with friends. On a real team, I write clearer prompts, pick readable visuals, and run playtests to find exactly where people get confused. In this gate, you'll turn your run into a simple story: one choice, one result, one next test. Designers call it "clear over clever." Once you can read what your data is actually telling you, you'll be ready to make your final call before the winners circle.
 
 ```template
 raceDayTools.loadRaceProfile(80, 5)
@@ -21,7 +21,7 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
 Four variables give the program named containers to hold run data before it loads anything.
 
 * :paper plane: Open `||variables:Variables||` and create `reviewScore`, `reviewEfficiency`, `reviewStrategy`, and `pitStopsVisited`.
-* Set each variable to `0` — this means nothing has loaded yet.
+* Set each variable to `0`. This means nothing has loaded yet.
 
 > **Drew tip:** If you can't find a variable later, check spelling first. One letter off or a different capital is the most common cause.
 
@@ -49,7 +49,7 @@ Starting the Review stage and reading stored values brings real run data into th
 * Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
 * Read the saved pit stop count into `pitStopsVisited`.
 
-> **Drew tip:** If all your values are still zero, the final run probably didn't save — the review has nothing real to read yet.
+> **Drew tip:** If all your values are still zero, the final run probably didn't save. The review has nothing real to read yet.
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -155,7 +155,7 @@ This step has no single correct answer. Try your own logic.
 * If `pitStopsVisited` > `0`, show a message about using information during the run.
 * Otherwise show a message about using more mid-run data next time.
 
-> **Drew tip:** Keep the tone forward-looking. "Next test" language beats "I messed up" language — same facts, better learning vibe.
+> **Drew tip:** Keep the tone forward-looking. "Next test" language beats "I messed up" language. Same facts, better learning vibe.
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)

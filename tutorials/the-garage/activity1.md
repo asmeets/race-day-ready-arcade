@@ -9,7 +9,7 @@
 
 ## Garage Briefing @showdialog
 
-Hi, I'm Sam, your software engineer on this team. I got into coding by remixing games and following tutorials — no formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that mix of self-taught plus structured learning is what got me here. On a real racing team, I write and test control code, fix unexpected behavior, and keep the dashboard reliable when it matters most. In this gate, you'll do that same foundational work: get the game running, build your car sprite, wire up the controls, and set up your dashboard. That's the setup every project starts with — and you're ready for it.
+Hi, I'm Sam, your software engineer on this team. I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that mix of self-taught plus structured learning is what got me here. On a real racing team, I write and test control code, fix unexpected behavior, and keep the dashboard reliable when it matters most. In this gate, you'll do that same foundational work: get the game running, build your car sprite, wire up the controls, and set up your dashboard. That's the setup every project starts with, and you're ready for it.
 
 ```template
 let driveSpeed = 80
@@ -23,7 +23,7 @@ Set the scene so the game has a visual context from the moment it starts.
 
 * :tree: Open `||scene:Scene||` and drag `set background color` into `||loops(noclick):on start||`.
 
-> **Sam tip:** If the background doesn't change, make sure the block is snapped into the `on start` stack — a block sitting nearby won't run.
+> **Sam tip:** If the background doesn't change, make sure the block is snapped into the `on start` stack. A block sitting nearby won't run.
 
 ```blocks
 //@highlight
@@ -38,7 +38,7 @@ Give players a quick briefing before they see the car.
 * :game pad: Open `||game:Game||` and drag `splash` under the background block in `||loops(noclick):on start||`.
 * Type a short, one-sentence mission line.
 
-> **Sam tip:** Keep this message short — if a player has to read a paragraph at launch, it's too much.
+> **Sam tip:** Keep this message short. If a player has to read a paragraph at launch, it's too much.
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -54,7 +54,7 @@ Build the sprite that will represent the car on screen.
 * :paper plane: Open `||sprites:Sprites||` and drag `set mySprite to sprite of kind Player` into `||loops(noclick):on start||`.
 * Rename the variable to `raceCar`, then click the image square to choose or draw a car.
 
-> **Sam tip:** Use `raceCar` consistently — one mismatched name can make the right blocks feel wrong.
+> **Sam tip:** Use `raceCar` consistently. One mismatched name can make the right blocks feel wrong.
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -78,11 +78,11 @@ raceCar = sprites.create(img`
 
 Wire up the controls so the player can steer the car.
 
-* The template already includes `driveSpeed` — use it as the speed value throughout.
+* The template already includes `driveSpeed`. Use it as the speed value throughout.
 * :game pad: Open `||controller:Controller||` and drag `move mySprite with buttons` into `||loops(noclick):on start||`, targeting `raceCar` with `driveSpeed`.
 * :paper plane: Open `||sprites:Sprites||` and add `stay in screen` so the car can't leave the view.
 
-> **Sam tip:** If the car won't move, check which sprite the controller block is targeting — this is usually a naming issue.
+> **Sam tip:** If the car won't move, check which sprite the controller block is targeting. This is usually a naming issue.
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -113,7 +113,7 @@ Connect your project to saved data so choices carry forward between tutorials.
 * :racing_car: Open `||racedaytools:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
 * Set `driveSpeed` from the saved value.
 
-> **Sam tip:** If the blocks are missing, scroll the toolbox — custom categories can hide farther down the list.
+> **Sam tip:** If the blocks are missing, scroll the toolbox. Custom categories can hide farther down the list.
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -149,7 +149,7 @@ Give the car and team a persistent identity the game will remember.
 * Still in `||racedaytools:Driven by STEM||`, set your team name, car name, and car style.
 * Add blocks to apply the saved style to `raceCar` and show the driver profile.
 
-> **Sam tip:** Consistent names and styles help you spot what's actually changing in the code — if everything looks different, it's harder to debug.
+> **Sam tip:** Consistent names and styles help you spot what's actually changing in the code. If everything looks different, it's harder to debug.
 
 ```validation.local
 # BlocksExistValidator
@@ -245,7 +245,7 @@ Add a reset event so shared devices can start clean for the next group.
 * Change the button to `B`.
 * Inside the event, add `reset saved session` and `game reset`.
 
-> **Sam tip:** If pressing B does nothing, check that this event is standalone — events don't work when nested inside another stack.
+> **Sam tip:** If pressing B does nothing, check that this event is standalone. Events don't work when nested inside another stack.
 
 ```blocks
 //@highlight
