@@ -11,7 +11,7 @@
 
 ![Casey - Telemetry Analyst](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/casey.png)
 
-Hey, I'm **Casey**, the telemetry analyst on this team. I got into this work by tracking game stats and sports stats on my own, then picked up spreadsheets and some basic coding through a community college data course. On a real team, I clean messy data, build simple dashboards, and help engineers answer one big question: **did that change actually help?**
+Hey there, I'm **Casey**, the telemetry analyst on this team. I got into this work by tracking game stats and sports stats on my own, then picked up spreadsheets and some basic coding through a community college data course. On a real team, I clean messy data, build simple dashboards, and help engineers answer one big question: **did that change actually help?**
 
 In this gate, you'll drive under live conditions while the game **tracks every collision** and rewards clean, controlled laps with **evidence, not guesses**. That's exactly how real engineers decide whether a setup change worked. Get ready to let your data do the talking.
 
