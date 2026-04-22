@@ -187,6 +187,8 @@ if (pitStopsVisited > 0) {
 
 ## Complete
 
+**Nicely done!** You turned saved run data into readable evidence. You loaded Performance, Efficiency, and Strategy scores, built conditional logic to identify what needs attention next, and connected your pit stop count to a clear next-test recommendation. Stored values become usable evidence when the program reads them and makes a decision.
+
 Computer science idea: stored values become usable evidence when the program reads them and makes a decision.
 
 Engineering idea: review is part of the system, not a separate afterthought.

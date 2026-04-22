@@ -203,6 +203,8 @@ if (finalStrategy >= 3) {
 
 ## Complete
 
-Computer science idea: events, variables, and saved data let choices made in one gate carry forward into the next.
+**You finished the full journey!** You built a celebration screen that reads saved data, displays your team identity, shows performance metrics, and connects your choices to real career pathways. Events, variables, and saved data let choices made in one tutorial carry forward into the next. That's how you built a system that remembers.
+
+Computer science idea: events, variables, and saved data let choices made in one tutorial carry forward into the next.
 
 Roles connected across the path: software engineer, systems engineer, performance engineer, strategist, data analyst, reliability engineer, and operations team.
