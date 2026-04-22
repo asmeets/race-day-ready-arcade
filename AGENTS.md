@@ -43,6 +43,7 @@ Load multiple skills when the task crosses domains.
 
 - `arcade-builder` for implementation and refactoring.
 - `learning-designer` for student-facing instructional content.
+- `tutorial-language-reviewer` for checking tutorial language appropriateness, explanation depth, and clarity for high school freshmen.
 - `event-readiness-reviewer` for classroom and activation review.
 - `pixel-art-designer` for sprite and asset direction.
 

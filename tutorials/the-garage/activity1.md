@@ -9,7 +9,11 @@
 
 ## Garage Briefing @showdialog
 
-Hi, I'm Sam, your software engineer on this team. I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that mix of self-taught plus structured learning is what got me here. On a real racing team, I write and test control code, fix unexpected behavior, and keep the dashboard reliable when it matters most. In this gate, you'll do that same foundational work: get the game running, build your car sprite, wire up the controls, and set up your dashboard. That's the setup every project starts with, and you're ready for it.
+![Sam - Software Engineer](/static/guides/sam.png)
+
+Hi, I'm **Sam**, your software engineer on this team. I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that **mix of self-taught plus structured learning** is what got me here.
+
+On a real racing team, I write and test control code, fix unexpected behavior, and keep the **dashboard reliable** when it matters most. In this gate, you'll do that same foundational work: **get the game running, build your car sprite, wire up the controls, and set up your dashboard**. That's the setup every project starts with, and you're ready for it.
 
 ```template
 let driveSpeed = 80

@@ -9,7 +9,11 @@
 
 ## Final Challenge @showdialog
 
-Hey, I'm Taylor, Systems Engineer. I got my start in a two-year electronics program, learning by doing, then kept building skills through coursework and certifications while I was already working in the field. On a real team, my job is integration testing: I connect all the subsystems together and make sure the whole experience works, not just one part in isolation. That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer. Now you'll run them all at once and see how they hold up together. This is your final run, and every choice you made along the way is about to show up in the result. Let's see what your full system can do.
+![Taylor - Systems Engineer](/static/guides/taylor.png)
+
+Hey, I'm **Taylor**, Systems Engineer. I got my start in a two-year electronics program, learning by doing, then kept building skills through coursework and certifications while I was already working in the field. On a real team, my job is **integration testing**: I connect all the subsystems together and make sure the **whole experience works**, not just one part in isolation.
+
+That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer. Now you'll **run them all at once** and see how they hold up together. This is your **final run**, and every choice you made along the way is about to show up in the result. Let's see what your full system can do.
 
 ```template
 let driveSpeed = 110

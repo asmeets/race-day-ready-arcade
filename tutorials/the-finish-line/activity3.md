@@ -9,7 +9,11 @@
 
 ## Winners Circle @showdialog
 
-Hi, I'm Kai, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because reliability isn't luck, it's something you build. On a real team I coordinate timelines, make sure resets go smoothly, and create handoffs so the next shift can pick up right where we left off. In this last gate, you'll use your saved data to celebrate what you built, explore where these skills connect to real careers, and leave with a clear next-step idea. Finishing is great, and a good handoff means the work keeps going.
+![Kai - Operations Lead](/static/guides/kai.png)
+
+Hi, I'm **Kai**, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because **reliability isn't luck, it's something you build**. On a real team I coordinate timelines, make sure resets go smoothly, and create **handoffs** so the next shift can pick up right where we left off.
+
+In this last gate, you'll use your saved data to **celebrate what you built**, explore where these skills connect to real careers, and leave with a **clear next-step idea**. Finishing is great, and a good handoff means the work keeps going.
 
 ```template
 raceDayTools.loadRaceProfile(80, 5)
