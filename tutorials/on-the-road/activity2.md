@@ -9,7 +9,11 @@
 
 ## Pit Wall Decisions @showdialog
 
-Hey, I'm Morgan, your strategist. I didn't start out crunching data; I started in track operations, learning timing and logistics by doing the work and talking with the engineers and analysts around me. On a real team, I watch live conditions, weigh safer options against riskier ones, and help everyone make fast calls with different pieces of information. In this gate, you'll build a pit stop that reads the setup choice you saved earlier and turns it into a real decision with real consequences. The call you make here won't just happen and disappear. It will shape how the rest of your run plays out.
+![Morgan - Strategist](/static/guides/morgan.png)
+
+Hey, I'm **Morgan**, your strategist. I didn't start out crunching data; I started in track operations, learning **timing and logistics** by doing the work and talking with the engineers and analysts around me. On a real team, I watch live conditions, **weigh safer options against riskier ones**, and help everyone make fast calls with different pieces of information.
+
+In this gate, you'll build a pit stop that **reads the setup choice you saved earlier** and turns it into a **real decision with real consequences**. The call you make here won't just happen and disappear. It will shape how the rest of your run plays out.
 
 ```template
 let driveSpeed = 110
