@@ -9,7 +9,7 @@
 
 ## Pit Wall Decisions @showdialog
 
-![Morgan - Strategist](/static/guides/morgan.png)
+![Morgan - Strategist](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/morgan.png)
 
 Hey, I'm **Morgan**, your strategist. I didn't start out crunching data; I started in track operations, learning **timing and logistics** by doing the work and talking with the engineers and analysts around me. On a real team, I watch live conditions, **weigh safer options against riskier ones**, and help everyone make fast calls with different pieces of information.
 

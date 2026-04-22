@@ -9,7 +9,7 @@
 
 ## Garage Briefing @showdialog
 
-![Sam - Software Engineer](/static/guides/sam.png)
+![Sam - Software Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/sam.png)
 
 Hi, I'm **Sam**, your software engineer on this team. I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that **mix of self-taught plus structured learning** is what got me here.
 

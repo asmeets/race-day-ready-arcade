@@ -9,7 +9,7 @@
 
 ## Changing Conditions @showdialog
 
-![Avery - Sustainability Lead](/static/guides/avery.png)
+![Avery - Sustainability Lead](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/avery.png)
 
 Hi, I'm **Avery**, the sustainability lead on your team. I found my way into this role through a college engineering program, but what really hooked me wasn't the textbooks. It was realizing that **every design choice has a ripple effect** on energy, materials, heat, and safety. On a real team, I map those tradeoffs and make sure the environment stays part of the conversation when race conditions shift.
 
