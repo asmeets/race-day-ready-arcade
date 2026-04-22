@@ -23,7 +23,7 @@
 * position: 0 9
 * tags: beginner, start-here, mission, controls, points
 * next: garage-activity2
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/the-garage/activity1.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/the-garage/activity1
 
 ### garage-activity2
 * name: Setup and Tradeoffs
@@ -33,7 +33,7 @@
 * position: 1 5
 * tags: beginner, car-setup, choices, tune, strategy
 * next: garage-activity3
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/the-garage/activity2.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/the-garage/activity2
 
 ### garage-activity3
 * name: Garage Shakedown
@@ -43,7 +43,7 @@
 * position: 3 6
 * tags: beginner, test-run, compare, feedback, improve
 * next: road-activity1
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/the-garage/activity3.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/the-garage/activity3
 
 ### road-activity1
 * name: Hit the Track
@@ -53,7 +53,7 @@
 * position: 5 7
 * tags: beginner, drive, dodge, movement, points
 * next: road-activity2
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/on-the-road/activity1.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/on-the-road/activity1
 
 ### road-activity2
 * name: Pit Stop Briefings
@@ -63,7 +63,7 @@
 * position: 7 6
 * tags: level-up, pit-stop, team-roles, upgrades, strategy
 * next: road-activity3
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/on-the-road/activity2.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/on-the-road/activity2
 
 ### road-activity3
 * name: Changing Conditions
@@ -73,7 +73,7 @@
 * position: 8 5
 * tags: level-up, weather, grip, adapt, track
 * next: finish-activity1
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/on-the-road/activity3.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/on-the-road/activity3
 
 ### finish-activity1
 * name: Final Challenge
@@ -83,7 +83,7 @@
 * position: 8 7
 * tags: level-up, final-challenge, best-score, strategy, improve
 * next: finish-activity2
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/the-finish-line/activity1.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/the-finish-line/activity1
 
 ### finish-activity2
 * name: Reflect and Review
@@ -93,7 +93,7 @@
 * position: 9 7
 * tags: wrap-up, results, review, compare, next-steps
 * next: finish-activity3
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/the-finish-line/activity2.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/the-finish-line/activity2
 
 ### finish-activity3
 * name: Winners Circle
@@ -102,7 +102,7 @@
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-winners-circle.png
 * position: 10 7
 * tags: celebrate, careers, stem, remix, reflection
-* url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/tutorials/the-finish-line/activity3.md
+* url: https://github.com/asmeets/driven-by-stem/tutorials/the-finish-line/activity3
 * next: race-day-finish
 
 ### race-day-finish
