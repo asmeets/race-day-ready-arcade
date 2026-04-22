@@ -46,16 +46,17 @@ Set the session context and record your prediction before you change any values.
 ```
 
 * Open `||raceDayTools:Race Day Ready||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
+* Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
 * Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
 > **Riley tip:** If your prediction splash doesn't show up, check placement — make sure it's inside `on start` and not inside another event.
 
 ```blocks
 //@highlight
-//@validate-exists
 raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
+//@highlight
 driveSpeed = raceDayTools.savedDriveSpeed()
-//@validate-exists
+//@highlight
 game.splash("Predict first", "What will more speed do to control and energy?")
 ```
 
@@ -156,9 +157,20 @@ Pick the engineer perspective that best matches what you're focusing on in this 
 > **Riley tip:** There isn't one correct role here — pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
 
 ```blocks
+raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
+driveSpeed = raceDayTools.savedDriveSpeed()
+game.splash("Predict first", "What will more speed do to control and energy?")
+driveSpeed = 110
+controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let efficiencyDrain = 1
+if (driveSpeed > 100) {
+    efficiencyDrain = 2
+} else {
+    efficiencyDrain = 1
+}
 //@highlight
-//@validate-exists
 raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
+//@highlight
 raceDayTools.showSavedDriverProfile()
 ```
 
@@ -179,6 +191,19 @@ Store your speed and efficiency choices so later gates can build on this setup.
 > **Riley tip:** If later gates don't seem to remember your setup, check when you save — make sure it happens after your speed and efficiency choices are finalized.
 
 ```blocks
+raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
+driveSpeed = raceDayTools.savedDriveSpeed()
+game.splash("Predict first", "What will more speed do to control and energy?")
+driveSpeed = 110
+controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let efficiencyDrain = 1
+if (driveSpeed > 100) {
+    efficiencyDrain = 2
+} else {
+    efficiencyDrain = 1
+}
+raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
+raceDayTools.showSavedDriverProfile()
 //@highlight
 if (driveSpeed > 100) {
     //@validate-exists
