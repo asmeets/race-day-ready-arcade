@@ -9,7 +9,7 @@
 
 ## Changing Conditions @showdialog
 
-Hi, I'm Avery, the sustainability lead on your team. I found my way into this role through a college engineering program, but what really hooked me wasn't the textbooks — it was realizing that every design choice has a ripple effect on energy, materials, heat, and safety. On a real team, I map those tradeoffs and make sure the environment stays part of the conversation when race conditions shift. In this gate, you'll switch the track from dry to wet, model how rain reduces grip, and tune your car's response so it adapts instead of skids. The best engineers don't just build for perfect conditions — they design for the unexpected. Let's see how you handle the rain.
+Hi, I'm Avery, the sustainability lead on your team. I found my way into this role through a college engineering program, but what really hooked me wasn't the textbooks. It was realizing that every design choice has a ripple effect on energy, materials, heat, and safety. On a real team, I map those tradeoffs and make sure the environment stays part of the conversation when race conditions shift. In this gate, you'll switch the track from dry to wet, model how rain reduces grip, and tune your car's response so it adapts instead of skids. The best engineers don't just build for perfect conditions. They design for the unexpected. Let's see how you handle the rain.
 
 ```template
 let driveSpeed = 110
@@ -67,7 +67,7 @@ Lock in dry conditions and a readable background before the weather event trigge
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set weather to **Dry**.
 * :tree: Open `||scene:Scene||` and `set background color` to a dry-track color.
 
-> **Avery tip:** If you can't clearly see the car and hazards, adjust colors before you adjust difficulty — readability is part of sustainability too.
+> **Avery tip:** If you can't clearly see the car and hazards, adjust colors before you adjust difficulty. Readability is part of sustainability too.
 
 ```blocks
 let driveSpeed = 110
@@ -106,7 +106,7 @@ Pull in the saved drive speed and car style so the run starts from the driver's 
 * Use `||raceDayTools:Driven by STEM||` to apply the saved car style to `raceCar`.
 * Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
 
-> **Avery tip:** If speed feels inconsistent, check whether your code resets speed when conditions return to dry — rain logic should change speed temporarily, not permanently.
+> **Avery tip:** If speed feels inconsistent, check whether your code resets speed when conditions return to dry. Rain logic should change speed temporarily, not permanently.
 
 ```blocks
 let driveSpeed = 110
@@ -184,7 +184,7 @@ Activate the score, life, and a 25-second countdown to start the timed race wind
 * :game pad: Open `||info:Info||` and set `score` and `life`.
 * Add a `start countdown` block set to **25** seconds.
 
-> **Avery tip:** If life looks wrong, trace it like a scientist — find where it is set and every place it is changed.
+> **Avery tip:** If life looks wrong, trace it like a scientist. Find where it is set and every place it is changed.
 
 ```blocks
 let driveSpeed = 110
@@ -223,7 +223,7 @@ info.startCountdown(25)
 
 ## Step 6 – Switch to Rain (new event block)
 
-This standalone event fires after 10 seconds and shifts conditions mid-race — add it outside `on start`.
+This standalone event fires after 10 seconds and shifts conditions mid-race. Add it outside `on start`.
 
 * :game pad: Open `||Timers:Timers||` and add an `after (10000) ms` event block.
 * Inside, check that the stage is **Weather**, then set weather to **Rain**, set `weatherChanged` to **1**, change the background color, and show a **"Rain lowers grip"** splash.
@@ -255,12 +255,12 @@ raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
 
 ## Step 7 – Reduce grip in rain (new event block)
 
-This standalone update loop checks current conditions every second and assigns the correct speed — not subtracting repeatedly, but setting the right value each time.
+This standalone update loop checks current conditions every second and assigns the correct speed. It sets the right value each time, not subtracting repeatedly.
 
 * :game pad: Open `||game:Game||` and add an `on game update every (1000) ms` event block.
 * If weather is **Rain**, set `||controller:Controller||` move speed to `driveSpeed − 30`; otherwise set it back to `driveSpeed`.
 
-> **Avery tip:** If your car gets slower and slower forever, you have a stacking bug — set speed for the current condition, don't keep subtracting.
+> **Avery tip:** If your car gets slower and slower forever, you have a stacking bug. Set speed for the current condition, don't keep subtracting.
 
 ```blocks
 game.onUpdateInterval(1000, function () {
@@ -284,7 +284,7 @@ raceDayTools.weatherIs(raceDayTools.WeatherMode.Dry)
 
 ## Step 8 – Add puddle hazards + collisions (new event blocks)
 
-Two standalone event blocks handle spawning and collision separately — puddles appear on a timer, and an overlap event handles what happens when the car hits one.
+Two standalone event blocks handle spawning and collision separately. Puddles appear on a timer, and an overlap event handles what happens when the car hits one.
 
 * :game pad: Open `||game:Game||` and add an `on game update every (2500) ms` block; create an **Enemy** puddle sprite from `||sprites:Sprites||` with a short lifespan.
 * :paper plane: Open `||sprites:Sprites||` and add an `on sprite of kind Player overlaps Enemy` event; increase `weatherCollisions`, reduce life by `efficiencyDrain`, and destroy the puddle with an effect.
@@ -362,6 +362,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-Engineering idea: when conditions change, the best design adapts rather than pushes harder — that's the core of resilient systems thinking.
+Engineering idea: when conditions change, the best design adapts rather than pushes harder. That's the core of resilient systems thinking.
 
 Roles in this node: sustainability lead, systems engineer, telemetry analyst, and performance engineer.
