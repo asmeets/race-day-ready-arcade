@@ -9,7 +9,7 @@
 
 ## Shakedown Run @showdialog
 
-![Jordan - Test Engineer](/static/guides/jordan.png)
+![Jordan - Test Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/jordan.png)
 
 Hey, I'm **Jordan**, the test engineer on this crew. I didn't start out coding; I came up through hands-on troubleshooting, learning to **document problems clearly** before I ever touched an automated test. What hooked me was realizing you can turn "I think the car handles well" into **"I know it does, and here's the data."** That's exactly what a shakedown run is for: a short, controlled test before the real race begins.
 

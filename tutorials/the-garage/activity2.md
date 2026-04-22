@@ -9,7 +9,7 @@
 
 ## Setup Tradeoffs @showdialog
 
-![Riley - Performance Engineer](/static/guides/riley.png)
+![Riley - Performance Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/riley.png)
 
 Hi, I'm **Riley**, a performance engineer on the race team. I got hooked on engineering by one question: why did that change make it *better*... or *worse*? I studied physics and math in college, though great performance engineers also come through technical programs, apprenticeships, or the military. What matters is **learning to test ideas with evidence**.
 

@@ -9,7 +9,7 @@
 
 ## Winners Circle @showdialog
 
-![Kai - Operations Lead](/static/guides/kai.png)
+![Kai - Operations Lead](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/kai.png)
 
 Hi, I'm **Kai**, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because **reliability isn't luck, it's something you build**. On a real team I coordinate timelines, make sure resets go smoothly, and create **handoffs** so the next shift can pick up right where we left off.
 
