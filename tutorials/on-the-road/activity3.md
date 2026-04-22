@@ -25,10 +25,7 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
 raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -37,7 +34,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 The first line in `on start` sets the active stage so all weather rules know when to run.
 
-* Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `||loops(noclick):on start||`.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `||loops(noclick):on start||`.
 * Set the stage value to **Weather**.
 
 > **Avery tip:** If rain effects spill into other gates, your stage checks are missing somewhere. Search for "Weather" in your code and make sure every weather action is guarded by a stage check.
@@ -56,10 +53,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
@@ -71,8 +64,8 @@ raceDayTools.startStage(raceDayTools.RaceStage.Weather)
 
 Lock in dry conditions and a readable background before the weather event triggers.
 
-* Open `||raceDayTools:Driven by STEM||` and set weather to **Dry**.
-* Open `||scene:Scene||` and `set background color` to a dry-track color.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and set weather to **Dry**.
+* :tree: Open `||scene:Scene||` and `set background color` to a dry-track color.
 
 > **Avery tip:** If you can't clearly see the car and hazards, adjust colors before you adjust difficulty — readability is part of sustainability too.
 
@@ -90,10 +83,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Weather)
@@ -113,7 +102,7 @@ raceDayTools.setWeather(raceDayTools.WeatherMode.Rain)
 
 Pull in the saved drive speed and car style so the run starts from the driver's previous configuration.
 
-* Open `||raceDayTools:Driven by STEM||` and set `driveSpeed` to **saved speed**.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and set `driveSpeed` to **saved speed**.
 * Use `||raceDayTools:Driven by STEM||` to apply the saved car style to `raceCar`.
 * Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
 
@@ -133,10 +122,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Weather)
@@ -157,7 +142,7 @@ let efficiencyDrain = raceDayTools.savedEfficiencyCost()
 
 Two variables will track whether conditions shifted and how many wet-weather collisions happen.
 
-* Open `||variables:Variables||` and create variables named `weatherChanged` and `weatherCollisions`.
+* :paper plane: Open `||variables:Variables||` and create variables named `weatherChanged` and `weatherCollisions`.
 * Set both `weatherChanged` and `weatherCollisions` to **0** in `||loops(noclick):on start||`.
 
 > **Avery tip:** If you never earn the adaptation reward, check whether `weatherChanged` ever flips to 1 and whether collisions are actually being counted.
@@ -176,10 +161,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Weather)
@@ -200,7 +181,7 @@ let weatherCollisions = 0
 
 Activate the score, life, and a 25-second countdown to start the timed race window.
 
-* Open `||info:Info||` and set `score` and `life`.
+* :game pad: Open `||info:Info||` and set `score` and `life`.
 * Add a `start countdown` block set to **25** seconds.
 
 > **Avery tip:** If life looks wrong, trace it like a scientist — find where it is set and every place it is changed.
@@ -219,10 +200,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Weather)
@@ -248,7 +225,7 @@ info.startCountdown(25)
 
 This standalone event fires after 10 seconds and shifts conditions mid-race — add it outside `on start`.
 
-* Open `||Timers:Timers||` and add an `after (10000) ms` event block.
+* :game pad: Open `||Timers:Timers||` and add an `after (10000) ms` event block.
 * Inside, check that the stage is **Weather**, then set weather to **Rain**, set `weatherChanged` to **1**, change the background color, and show a **"Rain lowers grip"** splash.
 
 > **Avery tip:** If rain never starts, verify that your timer block exists and is allowed to run while the stage is Weather.
@@ -280,7 +257,7 @@ raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
 
 This standalone update loop checks current conditions every second and assigns the correct speed — not subtracting repeatedly, but setting the right value each time.
 
-* Open `||game:Game||` and add an `on game update every (1000) ms` event block.
+* :game pad: Open `||game:Game||` and add an `on game update every (1000) ms` event block.
 * If weather is **Rain**, set `||controller:Controller||` move speed to `driveSpeed − 30`; otherwise set it back to `driveSpeed`.
 
 > **Avery tip:** If your car gets slower and slower forever, you have a stacking bug — set speed for the current condition, don't keep subtracting.
@@ -309,8 +286,8 @@ raceDayTools.weatherIs(raceDayTools.WeatherMode.Dry)
 
 Two standalone event blocks handle spawning and collision separately — puddles appear on a timer, and an overlap event handles what happens when the car hits one.
 
-* Open `||game:Game||` and add an `on game update every (2500) ms` block; create an **Enemy** puddle sprite from `||sprites:Sprites||` with a short lifespan.
-* Open `||sprites:Sprites||` and add an `on sprite of kind Player overlaps Enemy` event; increase `weatherCollisions`, reduce life by `efficiencyDrain`, and destroy the puddle with an effect.
+* :game pad: Open `||game:Game||` and add an `on game update every (2500) ms` block; create an **Enemy** puddle sprite from `||sprites:Sprites||` with a short lifespan.
+* :paper plane: Open `||sprites:Sprites||` and add an `on sprite of kind Player overlaps Enemy` event; increase `weatherCollisions`, reduce life by `efficiencyDrain`, and destroy the puddle with an effect.
 
 > **Avery tip:** If the screen fills with puddles, slow the spawn rate or shorten lifespan so the situation stays readable.
 
@@ -359,7 +336,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 
 When the countdown ends, this standalone event checks whether the driver adapted successfully and records the outcome.
 
-* Open `||info:Info||` and add an `on countdown end` event block.
+* :game pad: Open `||info:Info||` and add an `on countdown end` event block.
 * If the stage is **Weather**, `weatherChanged` equals **1**, and `weatherCollisions` is **≤ 1**, use `||raceDayTools:Driven by STEM||` to award **Strategy +1**.
 * Save the current run results and show a **"Run complete"** splash.
 
