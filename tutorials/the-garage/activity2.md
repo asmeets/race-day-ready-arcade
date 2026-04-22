@@ -214,6 +214,8 @@ raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.
 
 ## Complete
 
+**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also chose a role lens that will shape how you see the data ahead.
+
 You built a real engineering tradeoff. Physics idea: increasing speed raises system demand. Computer science idea: variables plus conditionals let one program adapt to different design choices.
 
-Team roles in this node: performance engineer, sustainability engineer, and systems engineer.
+Team roles in this tutorial: performance engineer, sustainability engineer, and systems engineer.

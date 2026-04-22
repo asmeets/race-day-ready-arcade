@@ -314,6 +314,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-Engineering idea: integration testing means running all subsystems together and checking that they work as a whole, not just each part in isolation.
+**You nailed it!** You ran all your subsystems together in one integrated final challenge. You built obstacle spawners, pit stop recovery events, collision handlers, and a countdown-end event that saved the complete run. Integration testing means running all subsystems together and checking that they work as a whole, not just each part in isolation. That's exactly what you just completed.
 
-Roles in this node: systems engineer, lead engineer, strategist, and cross-functional race team.
+Roles in this tutorial: systems engineer, lead engineer, strategist, and cross-functional race team.

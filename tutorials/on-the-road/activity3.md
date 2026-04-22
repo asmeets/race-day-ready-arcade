@@ -362,6 +362,6 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-Engineering idea: when conditions change, the best design adapts rather than pushes harder. That's the core of resilient systems thinking.
+**Awesome work!** You modeled changing conditions and adaptive response. You built a delayed timer that shifts weather mid-run, a speed-adjustment loop that responds to rain, puddle hazards that increase challenge, and a countdown-end event that rewards successful adaptation. The best design adapts rather than pushes harder. That's the core of resilient systems thinking.
 
-Roles in this node: sustainability lead, systems engineer, telemetry analyst, and performance engineer.
+Roles in this tutorial: sustainability lead, systems engineer, telemetry analyst, and performance engineer.

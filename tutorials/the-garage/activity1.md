@@ -258,6 +258,6 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ## Complete
 
-A faster car is useful only if the whole system can still control and support it.
+**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, and set up a live dashboard that tracks performance and efficiency. A faster car is useful only if the whole system can still control and support it.
 
-Roles in this node: software engineer, systems engineer, and track engineer.
+Roles in this tutorial: software engineer, systems engineer, and track engineer.
