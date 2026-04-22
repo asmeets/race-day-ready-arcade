@@ -25,10 +25,7 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
 raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 raceDayTools.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -41,7 +38,7 @@ info.setLife(raceDayTools.savedEfficiency())
 This goes inside `on start` to switch the game into pit mode so pit logic runs correctly.
 
 * Open `||loops(noclick):on start||` and find the existing setup code at the bottom.
-* Open `||Driven by STEM:Driven by STEM||` and drag `set start stage` into `on start`, set to **Pit Stop**.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `on start`, set to **Pit Stop**.
 
 > **Morgan tip:** If pit markers show up on the track, that's a stage-mismatch clue — look for a missing "if stage is Pit Stop" check.
 
@@ -59,10 +56,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 raceDayTools.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -77,7 +70,7 @@ raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
 
 Still inside `on start`, add a one-line prompt so players know they've reached the pit wall phase.
 
-* Open `||game:Game||` and add a `splash` block below the stage setter.
+* :game pad: Open `||game:Game||` and add a `splash` block below the stage setter.
 * Set the first field to `Pit wall` and the second field to `Use data before you make the next call.`
 
 > **Morgan tip:** Keep this briefing tight — if you need more than a few seconds to explain it, the prompt should be clearer, not longer.
@@ -96,10 +89,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 raceDayTools.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -115,7 +104,7 @@ game.splash("Pit wall", "Use data before you make the next call.")
 
 Still in `on start`, create a counter so there's evidence of how many pit stops the team used.
 
-* Open `||variables:Variables||` and make a new variable named `pitStopsVisited`.
+* :paper plane: Open `||variables:Variables||` and make a new variable named `pitStopsVisited`.
 * Drag `set pitStopsVisited to 0` into `on start` below the splash.
 
 > **Morgan tip:** If you skip the counter, you lose evidence — I like having at least one number I can point to: "We used the pit stop ___ times."
@@ -134,10 +123,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 raceDayTools.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -154,8 +139,8 @@ let pitStopsVisited = 0
 
 This is a new event block that runs on its own, separate from `on start`.
 
-* Open `||game:Game||` and add an `on update every (8000) ms` block.
-* Inside it, add an `if stage is Pit Stop` check from `||Driven by STEM:Driven by STEM||`.
+* :game pad: Open `||game:Game||` and add an `on update every (8000) ms` block.
+* Inside it, add an `if stage is Pit Stop` check from `||raceDayTools:Driven by STEM||`.
 * Create a `Food` sprite inside that check and set a short `lifespan` to make it a timed decision.
 
 > **Morgan tip:** If markers vanish instantly, your lifespan is probably too short — increase it a little and test again.
@@ -189,7 +174,7 @@ game.onUpdateInterval(8000, function () {
 
 This is a new event block that fires when the player sprite overlaps a pit marker.
 
-* Open `||sprites:Sprites||` and add an `on overlap Player and Food` block.
+* :paper plane: Open `||sprites:Sprites||` and add an `on overlap Player and Food` block.
 * Inside an `if stage is Pit Stop` check, change `pitStopsVisited` by 1 and award a Strategy point.
 * Add an `if/else` using `setupFocusIs Pace` — apply a pace reward in the true branch, a balance reward in the else branch.
 
@@ -229,8 +214,8 @@ raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Balance)
 
 This is a new event block that runs on its own, carrying your pit-stop decision forward to later gates.
 
-* Open `||info:Info||` and add an `on countdown end` block.
-* Inside the `if stage is Pit Stop` check, open `||Driven by STEM:Driven by STEM||` and drag in `save current run results`.
+* :game pad: Open `||info:Info||` and add an `on countdown end` block.
+* Inside the `if stage is Pit Stop` check, open `||raceDayTools:Driven by STEM||` and drag in `save current run results`.
 
 > **Morgan tip:** If the next gate doesn't seem to remember your pit stop, that's usually a save timing issue — make sure the save happens after the decision changes something.
 

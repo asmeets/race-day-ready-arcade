@@ -28,11 +28,7 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Pace)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
+raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -41,7 +37,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Wire up `on start` so every run begins from a clean, known state before any timers fire.
 
-* Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
 * Reset the collision count, then load your saved efficiency cost into `efficiencyDrain`.
 * Apply the saved car style to `raceCar`.
 
@@ -65,7 +61,7 @@ raceDayTools.applySavedCarStyle(raceCar)
 
 Still inside `on start`, configure the scoreboard and timer so every team tests the same 15-second window.
 
-* Open `||info:Info||` and set score to `0` and life to your saved efficiency value.
+* :game pad: Open `||info:Info||` and set score to `0` and life to your saved efficiency value.
 * Add `start countdown` set to `15` seconds.
 
 > **Jordan tip:** If the countdown doesn't start, look for where that block lives. Countdown setup works best in on start, not inside an overlap or timer event.
@@ -90,9 +86,9 @@ info.startCountdown(15)
 
 This is a timed event — it fires every second on its own, separate from `on start`, to reward clean survival.
 
-* Open `||game:Game||` and add `on game update every` set to `1000` ms.
+* :game pad: Open `||game:Game||` and add `on game update every` set to `1000` ms.
 * Inside the event, check that the stage is Garage Shakedown.
-* Open `||info:Info||` and add score `+1` inside that check.
+* :game pad: Open `||info:Info||` and add score `+1` inside that check.
 
 > **Jordan tip:** If you notice score climbing outside the shakedown, that's a sign your stage check is missing or mismatched. That's the first thing I'd audit.
 
@@ -111,7 +107,7 @@ game.onUpdateInterval(1000, function () {
 
 This is a separate timed event — it fires every 2 seconds on its own to keep pressure on the driver.
 
-* Open `||game:Game||` and add another `on game update every` set to `2000` ms.
+* :game pad: Open `||game:Game||` and add another `on game update every` set to `2000` ms.
 * Inside the event, check the stage, then create an Enemy cone sprite at a random position.
 * Give the cone a short `lifespan` so the screen doesn't fill up.
 
@@ -140,7 +136,7 @@ game.onUpdateInterval(2000, function () {
 
 This is an overlap event — it fires whenever Player and Enemy touch, independently of `on start`.
 
-* Open `||sprites:Sprites||` and add an `on overlap` event for `Player` and `Enemy`.
+* :paper plane: Open `||sprites:Sprites||` and add an `on overlap` event for `Player` and `Enemy`.
 * Inside the event, check the stage, then use `||raceDayTools:Driven by STEM||` to record the collision with `efficiencyDrain`.
 * Destroy the cone with an effect so the impact is visually obvious.
 
@@ -162,7 +158,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 
 This countdown-end event fires automatically when time runs out — it must exist separately from `on start`.
 
-* Open `||info:Info||` and add an `on countdown end` event.
+* :game pad: Open `||info:Info||` and add an `on countdown end` event.
 * Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Driven by STEM||` to award Strategy `+1`.
 * Use `||raceDayTools:Driven by STEM||` to save the current run results.
 

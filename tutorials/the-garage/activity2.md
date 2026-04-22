@@ -26,9 +26,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 raceDayTools.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -45,9 +42,9 @@ Set the session context and record your prediction before you change any values.
 * Enabled: false
 ```
 
-* Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
 * Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
-* Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
+* :game pad: Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
 > **Riley tip:** If your prediction splash doesn't show up, check placement — make sure it's inside `on start` and not inside another event.
 
@@ -64,7 +61,7 @@ game.splash("Predict first", "What will more speed do to control and energy?")
 
 Set the speed variable that all movement will read from.
 
-* Open `||variables:Variables||` and drag `set driveSpeed to` into `||loops(noclick):on start||`.
+* :paper plane: Open `||variables:Variables||` and drag `set driveSpeed to` into `||loops(noclick):on start||`.
 * Change the value to `110`.
 
 > **Riley tip:** If the car still feels slow, something is probably resetting your speed later — scan your stacks and look for another place where `driveSpeed` gets set.
@@ -82,7 +79,7 @@ driveSpeed = 110
 
 Wire movement to your variable so speed changes flow from one place to the whole game.
 
-* Open `||controller:Controller||` and find `move mySprite with buttons`.
+* :game pad: Open `||controller:Controller||` and find `move mySprite with buttons`.
 * Replace any number values in the speed fields with the `driveSpeed` variable.
 
 > **Riley tip:** If you still see numbers in the movement block, the tuning isn't connected yet — replace those numbers with the `driveSpeed` bubble so your change actually takes effect.
@@ -101,7 +98,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 
 Create the cost-per-mistake variable before you use it in the tradeoff rule.
 
-* Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyDrain`.
+* :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyDrain`.
 * Add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
 
 > **Riley tip:** If you can't find `efficiencyDrain` in a dropdown, it usually means it was created with a different spelling — double-check the exact variable name.
@@ -121,7 +118,7 @@ let efficiencyDrain = 1
 
 Build the conditional that automatically raises the efficiency cost when speed is high.
 
-* Open `||logic:Logic||` and add `if then else` in `||loops(noclick):on start||` with the condition `driveSpeed > 100`.
+* :paper plane: Open `||logic:Logic||` and add `if then else` in `||loops(noclick):on start||` with the condition `driveSpeed > 100`.
 * In the `then` branch, set `efficiencyDrain` to `2`; in the `else` branch, set it to `1`.
 
 > **Riley tip:** If your tradeoff rule never seems to kick in, check that `driveSpeed` is set before the `if` block runs — order matters when you're building a rule.
@@ -151,7 +148,7 @@ Pick the engineer perspective that best matches what you're focusing on in this 
 * Enabled: false
 ```
 
-* Open `||raceDayTools:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
 * Add `show saved driver profile` to display the current profile.
 
 > **Riley tip:** There isn't one correct role here — pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
@@ -169,15 +166,12 @@ if (driveSpeed > 100) {
     efficiencyDrain = 1
 }
 //@highlight
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
 //@highlight
 raceDayTools.showSavedDriverProfile()
 ```
 
 ```ghost
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
 raceDayTools.setRoleLens(raceDayTools.RoleLens.SoftwareEngineer)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
 ```
 
 ## Step 7 - Save the Setup Focus
@@ -202,12 +196,10 @@ if (driveSpeed > 100) {
 } else {
     efficiencyDrain = 1
 }
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
 raceDayTools.showSavedDriverProfile()
 //@highlight
 if (driveSpeed > 100) {
     //@validate-exists
-    raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Pace)
     game.splash("Performance engineer", "You chose raw pace. Watch energy use.")
 } else {
     //@validate-exists
@@ -218,7 +210,6 @@ if (driveSpeed > 100) {
 
 ```ghost
 raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Balance)
-raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Pace)
 ```
 
 ## Complete

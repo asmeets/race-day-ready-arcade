@@ -25,10 +25,7 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
+raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -37,7 +34,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Set the game stage to Track inside `on start` so every later event can check which mode is active before it runs.
 
-* Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`.
 * Set the stage value to `Track`.
 
 > **Casey tip:** If obstacles or scoring run at the wrong time, check the stage setting first — that's usually why something is "running right now."
@@ -56,10 +53,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
@@ -71,7 +64,7 @@ raceDayTools.startStage(raceDayTools.RaceStage.Track)
 
 Set a high-contrast background color so the car and obstacles are easy to see on screen.
 
-* Open `||scene:Scene||` and drag `set background color` into `on start`.
+* :tree: Open `||scene:Scene||` and drag `set background color` into `on start`.
 * Pick a color that contrasts strongly with the car sprite.
 
 > **Casey tip:** If your car disappears into the background, change one color so the important stuff pops.
@@ -90,10 +83,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Track)
@@ -106,7 +95,7 @@ scene.setBackgroundColor(11)
 
 Pull saved choices into this stage so the same speed and car design carry forward from the garage.
 
-* Open `||raceDayTools:Driven by STEM||` and drag `set driveSpeed from saved drive speed` into `on start`.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set driveSpeed from saved drive speed` into `on start`.
 * Drag `apply saved car style` and connect `raceCar` as the target sprite.
 * Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
 
@@ -126,10 +115,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Track)
@@ -149,7 +134,7 @@ let efficiencyDrain = raceDayTools.savedEfficiencyCost()
 
 Add two variables to count collisions over time so the game can detect clean driving stretches.
 
-* Open `||variables:Variables||`, click `Make a Variable`, and name it `trackCollisions`.
+* :paper plane: Open `||variables:Variables||`, click `Make a Variable`, and name it `trackCollisions`.
 * Make a second variable called `lastTrackCollisionCount`.
 * Set both to `0` inside `on start`.
 
@@ -169,10 +154,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Track)
@@ -192,7 +173,7 @@ let lastTrackCollisionCount = 0
 
 Initialize the score, load efficiency as the car's life total, and start the 30-second race clock.
 
-* Open `||info:Info||` and drag `set score to 0` into `on start`.
+* :game pad: Open `||info:Info||` and drag `set score to 0` into `on start`.
 * Drag `set life` and connect `saved efficiency` from `||raceDayTools:Driven by STEM||` as the value.
 * Drag `start countdown` and set the time to `30` seconds.
 
@@ -212,10 +193,6 @@ let raceCar = sprites.create(img`
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
 raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setRoleLens(raceDayTools.RoleLens.PerformanceEngineer)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Track)
@@ -240,7 +217,7 @@ info.startCountdown(30)
 
 This is a new event block that runs on its own — it creates incoming obstacles every two seconds while the stage is Track.
 
-* Open `||game:Game||` and add `on game update every 2000 ms`.
+* :game pad: Open `||game:Game||` and add `on game update every 2000 ms`.
 * Inside the event, check that the stage is `Track` using `||raceDayTools:Driven by STEM||`.
 * Create an `Enemy` obstacle sprite from `||sprites:Sprites||`, give it a random x position, set a downward velocity, and a `lifespan` so old obstacles disappear.
 
@@ -282,7 +259,7 @@ game.onUpdateInterval(2000, function () {
 
 This is a new event block that fires whenever the player hits an obstacle, logging the hit and draining efficiency.
 
-* Open `||sprites:Sprites||` and add an overlap event for `Player` vs `Enemy`.
+* :paper plane: Open `||sprites:Sprites||` and add an overlap event for `Player` vs `Enemy`.
 * Inside the event, confirm the stage is `Track`, add `1` to `trackCollisions`, and subtract `efficiencyDrain` from life.
 * Destroy the obstacle sprite.
 
@@ -312,7 +289,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 
 This is a new event block that checks every four seconds whether any new collisions happened and awards bonus points for a clean stretch.
 
-* Open `||game:Game||` and add `on game update every 4000 ms`.
+* :game pad: Open `||game:Game||` and add `on game update every 4000 ms`.
 * If `trackCollisions` equals `lastTrackCollisionCount`, award `score +2` and `Strategy +1`.
 * Set `lastTrackCollisionCount` to `trackCollisions` so the next check compares fresh data.
 
@@ -346,9 +323,9 @@ game.onUpdateInterval(4000, function () {
 
 This is a new event block — when the countdown ends it saves the run data so the next stage can use it.
 
-* Open `||info:Info||` and add `on countdown end`.
+* :game pad: Open `||info:Info||` and add `on countdown end`.
 * Inside the event, confirm the stage is `Track`.
-* Open `||raceDayTools:Driven by STEM||` and drag `save current run results`.
+* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `save current run results`.
 
 > **Casey tip:** If the end-of-run message never appears, check that your countdown is running and that you added the countdown-end event.
 

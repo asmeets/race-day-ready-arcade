@@ -21,7 +21,7 @@ let raceCar: Sprite = null
 
 Set the scene so the game has a visual context from the moment it starts.
 
-* Open `||scene:Scene||` and drag `set background color` into `||loops(noclick):on start||`.
+* :tree: Open `||scene:Scene||` and drag `set background color` into `||loops(noclick):on start||`.
 
 > **Sam tip:** If the background doesn't change, make sure the block is snapped into the `on start` stack — a block sitting nearby won't run.
 
@@ -35,7 +35,7 @@ scene.setBackgroundColor(6)
 
 Give players a quick briefing before they see the car.
 
-* Open `||game:Game||` and drag `splash` under the background block in `||loops(noclick):on start||`.
+* :game pad: Open `||game:Game||` and drag `splash` under the background block in `||loops(noclick):on start||`.
 * Type a short, one-sentence mission line.
 
 > **Sam tip:** Keep this message short — if a player has to read a paragraph at launch, it's too much.
@@ -51,7 +51,7 @@ game.splash("Miami test session", "Build a car you can explain.")
 
 Build the sprite that will represent the car on screen.
 
-* Open `||sprites:Sprites||` and drag `set mySprite to sprite of kind Player` into `||loops(noclick):on start||`.
+* :paper plane: Open `||sprites:Sprites||` and drag `set mySprite to sprite of kind Player` into `||loops(noclick):on start||`.
 * Rename the variable to `raceCar`, then click the image square to choose or draw a car.
 
 > **Sam tip:** Use `raceCar` consistently — one mismatched name can make the right blocks feel wrong.
@@ -79,8 +79,8 @@ raceCar = sprites.create(img`
 Wire up the controls so the player can steer the car.
 
 * The template already includes `driveSpeed` — use it as the speed value throughout.
-* Open `||controller:Controller||` and drag `move mySprite with buttons` into `||loops(noclick):on start||`, targeting `raceCar` with `driveSpeed`.
-* Open `||sprites:Sprites||` and add `stay in screen` so the car can't leave the view.
+* :game pad: Open `||controller:Controller||` and drag `move mySprite with buttons` into `||loops(noclick):on start||`, targeting `raceCar` with `driveSpeed`.
+* :paper plane: Open `||sprites:Sprites||` and add `stay in screen` so the car can't leave the view.
 
 > **Sam tip:** If the car won't move, check which sprite the controller block is targeting — this is usually a naming issue.
 
@@ -110,7 +110,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Connect your project to saved data so choices carry forward between tutorials.
 
-* Open `||racedaytools:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
+* :racing_car: Open `||racedaytools:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
 * Set `driveSpeed` from the saved value.
 
 > **Sam tip:** If the blocks are missing, scroll the toolbox — custom categories can hide farther down the list.
@@ -197,7 +197,7 @@ raceDayTools.setCarStyle(raceDayTools.CarStyle.HeatRed)
 
 Turn on the HUD so the game can show speed and efficiency feedback.
 
-* Open `||info:Info||` and set score to `0` and life to saved efficiency in `||loops(noclick):on start||`.
+* :game pad: Open `||info:Info||` and set score to `0` and life to saved efficiency in `||loops(noclick):on start||`.
 
 > **Sam tip:** If your life value looks wrong, make sure you're pulling the saved efficiency value, not leaving it at a default.
 
@@ -241,7 +241,7 @@ info.setLife(raceDayTools.savedEfficiency())
 
 Add a reset event so shared devices can start clean for the next group.
 
-* Open `||controller:Controller||` and drag `on button pressed` into the workspace outside of `||loops(noclick):on start||`.
+* :game pad: Open `||controller:Controller||` and drag `on button pressed` into the workspace outside of `||loops(noclick):on start||`.
 * Change the button to `B`.
 * Inside the event, add `reset saved session` and `game reset`.
 
