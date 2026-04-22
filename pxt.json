@@ -1,7 +1,7 @@
 {
-    "name": "Race Day Ready",
+    "name": "Driven by STEM",
     "version": "0.2.13",
-    "description": "Race Day Ready Arcade is a game design project where you build and remix your own F1-inspired racing experience in MakeCode Arcade. As you play and change the game, you’ll explore real engineering tradeoffs like speed versus control, power versus efficiency, and risk versus consistency. The goal is not just to make the fastest car, but to make smart design choices and see how small code changes affect the whole race.\n\nThis project is meant to help you think like a game designer, software developer, and race engineer. You can test ideas, spot problems, improve your design, and learn how coding connects to real careers in technology, engineering, data, strategy, and accessibility.",
+    "description": "Driven by STEM is an F1-inspired racing game where you code the car, tune the tradeoffs, and see how your decisions perform on the track.\n\nBuild your own racing simulator from scratch. Balance speed versus control, power versus efficiency, and risk versus consistency. Every code change affects performance, so you’ll test, measure, and improve just like real engineers do.\n\nThis isn’t just about making the fastest car; it's about making smart design choices and understanding why they matter. You’ll think like a game designer, software engineer, and race strategist as you explore real careers in technology, engineering, data analysis, and systems design.\n\nPerfect for: Students ready to code with blocks or JavaScript, explore engineering tradeoffs, and connect gameplay decisions to real STEM careers.",
     "dependencies": {
         "device": "*",
         "settings-blocks": "github:microsoft/pxt-settings-blocks#v1.0.0"
