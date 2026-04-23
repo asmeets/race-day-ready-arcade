@@ -2,6 +2,10 @@
 
 ### @diffs true
 
+```package
+driven-by-stem=github:asmeets/driven-by-stem
+```
+
 ```validation.global
 # BlocksExistValidator
 * markers: validate-exists
