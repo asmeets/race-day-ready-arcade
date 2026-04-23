@@ -7,7 +7,7 @@
 * highlightcolor: #42cdf4
 * completednodecolor: #067d14
 * allowcodecarryover: True
-* backgroundurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/background.gif
+* backgroundurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/background.jpg
 * bannerurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/banner.png
 
 ## driven-by-stem
