@@ -16,8 +16,8 @@ Hi, I'm **Kai**, your operations lead. I got into this work the hands-on way: se
 In this last gate, you'll use your saved data to **celebrate what you built**, explore where these skills connect to real careers, and leave with a **clear next-step idea**. Finishing is great, and a good handoff means the work keeps going.
 
 ```template
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
 ```
 
 ## {1. Start Winners Circle stage}
@@ -29,7 +29,7 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
 You've completed the challenge, and now it's time to celebrate and reflect. Setting the stage to Winners Circle signals that the competitive phase is over and the focus shifts to recognizing achievement, reviewing what you built, and connecting your work to broader career pathways and CS concepts.
 
 * :binoculars: Open `||loops(noclick):on start||` and find your setup code.
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
 
 ~hint Still feels like gameplay? 🎮
 
@@ -40,10 +40,10 @@ If this still feels like gameplay, some older spawners are still running. Scan f
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
+drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 ```
 
 ## {2. Set the celebration scene}
@@ -66,8 +66,8 @@ If confetti makes the text hard to read, tone it down. A good finish is clear fi
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 //@highlight
 //@validate-exists
 scene.setBackgroundColor(8)
@@ -96,8 +96,8 @@ If saved values won't drop into your variables, check that you created them firs
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
 //@highlight
@@ -116,7 +116,7 @@ let finalStrategy = 0
 
 The celebration is meaningful because it's personalized to your choices. Loading your saved recommendation, strategy score, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and set `nextTestFocus` from the saved recommendation.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and set `nextTestFocus` from the saved recommendation.
 * :racing_car: Set `finalStrategy` from the saved strategy result.
 * :racing_car: Drag `show saved driver profile` into `on start`.
 
@@ -129,19 +129,19 @@ If your saved recommendation is blank, that's a clue the Review gate didn't writ
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
 let nextTestFocus = ""
 let finalStrategy = 0
 //@highlight
-nextTestFocus = raceDayTools.nextTestFocus()
+nextTestFocus = drivenByStem.nextTestFocus()
 //@highlight
-finalStrategy = raceDayTools.lastStrategyResult()
+finalStrategy = drivenByStem.lastStrategyResult()
 //@highlight
 //@validate-exists
-raceDayTools.showSavedDriverProfile()
+drivenByStem.showSavedDriverProfile()
 ```
 
 ## {5. Connect setup to a career lens}
@@ -172,17 +172,17 @@ hint~
 ```
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
 let nextTestFocus = ""
 let finalStrategy = 0
-nextTestFocus = raceDayTools.nextTestFocus()
-finalStrategy = raceDayTools.lastStrategyResult()
-raceDayTools.showSavedDriverProfile()
+nextTestFocus = drivenByStem.nextTestFocus()
+finalStrategy = drivenByStem.lastStrategyResult()
+drivenByStem.showSavedDriverProfile()
 //@highlight
-if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
+if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
     game.splash("Career link", "You worked like a performance engineer.")
 } else {
     game.splash("Career link", "You worked like a strategist balancing the whole system.")
@@ -209,16 +209,16 @@ If the takeaway is getting long, trim it. One clear line that's readable on a pr
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
 let nextTestFocus = ""
 let finalStrategy = 0
-nextTestFocus = raceDayTools.nextTestFocus()
-finalStrategy = raceDayTools.lastStrategyResult()
-raceDayTools.showSavedDriverProfile()
-if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
+nextTestFocus = drivenByStem.nextTestFocus()
+finalStrategy = drivenByStem.lastStrategyResult()
+drivenByStem.showSavedDriverProfile()
+if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
     game.splash("Career link", "You worked like a performance engineer.")
 } else {
     game.splash("Career link", "You worked like a strategist balancing the whole system.")
@@ -256,16 +256,16 @@ hint~
 ```
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
 let nextTestFocus = ""
 let finalStrategy = 0
-nextTestFocus = raceDayTools.nextTestFocus()
-finalStrategy = raceDayTools.lastStrategyResult()
-raceDayTools.showSavedDriverProfile()
-if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
+nextTestFocus = drivenByStem.nextTestFocus()
+finalStrategy = drivenByStem.lastStrategyResult()
+drivenByStem.showSavedDriverProfile()
+if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
     game.splash("Career link", "You worked like a performance engineer.")
 } else {
     game.splash("Career link", "You worked like a strategist balancing the whole system.")

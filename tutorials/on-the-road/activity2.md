@@ -28,13 +28,13 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
+drivenByStem.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 ```
 
 ## {1. Start the Pit Stop stage}
@@ -46,7 +46,7 @@ info.setLife(raceDayTools.savedEfficiency())
 Before any pit decisions can happen, the game needs to know which mode it's running in. Setting the stage tells all your event blocks whether they should execute pit logic or stay quiet. This is how real systems coordinate different operational modes—one clear signal that every subsystem can check.
 
 * :binoculars: Open `||loops(noclick):on start||` and find the existing setup code at the bottom.
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `on start`, set to **Pit Stop**.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set start stage` into `on start`, set to **Pit Stop**.
 
 ~hint Markers in wrong place? 🚨
 
@@ -69,15 +69,15 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
+drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 ```
 
 ## {2. Show a short briefing}
@@ -112,13 +112,13 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
-info.setLife(raceDayTools.savedEfficiency())
-raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
+info.setLife(drivenByStem.savedEfficiency())
+drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 //@highlight
 //@validate-exists
 game.splash("Pit wall", "Use data before you make the next call.")
@@ -156,13 +156,13 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
-info.setLife(raceDayTools.savedEfficiency())
-raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
+info.setLife(drivenByStem.savedEfficiency())
+drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 game.splash("Pit wall", "Use data before you make the next call.")
 //@highlight
 //@validate-exists
@@ -178,7 +178,7 @@ let pitStopsVisited = 0
 Pit windows appear and disappear based on track position and race conditions. By spawning markers on a timer with a limited lifespan, you're modeling the reality that strategic opportunities don't wait forever. Engineers design systems that create these windows, and strategists decide when to use them—both roles rely on timing.
 
 * :game pad: Open `||game:Game||` and add an `on update every (8000) ms` block.
-* :racing_car: Inside it, add an `if stage is Pit Stop` check from `||raceDayTools:Driven by STEM||`.
+* :racing_car: Inside it, add an `if stage is Pit Stop` check from `||drivenByStem:Driven by STEM||`.
 * :paper plane: Create a `Food` sprite inside that check and set a short `lifespan` to make it a timed decision.
 
 ~hint Markers vanishing too fast? ⏱️
@@ -193,7 +193,7 @@ hint~
 //@highlight
 game.onUpdateInterval(8000, function () {
     //@highlight
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.PitStop)) {
         //@highlight
         //@validate-exists
         let pitMarker = sprites.create(img`
@@ -238,16 +238,16 @@ hint~
 //@highlight
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     //@highlight
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.PitStop)) {
         //@highlight
         //@validate-exists
         pitStopsVisited += 1
         //@highlight
         //@validate-exists
-        raceDayTools.awardStrategyPoints(1)
+        drivenByStem.awardStrategyPoints(1)
         //@highlight
         //@validate-exists
-        if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
+        if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
             //@highlight
             info.changeScoreBy(5)
         } else {
@@ -261,7 +261,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 ```
 
 ```ghost
-raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Balance)
+drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Balance)
 ```
 
 ## {6. Save updated results}
@@ -273,7 +273,7 @@ raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Balance)
 Your pit decision only matters if it carries forward to the next stage. Saving the updated results at the end of the countdown ensures that later gates can see what you did here and respond accordingly. This is how real telemetry systems preserve race data—each phase builds on the last, and nothing gets lost between transitions.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` block.
-* :racing_car: Inside the `if stage is Pit Stop` check, open `||raceDayTools:Driven by STEM||` and drag in `save current run results`.
+* :racing_car: Inside the `if stage is Pit Stop` check, open `||drivenByStem:Driven by STEM||` and drag in `save current run results`.
 
 ~hint Next gate forgot your choice? 💾
 
@@ -287,15 +287,15 @@ hint~
 //@highlight
 //@validate-exists
 info.onCountdownEnd(function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.PitStop)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.PitStop)) {
         //@highlight
         //@validate-exists
-        raceDayTools.saveCurrentRunResults()
+        drivenByStem.saveCurrentRunResults()
     }
 })
 ```
 ```ghost
-raceDayTools.recordPitStopVisit()
+drivenByStem.recordPitStopVisit()
 ```
 
 ## Complete

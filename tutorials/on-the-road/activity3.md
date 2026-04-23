@@ -28,8 +28,8 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -42,7 +42,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Racing conditions don't stay constant—weather changes everything. Setting the stage to Weather tells your code that it should now respond to environmental factors instead of standard track logic. This is the same principle used in real simulation systems where engineers model how rain, temperature, and grip affect performance before race day.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `||loops(noclick):on start||`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set start stage` into `||loops(noclick):on start||`.
 * :keyboard: Set the stage value to **Weather**.
 
 ~hint Rain everywhere? 🌧️
@@ -66,12 +66,12 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.Weather)
+drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 ```
 
 ## {2. Set starting conditions (Dry)}
@@ -82,7 +82,7 @@ raceDayTools.startStage(raceDayTools.RaceStage.Weather)
 
 Every experiment needs a control condition. Starting with dry weather and a clear background gives you a known baseline so that when conditions change, the contrast is obvious. Engineers design systems this way so they can isolate variables and measure the impact of each change accurately.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and set weather to **Dry**.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and set weather to **Dry**.
 * :tree: Open `||scene:Scene||` and `set background color` to a dry-track color.
 
 ~hint Can't see the car? 🎨
@@ -106,20 +106,20 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Weather)
+drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 //@highlight
 //@validate-exists
-raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
+drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 //@highlight
 //@validate-exists
 scene.setBackgroundColor(7)
 ```
 
 ```ghost
-raceDayTools.setWeather(raceDayTools.WeatherMode.Rain)
+drivenByStem.setWeather(drivenByStem.WeatherMode.Rain)
 ```
 
 ## {3. Load saved setup}
@@ -130,9 +130,9 @@ raceDayTools.setWeather(raceDayTools.WeatherMode.Rain)
 
 Your car doesn't reset to factory defaults every run—it carries forward the setup decisions you made earlier. Loading the saved speed, style, and efficiency cost means this stage builds on your previous work rather than starting from scratch. Real race teams do this too: they tune the car once in the garage, then carry that configuration through multiple sessions.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and set `driveSpeed` to **saved speed**.
-* Use `||raceDayTools:Driven by STEM||` to apply the saved car style to `raceCar`.
-* Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and set `driveSpeed` to **saved speed**.
+* Use `||drivenByStem:Driven by STEM||` to apply the saved car style to `raceCar`.
+* Set `efficiencyDrain` from `||drivenByStem:Driven by STEM||` `saved efficiency cost`.
 
 ~hint Speed feels inconsistent? ⚡
 
@@ -155,21 +155,21 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Weather)
-raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
+drivenByStem.startStage(drivenByStem.RaceStage.Weather)
+drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 scene.setBackgroundColor(7)
 //@highlight
 //@validate-exists
-driveSpeed = raceDayTools.savedDriveSpeed()
+driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 //@validate-exists
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle(raceCar)
 //@highlight
 //@validate-exists
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 ```
 
 ## {4. Track change + collisions}
@@ -204,15 +204,15 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Weather)
-raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
+drivenByStem.startStage(drivenByStem.RaceStage.Weather)
+drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 scene.setBackgroundColor(7)
-driveSpeed = raceDayTools.savedDriveSpeed()
-raceDayTools.applySavedCarStyle(raceCar)
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
+driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.applySavedCarStyle(raceCar)
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@highlight
 //@validate-exists
 let weatherChanged = 0
@@ -253,15 +253,15 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Weather)
-raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
+drivenByStem.startStage(drivenByStem.RaceStage.Weather)
+drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 scene.setBackgroundColor(7)
-driveSpeed = raceDayTools.savedDriveSpeed()
-raceDayTools.applySavedCarStyle(raceCar)
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
+driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.applySavedCarStyle(raceCar)
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 let weatherChanged = 0
 let weatherCollisions = 0
 //@highlight
@@ -269,7 +269,7 @@ let weatherCollisions = 0
 info.setScore(0)
 //@highlight
 //@validate-exists
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 //@highlight
 //@validate-exists
 info.startCountdown(25)
@@ -296,10 +296,10 @@ hint~
 
 ```blocks
 timer.after(10000, function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
         //@highlight
         //@validate-exists
-        raceDayTools.setWeather(raceDayTools.WeatherMode.Rain)
+        drivenByStem.setWeather(drivenByStem.WeatherMode.Rain)
         //@highlight
         //@validate-exists
         weatherChanged = 1
@@ -314,7 +314,7 @@ timer.after(10000, function () {
 ```
 
 ```ghost
-raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
+drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 ```
 
 ## {7. Reduce grip in rain (new event block)}
@@ -338,8 +338,8 @@ hint~
 
 ```blocks
 game.onUpdateInterval(1000, function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
-        if (raceDayTools.weatherIs(raceDayTools.WeatherMode.Rain)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
+        if (drivenByStem.weatherIs(drivenByStem.WeatherMode.Rain)) {
             //@highlight
             //@validate-exists
             controller.moveSprite(raceCar, driveSpeed - 30, driveSpeed - 30)
@@ -353,7 +353,7 @@ game.onUpdateInterval(1000, function () {
 ```
 
 ```ghost
-raceDayTools.weatherIs(raceDayTools.WeatherMode.Dry)
+drivenByStem.weatherIs(drivenByStem.WeatherMode.Dry)
 ```
 
 ## {8. Add puddle hazards + collisions (new event blocks)}
@@ -377,7 +377,7 @@ hint~
 
 ```blocks
 game.onUpdateInterval(2500, function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
         //@highlight
         //@validate-exists
         let puddle = sprites.create(img`
@@ -402,7 +402,7 @@ game.onUpdateInterval(2500, function () {
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
         //@highlight
         //@validate-exists
         weatherCollisions += 1
@@ -425,7 +425,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 Successful adaptation means recognizing when conditions changed and adjusting your driving to minimize mistakes. This final check rewards players who kept collisions low after the weather shift, then saves the results so future stages can reference this run. It's how real teams measure driver skill under pressure—not just speed, but smart, responsive decision-making.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` event block.
-* :racing_car: If the stage is **Weather**, `weatherChanged` equals **1**, and `weatherCollisions` is **≤ 1**, use `||raceDayTools:Driven by STEM||` to award **Strategy +1**.
+* :racing_car: If the stage is **Weather**, `weatherChanged` equals **1**, and `weatherCollisions` is **≤ 1**, use `||drivenByStem:Driven by STEM||` to award **Strategy +1**.
 * :racing_car: Save the current run results and show a **"Run complete"** splash.
 
 ~hint Strategy never awards? 🏆
@@ -438,15 +438,15 @@ hint~
 
 ```blocks
 info.onCountdownEnd(function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Weather)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
         if (weatherChanged == 1 && weatherCollisions <= 1) {
             //@highlight
             //@validate-exists
-            raceDayTools.awardStrategyPoints(1)
+            drivenByStem.awardStrategyPoints(1)
         }
         //@highlight
         //@validate-exists
-        raceDayTools.saveCurrentRunResults()
+        drivenByStem.saveCurrentRunResults()
         //@highlight
         //@validate-exists
         game.splash("Run complete", "Check your strategy score.")

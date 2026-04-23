@@ -28,8 +28,8 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -42,7 +42,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Before any events fire, the system needs to know what mode it's in. Setting the stage to "Track" is how you tell every timer, spawner, and collision handler which rules apply. Real racing teams do something similar — they declare whether it's a practice session, qualifying, or race before anything starts.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `on start`.
 * :mouse pointer: Set the stage value to `Track`.
 
 ~hint Timing feels wrong? 🔍
@@ -66,12 +66,12 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.Track)
+drivenByStem.startStage(drivenByStem.RaceStage.Track)
 ```
 
 ## {2. Make the Track Readable}
@@ -106,10 +106,10 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Track)
+drivenByStem.startStage(drivenByStem.RaceStage.Track)
 //@highlight
 //@validate-exists
 scene.setBackgroundColor(11)
@@ -123,9 +123,9 @@ scene.setBackgroundColor(11)
 
 Your speed choice and efficiency tradeoff from the garage should carry into this session. Loading saved values ensures that the car behaves consistently with what you tuned earlier. This is how engineers maintain setup continuity across test sessions — load the baseline, then measure what happens.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set driveSpeed from saved drive speed` into `on start`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set driveSpeed from saved drive speed` into `on start`.
 * :id card: Drag `apply saved car style` and connect `raceCar` as the target sprite.
-* :racing_car: Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
+* :racing_car: Set `efficiencyDrain` from `||drivenByStem:Driven by STEM||` `saved efficiency cost`.
 
 ~hint Life draining wrong? 🔎
 
@@ -148,20 +148,20 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Track)
+drivenByStem.startStage(drivenByStem.RaceStage.Track)
 scene.setBackgroundColor(11)
 //@highlight
 //@validate-exists
-driveSpeed = raceDayTools.savedDriveSpeed()
+driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 //@validate-exists
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle(raceCar)
 //@highlight
 //@validate-exists
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 ```
 
 ## {4. Create Collision Tracking Variables}
@@ -197,14 +197,14 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Track)
+drivenByStem.startStage(drivenByStem.RaceStage.Track)
 scene.setBackgroundColor(11)
-driveSpeed = raceDayTools.savedDriveSpeed()
-raceDayTools.applySavedCarStyle(raceCar)
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
+driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.applySavedCarStyle(raceCar)
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@highlight
 //@validate-exists
 let trackCollisions = 0
@@ -222,7 +222,7 @@ let lastTrackCollisionCount = 0
 A racing session needs clear start and end points. The countdown sets the test window, while the score and life displays show real-time feedback. Setting these values at the start ensures every player gets the same fair test conditions. This is how you make comparisons meaningful.
 
 * :game pad: Open `||info:Info||` and drag `set score to 0` into `on start`.
-* :racing_car: Drag `set life` and connect `saved efficiency` from `||raceDayTools:Driven by STEM||` as the value.
+* :racing_car: Drag `set life` and connect `saved efficiency` from `||drivenByStem:Driven by STEM||` as the value.
 * :game pad: Drag `start countdown` and set the time to `30` seconds.
 
 ~hint Life stuck at zero? 📊
@@ -246,14 +246,14 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.Track)
+drivenByStem.startStage(drivenByStem.RaceStage.Track)
 scene.setBackgroundColor(11)
-driveSpeed = raceDayTools.savedDriveSpeed()
-raceDayTools.applySavedCarStyle(raceCar)
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
+driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.applySavedCarStyle(raceCar)
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 let trackCollisions = 0
 let lastTrackCollisionCount = 0
 //@highlight
@@ -261,7 +261,7 @@ let lastTrackCollisionCount = 0
 info.setScore(0)
 //@highlight
 //@validate-exists
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 //@highlight
 //@validate-exists
 info.startCountdown(30)
@@ -276,7 +276,7 @@ info.startCountdown(30)
 A static track doesn't challenge your setup. Spawning obstacles at regular intervals creates consistent, repeatable test conditions — you face the same challenge density every run, so differences in performance reflect your setup, not random luck. This is controlled testing at work.
 
 * :game pad: Open `||game:Game||` and add `on game update every 2000 ms`.
-* :racing_car: Inside the event, check that the stage is `Track` using `||raceDayTools:Driven by STEM||`.
+* :racing_car: Inside the event, check that the stage is `Track` using `||drivenByStem:Driven by STEM||`.
 * :paper plane: Create an `Enemy` obstacle sprite from `||sprites:Sprites||`, give it a random x position, set a downward velocity, and a `lifespan` so old obstacles disappear.
 
 ~hint Too chaotic? 🎶
@@ -293,7 +293,7 @@ hint~
 game.onUpdateInterval(2000, function () {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
         //@highlight
         //@validate-exists
         let obs = sprites.create(img`
@@ -345,7 +345,7 @@ hint~
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
         //@highlight
         //@validate-exists
         trackCollisions += 1
@@ -385,7 +385,7 @@ hint~
 game.onUpdateInterval(4000, function () {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
         //@highlight
         //@validate-exists
         if (trackCollisions == lastTrackCollisionCount) {
@@ -394,7 +394,7 @@ game.onUpdateInterval(4000, function () {
             info.changeScoreBy(2)
             //@highlight
             //@validate-exists
-            raceDayTools.awardStrategyPoints(1)
+            drivenByStem.awardStrategyPoints(1)
         }
         //@highlight
         //@validate-exists
@@ -413,7 +413,7 @@ A test session isn't complete until you save the results. This event fires when 
 
 * :game pad: Open `||info:Info||` and add `on countdown end`.
 * :racing_car: Inside the event, confirm the stage is `Track`.
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `save current run results`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `save current run results`.
 
 ~hint End message missing? ⏰
 
@@ -429,10 +429,10 @@ hint~
 info.onCountdownEnd(function () {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.Track)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
         //@highlight
         //@validate-exists
-        raceDayTools.saveCurrentRunResults()
+        drivenByStem.saveCurrentRunResults()
     }
 })
 ```

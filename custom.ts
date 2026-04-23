@@ -1,8 +1,9 @@
 /**
  * Custom blocks for the Driven by STEM skillmap.
  */
-//% color=#b40707 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
-namespace raceDayTools {
+//% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM"
+//% groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
+namespace drivenByStem {
     const DRIVE_SPEED_KEY = "driveSpeed"
     const EFFICIENCY_KEY = "efficiencyRating"
     const STRATEGY_KEY = "strategyPoints"
