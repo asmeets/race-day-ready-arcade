@@ -37,14 +37,24 @@ info.setScore(0)
 info.setLife(raceDayTools.savedEfficiency())
 ```
 
-## Step 1 – Start the Pit Stop stage
+## {1. Start the Pit Stop stage}
 
-This goes inside `on start` to switch the game into pit mode so pit logic runs correctly.
+**Activating the Pit Wall Environment**
+
+---
+
+Before any pit decisions can happen, the game needs to know which mode it's running in. Setting the stage tells all your event blocks whether they should execute pit logic or stay quiet. This is how real systems coordinate different operational modes—one clear signal that every subsystem can check.
 
 * Open `||loops(noclick):on start||` and find the existing setup code at the bottom.
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `on start`, set to **Pit Stop**.
 
-> **Morgan tip:** If pit markers show up on the track, that's a stage-mismatch clue. Look for a missing "if stage is Pit Stop" check.
+~hint Markers in wrong place? 🚨
+
+---
+
+If pit markers show up on the track, that's a stage-mismatch clue. Look for a missing "if stage is Pit Stop" check.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -70,14 +80,24 @@ info.setLife(raceDayTools.savedEfficiency())
 raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
 ```
 
-## Step 2 – Show a short briefing
+## {2. Show a short briefing}
 
-Still inside `on start`, add a one-line prompt so players know they've reached the pit wall phase.
+**Communicating Context to the Driver**
+
+---
+
+In real racing, clear communication prevents mistakes. A quick message at the start of the pit phase tells the player they've transitioned from driving to decision-making. This mirrors how race engineers brief drivers over the radio before critical moments—short, direct, and focused on what matters right now.
 
 * :game pad: Open `||game:Game||` and add a `splash` block below the stage setter.
 * Set the first field to `Pit wall` and the second field to `Use data before you make the next call.`
 
-> **Morgan tip:** Keep this briefing tight. If you need more than a few seconds to explain it, the prompt should be clearer, not longer.
+~hint Message too long? ⚡
+
+---
+
+Keep this briefing tight. If you need more than a few seconds to explain it, the prompt should be clearer, not longer.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -104,14 +124,24 @@ raceDayTools.startStage(raceDayTools.RaceStage.PitStop)
 game.splash("Pit wall", "Use data before you make the next call.")
 ```
 
-## Step 3 – Track pit stops visited
+## {3. Track pit stops visited}
 
-Still in `on start`, create a counter so there's evidence of how many pit stops the team used.
+**Recording Strategic Decisions**
+
+---
+
+Every pit stop costs time, so teams track how often they use them to evaluate their strategy later. Creating a counter variable gives you measurable evidence of your decision-making patterns. This is the same principle data analysts use when they review race logs to identify what worked and what didn't.
 
 * :paper plane: Open `||variables:Variables||` and make a new variable named `pitStopsVisited`.
 * Drag `set pitStopsVisited to 0` into `on start` below the splash.
 
-> **Morgan tip:** If you skip the counter, you lose evidence. I like having at least one number I can point to: "We used the pit stop ___ times."
+~hint Lost evidence? 📊
+
+---
+
+If you skip the counter, you lose evidence. I like having at least one number I can point to: "We used the pit stop ___ times."
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -139,15 +169,25 @@ game.splash("Pit wall", "Use data before you make the next call.")
 let pitStopsVisited = 0
 ```
 
-## Step 4 – Spawn pit markers
+## {4. Spawn pit markers}
 
-This is a new event block that runs on its own, separate from `on start`.
+**Creating Time-Limited Opportunities**
+
+---
+
+Pit windows appear and disappear based on track position and race conditions. By spawning markers on a timer with a limited lifespan, you're modeling the reality that strategic opportunities don't wait forever. Engineers design systems that create these windows, and strategists decide when to use them—both roles rely on timing.
 
 * :game pad: Open `||game:Game||` and add an `on update every (8000) ms` block.
 * Inside it, add an `if stage is Pit Stop` check from `||raceDayTools:Driven by STEM||`.
 * Create a `Food` sprite inside that check and set a short `lifespan` to make it a timed decision.
 
-> **Morgan tip:** If markers vanish instantly, your lifespan is probably too short. Increase it a little and test again.
+~hint Markers vanishing too fast? ⏱️
+
+---
+
+If markers vanish instantly, your lifespan is probably too short. Increase it a little and test again.
+
+hint~
 
 ```blocks
 //@highlight
@@ -174,15 +214,25 @@ game.onUpdateInterval(8000, function () {
 })
 ```
 
-## Step 5 – Handle the pit choice
+## {5. Handle the pit choice}
 
-This is a new event block that fires when the player sprite overlaps a pit marker.
+**Applying Conditional Rewards Based on Setup**
+
+---
+
+The pit stop doesn't give the same reward to everyone—it responds to the setup choice you saved earlier. If you optimized for pace, you get a speed boost; if you optimized for balance, you get efficiency back. This conditional logic mirrors how real teams tune their strategies to their car's strengths and the current race situation.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap Player and Food` block.
 * Inside an `if stage is Pit Stop` check, change `pitStopsVisited` by 1 and award a Strategy point.
 * Add an `if/else` using `setupFocusIs Pace`. Apply a pace reward in the true branch, a balance reward in the else branch.
 
-> **Morgan tip:** If rewards feel "backwards," double-check what you saved as your setup focus earlier. The pit logic is only as smart as the saved choice it reads.
+~hint Rewards feel backwards? 🔄
+
+---
+
+If rewards feel "backwards," double-check what you saved as your setup focus earlier. The pit logic is only as smart as the saved choice it reads.
+
+hint~
 
 ```blocks
 //@highlight
@@ -214,14 +264,24 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Balance)
 ```
 
-## Step 6 – Save updated results
+## {6. Save updated results}
 
-This is a new event block that runs on its own, carrying your pit-stop decision forward to later gates.
+**Persisting Decisions Across Stages**
+
+---
+
+Your pit decision only matters if it carries forward to the next stage. Saving the updated results at the end of the countdown ensures that later gates can see what you did here and respond accordingly. This is how real telemetry systems preserve race data—each phase builds on the last, and nothing gets lost between transitions.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` block.
 * Inside the `if stage is Pit Stop` check, open `||raceDayTools:Driven by STEM||` and drag in `save current run results`.
 
-> **Morgan tip:** If the next gate doesn't seem to remember your pit stop, that's usually a save timing issue. Make sure the save happens after the decision changes something.
+~hint Next gate forgot your choice? 💾
+
+---
+
+If the next gate doesn't seem to remember your pit stop, that's usually a save timing issue. Make sure the save happens after the decision changes something.
+
+hint~
 
 ```blocks
 //@highlight

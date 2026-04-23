@@ -37,9 +37,13 @@ info.setScore(0)
 info.setLife(raceDayTools.savedEfficiency())
 ```
 
-## Step 1 - Start the Setup Stage and Make a Prediction
+## {1. Start the Setup Stage and Make a Prediction}
 
-Set the session context and record your prediction before you change any values.
+**Establishing Good Engineering Practice**
+
+---
+
+Real engineers don't just change things and hope for the best — they predict outcomes first, then test. Making a prediction forces you to think through cause and effect before you make changes. This is how you turn random experiments into structured learning.
 
 ```validation.local
 # BlocksExistValidator
@@ -50,7 +54,13 @@ Set the session context and record your prediction before you change any values.
 * Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
 * :game pad: Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
-> **Riley tip:** If your prediction splash doesn't show up, check placement. Make sure it's inside `on start` and not inside another event.
+~hint Splash not showing? 📍
+
+---
+
+If your prediction splash doesn't show up, check placement. Make sure it's inside `on start` and not inside another event.
+
+hint~
 
 ```blocks
 //@highlight
@@ -61,14 +71,36 @@ driveSpeed = raceDayTools.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 ```
 
-## Step 2 - Tune Speed
+## {2. Tune Speed}
 
-Set the speed variable that all movement will read from.
+**Adjusting a Key Performance Parameter**
+
+---
+
+Speed is one of the most important variables in racing. Changing it affects everything — how quickly you navigate, how much energy you use, how hard it is to control the car. By storing speed in a variable, you create a single point of control that you can tune and test systematically.
 
 * :paper plane: Open `||variables:Variables||` and drag `set driveSpeed to` into `||loops(noclick):on start||`.
 * Change the value to `110`.
 
-> **Riley tip:** If the car still feels slow, something is probably resetting your speed later. Scan your stacks and look for another place where `driveSpeed` gets set.
+~hint What's a variable? 📦
+
+---
+
+In programming, a **VARIABLE** is a named container that holds a value you can use and change.
+
+Think of it like a labeled box: you can put a number in the box, check what's in the box, or replace the contents. The label stays the same, but what's inside can change.
+
+In this project, `driveSpeed` is a variable that holds the car's speed value.
+
+hint~
+
+~hint Car still slow? 👀
+
+---
+
+If the car still feels slow, something is probably resetting your speed later. Scan your stacks and look for another place where `driveSpeed` gets set.
+
+hint~
 
 ```blocks
 raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
@@ -79,14 +111,24 @@ game.splash("Predict first", "What will more speed do to control and energy?")
 driveSpeed = 110
 ```
 
-## Step 3 - Make Movement Use driveSpeed
+## {3. Make Movement Use driveSpeed}
 
-Wire movement to your variable so speed changes flow from one place to the whole game.
+**Connecting Variables to Behavior**
+
+---
+
+A variable is only useful if your code actually reads it. By wiring your movement system to the `driveSpeed` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
 
 * :game pad: Open `||controller:Controller||` and find `move mySprite with buttons`.
 * Replace any number values in the speed fields with the `driveSpeed` variable.
 
-> **Riley tip:** If you still see numbers in the movement block, the tuning isn't connected yet. Replace those numbers with the `driveSpeed` bubble so your change actually takes effect.
+~hint Speed not changing? 🔌
+
+---
+
+If you still see numbers in the movement block, the tuning isn't connected yet. Replace those numbers with the `driveSpeed` bubble so your change actually takes effect.
+
+hint~
 
 ```blocks
 raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
@@ -98,14 +140,24 @@ driveSpeed = 110
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 ```
 
-## Step 4 - Create the Efficiency Variable
+## {4. Create the Efficiency Variable}
 
-Create the cost-per-mistake variable before you use it in the tradeoff rule.
+**Modeling System Costs**
+
+---
+
+In real racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, the `efficiencyDrain` variable represents how much energy each mistake costs. Creating this variable lets you model tradeoffs — a core concept in engineering and game balance.
 
 * :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyDrain`.
 * Add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
 
-> **Riley tip:** If you can't find `efficiencyDrain` in a dropdown, it usually means it was created with a different spelling. Double-check the exact variable name.
+~hint Can't find your variable? ⌨️
+
+---
+
+If you can't find `efficiencyDrain` in a dropdown, it usually means it was created with a different spelling. Double-check the exact variable name.
+
+hint~
 
 ```blocks
 raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
@@ -118,14 +170,36 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 let efficiencyDrain = 1
 ```
 
-## Step 5 - Add the Tradeoff Rule
+## {5. Add the Tradeoff Rule}
 
-Build the conditional that automatically raises the efficiency cost when speed is high.
+**Programming Decision Logic**
+
+---
+
+This is where your simulation gets smart. A conditional statement lets your code make different choices based on the current situation. In this case, you're programming a realistic tradeoff: higher speed means higher energy cost. This is how engineers encode real-world physics into software systems.
 
 * :paper plane: Open `||logic:Logic||` and add `if then else` in `||loops(noclick):on start||` with the condition `driveSpeed > 100`.
 * In the `then` branch, set `efficiencyDrain` to `2`; in the `else` branch, set it to `1`.
 
-> **Riley tip:** If your tradeoff rule never seems to kick in, check that `driveSpeed` is set before the `if` block runs. Order matters when you're building a rule.
+~hint What's a conditional? 🔀
+
+---
+
+In programming, a **CONDITIONAL** (or if-else statement) lets your code make decisions and do different things based on whether something is true or false.
+
+The structure is: **IF** (condition is true) **THEN** do this, **ELSE** do that instead.
+
+In this step, you're building a rule: IF speed is high, THEN efficiency costs more, ELSE it costs less.
+
+hint~
+
+~hint Rule not working? 🔢
+
+---
+
+If your tradeoff rule never seems to kick in, check that `driveSpeed` is set before the `if` block runs. Order matters when you're building a rule.
+
+hint~
 
 ```blocks
 raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
@@ -143,9 +217,13 @@ if (driveSpeed > 100) {
 }
 ```
 
-## Step 6 - Choose a Role Lens
+## {6. Choose a Role Lens}
 
-Pick the engineer perspective that best matches what you're focusing on in this run.
+**Selecting Your Engineering Perspective**
+
+---
+
+On a real race team, different engineers focus on different things — some watch performance, others track efficiency, some monitor reliability. Choosing a role lens determines how you'll interpret the data you collect. There's no single "right" lens, just different ways of looking at the same system.
 
 ```validation.local
 # BlocksExistValidator
@@ -155,7 +233,13 @@ Pick the engineer perspective that best matches what you're focusing on in this 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
 * Add `show saved driver profile` to display the current profile.
 
-> **Riley tip:** There isn't one correct role here. Pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
+~hint Which role should I pick? ✨
+
+---
+
+There isn't one correct role here. Pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
+
+hint~
 
 ```blocks
 raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
@@ -178,15 +262,25 @@ raceDayTools.showSavedDriverProfile()
 raceDayTools.setRoleLens(raceDayTools.RoleLens.SoftwareEngineer)
 ```
 
-## Step 7 - Save the Setup Focus
+## {7. Save the Setup Focus}
 
-Store your speed and efficiency choices so later gates can build on this setup.
+**Recording Your Configuration Choice**
+
+---
+
+Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
 * In `||raceDayTools:Driven by STEM||`, use `save team setup` inside the `if driveSpeed > 100` structure.
 * Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
 * Add a `splash` in each branch that explains the tradeoff choice.
 
-> **Riley tip:** If later gates don't seem to remember your setup, check when you save. Make sure it happens after your speed and efficiency choices are finalized.
+~hint Setup not saving? ⏱️
+
+---
+
+If later gates don't seem to remember your setup, check when you save. Make sure it happens after your speed and efficiency choices are finalized.
+
+hint~
 
 ```blocks
 raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)

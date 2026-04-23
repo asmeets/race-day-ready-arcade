@@ -21,13 +21,23 @@ let efficiencyDrain = 1
 let raceCar: Sprite = null
 ```
 
-## Step 1 - Set the Garage Background
+## {1. Set the Garage Background}
 
-Set the scene so the game has a visual context from the moment it starts.
+**Creating the Visual Environment**
+
+---
+
+Every game starts with a scene. Setting the background color gives your game a visual identity from the moment it launches. This is the first thing players see, and it sets the tone for the entire racing experience.
 
 * :tree: Open `||scene:Scene||` and drag `set background color` into `||loops(noclick):on start||`.
 
-> **Sam tip:** If the background doesn't change, make sure the block is snapped into the `on start` stack. A block sitting nearby won't run.
+~hint Background not changing? 🔍
+
+---
+
+If the background doesn't change, make sure the block is snapped into the `on start` stack. A block sitting nearby won't run.
+
+hint~
 
 ```blocks
 //@highlight
@@ -35,14 +45,24 @@ Set the scene so the game has a visual context from the moment it starts.
 scene.setBackgroundColor(6)
 ```
 
-## Step 2 - Add a Mission Message
+## {2. Add a Mission Message}
 
-Give players a quick briefing before they see the car.
+**Communicating the Player's Goal**
+
+---
+
+Clear communication is essential in both games and engineering. A mission message tells players what they're about to do and why it matters. Think of it like a team briefing before a test session — everyone needs to know the objective.
 
 * :game pad: Open `||game:Game||` and drag `splash` under the background block in `||loops(noclick):on start||`.
 * Type a short, one-sentence mission line.
 
-> **Sam tip:** Keep this message short. If a player has to read a paragraph at launch, it's too much.
+~hint Message too long? ⚡
+
+---
+
+Keep this message short. If a player has to read a paragraph at launch, it's too much.
+
+hint~
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -51,14 +71,36 @@ scene.setBackgroundColor(6)
 game.splash("Miami test session", "Build a car you can explain.")
 ```
 
-## Step 3 - Create the Player Car
+## {3. Create the Player Car}
 
-Build the sprite that will represent the car on screen.
+**Building the Interactive Game Object**
+
+---
+
+In racing games and simulations, the car is more than just an image — it's an interactive object with properties like position, speed, and collision detection. Creating a sprite gives you a programmable object you can control, move, and respond to events. This is how digital simulations represent real-world objects.
 
 * :paper plane: Open `||sprites:Sprites||` and drag `set mySprite to sprite of kind Player` into `||loops(noclick):on start||`.
 * Rename the variable to `raceCar`, then click the image square to choose or draw a car.
 
-> **Sam tip:** Use `raceCar` consistently. One mismatched name can make the right blocks feel wrong.
+~hint What's a sprite? 💡
+
+---
+
+In Arcade, each character or image that does something is called a **SPRITE**.
+
+Sprites have properties that you can use and change — things like position, speed, and image are all properties of sprites.
+
+Your race car will be a sprite, too.
+
+hint~
+
+~hint Variable names confusing? 🎯
+
+---
+
+Use `raceCar` consistently. One mismatched name can make the right blocks feel wrong.
+
+hint~
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -78,15 +120,25 @@ raceCar = sprites.create(img`
 `, SpriteKind.Player)
 ```
 
-## Step 4 - Turn On Movement
+## {4. Turn On Movement}
 
-Wire up the controls so the player can steer the car.
+**Connecting Input to Action**
+
+---
+
+A car that can't move isn't much of a simulator. Wiring up controller input to sprite movement is how you transform button presses into on-screen action. Real racing simulators do the same thing — they translate driver input (steering, throttle, brakes) into vehicle behavior. Here you're building that connection.
 
 * The template already includes `driveSpeed`. Use it as the speed value throughout.
 * :game pad: Open `||controller:Controller||` and drag `move mySprite with buttons` into `||loops(noclick):on start||`, targeting `raceCar` with `driveSpeed`.
 * :paper plane: Open `||sprites:Sprites||` and add `stay in screen` so the car can't leave the view.
 
-> **Sam tip:** If the car won't move, check which sprite the controller block is targeting. This is usually a naming issue.
+~hint Car won't move? 🔧
+
+---
+
+If the car won't move, check which sprite the controller block is targeting. This is usually a naming issue.
+
+hint~
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -110,14 +162,24 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 5 - Load Saved Race State
+## {5. Load Saved Race State}
 
-Connect your project to saved data so choices carry forward between tutorials.
+**Building Persistent Systems**
+
+---
+
+Professional race teams don't start from scratch every session — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. Loading saved data lets your choices carry forward across different stages, just like real engineering systems that remember past configurations and results.
 
 * :racing_car: Open `||racedaytools:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
 * Set `driveSpeed` from the saved value.
 
-> **Sam tip:** If the blocks are missing, scroll the toolbox. Custom categories can hide farther down the list.
+~hint Blocks missing? 👀
+
+---
+
+If the blocks are missing, scroll the toolbox. Custom categories can hide farther down the list.
+
+hint~
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -146,14 +208,24 @@ raceDayTools.startStage(raceDayTools.RaceStage.Garage)
 driveSpeed = raceDayTools.savedDriveSpeed()
 ```
 
-## Step 6 - Save Team Identity
+## {6. Save Team Identity}
 
-Give the car and team a persistent identity the game will remember.
+**Creating Personalized Experience**
+
+---
+
+Every racing team has an identity — a name, a car livery, a style. Setting these values personalizes your simulation and creates a sense of ownership. More importantly, saving these choices means the system remembers who you are across multiple sessions, just like how real team data persists across race weekends.
 
 * Still in `||racedaytools:Driven by STEM||`, set your team name, car name, and car style.
 * Add blocks to apply the saved style to `raceCar` and show the driver profile.
 
-> **Sam tip:** Consistent names and styles help you spot what's actually changing in the code. If everything looks different, it's harder to debug.
+~hint Why consistency matters? 💭
+
+---
+
+Consistent names and styles help you spot what's actually changing in the code. If everything looks different, it's harder to debug.
+
+hint~
 
 ```validation.local
 # BlocksExistValidator
@@ -197,13 +269,23 @@ raceDayTools.setCarStyle(raceDayTools.CarStyle.VoltLime)
 raceDayTools.setCarStyle(raceDayTools.CarStyle.HeatRed)
 ```
 
-## Step 7 - Add the Dashboard
+## {7. Add the Dashboard}
 
-Turn on the HUD so the game can show speed and efficiency feedback.
+**Displaying Real-Time Performance Data**
+
+---
+
+Racing drivers rely on dashboard displays to monitor speed, fuel, tire wear, and system health in real time. Your game's HUD (Heads-Up Display) does the same thing — it shows score and efficiency so players can make informed decisions. Visible data turns abstract numbers into actionable information.
 
 * :game pad: Open `||info:Info||` and set score to `0` and life to saved efficiency in `||loops(noclick):on start||`.
 
-> **Sam tip:** If your life value looks wrong, make sure you're pulling the saved efficiency value, not leaving it at a default.
+~hint Life value looks wrong? 🐛
+
+---
+
+If your life value looks wrong, make sure you're pulling the saved efficiency value, not leaving it at a default.
+
+hint~
 
 ```blocks
 scene.setBackgroundColor(6)
@@ -236,20 +318,30 @@ info.setScore(0)
 info.setLife(raceDayTools.savedEfficiency())
 ```
 
-## Step 8 - Add a Reset Button
+## {8. Add a Reset Button}
+
+**Preparing for Shared Use**
+
+---
+
+In a classroom or activation event, multiple students will use the same device. A reset button clears saved data so each new group starts fresh. This is good systems thinking — designing for the context where your project will actually be used.
 
 ```validation.local
 # BlocksExistValidator
 * Enabled: false
 ```
 
-Add a reset event so shared devices can start clean for the next group.
-
 * :game pad: Open `||controller:Controller||` and drag `on button pressed` into the workspace outside of `||loops(noclick):on start||`.
 * Change the button to `B`.
 * Inside the event, add `reset saved session` and `game reset`.
 
-> **Sam tip:** If pressing B does nothing, check that this event is standalone. Events don't work when nested inside another stack.
+~hint Button not working? ⚠️
+
+---
+
+If pressing B does nothing, check that this event is standalone. Events don't work when nested inside another stack.
+
+hint~
 
 ```blocks
 //@highlight

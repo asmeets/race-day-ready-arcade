@@ -34,14 +34,24 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 1 - Start the Final Challenge stage
+## {1. Start the Final Challenge stage}
 
-The `on start` block sets which stage is active so every other event knows which mode the game is in.
+**Initialize the Integration Test**
+
+---
+
+This is it—the moment where all your subsystems run together. Setting the stage to Final Challenge tells every spawner, collision handler, and timer that you're now in full integration mode. Without this signal, events won't know which rules to follow, and your carefully tuned systems won't activate correctly.
 
 * Open `||loops(noclick):on start||` and find the `||raceDayTools:Driven by STEM||` drawer.
 * :racing_car: Add the **start stage** block and set it to **Final Challenge**.
 
-> **Taylor tip:** If you see obstacles or pit markers showing up at weird times, suspect a missing stage check. In systems work, "wrong mode" bugs are super common.
+~hint Wrong things showing up? 🔍
+
+---
+
+If you see obstacles or pit markers showing up at weird times, suspect a missing stage check. In systems work, "wrong mode" bugs are super common.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -54,14 +64,24 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.FinalChallenge)
 ```
 
-## Step 2 - Set the final scene
+## {2. Set the final scene}
 
-A distinct background makes the final run feel different and keeps hazards readable against the track.
+**Create the Race Environment**
+
+---
+
+The final challenge deserves its own visual identity. A distinct background color signals to players that this is the culminating test, while strong contrast ensures that every obstacle and opportunity remains clearly visible during high-speed decision-making.
 
 * :tree: Open `||scene:Scene||` inside `||loops(noclick):on start||`.
 * Add `set background color` and pick a color that contrasts with your car and obstacles.
 
-> **Taylor tip:** If hazards feel hard to see, fix the visuals before you fix the code. A system can be "correct" and still be unusable if signals aren't readable.
+~hint Hazards hard to see? 🎨
+
+---
+
+If hazards feel hard to see, fix the visuals before you fix the code. A system can be "correct" and still be unusable if signals aren't readable.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -75,15 +95,25 @@ raceDayTools.startStage(raceDayTools.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
 ```
 
-## Step 3 - Load saved setup + costs
+## {3. Load saved setup + costs}
 
-Pulling saved values means the final run reflects the choices made in earlier stages.
+**Honor Earlier Engineering Decisions**
+
+---
+
+Every tuning choice you made in the garage matters now. Loading your saved speed, efficiency cost, and car style ensures that this final run authentically reflects the tradeoffs you designed earlier. This is how systems thinking works in practice—earlier decisions cascade forward through the entire experience.
 
 * In `||loops(noclick):on start||`, use `||raceDayTools:Driven by STEM||` to load saved `driveSpeed`.
 * Load `efficiencyDrain` from saved efficiency cost.
 * Apply saved car style to `raceCar`.
 
-> **Taylor tip:** If the car doesn't match your setup, hunt for a leftover hardcoded value in movement. One stray number can override your saved tuning.
+~hint Car doesn't match your setup? 🔧
+
+---
+
+If the car doesn't match your setup, hunt for a leftover hardcoded value in movement. One stray number can override your saved tuning.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -107,14 +137,24 @@ raceDayTools.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 ```
 
-## Step 4 - Create final tracking variables
+## {4. Create final tracking variables}
 
-Dedicated counters let the reflection gate see exactly what happened during the final run.
+**Prepare the Evidence Capture System**
+
+---
+
+You can't improve what you don't measure. Creating dedicated variables for collisions and pit stops gives the reflection stage concrete evidence to analyze. These counters will tell the complete story of how your system performed under pressure, turning an abstract run into specific, reviewable data.
 
 * :paper plane: Open `||variables:Variables||` and create `finalCollisions`. Set it to `0`.
 * Create `finalPitStops` and set it to `0`.
 
-> **Taylor tip:** If your reflection later feels fuzzy, it usually means you didn't track the right signals. Make sure your "final" counters actually change during the run.
+~hint Reflection feels fuzzy? 🔍
+
+---
+
+If your reflection later feels fuzzy, it usually means you didn't track the right signals. Make sure your "final" counters actually change during the run.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -136,15 +176,25 @@ let finalCollisions = 0
 let finalPitStops = 0
 ```
 
-## Step 5 - Turn on HUD + countdown
+## {5. Turn on HUD + countdown}
 
-Score, life, and a timer give players the three signals they need to make tradeoff decisions in real time.
+**Display Real-Time System State**
+
+---
+
+Racing isn't just about going fast—it's about balancing three competing priorities under time pressure. Your HUD displays Performance through score, Efficiency through life, and Strategy through decisions. The countdown creates urgency, forcing you to prioritize tradeoffs instead of optimizing everything perfectly.
 
 * :game pad: Open `||info:Info||` inside `||loops(noclick):on start||`, set score to `0`, and set life from saved efficiency.
 * Add a `start countdown` block set to `25` seconds.
 * Add a `||game:splash||` that reminds players to balance Performance (score), Efficiency (life), and Strategy.
 
-> **Taylor tip:** If the run never ends, check whether you started the countdown and whether you added a countdown-end event.
+~hint Run never ends? ⏱️
+
+---
+
+If the run never ends, check whether you started the countdown and whether you added a countdown-end event.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -174,14 +224,24 @@ info.startCountdown(25)
 game.splash("Balance all three", "Performance. Efficiency. Strategy.")
 ```
 
-## Step 6 - Spawn obstacles (risk)
+## {6. Spawn obstacles (risk)}
 
-A repeating update event keeps pressure on throughout the run without requiring extra setup blocks.
+**Generate Continuous Performance Pressure**
+
+---
+
+Obstacles represent the unpredictable risks that every racing team faces—track debris, weather changes, mechanical stress. By spawning them continuously throughout the run, you create sustained pressure that tests whether your efficiency tuning can handle extended challenges, not just a single perfect moment.
 
 * :game pad: Open `||game:Game||` and add a new **on update interval** block set to `2500` ms.
 * Inside the update, check if stage is **Final Challenge**, then spawn an **Enemy** sprite near the top of the screen with downward velocity and auto-destroy enabled.
 
-> **Taylor tip:** If the run feels too chaotic, slow spawns first. If it's readable, you can always ramp it back up.
+~hint Too chaotic? 🌀
+
+---
+
+If the run feels too chaotic, slow spawns first. If it's readable, you can always ramp it back up.
+
+hint~
 
 ```blocks
 //@highlight
@@ -206,14 +266,24 @@ game.onUpdateInterval(2500, function () {
 })
 ```
 
-## Step 7 - Spawn pit opportunities (recovery)
+## {7. Spawn pit opportunities (recovery)}
 
-Pit markers give players a way to recover efficiency mid-run, turning pure avoidance into active strategy.
+**Provide Strategic Recovery Options**
+
+---
+
+Real racing isn't just about avoiding problems—it's about knowing when to recover. Pit markers transform the challenge from pure reflexes into strategic decision-making: do you maintain your current pace or take a moment to restore efficiency? This turns the game into a test of judgment, not just speed.
 
 * :game pad: Open `||game:Game||` and add a new **on update interval** block set to `7000` ms.
 * Inside the update, check if stage is **Final Challenge**, then spawn a `||sprites:Food||` sprite with a short lifespan.
 
-> **Taylor tip:** If pit markers never show up, check timing and lifespan. If they show up but feel useless, check that your overlap event is looking for the right kind.
+~hint Pit markers not showing? ⏱️
+
+---
+
+If pit markers never show up, check timing and lifespan. If they show up but feel useless, check that your overlap event is looking for the right kind.
+
+hint~
 
 ```blocks
 //@highlight
@@ -235,14 +305,24 @@ game.onUpdateInterval(7000, function () {
 })
 ```
 
-## Step 8 - Score risk + recovery
+## {8. Score risk + recovery}
 
-Two overlap events connect spawned sprites to the HUD so every collision and pit stop has a visible effect.
+**Connect Actions to Measurable Outcomes**
+
+---
+
+Events without feedback are invisible to players. By wiring collision and pit stop overlaps to the HUD, you make every decision immediately visible through score changes, life updates, and visual effects. This feedback loop is what turns abstract code into a readable, learnable system.
 
 * :paper plane: Open `||sprites:Sprites||` and add an overlap event for **Player** vs **Enemy**: deduct Efficiency and destroy the obstacle.
 * Add a second overlap event for **Player** vs **Food**: restore life, add to score, record a pit stop, and destroy the marker.
 
-> **Taylor tip:** If a collision or pit stop does "nothing," that's usually a kind mismatch. Verify your Enemy vs Food overlap events match what you actually spawned.
+~hint Events doing nothing? 🐛
+
+---
+
+If a collision or pit stop does "nothing," that's usually a kind mismatch. Verify your Enemy vs Food overlap events match what you actually spawned.
+
+hint~
 
 ```blocks
 //@highlight
@@ -290,14 +370,24 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 ```
 
-## Step 9 - Save final run data
+## {9. Save final run data}
 
-The countdown-end event is the only reliable moment to capture results. Nothing runs after the timer hits zero.
+**Preserve the Complete Performance Record**
+
+---
+
+Integration testing isn't complete until you've captured the results. The countdown-end event is your only guaranteed moment to save performance data before the run terminates. This saved evidence becomes the foundation for reflection, comparison, and the next round of tuning decisions.
 
 * :game pad: Open `||info:Info||` and add an **on countdown end** event block.
 * Inside it, check if stage is **Final Challenge**, then use `||raceDayTools:Driven by STEM||` to save current run results.
 
-> **Taylor tip:** If review shows blank or zero values, results probably weren't saved at the end. Confirm the save runs inside countdown-end.
+~hint Review shows nothing? 📊
+
+---
+
+If review shows blank or zero values, results probably weren't saved at the end. Confirm the save runs inside countdown-end.
+
+hint~
 
 ```blocks
 //@highlight

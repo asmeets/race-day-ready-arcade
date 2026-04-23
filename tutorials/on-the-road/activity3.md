@@ -34,14 +34,24 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 1 – Start the Weather stage
+## {1. Start the Weather stage}
 
-The first line in `on start` sets the active stage so all weather rules know when to run.
+**Switching to Environmental Simulation Mode**
+
+---
+
+Racing conditions don't stay constant—weather changes everything. Setting the stage to Weather tells your code that it should now respond to environmental factors instead of standard track logic. This is the same principle used in real simulation systems where engineers model how rain, temperature, and grip affect performance before race day.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `||loops(noclick):on start||`.
 * Set the stage value to **Weather**.
 
-> **Avery tip:** If rain effects spill into other gates, your stage checks are missing somewhere. Search for "Weather" in your code and make sure every weather action is guarded by a stage check.
+~hint Rain everywhere? 🌧️
+
+---
+
+If rain effects spill into other gates, your stage checks are missing somewhere. Search for "Weather" in your code and make sure every weather action is guarded by a stage check.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -64,14 +74,24 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 raceDayTools.startStage(raceDayTools.RaceStage.Weather)
 ```
 
-## Step 2 – Set starting conditions (Dry)
+## {2. Set starting conditions (Dry)}
 
-Lock in dry conditions and a readable background before the weather event triggers.
+**Establishing a Baseline State**
+
+---
+
+Every experiment needs a control condition. Starting with dry weather and a clear background gives you a known baseline so that when conditions change, the contrast is obvious. Engineers design systems this way so they can isolate variables and measure the impact of each change accurately.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set weather to **Dry**.
 * :tree: Open `||scene:Scene||` and `set background color` to a dry-track color.
 
-> **Avery tip:** If you can't clearly see the car and hazards, adjust colors before you adjust difficulty. Readability is part of sustainability too.
+~hint Can't see the car? 🎨
+
+---
+
+If you can't clearly see the car and hazards, adjust colors before you adjust difficulty. Readability is part of sustainability too.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -102,15 +122,25 @@ scene.setBackgroundColor(7)
 raceDayTools.setWeather(raceDayTools.WeatherMode.Rain)
 ```
 
-## Step 3 – Load saved setup
+## {3. Load saved setup}
 
-Pull in the saved drive speed and car style so the run starts from the driver's previous configuration.
+**Restoring Configuration from Previous Decisions**
+
+---
+
+Your car doesn't reset to factory defaults every run—it carries forward the setup decisions you made earlier. Loading the saved speed, style, and efficiency cost means this stage builds on your previous work rather than starting from scratch. Real race teams do this too: they tune the car once in the garage, then carry that configuration through multiple sessions.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set `driveSpeed` to **saved speed**.
 * Use `||raceDayTools:Driven by STEM||` to apply the saved car style to `raceCar`.
 * Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
 
-> **Avery tip:** If speed feels inconsistent, check whether your code resets speed when conditions return to dry. Rain logic should change speed temporarily, not permanently.
+~hint Speed feels inconsistent? ⚡
+
+---
+
+If speed feels inconsistent, check whether your code resets speed when conditions return to dry. Rain logic should change speed temporarily, not permanently.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -142,14 +172,24 @@ raceDayTools.applySavedCarStyle(raceCar)
 let efficiencyDrain = raceDayTools.savedEfficiencyCost()
 ```
 
-## Step 4 – Track change + collisions
+## {4. Track change + collisions}
 
-Two variables will track whether conditions shifted and how many wet-weather collisions happen.
+**Preparing Evidence Variables for Adaptation Scoring**
+
+---
+
+To reward smart adaptation, you need evidence that conditions changed and how the driver responded. These two variables—one to mark when weather shifted, another to count collisions—give you the data you need to evaluate performance. This is how telemetry analysts track driver behavior under pressure: they log events and compare them to thresholds.
 
 * :paper plane: Open `||variables:Variables||` and create variables named `weatherChanged` and `weatherCollisions`.
 * Set both `weatherChanged` and `weatherCollisions` to **0** in `||loops(noclick):on start||`.
 
-> **Avery tip:** If you never earn the adaptation reward, check whether `weatherChanged` ever flips to 1 and whether collisions are actually being counted.
+~hint Never earning adaptation reward? 🏆
+
+---
+
+If you never earn the adaptation reward, check whether `weatherChanged` ever flips to 1 and whether collisions are actually being counted.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -181,14 +221,24 @@ let weatherChanged = 0
 let weatherCollisions = 0
 ```
 
-## Step 5 – Turn on HUD + countdown
+## {5. Turn on HUD + countdown}
 
-Activate the score, life, and a 25-second countdown to start the timed race window.
+**Activating Real-Time Performance Tracking**
+
+---
+
+Score, life, and the countdown timer give players constant feedback about their current state and how much time they have left. This heads-up display mirrors the real dash systems drivers use to monitor fuel, tire wear, and lap time—immediate, essential information that shapes every decision.
 
 * :game pad: Open `||info:Info||` and set `score` and `life`.
 * Add a `start countdown` block set to **25** seconds.
 
-> **Avery tip:** If life looks wrong, trace it like a scientist. Find where it is set and every place it is changed.
+~hint Life value wrong? 🔎
+
+---
+
+If life looks wrong, trace it like a scientist. Find where it is set and every place it is changed.
+
+hint~
 
 ```blocks
 let driveSpeed = 110
@@ -225,14 +275,24 @@ info.setLife(raceDayTools.savedEfficiency())
 info.startCountdown(25)
 ```
 
-## Step 6 – Switch to Rain (new event block)
+## {6. Switch to Rain (new event block)}
 
-This standalone event fires after 10 seconds and shifts conditions mid-race. Add it outside `on start`.
+**Simulating a Mid-Run Environmental Shift**
+
+---
+
+Weather doesn't wait for you to be ready. By triggering rain after 10 seconds, you're modeling how real conditions change without warning, forcing drivers and teams to adapt in real time. This delayed event tests whether your system can handle dynamic state changes—a core challenge in motorsport engineering.
 
 * :game pad: Open `||Timers:Timers||` and add an `after (10000) ms` event block.
 * Inside, check that the stage is **Weather**, then set weather to **Rain**, set `weatherChanged` to **1**, change the background color, and show a **"Rain lowers grip"** splash.
 
-> **Avery tip:** If rain never starts, verify that your timer block exists and is allowed to run while the stage is Weather.
+~hint Rain never starts? ☔
+
+---
+
+If rain never starts, verify that your timer block exists and is allowed to run while the stage is Weather.
+
+hint~
 
 ```blocks
 timer.after(10000, function () {
@@ -257,14 +317,24 @@ timer.after(10000, function () {
 raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
 ```
 
-## Step 7 – Reduce grip in rain (new event block)
+## {7. Reduce grip in rain (new event block)}
 
-This standalone update loop checks current conditions every second and assigns the correct speed. It sets the right value each time, not subtracting repeatedly.
+**Modeling Physics-Based Performance Degradation**
+
+---
+
+Wet surfaces reduce tire grip, which means lower safe cornering speed. This update loop continuously checks current weather and adjusts controller speed accordingly—not by stacking penalties, but by setting the correct value for the current condition. This mirrors how traction control systems monitor grip levels and adjust power delivery in real time.
 
 * :game pad: Open `||game:Game||` and add an `on game update every (1000) ms` event block.
 * If weather is **Rain**, set `||controller:Controller||` move speed to `driveSpeed − 30`; otherwise set it back to `driveSpeed`.
 
-> **Avery tip:** If your car gets slower and slower forever, you have a stacking bug. Set speed for the current condition, don't keep subtracting.
+~hint Car getting slower forever? 🐌
+
+---
+
+If your car gets slower and slower forever, you have a stacking bug. Set speed for the current condition, don't keep subtracting.
+
+hint~
 
 ```blocks
 game.onUpdateInterval(1000, function () {
@@ -286,14 +356,24 @@ game.onUpdateInterval(1000, function () {
 raceDayTools.weatherIs(raceDayTools.WeatherMode.Dry)
 ```
 
-## Step 8 – Add puddle hazards + collisions (new event blocks)
+## {8. Add puddle hazards + collisions (new event blocks)}
 
-Two standalone event blocks handle spawning and collision separately. Puddles appear on a timer, and an overlap event handles what happens when the car hits one.
+**Creating Dynamic Hazards with Consequences**
+
+---
+
+Puddles are more than just visual elements—they're hazards that test the driver's ability to avoid obstacles under reduced grip. Spawning them on a timer and applying efficiency penalties on collision simulates how water accumulation on track creates unpredictable danger zones. Race teams study these patterns to advise drivers on optimal racing lines.
 
 * :game pad: Open `||game:Game||` and add an `on game update every (2500) ms` block; create an **Enemy** puddle sprite from `||sprites:Sprites||` with a short lifespan.
 * :paper plane: Open `||sprites:Sprites||` and add an `on sprite of kind Player overlaps Enemy` event; increase `weatherCollisions`, reduce life by `efficiencyDrain`, and destroy the puddle with an effect.
 
-> **Avery tip:** If the screen fills with puddles, slow the spawn rate or shorten lifespan so the situation stays readable.
+~hint Screen filling with puddles? 💦
+
+---
+
+If the screen fills with puddles, slow the spawn rate or shorten lifespan so the situation stays readable.
+
+hint~
 
 ```blocks
 game.onUpdateInterval(2500, function () {
@@ -336,15 +416,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 ```
 
-## Step 9 – Reward adaptation + save results (new event block)
+## {9. Reward adaptation + save results (new event block)}
 
-When the countdown ends, this standalone event checks whether the driver adapted successfully and records the outcome.
+**Evaluating Strategic Response to Changing Conditions**
+
+---
+
+Successful adaptation means recognizing when conditions changed and adjusting your driving to minimize mistakes. This final check rewards players who kept collisions low after the weather shift, then saves the results so future stages can reference this run. It's how real teams measure driver skill under pressure—not just speed, but smart, responsive decision-making.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` event block.
 * If the stage is **Weather**, `weatherChanged` equals **1**, and `weatherCollisions` is **≤ 1**, use `||raceDayTools:Driven by STEM||` to award **Strategy +1**.
 * Save the current run results and show a **"Run complete"** splash.
 
-> **Avery tip:** If Strategy never awards, check whether `weatherChanged` became 1 and whether `weatherCollisions` stayed at 1 or below.
+~hint Strategy never awards? 🏆
+
+---
+
+If Strategy never awards, check whether `weatherChanged` became 1 and whether `weatherCollisions` stayed at 1 or below.
+
+hint~
 
 ```blocks
 info.onCountdownEnd(function () {
