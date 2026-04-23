@@ -35,15 +35,25 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
-## Step 1 - Start the Shakedown Stage
+## {1. Start the Shakedown Stage}
 
-Wire up `on start` so every run begins from a clean, known state before any timers fire.
+**Initializing the Test Environment**
+
+---
+
+Before you can run a meaningful test, you need to establish a clean starting state. This means setting the correct stage, resetting counters, loading your saved configuration, and applying your team's visual identity. Real test engineers do this every time — clear the old data, confirm the setup, then begin.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
 * Reset the collision count, then load your saved efficiency cost into `efficiencyDrain`.
 * Apply the saved car style to `raceCar`.
 
-> **Jordan tip:** If the wrong events fire, my first check is the stage. Make sure you really started Garage Shakedown before the timers begin.
+~hint Wrong events firing? 🔍
+
+---
+
+If the wrong events fire, my first check is the stage. Make sure you really started Garage Shakedown before the timers begin.
+
+hint~
 
 ```blocks
 //@highlight
@@ -59,14 +69,24 @@ efficiencyDrain = raceDayTools.savedEfficiencyCost()
 raceDayTools.applySavedCarStyle(raceCar)
 ```
 
-## Step 2 - Turn On the HUD and Countdown
+## {2. Turn On the HUD and Countdown}
 
-Still inside `on start`, configure the scoreboard and timer so every team tests the same 15-second window.
+**Establishing Performance Metrics and Time Limits**
+
+---
+
+A shakedown run needs clear boundaries — what are you measuring, and for how long? Setting the scoreboard and starting the countdown creates a fair, repeatable test window. Everyone gets the same 15 seconds to prove their setup works. This is how you make testing consistent and comparable.
 
 * :game pad: Open `||info:Info||` and set score to `0` and life to your saved efficiency value.
 * Add `start countdown` set to `15` seconds.
 
-> **Jordan tip:** If the countdown doesn't start, look for where that block lives. Countdown setup works best in on start, not inside an overlap or timer event.
+~hint Countdown not starting? 📍
+
+---
+
+If the countdown doesn't start, look for where that block lives. Countdown setup works best in on start, not inside an overlap or timer event.
+
+hint~
 
 ```blocks
 raceDayTools.startStage(raceDayTools.RaceStage.GarageShakedown)
@@ -84,15 +104,35 @@ info.setLife(raceDayTools.savedEfficiency())
 info.startCountdown(15)
 ```
 
-## Step 3 - Add Performance Scoring Over Time
+## {3. Add Performance Scoring Over Time}
 
-This is a timed event. It fires every second on its own, separate from `on start`, to reward clean survival.
+**Rewarding Clean Driving**
+
+---
+
+In racing, staying on track and avoiding obstacles is as important as going fast. This timed event awards points every second you survive without crashing. It's a simple metric, but it captures something real: consistency matters. Engineers use metrics like this to measure reliability under pressure.
 
 * :game pad: Open `||game:Game||` and add `on game update every` set to `1000` ms.
 * Inside the event, check that the stage is Garage Shakedown.
 * :game pad: Open `||info:Info||` and add score `+1` inside that check.
 
-> **Jordan tip:** If you notice score climbing outside the shakedown, that's a sign your stage check is missing or mismatched. That's the first thing I'd audit.
+~hint What's an event? 💡
+
+---
+
+In Arcade, an **EVENT** is a block that runs automatically when something specific happens.
+
+Events run on their own — you don't call them from other code. Examples include `on start`, `on button pressed`, `on overlap`, and `on game update every`.
+
+hint~
+
+~hint Score climbing everywhere? 🚨
+
+---
+
+If you notice score climbing outside the shakedown, that's a sign your stage check is missing or mismatched. That's the first thing I'd audit.
+
+hint~
 
 ```blocks
 //@highlight
@@ -105,15 +145,25 @@ game.onUpdateInterval(1000, function () {
 })
 ```
 
-## Step 4 - Spawn Test Hazards
+## {4. Spawn Test Hazards}
 
-This is a separate timed event. It fires every 2 seconds on its own to keep pressure on the driver.
+**Creating Dynamic Challenges**
+
+---
+
+A test without obstacles isn't much of a test. This event spawns cones at random positions every 2 seconds, forcing you to react and adapt. Real racing tests include slalom courses, braking zones, and obstacle avoidance for the same reason — you need to prove the car handles unpredictable situations.
 
 * :game pad: Open `||game:Game||` and add another `on game update every` set to `2000` ms.
 * Inside the event, check the stage, then create an Enemy cone sprite at a random position.
 * Give the cone a short `lifespan` so the screen doesn't fill up.
 
-> **Jordan tip:** If cones start to feel impossible, it's usually a timing issue. Re-check the interval and lifespan so the test stays challenging but fair.
+~hint Cones feel impossible? ⚖️
+
+---
+
+If cones start to feel impossible, it's usually a timing issue. Re-check the interval and lifespan so the test stays challenging but fair.
+
+hint~
 
 ```blocks
 //@highlight
@@ -134,15 +184,37 @@ game.onUpdateInterval(2000, function () {
 })
 ```
 
-## Step 5 - Record Collisions
+## {5. Record Collisions}
 
-This is an overlap event. It fires whenever Player and Enemy touch, independently of `on start`.
+**Tracking Mistakes and Their Costs**
+
+---
+
+Every collision has a consequence. In your simulator, hitting a cone costs efficiency based on your setup choice from the previous gate. Recording these collisions lets you measure how your speed-versus-efficiency tradeoff plays out in practice. This is how engineers turn abstract design choices into measurable outcomes.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap` event for `Player` and `Enemy`.
 * Inside the event, check the stage, then use `||raceDayTools:Driven by STEM||` to record the collision with `efficiencyDrain`.
 * Destroy the cone with an effect so the impact is visually obvious.
 
-> **Jordan tip:** If collisions don't seem to "cost" anything, I'd confirm what value you loaded into `efficiencyDrain` before the overlap event runs.
+~hint What's an overlap event? 🎯
+
+---
+
+An **OVERLAP EVENT** is a special event that runs automatically whenever two sprites touch each other on screen.
+
+You tell it which two kinds of sprites to watch (like Player and Enemy), and the code inside runs every time they collide. This is how games detect hits, pickups, and other touch-based interactions.
+
+In this step, you're using overlap to detect when your car hits a cone.
+
+hint~
+
+~hint Collisions don't cost anything? 🔢
+
+---
+
+If collisions don't seem to "cost" anything, I'd confirm what value you loaded into `efficiencyDrain` before the overlap event runs.
+
+hint~
 
 ```blocks
 //@highlight
@@ -156,15 +228,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 ```
 
-## Step 6 - Save Results and Award Strategy
+## {6. Save Results and Award Strategy}
 
-This countdown-end event fires automatically when time runs out. It must exist separately from `on start`.
+**Completing the Test Cycle**
+
+---
+
+A test isn't finished until you save the results. This event runs automatically when the countdown ends, checking your performance and storing the data. If you drove cleanly (1 collision or fewer), you earn a strategy bonus. Either way, the system remembers what happened so the next stage can build on this evidence.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` event.
 * Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Driven by STEM||` to award Strategy `+1`.
 * Use `||raceDayTools:Driven by STEM||` to save the current run results.
 
-> **Jordan tip:** If the shakedown ends but nothing saves, I'd look inside your countdown-end event. The save block has to be inside that event to run at the finish.
+~hint Nothing saving at the end? 🎯
+
+---
+
+If the shakedown ends but nothing saves, I'd look inside your countdown-end event. The save block has to be inside that event to run at the finish.
+
+hint~
 
 ```blocks
 //@highlight

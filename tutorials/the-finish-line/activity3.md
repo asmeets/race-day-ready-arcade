@@ -20,14 +20,24 @@ raceDayTools.loadRaceProfile(80, 5)
 raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
 ```
 
-## Step 1 – Start Winners Circle stage
+## {1. Start Winners Circle stage}
 
-The Winners Circle is a closing phase, not a driving challenge. Start it now so everything that follows runs in the right context.
+**Transition to Celebration Mode**
+
+---
+
+You've completed the challenge, and now it's time to celebrate and reflect. Setting the stage to Winners Circle signals that the competitive phase is over and the focus shifts to recognizing achievement, reviewing what you built, and connecting your work to broader career pathways and CS concepts.
 
 * Open `||loops(noclick):on start||` and find your setup code.
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
 
-> **Kai tip:** If this still feels like gameplay, some older spawners are still running. Scan for any "update every" blocks that don't check the Winners Circle stage.
+~hint Still feels like gameplay? 🎮
+
+---
+
+If this still feels like gameplay, some older spawners are still running. Scan for any "update every" blocks that don't check the Winners Circle stage.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -36,14 +46,24 @@ raceDayTools.loadRaceProfile(80, 5)
 raceDayTools.startStage(raceDayTools.RaceStage.WinnersCircle)
 ```
 
-## Step 2 – Set the celebration scene
+## {2. Set the celebration scene}
 
-A bright background and a screen effect signal to players that the race is over and it's time to reflect.
+**Create a Victory Environment**
+
+---
+
+Visuals matter for closure. A bright background and celebratory screen effect immediately communicate that this is a different moment—not a challenge, but a celebration. These visual cues help players transition from performance pressure to reflection mode, setting the right tone for reviewing achievements.
 
 * :tree: Open `||scene:Scene||` and set the background to a bright color.
 * :paint brush: Open `||effects:Effects||` and start confetti or another screen effect.
 
-> **Kai tip:** If confetti makes the text hard to read, tone it down. A good finish is clear first, flashy second.
+~hint Text hard to read? 🎉
+
+---
+
+If confetti makes the text hard to read, tone it down. A good finish is clear first, flashy second.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -56,14 +76,24 @@ scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
 ```
 
-## Step 3 – Create closing variables
+## {3. Create closing variables}
 
-The program stores messages (text) and scores (numbers) differently, so create both types before loading any saved data.
+**Prepare for Summary Data Display**
+
+---
+
+The Winners Circle displays both recommendations (text) and performance scores (numbers). Creating the right variable types before loading data ensures that your summary can present both qualitative insights and quantitative results cleanly, giving you a complete picture of what you accomplished.
 
 * :paper plane: Open `||variables:Variables||` and create a text variable named `nextTestFocus`.
 * Create a second variable named `finalStrategy` and give it a starting value of `0`.
 
-> **Kai tip:** If saved values won't drop into your variables, check that you created them first. Always create variables before you load data into them.
+~hint Variables not loading? 💾
+
+---
+
+If saved values won't drop into your variables, check that you created them first. Always create variables before you load data into them.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -78,15 +108,25 @@ let nextTestFocus = ""
 let finalStrategy = 0
 ```
 
-## Step 4 – Read closing data
+## {4. Read closing data}
 
-Load the values saved earlier in the experience so the summary reflects what this player actually did.
+**Retrieve Your Personal Journey Evidence**
+
+---
+
+The celebration is meaningful because it's personalized to your choices. Loading your saved recommendation, strategy score, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set `nextTestFocus` from the saved recommendation.
 * Set `finalStrategy` from the saved strategy result.
 * Drag `show saved driver profile` into `on start`.
 
-> **Kai tip:** If your saved recommendation is blank, that's a clue the Review gate didn't write it yet. Trace where it's supposed to be saved.
+~hint Recommendation blank? 🔍
+
+---
+
+If your saved recommendation is blank, that's a clue the Review gate didn't write it yet. Trace where it's supposed to be saved.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -104,7 +144,13 @@ finalStrategy = raceDayTools.lastStrategyResult()
 raceDayTools.showSavedDriverProfile()
 ```
 
-## Step 5 – Connect setup to a career lens
+## {5. Connect setup to a career lens}
+
+**Map Choices to Professional Roles**
+
+---
+
+Your engineering focus reveals the kind of work you prioritized. Whether you emphasized raw performance or balanced sustainability, each approach connects to real roles on a racing team—from performance engineers who squeeze every millisecond from a setup to strategists who optimize the whole system. This helps you see how your choices reflect actual career pathways.
 
 This step has no single correct answer. Try your own logic.
 
@@ -112,7 +158,13 @@ This step has no single correct answer. Try your own logic.
 * If setup focus was Pace, show `"Career link: performance engineer"`.
 * Otherwise show `"Career link: strategist/sustainability lead"`.
 
-> **Kai tip:** Keep the message inclusive. If your text sounds like "only one right way," try rewriting it as "here's what this choice prioritized."
+~hint How to write this? ✍️
+
+---
+
+Keep the message inclusive. If your text sounds like "only one right way," try rewriting it as "here's what this choice prioritized."
+
+hint~
 
 ```validation.local
 # BlocksExistValidator
@@ -137,14 +189,24 @@ if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
 }
 ```
 
-## Step 6 – Show the CS takeaway
+## {6. Show the CS takeaway}
 
-One clear splash tells players which computer science ideas powered the whole experience.
+**Highlight the Technical Foundation**
+
+---
+
+Behind every racing decision was a computer science concept. Events detected collisions and pit stops, variables stored your tuning choices, and saved data carried those choices across tutorials. Explicitly naming these CS ideas helps you recognize that the technical skills you practiced here apply far beyond racing games.
 
 * :game pad: Open `||game:Game||` and drag a `splash` block into `on start`.
 * Set the text to `"Events, variables, and saved data carried your choices forward."`.
 
-> **Kai tip:** If the takeaway is getting long, trim it. One clear line that's readable on a projector beats five lines nobody reads.
+~hint Message too long? 📱
+
+---
+
+If the takeaway is getting long, trim it. One clear line that's readable on a projector beats five lines nobody reads.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -166,7 +228,13 @@ if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
 game.splash("Computer science mattered", "Events, variables, and saved data carried your choices forward.")
 ```
 
-## Step 7 – End with a next-test idea
+## {7. End with a next-test idea}
+
+**Leave With a Forward-Looking Focus**
+
+---
+
+Every great team finishes one test by planning the next. Whether you succeeded in adaptation or identified an area to strengthen, closing with a specific next-test idea models how real engineering teams maintain momentum. Completion isn't the end—it's a handoff to the next iteration.
 
 This step has no single correct answer. Try your own logic.
 
@@ -174,7 +242,13 @@ This step has no single correct answer. Try your own logic.
 * If `finalStrategy` is `≥ 3`, show an "adaptation success" message.
 * Otherwise show `"Next test: "` joined with `nextTestFocus`.
 
-> **Kai tip:** If you're stuck on what to write, pick the lens that felt weakest and make that your next test.
+~hint Stuck on what to write? ✍️
+
+---
+
+If you're stuck on what to write, pick the lens that felt weakest and make that your next test.
+
+hint~
 
 ```validation.local
 # BlocksExistValidator
