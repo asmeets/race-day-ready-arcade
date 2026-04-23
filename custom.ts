@@ -300,7 +300,8 @@ namespace drivenByStem {
      */
     //% block="apply saved car style to $car"
     //% blockId=raceday_apply_car_style
-    //% car.shadow=sprite
+    //% car.shadow=variables_get
+    //% car.defl=raceCar
     //% group="Profile" weight=30
     export function applySavedCarStyle(car: Sprite): void {
         switch (settings.readString(CAR_STYLE_KEY)) {
