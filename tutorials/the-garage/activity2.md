@@ -29,12 +29,12 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 ```
 
 ## {1. Start the Setup Stage and Make a Prediction}
@@ -50,7 +50,7 @@ Real engineers don't just change things and hope for the best — they predict o
 * Enabled: false
 ```
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
 * :racing_car: Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
 * :game pad: Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
@@ -64,9 +64,9 @@ hint~
 
 ```blocks
 //@highlight
-raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 //@highlight
-driveSpeed = raceDayTools.savedDriveSpeed()
+driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 game.splash("Predict first", "What will more speed do to control and energy?")
 ```
@@ -103,8 +103,8 @@ If the car still feels slow, something is probably resetting your speed later. S
 hint~
 
 ```blocks
-raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
-driveSpeed = raceDayTools.savedDriveSpeed()
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 //@highlight
 //@validate-exists
@@ -131,8 +131,8 @@ If you still see numbers in the movement block, the tuning isn't connected yet. 
 hint~
 
 ```blocks
-raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
-driveSpeed = raceDayTools.savedDriveSpeed()
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 driveSpeed = 110
 //@highlight
@@ -160,8 +160,8 @@ If you can't find `efficiencyDrain` in a dropdown, it usually means it was creat
 hint~
 
 ```blocks
-raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
-driveSpeed = raceDayTools.savedDriveSpeed()
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 driveSpeed = 110
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -202,8 +202,8 @@ If your tradeoff rule never seems to kick in, check that `driveSpeed` is set bef
 hint~
 
 ```blocks
-raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
-driveSpeed = raceDayTools.savedDriveSpeed()
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 driveSpeed = 110
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -230,7 +230,7 @@ On a real race team, different engineers focus on different things — some watc
 * Enabled: false
 ```
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
 * :id card: Add `show saved driver profile` to display the current profile.
 
 ~hint Which role should I pick? ✨
@@ -242,8 +242,8 @@ There isn't one correct role here. Pick the lens that matches what you're watchi
 hint~
 
 ```blocks
-raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
-driveSpeed = raceDayTools.savedDriveSpeed()
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 driveSpeed = 110
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -255,11 +255,11 @@ if (driveSpeed > 100) {
 }
 //@highlight
 //@highlight
-raceDayTools.showSavedDriverProfile()
+drivenByStem.showSavedDriverProfile()
 ```
 
 ```ghost
-raceDayTools.setRoleLens(raceDayTools.RoleLens.SoftwareEngineer)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.SoftwareEngineer)
 ```
 
 ## {7. Save the Setup Focus}
@@ -270,7 +270,7 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.SoftwareEngineer)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* :racing_car: In `||raceDayTools:Driven by STEM||`, use `save team setup` inside the `if driveSpeed > 100` structure.
+* :racing_car: In `||drivenByStem:Driven by STEM||`, use `save team setup` inside the `if driveSpeed > 100` structure.
 * :racing_car: Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
 * :game pad: Add a `splash` in each branch that explains the tradeoff choice.
 
@@ -283,8 +283,8 @@ If later gates don't seem to remember your setup, check when you save. Make sure
 hint~
 
 ```blocks
-raceDayTools.startStage(raceDayTools.RaceStage.GarageSetup)
-driveSpeed = raceDayTools.savedDriveSpeed()
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 driveSpeed = 110
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -294,20 +294,20 @@ if (driveSpeed > 100) {
 } else {
     efficiencyDrain = 1
 }
-raceDayTools.showSavedDriverProfile()
+drivenByStem.showSavedDriverProfile()
 //@highlight
 if (driveSpeed > 100) {
     //@validate-exists
     game.splash("Performance engineer", "You chose raw pace. Watch energy use.")
 } else {
     //@validate-exists
-    raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Balance)
+    drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Balance)
     game.splash("Sustainability engineer", "You chose a more efficient setup.")
 }
 ```
 
 ```ghost
-raceDayTools.saveTeamSetup(driveSpeed, efficiencyDrain, raceDayTools.SetupFocus.Balance)
+drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Balance)
 ```
 
 ## Complete

@@ -28,8 +28,8 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.SoftwareEngineer)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.SoftwareEngineer)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -42,7 +42,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 This is it—the moment where all your subsystems run together. Setting the stage to Final Challenge tells every spawner, collision handler, and timer that you're now in full integration mode. Without this signal, events won't know which rules to follow, and your carefully tuned systems won't activate correctly.
 
-* :binoculars: Open `||loops(noclick):on start||` and find the `||raceDayTools:Driven by STEM||` drawer.
+* :binoculars: Open `||loops(noclick):on start||` and find the `||drivenByStem:Driven by STEM||` drawer.
 * :racing_car: Add the **start stage** block and set it to **Final Challenge**.
 
 ~hint Wrong things showing up? 🔍
@@ -56,12 +56,12 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(img``, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.FinalChallenge)
+drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 ```
 
 ## {2. Set the final scene}
@@ -86,10 +86,10 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(img``, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.FinalChallenge)
+drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 //@highlight
 //@validate-exists
 scene.setBackgroundColor(8)
@@ -103,7 +103,7 @@ scene.setBackgroundColor(8)
 
 Every tuning choice you made in the garage matters now. Loading your saved speed, efficiency cost, and car style ensures that this final run authentically reflects the tradeoffs you designed earlier. This is how systems thinking works in practice—earlier decisions cascade forward through the entire experience.
 
-* :racing_car: In `||loops(noclick):on start||`, use `||raceDayTools:Driven by STEM||` to load saved `driveSpeed`.
+* :racing_car: In `||loops(noclick):on start||`, use `||drivenByStem:Driven by STEM||` to load saved `driveSpeed`.
 * :racing_car: Load `efficiencyDrain` from saved efficiency cost.
 * :racing_car: Apply saved car style to `raceCar`.
 
@@ -118,20 +118,20 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(img``, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.FinalChallenge)
+drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
 //@highlight
 //@validate-exists
-driveSpeed = raceDayTools.savedDriveSpeed()
+driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 //@validate-exists
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@highlight
 //@validate-exists
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle(raceCar)
 //@highlight
 //@validate-exists
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -159,14 +159,14 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(img``, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.FinalChallenge)
+drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
-driveSpeed = raceDayTools.savedDriveSpeed()
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
-raceDayTools.applySavedCarStyle(raceCar)
+driveSpeed = drivenByStem.savedDriveSpeed()
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
+drivenByStem.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 //@highlight
 //@validate-exists
@@ -199,14 +199,14 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(img``, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.startStage(raceDayTools.RaceStage.FinalChallenge)
+drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
-driveSpeed = raceDayTools.savedDriveSpeed()
-let efficiencyDrain = raceDayTools.savedEfficiencyCost()
-raceDayTools.applySavedCarStyle(raceCar)
+driveSpeed = drivenByStem.savedDriveSpeed()
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
+drivenByStem.applySavedCarStyle(raceCar)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 let finalCollisions = 0
 let finalPitStops = 0
@@ -215,7 +215,7 @@ let finalPitStops = 0
 info.setScore(0)
 //@highlight
 //@validate-exists
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 //@highlight
 //@validate-exists
 info.startCountdown(25)
@@ -249,7 +249,7 @@ hint~
 game.onUpdateInterval(2500, function () {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
         let obstacle = sprites.create(img``, SpriteKind.Enemy)
@@ -291,7 +291,7 @@ hint~
 game.onUpdateInterval(7000, function () {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
         let pitMarker = sprites.create(img``, SpriteKind.Food)
@@ -330,7 +330,7 @@ hint~
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
         finalCollisions += 1
@@ -347,13 +347,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
         finalPitStops += 1
         //@highlight
         //@validate-exists
-        raceDayTools.recordPitStopVisit()
+        drivenByStem.recordPitStopVisit()
         //@highlight
         //@validate-exists
         info.changeLifeBy(1)
@@ -362,7 +362,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
         info.changeScoreBy(3)
         //@highlight
         //@validate-exists
-        raceDayTools.awardStrategyPoints(1)
+        drivenByStem.awardStrategyPoints(1)
         //@highlight
         //@validate-exists
         otherSprite.destroy()
@@ -379,7 +379,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 Integration testing isn't complete until you've captured the results. The countdown-end event is your only guaranteed moment to save performance data before the run terminates. This saved evidence becomes the foundation for reflection, comparison, and the next round of tuning decisions.
 
 * :game pad: Open `||info:Info||` and add an **on countdown end** event block.
-* :racing_car: Inside it, check if stage is **Final Challenge**, then use `||raceDayTools:Driven by STEM||` to save current run results.
+* :racing_car: Inside it, check if stage is **Final Challenge**, then use `||drivenByStem:Driven by STEM||` to save current run results.
 
 ~hint Review shows nothing? 📊
 
@@ -395,10 +395,10 @@ hint~
 info.onCountdownEnd(function () {
     //@highlight
     //@validate-exists
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.FinalChallenge)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
-        raceDayTools.saveCurrentRunResults()
+        drivenByStem.saveCurrentRunResults()
         //@highlight
         //@validate-exists
         game.splash("Final run complete", "Open the data review.")

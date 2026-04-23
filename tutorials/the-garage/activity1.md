@@ -170,7 +170,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Professional race teams don't start from scratch every session — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. Loading saved data lets your choices carry forward across different stages, just like real engineering systems that remember past configurations and results.
 
-* :racing_car: Open `||racedaytools:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
 * :racing_car: Set `driveSpeed` from the saved value.
 
 ~hint Blocks missing? 👀
@@ -199,13 +199,13 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
 //@validate-exists
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.Garage)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
 //@highlight
 //@validate-exists
-driveSpeed = raceDayTools.savedDriveSpeed()
+driveSpeed = drivenByStem.savedDriveSpeed()
 ```
 
 ## {6. Save Team Identity}
@@ -216,7 +216,7 @@ driveSpeed = raceDayTools.savedDriveSpeed()
 
 Every racing team has an identity — a name, a car livery, a style. Setting these values personalizes your simulation and creates a sense of ownership. More importantly, saving these choices means the system remembers who you are across multiple sessions, just like how real team data persists across race weekends.
 
-* :id card: Still in `||racedaytools:Driven by STEM||`, set your team name, car name, and car style.
+* :id card: Still in `||drivenByStem:Driven by STEM||`, set your team name, car name, and car style.
 * :id card: Add blocks to apply the saved style to `raceCar` and show the driver profile.
 
 ~hint Why consistency matters? 💭
@@ -248,25 +248,25 @@ raceCar = sprites.create(img`
 `, SpriteKind.Player)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.Garage)
-driveSpeed = raceDayTools.savedDriveSpeed()
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 //@validate-exists
-raceDayTools.setTeamName("Apex Lab")
+drivenByStem.setTeamName("Apex Lab")
 //@validate-exists
-raceDayTools.setCarName("Velocity")
+drivenByStem.setCarName("Velocity")
 //@validate-exists
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
+drivenByStem.setCarStyle(drivenByStem.CarStyle.SilverFlash)
 //@validate-exists
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle(raceCar)
 //@validate-exists
-raceDayTools.showSavedDriverProfile()
+drivenByStem.showSavedDriverProfile()
 ```
 
 ```ghost
-raceDayTools.setCarStyle(raceDayTools.CarStyle.VoltLime)
-raceDayTools.setCarStyle(raceDayTools.CarStyle.HeatRed)
+drivenByStem.setCarStyle(drivenByStem.CarStyle.VoltLime)
+drivenByStem.setCarStyle(drivenByStem.CarStyle.HeatRed)
 ```
 
 ## {7. Add the Dashboard}
@@ -303,19 +303,19 @@ raceCar = sprites.create(img`
 `, SpriteKind.Player)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.startStage(raceDayTools.RaceStage.Garage)
-driveSpeed = raceDayTools.savedDriveSpeed()
-raceDayTools.setTeamName("Apex Lab")
-raceDayTools.setCarName("Velocity")
-raceDayTools.setCarStyle(raceDayTools.CarStyle.SilverFlash)
-raceDayTools.applySavedCarStyle(raceCar)
-raceDayTools.showSavedDriverProfile()
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.setCarStyle(drivenByStem.CarStyle.SilverFlash)
+drivenByStem.applySavedCarStyle(raceCar)
+drivenByStem.showSavedDriverProfile()
 //@highlight
 //@validate-exists
 info.setScore(0)
 //@validate-exists
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 ```
 
 ## {8. Add a Reset Button}
@@ -347,7 +347,7 @@ hint~
 //@highlight
 //@validate-exists
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    raceDayTools.resetSavedSession()
+    drivenByStem.resetSavedSession()
     game.reset()
 })
 ```

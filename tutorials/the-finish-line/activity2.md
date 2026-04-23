@@ -16,8 +16,8 @@ Hey, I'm **Drew**, UX and game designer on the team. I got into this field by be
 In this gate, you'll turn your run into a simple story: **one choice, one result, one next test**. Designers call it **"clear over clever."** Once you can read what your data is actually telling you, you'll be ready to make your final call before the winners circle.
 
 ```template
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 ```
 
 ## {1. Create review variables}
@@ -40,7 +40,7 @@ If you can't find a variable later, check spelling first. One letter off or a di
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 //@highlight
 //@validate-exists
 let reviewScore = 0
@@ -63,7 +63,7 @@ let pitStopsVisited = 0
 
 Saved data becomes meaningful when you load it for analysis. Starting the Review stage and reading your Performance, Efficiency, and Strategy scores brings the abstract numbers from your final run into concrete variables you can compare, evaluate, and act upon. This is the moment raw results become insight.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and set start stage to `Review`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and set start stage to `Review`.
 * :racing_car: Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
 * :racing_car: Read the saved pit stop count into `pitStopsVisited`.
 
@@ -76,26 +76,26 @@ If all your values are still zero, the final run probably didn't save. The revie
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0
 let pitStopsVisited = 0
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.Review)
+drivenByStem.startStage(drivenByStem.RaceStage.Review)
 //@highlight
 //@validate-exists
-reviewScore = raceDayTools.lastPerformanceResult()
+reviewScore = drivenByStem.lastPerformanceResult()
 //@highlight
 //@validate-exists
-reviewEfficiency = raceDayTools.lastEfficiencyResult()
+reviewEfficiency = drivenByStem.lastEfficiencyResult()
 //@highlight
 //@validate-exists
-reviewStrategy = raceDayTools.lastStrategyResult()
+reviewStrategy = drivenByStem.lastStrategyResult()
 //@highlight
 //@validate-exists
-pitStopsVisited = raceDayTools.savedPitStopCount()
+pitStopsVisited = drivenByStem.savedPitStopCount()
 ```
 
 ## {3. Show a one-screen summary}
@@ -118,16 +118,16 @@ If the summary feels hard to read, trim it. Short labels and fewer numbers usual
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0
 let pitStopsVisited = 0
-raceDayTools.startStage(raceDayTools.RaceStage.Review)
-reviewScore = raceDayTools.lastPerformanceResult()
-reviewEfficiency = raceDayTools.lastEfficiencyResult()
-reviewStrategy = raceDayTools.lastStrategyResult()
-pitStopsVisited = raceDayTools.savedPitStopCount()
+drivenByStem.startStage(drivenByStem.RaceStage.Review)
+reviewScore = drivenByStem.lastPerformanceResult()
+reviewEfficiency = drivenByStem.lastEfficiencyResult()
+reviewStrategy = drivenByStem.lastStrategyResult()
+pitStopsVisited = drivenByStem.savedPitStopCount()
 //@highlight
 //@validate-exists
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
@@ -149,7 +149,7 @@ This step has no single correct answer. Try your own logic.
 ```
 
 * :paper plane: Open `||logic:Logic||` and build an `if / else if / else` chain.
-* :racing_car: If `reviewEfficiency` is low, use `||raceDayTools:Driven by STEM||` to set an efficiency-focused next-test focus; else if `reviewStrategy` is low, set an adaptation-focused focus; otherwise set a balanced focus.
+* :racing_car: If `reviewEfficiency` is low, use `||drivenByStem:Driven by STEM||` to set an efficiency-focused next-test focus; else if `reviewStrategy` is low, set an adaptation-focused focus; otherwise set a balanced focus.
 * :game pad: Show the recommendation with a `splash` block.
 
 ~hint Which lens to pick? 🤔
@@ -161,27 +161,27 @@ There's no single correct answer here. Use whichever lens scored lowest as your 
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0
 let pitStopsVisited = 0
-raceDayTools.startStage(raceDayTools.RaceStage.Review)
-reviewScore = raceDayTools.lastPerformanceResult()
-reviewEfficiency = raceDayTools.lastEfficiencyResult()
-reviewStrategy = raceDayTools.lastStrategyResult()
-pitStopsVisited = raceDayTools.savedPitStopCount()
+drivenByStem.startStage(drivenByStem.RaceStage.Review)
+reviewScore = drivenByStem.lastPerformanceResult()
+reviewEfficiency = drivenByStem.lastEfficiencyResult()
+reviewStrategy = drivenByStem.lastStrategyResult()
+pitStopsVisited = drivenByStem.savedPitStopCount()
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 //@highlight
 if (reviewEfficiency < 3) {
-    raceDayTools.setNextTestFocus("Protect efficiency during longer runs.")
+    drivenByStem.setNextTestFocus("Protect efficiency during longer runs.")
 } else if (reviewStrategy < 3) {
-    raceDayTools.setNextTestFocus("Adapt sooner when conditions change.")
+    drivenByStem.setNextTestFocus("Adapt sooner when conditions change.")
 } else {
-    raceDayTools.setNextTestFocus("Your setup stayed balanced under pressure.")
+    drivenByStem.setNextTestFocus("Your setup stayed balanced under pressure.")
 }
 //@highlight
-game.splash("Next test focus", raceDayTools.nextTestFocus())
+game.splash("Next test focus", drivenByStem.nextTestFocus())
 ```
 
 ## {5. Connect results to a role}
@@ -212,30 +212,30 @@ Keep the tone forward-looking. "Next test" language beats "I messed up" language
 hint~
 
 ```blocks
-raceDayTools.loadRaceProfile(80, 5)
+drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0
 let pitStopsVisited = 0
-raceDayTools.startStage(raceDayTools.RaceStage.Review)
-reviewScore = raceDayTools.lastPerformanceResult()
-reviewEfficiency = raceDayTools.lastEfficiencyResult()
-reviewStrategy = raceDayTools.lastStrategyResult()
-pitStopsVisited = raceDayTools.savedPitStopCount()
+drivenByStem.startStage(drivenByStem.RaceStage.Review)
+reviewScore = drivenByStem.lastPerformanceResult()
+reviewEfficiency = drivenByStem.lastEfficiencyResult()
+reviewStrategy = drivenByStem.lastStrategyResult()
+pitStopsVisited = drivenByStem.savedPitStopCount()
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 if (reviewEfficiency < 3) {
-    raceDayTools.setNextTestFocus("Protect efficiency during longer runs.")
+    drivenByStem.setNextTestFocus("Protect efficiency during longer runs.")
 } else if (reviewStrategy < 3) {
-    raceDayTools.setNextTestFocus("Adapt sooner when conditions change.")
+    drivenByStem.setNextTestFocus("Adapt sooner when conditions change.")
 } else {
-    raceDayTools.setNextTestFocus("Your setup stayed balanced under pressure.")
+    drivenByStem.setNextTestFocus("Your setup stayed balanced under pressure.")
 }
-game.splash("Next test focus", raceDayTools.nextTestFocus())
+game.splash("Next test focus", drivenByStem.nextTestFocus())
 //@highlight
 if (pitStopsVisited > 0) {
-    game.splash(raceDayTools.roleLens(), "You used pit information during the run.")
+    game.splash(drivenByStem.roleLens(), "You used pit information during the run.")
 } else {
-    game.splash(raceDayTools.roleLens(), "Next time, use more mid-run data.")
+    game.splash(drivenByStem.roleLens(), "Next time, use more mid-run data.")
 }
 ```
 

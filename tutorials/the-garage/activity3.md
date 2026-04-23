@@ -29,8 +29,8 @@ let raceCar = sprites.create(img`
     . . 6 6 6 6 6 . .
     . . . 6 6 6 . . .
 `, SpriteKind.Player)
-raceDayTools.loadRaceProfile(80, 5)
-raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -43,7 +43,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Before you can run a meaningful test, you need to establish a clean starting state. This means setting the correct stage, resetting counters, loading your saved configuration, and applying your team's visual identity. Real test engineers do this every time — clear the old data, confirm the setup, then begin.
 
-* :racing_car: Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
 * :racing_car: Reset the collision count, then load your saved efficiency cost into `efficiencyDrain`.
 * :id card: Apply the saved car style to `raceCar`.
 
@@ -58,15 +58,15 @@ hint~
 ```blocks
 //@highlight
 //@validate-exists
-raceDayTools.startStage(raceDayTools.RaceStage.GarageShakedown)
+drivenByStem.startStage(drivenByStem.RaceStage.GarageShakedown)
 //@highlight
 //@validate-exists
-raceDayTools.resetCollisionCount()
+drivenByStem.resetCollisionCount()
 //@highlight
-efficiencyDrain = raceDayTools.savedEfficiencyCost()
+efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@highlight
 //@validate-exists
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle(raceCar)
 ```
 
 ## {2. Turn On the HUD and Countdown}
@@ -89,16 +89,16 @@ If the countdown doesn't start, look for where that block lives. Countdown setup
 hint~
 
 ```blocks
-raceDayTools.startStage(raceDayTools.RaceStage.GarageShakedown)
-raceDayTools.resetCollisionCount()
-efficiencyDrain = raceDayTools.savedEfficiencyCost()
-raceDayTools.applySavedCarStyle(raceCar)
+drivenByStem.startStage(drivenByStem.RaceStage.GarageShakedown)
+drivenByStem.resetCollisionCount()
+efficiencyDrain = drivenByStem.savedEfficiencyCost()
+drivenByStem.applySavedCarStyle(raceCar)
 //@highlight
 //@validate-exists
 info.setScore(0)
 //@highlight
 //@validate-exists
-info.setLife(raceDayTools.savedEfficiency())
+info.setLife(drivenByStem.savedEfficiency())
 //@highlight
 //@validate-exists
 info.startCountdown(15)
@@ -138,7 +138,7 @@ hint~
 //@highlight
 //@validate-exists
 game.onUpdateInterval(1000, function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.GarageShakedown)) {
         //@validate-exists
         info.changeScoreBy(1)
     }
@@ -169,7 +169,7 @@ hint~
 //@highlight
 //@validate-exists
 game.onUpdateInterval(2000, function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.GarageShakedown)) {
         //@validate-exists
         let cone = sprites.create(img`
             . . . c . . .
@@ -193,7 +193,7 @@ game.onUpdateInterval(2000, function () {
 Every collision has a consequence. In your simulator, hitting a cone costs efficiency based on your setup choice from the previous gate. Recording these collisions lets you measure how your speed-versus-efficiency tradeoff plays out in practice. This is how engineers turn abstract design choices into measurable outcomes.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap` event for `Player` and `Enemy`.
-* :racing_car: Inside the event, check the stage, then use `||raceDayTools:Driven by STEM||` to record the collision with `efficiencyDrain`.
+* :racing_car: Inside the event, check the stage, then use `||drivenByStem:Driven by STEM||` to record the collision with `efficiencyDrain`.
 * :paint brush: Destroy the cone with an effect so the impact is visually obvious.
 
 ~hint What's an overlap event? 🎯
@@ -220,9 +220,9 @@ hint~
 //@highlight
 //@validate-exists
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.GarageShakedown)) {
         //@validate-exists
-        raceDayTools.recordCollision(3, efficiencyDrain)
+        drivenByStem.recordCollision(3, efficiencyDrain)
         otherSprite.destroy(effects.disintegrate, 200)
     }
 })
@@ -237,8 +237,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 A test isn't finished until you save the results. This event runs automatically when the countdown ends, checking your performance and storing the data. If you drove cleanly (1 collision or fewer), you earn a strategy bonus. Either way, the system remembers what happened so the next stage can build on this evidence.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` event.
-* :racing_car: Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Driven by STEM||` to award Strategy `+1`.
-* :racing_car: Use `||raceDayTools:Driven by STEM||` to save the current run results.
+* :racing_car: Inside the event, check if collisions are `≤ 1` and use `||drivenByStem:Driven by STEM||` to award Strategy `+1`.
+* :racing_car: Use `||drivenByStem:Driven by STEM||` to save the current run results.
 
 ~hint Nothing saving at the end? 🎯
 
@@ -252,13 +252,13 @@ hint~
 //@highlight
 //@validate-exists
 info.onCountdownEnd(function () {
-    if (raceDayTools.stageIs(raceDayTools.RaceStage.GarageShakedown)) {
-        if (raceDayTools.collisionCount() <= 1) {
+    if (drivenByStem.stageIs(drivenByStem.RaceStage.GarageShakedown)) {
+        if (drivenByStem.collisionCount() <= 1) {
             //@validate-exists
-            raceDayTools.awardStrategyPoints(1)
+            drivenByStem.awardStrategyPoints(1)
         }
         //@validate-exists
-        raceDayTools.saveCurrentRunResults()
+        drivenByStem.saveCurrentRunResults()
         game.splash("Shakedown complete", "This data powers your next decisions.")
     }
 })
