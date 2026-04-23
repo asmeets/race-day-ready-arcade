@@ -29,7 +29,7 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
 Before you can analyze performance, you need somewhere to store the evidence. Creating these four variables establishes named containers that will soon hold your actual run results. This separation between structure (the variables) and content (the loaded data) is a fundamental pattern in data analysis workflows.
 
 * :paper plane: Open `||variables:Variables||` and create `reviewScore`, `reviewEfficiency`, `reviewStrategy`, and `pitStopsVisited`.
-* Set each variable to `0`. This means nothing has loaded yet.
+* :keyboard: Set each variable to `0`. This means nothing has loaded yet.
 
 ~hint Can't find your variable? ⌨️
 
@@ -64,8 +64,8 @@ let pitStopsVisited = 0
 Saved data becomes meaningful when you load it for analysis. Starting the Review stage and reading your Performance, Efficiency, and Strategy scores brings the abstract numbers from your final run into concrete variables you can compare, evaluate, and act upon. This is the moment raw results become insight.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set start stage to `Review`.
-* Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
-* Read the saved pit stop count into `pitStopsVisited`.
+* :racing_car: Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
+* :racing_car: Read the saved pit stop count into `pitStopsVisited`.
 
 ~hint All values still zero? 🔢
 
@@ -107,7 +107,7 @@ pitStopsVisited = raceDayTools.savedPitStopCount()
 Numbers in variables are invisible to players. A well-designed summary screen takes your three core metrics and presents them in a single, readable snapshot that anyone can understand at a glance. Clear presentation turns data into communication, making results accessible to the entire team.
 
 * :game pad: Open `||game:Game||` and add a `splash` block.
-* Build the message to show Perf, Eff, and Strat using your three variables.
+* :keyboard: Build the message to show Perf, Eff, and Strat using your three variables.
 
 ~hint Summary hard to read? 👀
 
@@ -149,8 +149,8 @@ This step has no single correct answer. Try your own logic.
 ```
 
 * :paper plane: Open `||logic:Logic||` and build an `if / else if / else` chain.
-* If `reviewEfficiency` is low, use `||raceDayTools:Driven by STEM||` to set an efficiency-focused next-test focus; else if `reviewStrategy` is low, set an adaptation-focused focus; otherwise set a balanced focus.
-* Show the recommendation with a `splash` block.
+* :racing_car: If `reviewEfficiency` is low, use `||raceDayTools:Driven by STEM||` to set an efficiency-focused next-test focus; else if `reviewStrategy` is low, set an adaptation-focused focus; otherwise set a balanced focus.
+* :game pad: Show the recommendation with a `splash` block.
 
 ~hint Which lens to pick? 🤔
 
@@ -200,8 +200,8 @@ This step has no single correct answer. Try your own logic.
 ```
 
 * :paper plane: Open `||logic:Logic||`.
-* If `pitStopsVisited` > `0`, show a message about using information during the run.
-* Otherwise show a message about using more mid-run data next time.
+* :game pad: If `pitStopsVisited` > `0`, show a message about using information during the run.
+* :game pad: Otherwise show a message about using more mid-run data next time.
 
 ~hint How to frame the message? 💬
 

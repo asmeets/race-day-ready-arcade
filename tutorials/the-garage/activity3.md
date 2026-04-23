@@ -44,8 +44,8 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 Before you can run a meaningful test, you need to establish a clean starting state. This means setting the correct stage, resetting counters, loading your saved configuration, and applying your team's visual identity. Real test engineers do this every time — clear the old data, confirm the setup, then begin.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Shakedown** inside `||loops(noclick):on start||`.
-* Reset the collision count, then load your saved efficiency cost into `efficiencyDrain`.
-* Apply the saved car style to `raceCar`.
+* :racing_car: Reset the collision count, then load your saved efficiency cost into `efficiencyDrain`.
+* :id card: Apply the saved car style to `raceCar`.
 
 ~hint Wrong events firing? 🔍
 
@@ -78,7 +78,7 @@ raceDayTools.applySavedCarStyle(raceCar)
 A shakedown run needs clear boundaries — what are you measuring, and for how long? Setting the scoreboard and starting the countdown creates a fair, repeatable test window. Everyone gets the same 15 seconds to prove their setup works. This is how you make testing consistent and comparable.
 
 * :game pad: Open `||info:Info||` and set score to `0` and life to your saved efficiency value.
-* Add `start countdown` set to `15` seconds.
+* :game pad: Add `start countdown` set to `15` seconds.
 
 ~hint Countdown not starting? 📍
 
@@ -113,7 +113,7 @@ info.startCountdown(15)
 In racing, staying on track and avoiding obstacles is as important as going fast. This timed event awards points every second you survive without crashing. It's a simple metric, but it captures something real: consistency matters. Engineers use metrics like this to measure reliability under pressure.
 
 * :game pad: Open `||game:Game||` and add `on game update every` set to `1000` ms.
-* Inside the event, check that the stage is Garage Shakedown.
+* :racing_car: Inside the event, check that the stage is Garage Shakedown.
 * :game pad: Open `||info:Info||` and add score `+1` inside that check.
 
 ~hint What's an event? 💡
@@ -154,8 +154,8 @@ game.onUpdateInterval(1000, function () {
 A test without obstacles isn't much of a test. This event spawns cones at random positions every 2 seconds, forcing you to react and adapt. Real racing tests include slalom courses, braking zones, and obstacle avoidance for the same reason — you need to prove the car handles unpredictable situations.
 
 * :game pad: Open `||game:Game||` and add another `on game update every` set to `2000` ms.
-* Inside the event, check the stage, then create an Enemy cone sprite at a random position.
-* Give the cone a short `lifespan` so the screen doesn't fill up.
+* :paper plane: Inside the event, check the stage, then create an Enemy cone sprite at a random position.
+* :paper plane: Give the cone a short `lifespan` so the screen doesn't fill up.
 
 ~hint Cones feel impossible? ⚖️
 
@@ -193,8 +193,8 @@ game.onUpdateInterval(2000, function () {
 Every collision has a consequence. In your simulator, hitting a cone costs efficiency based on your setup choice from the previous gate. Recording these collisions lets you measure how your speed-versus-efficiency tradeoff plays out in practice. This is how engineers turn abstract design choices into measurable outcomes.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap` event for `Player` and `Enemy`.
-* Inside the event, check the stage, then use `||raceDayTools:Driven by STEM||` to record the collision with `efficiencyDrain`.
-* Destroy the cone with an effect so the impact is visually obvious.
+* :racing_car: Inside the event, check the stage, then use `||raceDayTools:Driven by STEM||` to record the collision with `efficiencyDrain`.
+* :paint brush: Destroy the cone with an effect so the impact is visually obvious.
 
 ~hint What's an overlap event? 🎯
 
@@ -237,8 +237,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 A test isn't finished until you save the results. This event runs automatically when the countdown ends, checking your performance and storing the data. If you drove cleanly (1 collision or fewer), you earn a strategy bonus. Either way, the system remembers what happened so the next stage can build on this evidence.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` event.
-* Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Driven by STEM||` to award Strategy `+1`.
-* Use `||raceDayTools:Driven by STEM||` to save the current run results.
+* :racing_car: Inside the event, check if collisions are `≤ 1` and use `||raceDayTools:Driven by STEM||` to award Strategy `+1`.
+* :racing_car: Use `||raceDayTools:Driven by STEM||` to save the current run results.
 
 ~hint Nothing saving at the end? 🎯
 

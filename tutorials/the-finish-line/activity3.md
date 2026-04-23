@@ -28,7 +28,7 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.Strategist)
 
 You've completed the challenge, and now it's time to celebrate and reflect. Setting the stage to Winners Circle signals that the competitive phase is over and the focus shifts to recognizing achievement, reviewing what you built, and connecting your work to broader career pathways and CS concepts.
 
-* Open `||loops(noclick):on start||` and find your setup code.
+* :binoculars: Open `||loops(noclick):on start||` and find your setup code.
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
 
 ~hint Still feels like gameplay? 🎮
@@ -85,7 +85,7 @@ effects.confetti.startScreenEffect()
 The Winners Circle displays both recommendations (text) and performance scores (numbers). Creating the right variable types before loading data ensures that your summary can present both qualitative insights and quantitative results cleanly, giving you a complete picture of what you accomplished.
 
 * :paper plane: Open `||variables:Variables||` and create a text variable named `nextTestFocus`.
-* Create a second variable named `finalStrategy` and give it a starting value of `0`.
+* :paper plane: Create a second variable named `finalStrategy` and give it a starting value of `0`.
 
 ~hint Variables not loading? 💾
 
@@ -117,8 +117,8 @@ let finalStrategy = 0
 The celebration is meaningful because it's personalized to your choices. Loading your saved recommendation, strategy score, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set `nextTestFocus` from the saved recommendation.
-* Set `finalStrategy` from the saved strategy result.
-* Drag `show saved driver profile` into `on start`.
+* :racing_car: Set `finalStrategy` from the saved strategy result.
+* :racing_car: Drag `show saved driver profile` into `on start`.
 
 ~hint Recommendation blank? 🔍
 
@@ -155,8 +155,8 @@ Your engineering focus reveals the kind of work you prioritized. Whether you emp
 This step has no single correct answer. Try your own logic.
 
 * :paper plane: Open `||logic:Logic||` and add an `if / else` block.
-* If setup focus was Pace, show `"Career link: performance engineer"`.
-* Otherwise show `"Career link: strategist/sustainability lead"`.
+* :game pad: If setup focus was Pace, show `"Career link: performance engineer"`.
+* :game pad: Otherwise show `"Career link: strategist/sustainability lead"`.
 
 ~hint How to write this? ✍️
 
@@ -198,7 +198,7 @@ if (raceDayTools.setupFocusIs(raceDayTools.SetupFocus.Pace)) {
 Behind every racing decision was a computer science concept. Events detected collisions and pit stops, variables stored your tuning choices, and saved data carried those choices across tutorials. Explicitly naming these CS ideas helps you recognize that the technical skills you practiced here apply far beyond racing games.
 
 * :game pad: Open `||game:Game||` and drag a `splash` block into `on start`.
-* Set the text to `"Events, variables, and saved data carried your choices forward."`.
+* :keyboard: Set the text to `"Events, variables, and saved data carried your choices forward."`.
 
 ~hint Message too long? 📱
 
@@ -239,8 +239,8 @@ Every great team finishes one test by planning the next. Whether you succeeded i
 This step has no single correct answer. Try your own logic.
 
 * :paper plane: Open `||logic:Logic||` and add an `if / else` block.
-* If `finalStrategy` is `≥ 3`, show an "adaptation success" message.
-* Otherwise show `"Next test: "` joined with `nextTestFocus`.
+* :game pad: If `finalStrategy` is `≥ 3`, show an "adaptation success" message.
+* :game pad: Otherwise show `"Next test: "` joined with `nextTestFocus`.
 
 ~hint Stuck on what to write? ✍️
 

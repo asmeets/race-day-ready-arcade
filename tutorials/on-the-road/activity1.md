@@ -43,7 +43,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 Before any events fire, the system needs to know what mode it's in. Setting the stage to "Track" is how you tell every timer, spawner, and collision handler which rules apply. Real racing teams do something similar — they declare whether it's a practice session, qualifying, or race before anything starts.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `start stage` into `on start`.
-* Set the stage value to `Track`.
+* :mouse pointer: Set the stage value to `Track`.
 
 ~hint Timing feels wrong? 🔍
 
@@ -83,7 +83,7 @@ raceDayTools.startStage(raceDayTools.RaceStage.Track)
 In a live event or classroom, multiple people will watch the same screen. High-contrast backgrounds make the car and obstacles easy to track, even from across a room. Good visual design isn't just about aesthetics — it's about making the important information visible.
 
 * :tree: Open `||scene:Scene||` and drag `set background color` into `on start`.
-* Pick a color that contrasts strongly with the car sprite.
+* :mouse pointer: Pick a color that contrasts strongly with the car sprite.
 
 ~hint Car hard to see? 🎨
 
@@ -124,8 +124,8 @@ scene.setBackgroundColor(11)
 Your speed choice and efficiency tradeoff from the garage should carry into this session. Loading saved values ensures that the car behaves consistently with what you tuned earlier. This is how engineers maintain setup continuity across test sessions — load the baseline, then measure what happens.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set driveSpeed from saved drive speed` into `on start`.
-* Drag `apply saved car style` and connect `raceCar` as the target sprite.
-* Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
+* :id card: Drag `apply saved car style` and connect `raceCar` as the target sprite.
+* :racing_car: Set `efficiencyDrain` from `||raceDayTools:Driven by STEM||` `saved efficiency cost`.
 
 ~hint Life draining wrong? 🔎
 
@@ -173,8 +173,8 @@ let efficiencyDrain = raceDayTools.savedEfficiencyCost()
 You can't improve what you don't measure. These variables let the game track how many collisions happen over time and compare clean stretches to messy ones. Data analysts use patterns like this to identify trends and reward consistency. Tracking isn't just counting — it's building evidence.
 
 * :paper plane: Open `||variables:Variables||`, click `Make a Variable`, and name it `trackCollisions`.
-* Make a second variable called `lastTrackCollisionCount`.
-* Set both to `0` inside `on start`.
+* :paper plane: Make a second variable called `lastTrackCollisionCount`.
+* :keyboard: Set both to `0` inside `on start`.
 
 ~hint Rewards not triggering? ✅
 
@@ -222,8 +222,8 @@ let lastTrackCollisionCount = 0
 A racing session needs clear start and end points. The countdown sets the test window, while the score and life displays show real-time feedback. Setting these values at the start ensures every player gets the same fair test conditions. This is how you make comparisons meaningful.
 
 * :game pad: Open `||info:Info||` and drag `set score to 0` into `on start`.
-* Drag `set life` and connect `saved efficiency` from `||raceDayTools:Driven by STEM||` as the value.
-* Drag `start countdown` and set the time to `30` seconds.
+* :racing_car: Drag `set life` and connect `saved efficiency` from `||raceDayTools:Driven by STEM||` as the value.
+* :game pad: Drag `start countdown` and set the time to `30` seconds.
 
 ~hint Life stuck at zero? 📊
 
@@ -276,8 +276,8 @@ info.startCountdown(30)
 A static track doesn't challenge your setup. Spawning obstacles at regular intervals creates consistent, repeatable test conditions — you face the same challenge density every run, so differences in performance reflect your setup, not random luck. This is controlled testing at work.
 
 * :game pad: Open `||game:Game||` and add `on game update every 2000 ms`.
-* Inside the event, check that the stage is `Track` using `||raceDayTools:Driven by STEM||`.
-* Create an `Enemy` obstacle sprite from `||sprites:Sprites||`, give it a random x position, set a downward velocity, and a `lifespan` so old obstacles disappear.
+* :racing_car: Inside the event, check that the stage is `Track` using `||raceDayTools:Driven by STEM||`.
+* :paper plane: Create an `Enemy` obstacle sprite from `||sprites:Sprites||`, give it a random x position, set a downward velocity, and a `lifespan` so old obstacles disappear.
 
 ~hint Too chaotic? 🎶
 
@@ -328,8 +328,8 @@ game.onUpdateInterval(2000, function () {
 Collisions aren't just visual — they represent mistakes that cost resources. Tracking each collision and subtracting efficiency creates a direct link between driver precision and system performance. Real race engineers use telemetry data exactly like this to identify where drivers lose time or damage equipment.
 
 * :paper plane: Open `||sprites:Sprites||` and add an overlap event for `Player` vs `Enemy`.
-* Inside the event, confirm the stage is `Track`, add `1` to `trackCollisions`, and subtract `efficiencyDrain` from life.
-* Destroy the obstacle sprite.
+* :racing_car: Inside the event, confirm the stage is `Track`, add `1` to `trackCollisions`, and subtract `efficiencyDrain` from life.
+* :paper plane: Destroy the obstacle sprite.
 
 ~hint Collisions not working? 🎯
 
@@ -368,8 +368,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 Consistency is as important as speed. This event checks whether collision count changed since the last check. If it didn't, you drove cleanly and earn bonus points. This is how systems recognize patterns — by comparing current state to previous state and rewarding improvement or consistency.
 
 * :game pad: Open `||game:Game||` and add `on game update every 4000 ms`.
-* If `trackCollisions` equals `lastTrackCollisionCount`, award `score +2` and `Strategy +1`.
-* Set `lastTrackCollisionCount` to `trackCollisions` so the next check compares fresh data.
+* :racing_car: If `trackCollisions` equals `lastTrackCollisionCount`, award `score +2` and `Strategy +1`.
+* :paper plane: Set `lastTrackCollisionCount` to `trackCollisions` so the next check compares fresh data.
 
 ~hint Reward logic broken? 🔀
 
@@ -412,7 +412,7 @@ game.onUpdateInterval(4000, function () {
 A test session isn't complete until you save the results. This event fires when the countdown ends, storing your score, efficiency, and collision data so future stages can build on what you learned. Engineers call this "closing the loop" — test, measure, document, move forward.
 
 * :game pad: Open `||info:Info||` and add `on countdown end`.
-* Inside the event, confirm the stage is `Track`.
+* :racing_car: Inside the event, confirm the stage is `Track`.
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `save current run results`.
 
 ~hint End message missing? ⏰
