@@ -51,7 +51,7 @@ Real engineers don't just change things and hope for the best — they predict o
 ```
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
-* Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
+* :racing_car: Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
 * :game pad: Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
 ~hint Splash not showing? 📍
@@ -80,7 +80,7 @@ game.splash("Predict first", "What will more speed do to control and energy?")
 Speed is one of the most important variables in racing. Changing it affects everything — how quickly you navigate, how much energy you use, how hard it is to control the car. By storing speed in a variable, you create a single point of control that you can tune and test systematically.
 
 * :paper plane: Open `||variables:Variables||` and drag `set driveSpeed to` into `||loops(noclick):on start||`.
-* Change the value to `110`.
+* :keyboard: Change the value to `110`.
 
 ~hint What's a variable? 📦
 
@@ -120,7 +120,7 @@ driveSpeed = 110
 A variable is only useful if your code actually reads it. By wiring your movement system to the `driveSpeed` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
 
 * :game pad: Open `||controller:Controller||` and find `move mySprite with buttons`.
-* Replace any number values in the speed fields with the `driveSpeed` variable.
+* :mouse pointer: Replace any number values in the speed fields with the `driveSpeed` variable.
 
 ~hint Speed not changing? 🔌
 
@@ -149,7 +149,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 In real racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, the `efficiencyDrain` variable represents how much energy each mistake costs. Creating this variable lets you model tradeoffs — a core concept in engineering and game balance.
 
 * :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyDrain`.
-* Add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
+* :paper plane: Add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
 
@@ -179,7 +179,7 @@ let efficiencyDrain = 1
 This is where your simulation gets smart. A conditional statement lets your code make different choices based on the current situation. In this case, you're programming a realistic tradeoff: higher speed means higher energy cost. This is how engineers encode real-world physics into software systems.
 
 * :paper plane: Open `||logic:Logic||` and add `if then else` in `||loops(noclick):on start||` with the condition `driveSpeed > 100`.
-* In the `then` branch, set `efficiencyDrain` to `2`; in the `else` branch, set it to `1`.
+* :keyboard: In the `then` branch, set `efficiencyDrain` to `2`; in the `else` branch, set it to `1`.
 
 ~hint What's a conditional? 🔀
 
@@ -231,7 +231,7 @@ On a real race team, different engineers focus on different things — some watc
 ```
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
-* Add `show saved driver profile` to display the current profile.
+* :id card: Add `show saved driver profile` to display the current profile.
 
 ~hint Which role should I pick? ✨
 
@@ -270,9 +270,9 @@ raceDayTools.setRoleLens(raceDayTools.RoleLens.SoftwareEngineer)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* In `||raceDayTools:Driven by STEM||`, use `save team setup` inside the `if driveSpeed > 100` structure.
-* Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
-* Add a `splash` in each branch that explains the tradeoff choice.
+* :racing_car: In `||raceDayTools:Driven by STEM||`, use `save team setup` inside the `if driveSpeed > 100` structure.
+* :racing_car: Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
+* :game pad: Add a `splash` in each branch that explains the tradeoff choice.
 
 ~hint Setup not saving? ⏱️
 

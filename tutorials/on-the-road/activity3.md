@@ -43,7 +43,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 Racing conditions don't stay constant—weather changes everything. Setting the stage to Weather tells your code that it should now respond to environmental factors instead of standard track logic. This is the same principle used in real simulation systems where engineers model how rain, temperature, and grip affect performance before race day.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and drag `set start stage` into `||loops(noclick):on start||`.
-* Set the stage value to **Weather**.
+* :keyboard: Set the stage value to **Weather**.
 
 ~hint Rain everywhere? 🌧️
 
@@ -181,7 +181,7 @@ let efficiencyDrain = raceDayTools.savedEfficiencyCost()
 To reward smart adaptation, you need evidence that conditions changed and how the driver responded. These two variables—one to mark when weather shifted, another to count collisions—give you the data you need to evaluate performance. This is how telemetry analysts track driver behavior under pressure: they log events and compare them to thresholds.
 
 * :paper plane: Open `||variables:Variables||` and create variables named `weatherChanged` and `weatherCollisions`.
-* Set both `weatherChanged` and `weatherCollisions` to **0** in `||loops(noclick):on start||`.
+* :keyboard: Set both `weatherChanged` and `weatherCollisions` to **0** in `||loops(noclick):on start||`.
 
 ~hint Never earning adaptation reward? 🏆
 
@@ -230,7 +230,7 @@ let weatherCollisions = 0
 Score, life, and the countdown timer give players constant feedback about their current state and how much time they have left. This heads-up display mirrors the real dash systems drivers use to monitor fuel, tire wear, and lap time—immediate, essential information that shapes every decision.
 
 * :game pad: Open `||info:Info||` and set `score` and `life`.
-* Add a `start countdown` block set to **25** seconds.
+* :game pad: Add a `start countdown` block set to **25** seconds.
 
 ~hint Life value wrong? 🔎
 
@@ -284,7 +284,7 @@ info.startCountdown(25)
 Weather doesn't wait for you to be ready. By triggering rain after 10 seconds, you're modeling how real conditions change without warning, forcing drivers and teams to adapt in real time. This delayed event tests whether your system can handle dynamic state changes—a core challenge in motorsport engineering.
 
 * :game pad: Open `||Timers:Timers||` and add an `after (10000) ms` event block.
-* Inside, check that the stage is **Weather**, then set weather to **Rain**, set `weatherChanged` to **1**, change the background color, and show a **"Rain lowers grip"** splash.
+* :racing_car: Inside, check that the stage is **Weather**, then set weather to **Rain**, set `weatherChanged` to **1**, change the background color, and show a **"Rain lowers grip"** splash.
 
 ~hint Rain never starts? ☔
 
@@ -326,7 +326,7 @@ raceDayTools.setWeather(raceDayTools.WeatherMode.Dry)
 Wet surfaces reduce tire grip, which means lower safe cornering speed. This update loop continuously checks current weather and adjusts controller speed accordingly—not by stacking penalties, but by setting the correct value for the current condition. This mirrors how traction control systems monitor grip levels and adjust power delivery in real time.
 
 * :game pad: Open `||game:Game||` and add an `on game update every (1000) ms` event block.
-* If weather is **Rain**, set `||controller:Controller||` move speed to `driveSpeed − 30`; otherwise set it back to `driveSpeed`.
+* :game pad: If weather is **Rain**, set `||controller:Controller||` move speed to `driveSpeed − 30`; otherwise set it back to `driveSpeed`.
 
 ~hint Car getting slower forever? 🐌
 
@@ -425,8 +425,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 Successful adaptation means recognizing when conditions changed and adjusting your driving to minimize mistakes. This final check rewards players who kept collisions low after the weather shift, then saves the results so future stages can reference this run. It's how real teams measure driver skill under pressure—not just speed, but smart, responsive decision-making.
 
 * :game pad: Open `||info:Info||` and add an `on countdown end` event block.
-* If the stage is **Weather**, `weatherChanged` equals **1**, and `weatherCollisions` is **≤ 1**, use `||raceDayTools:Driven by STEM||` to award **Strategy +1**.
-* Save the current run results and show a **"Run complete"** splash.
+* :racing_car: If the stage is **Weather**, `weatherChanged` equals **1**, and `weatherCollisions` is **≤ 1**, use `||raceDayTools:Driven by STEM||` to award **Strategy +1**.
+* :racing_car: Save the current run results and show a **"Run complete"** splash.
 
 ~hint Strategy never awards? 🏆
 

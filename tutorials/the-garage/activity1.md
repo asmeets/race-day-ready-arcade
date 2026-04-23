@@ -54,7 +54,7 @@ scene.setBackgroundColor(6)
 Clear communication is essential in both games and engineering. A mission message tells players what they're about to do and why it matters. Think of it like a team briefing before a test session — everyone needs to know the objective.
 
 * :game pad: Open `||game:Game||` and drag `splash` under the background block in `||loops(noclick):on start||`.
-* Type a short, one-sentence mission line.
+* :keyboard: Type a short, one-sentence mission line.
 
 ~hint Message too long? ⚡
 
@@ -80,7 +80,7 @@ game.splash("Miami test session", "Build a car you can explain.")
 In racing games and simulations, the car is more than just an image — it's an interactive object with properties like position, speed, and collision detection. Creating a sprite gives you a programmable object you can control, move, and respond to events. This is how digital simulations represent real-world objects.
 
 * :paper plane: Open `||sprites:Sprites||` and drag `set mySprite to sprite of kind Player` into `||loops(noclick):on start||`.
-* Rename the variable to `raceCar`, then click the image square to choose or draw a car.
+* :keyboard: Rename the variable to `raceCar`, then click the image square to choose or draw a car.
 
 ~hint What's a sprite? 💡
 
@@ -128,7 +128,7 @@ raceCar = sprites.create(img`
 
 A car that can't move isn't much of a simulator. Wiring up controller input to sprite movement is how you transform button presses into on-screen action. Real racing simulators do the same thing — they translate driver input (steering, throttle, brakes) into vehicle behavior. Here you're building that connection.
 
-* The template already includes `driveSpeed`. Use it as the speed value throughout.
+* :binoculars: The template already includes `driveSpeed`. Use it as the speed value throughout.
 * :game pad: Open `||controller:Controller||` and drag `move mySprite with buttons` into `||loops(noclick):on start||`, targeting `raceCar` with `driveSpeed`.
 * :paper plane: Open `||sprites:Sprites||` and add `stay in screen` so the car can't leave the view.
 
@@ -171,7 +171,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 Professional race teams don't start from scratch every session — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. Loading saved data lets your choices carry forward across different stages, just like real engineering systems that remember past configurations and results.
 
 * :racing_car: Open `||racedaytools:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
-* Set `driveSpeed` from the saved value.
+* :racing_car: Set `driveSpeed` from the saved value.
 
 ~hint Blocks missing? 👀
 
@@ -216,8 +216,8 @@ driveSpeed = raceDayTools.savedDriveSpeed()
 
 Every racing team has an identity — a name, a car livery, a style. Setting these values personalizes your simulation and creates a sense of ownership. More importantly, saving these choices means the system remembers who you are across multiple sessions, just like how real team data persists across race weekends.
 
-* Still in `||racedaytools:Driven by STEM||`, set your team name, car name, and car style.
-* Add blocks to apply the saved style to `raceCar` and show the driver profile.
+* :id card: Still in `||racedaytools:Driven by STEM||`, set your team name, car name, and car style.
+* :id card: Add blocks to apply the saved style to `raceCar` and show the driver profile.
 
 ~hint Why consistency matters? 💭
 
@@ -332,8 +332,8 @@ In a classroom or activation event, multiple students will use the same device. 
 ```
 
 * :game pad: Open `||controller:Controller||` and drag `on button pressed` into the workspace outside of `||loops(noclick):on start||`.
-* Change the button to `B`.
-* Inside the event, add `reset saved session` and `game reset`.
+* :mouse pointer: Change the button to `B`.
+* :racing_car: Inside the event, add `reset saved session` and `game reset`.
 
 ~hint Button not working? ⚠️
 
