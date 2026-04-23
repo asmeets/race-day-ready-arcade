@@ -307,12 +307,12 @@ namespace drivenByStem {
     /**
      * Apply the saved style colors to the player's car sprite.
      */
-    //% block="apply saved car style to $car"
+    //% block="apply saved car style"
     //% blockId=raceday_apply_car_style
-    //% car.shadow=variables_get
-    //% car.defl=raceCar
     //% group="Profile" weight=30
-    export function applySavedCarStyle(car: Sprite): void {
+    export function applySavedCarStyle(): void {
+        const car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!car) return
         switch (settings.readString(CAR_STYLE_KEY)) {
             case "volt lime":
                 applyCarPalette(car, 7, 6, 1)
@@ -680,7 +680,7 @@ driveSpeed = drivenByStem.savedDriveSpeed()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@highlight
 //@validate-exists
-drivenByStem.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle()
 //@highlight
 //@validate-exists
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -715,7 +715,7 @@ drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
 driveSpeed = drivenByStem.savedDriveSpeed()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
-drivenByStem.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle()
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 //@highlight
 //@validate-exists
@@ -755,7 +755,7 @@ drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
 driveSpeed = drivenByStem.savedDriveSpeed()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
-drivenByStem.applySavedCarStyle(raceCar)
+drivenByStem.applySavedCarStyle()
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 let finalCollisions = 0
 let finalPitStops = 0
