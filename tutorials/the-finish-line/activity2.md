@@ -20,14 +20,24 @@ raceDayTools.loadRaceProfile(80, 5)
 raceDayTools.setRoleLens(raceDayTools.RoleLens.DataAnalyst)
 ```
 
-## Step 1 – Create review variables
+## {1. Create review variables}
 
-Four variables give the program named containers to hold run data before it loads anything.
+**Prepare Data Containers for Analysis**
+
+---
+
+Before you can analyze performance, you need somewhere to store the evidence. Creating these four variables establishes named containers that will soon hold your actual run results. This separation between structure (the variables) and content (the loaded data) is a fundamental pattern in data analysis workflows.
 
 * :paper plane: Open `||variables:Variables||` and create `reviewScore`, `reviewEfficiency`, `reviewStrategy`, and `pitStopsVisited`.
 * Set each variable to `0`. This means nothing has loaded yet.
 
-> **Drew tip:** If you can't find a variable later, check spelling first. One letter off or a different capital is the most common cause.
+~hint Can't find your variable? ⌨️
+
+---
+
+If you can't find a variable later, check spelling first. One letter off or a different capital is the most common cause.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -45,15 +55,25 @@ let reviewStrategy = 0
 let pitStopsVisited = 0
 ```
 
-## Step 2 – Start the Review stage and read saved results
+## {2. Start the Review stage and read saved results}
 
-Starting the Review stage and reading stored values brings real run data into the program.
+**Transform Stored Data into Usable Evidence**
+
+---
+
+Saved data becomes meaningful when you load it for analysis. Starting the Review stage and reading your Performance, Efficiency, and Strategy scores brings the abstract numbers from your final run into concrete variables you can compare, evaluate, and act upon. This is the moment raw results become insight.
 
 * :racing_car: Open `||raceDayTools:Driven by STEM||` and set start stage to `Review`.
 * Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
 * Read the saved pit stop count into `pitStopsVisited`.
 
-> **Drew tip:** If all your values are still zero, the final run probably didn't save. The review has nothing real to read yet.
+~hint All values still zero? 🔢
+
+---
+
+If all your values are still zero, the final run probably didn't save. The review has nothing real to read yet.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -78,14 +98,24 @@ reviewStrategy = raceDayTools.lastStrategyResult()
 pitStopsVisited = raceDayTools.savedPitStopCount()
 ```
 
-## Step 3 – Show a one-screen summary
+## {3. Show a one-screen summary}
 
-One splash screen turns the loaded numbers into something the team can actually read.
+**Present Key Metrics Clearly**
+
+---
+
+Numbers in variables are invisible to players. A well-designed summary screen takes your three core metrics and presents them in a single, readable snapshot that anyone can understand at a glance. Clear presentation turns data into communication, making results accessible to the entire team.
 
 * :game pad: Open `||game:Game||` and add a `splash` block.
 * Build the message to show Perf, Eff, and Strat using your three variables.
 
-> **Drew tip:** If the summary feels hard to read, trim it. Short labels and fewer numbers usually land better than more explanation.
+~hint Summary hard to read? 👀
+
+---
+
+If the summary feels hard to read, trim it. Short labels and fewer numbers usually land better than more explanation.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -103,9 +133,13 @@ pitStopsVisited = raceDayTools.savedPitStopCount()
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 ```
 
-## Step 4 – Choose a next-test focus
+## {4. Choose a next-test focus}
 
-An `if / else if / else` chain turns the weakest score into a concrete recommendation.
+**Turn Analysis into Actionable Next Steps**
+
+---
+
+Reviewing data without deciding what to do next leaves teams stuck. By evaluating which metric scored lowest, your program can suggest a specific focus for the next test cycle. This transforms passive observation into active engineering iteration—the core of how real teams improve performance over time.
 
 This step has no single correct answer. Try your own logic.
 
@@ -118,7 +152,13 @@ This step has no single correct answer. Try your own logic.
 * If `reviewEfficiency` is low, use `||raceDayTools:Driven by STEM||` to set an efficiency-focused next-test focus; else if `reviewStrategy` is low, set an adaptation-focused focus; otherwise set a balanced focus.
 * Show the recommendation with a `splash` block.
 
-> **Drew tip:** There's no single correct answer here. Use whichever lens scored lowest as your starting point.
+~hint Which lens to pick? 🤔
+
+---
+
+There's no single correct answer here. Use whichever lens scored lowest as your starting point.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
@@ -144,9 +184,13 @@ if (reviewEfficiency < 3) {
 game.splash("Next test focus", raceDayTools.nextTestFocus())
 ```
 
-## Step 5 – Connect results to a role
+## {5. Connect results to a role}
 
-A short if/else checks whether the team used mid-run data and frames the next step in forward-looking language.
+**Frame Results Through a Career Lens**
+
+---
+
+Every role on a racing team views data differently. By checking whether you used pit stops during the run, you're evaluating strategic adaptation—a skill that data analysts and strategists value highly. Connecting your results to a professional role helps you see how these decisions map to real career pathways.
 
 This step has no single correct answer. Try your own logic.
 
@@ -159,7 +203,13 @@ This step has no single correct answer. Try your own logic.
 * If `pitStopsVisited` > `0`, show a message about using information during the run.
 * Otherwise show a message about using more mid-run data next time.
 
-> **Drew tip:** Keep the tone forward-looking. "Next test" language beats "I messed up" language. Same facts, better learning vibe.
+~hint How to frame the message? 💬
+
+---
+
+Keep the tone forward-looking. "Next test" language beats "I messed up" language. Same facts, better learning vibe.
+
+hint~
 
 ```blocks
 raceDayTools.loadRaceProfile(80, 5)
