@@ -2,7 +2,6 @@
  * Custom blocks for the Driven by STEM skillmap.
  */
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM"
-//% groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
     const DRIVE_SPEED_KEY = "driveSpeed"
     const EFFICIENCY_KEY = "efficiencyRating"
@@ -173,7 +172,6 @@ namespace drivenByStem {
     //% block="load race profile with drive speed $defaultSpeed and efficiency $defaultEfficiency"
     //% blockId=raceday_load_profile
     //% defaultSpeed.defl=80 defaultEfficiency.defl=5
-    //% group="Session" weight=100
     export function loadRaceProfile(defaultSpeed: number, defaultEfficiency: number): void {
         ensureNumberSetting(DRIVE_SPEED_KEY, defaultSpeed)
         ensureNumberSetting(EFFICIENCY_KEY, defaultEfficiency)
@@ -199,7 +197,6 @@ namespace drivenByStem {
      */
     //% block="start stage $stage"
     //% blockId=raceday_start_stage
-    //% group="Session" weight=90
     export function startStage(stage: RaceStage): void {
         settings.writeString(STAGE_KEY, stageName(stage))
     }
@@ -209,7 +206,6 @@ namespace drivenByStem {
      */
     //% block="current stage is $stage"
     //% blockId=raceday_stage_is
-    //% group="Session" weight=80
     export function stageIs(stage: RaceStage): boolean {
         return settings.readString(STAGE_KEY) == stageName(stage)
     }
@@ -219,7 +215,6 @@ namespace drivenByStem {
      */
     //% block="reset saved session"
     //% blockId=raceday_reset_session
-    //% group="Session" weight=70
     export function resetSavedSession(): void {
         settings.clear()
     }
@@ -230,7 +225,6 @@ namespace drivenByStem {
     //% block="set team name to $name"
     //% blockId=raceday_set_team_name
     //% name.defl="Apex Lab"
-    //% group="Profile" weight=100
     export function setTeamName(name: string): void {
         settings.writeString(TEAM_NAME_KEY, name)
     }
@@ -240,7 +234,6 @@ namespace drivenByStem {
      */
     //% block="team name"
     //% blockId=raceday_team_name
-    //% group="Profile" weight=90
     export function teamName(): string {
         return settings.readString(TEAM_NAME_KEY)
     }
@@ -251,7 +244,6 @@ namespace drivenByStem {
     //% block="set car name to $name"
     //% blockId=raceday_set_car_name
     //% name.defl="Velocity"
-    //% group="Profile" weight=80
     export function setCarName(name: string): void {
         settings.writeString(CAR_NAME_KEY, name)
     }
@@ -261,7 +253,6 @@ namespace drivenByStem {
      */
     //% block="car name"
     //% blockId=raceday_car_name
-    //% group="Profile" weight=70
     export function carName(): string {
         return settings.readString(CAR_NAME_KEY)
     }
@@ -271,7 +262,6 @@ namespace drivenByStem {
      */
     //% block="set role lens to $role"
     //% blockId=raceday_set_role_lens
-    //% group="Profile" weight=60
     export function setRoleLens(role: RoleLens): void {
         settings.writeString(ROLE_LENS_KEY, roleLensName(role))
     }
@@ -281,7 +271,6 @@ namespace drivenByStem {
      */
     //% block="role lens"
     //% blockId=raceday_role_lens
-    //% group="Profile" weight=50
     export function roleLens(): string {
         return settings.readString(ROLE_LENS_KEY)
     }
@@ -291,7 +280,6 @@ namespace drivenByStem {
      */
     //% block="set car style to $style"
     //% blockId=raceday_set_car_style
-    //% group="Profile" weight=40
     export function setCarStyle(style: CarStyle): void {
         settings.writeString(CAR_STYLE_KEY, carStyleName(style))
     }
@@ -302,7 +290,6 @@ namespace drivenByStem {
     //% block="apply saved car style to $car"
     //% blockId=raceday_apply_car_style
     //% car.shadow=sprite
-    //% group="Profile" weight=30
     export function applySavedCarStyle(car: Sprite): void {
         switch (settings.readString(CAR_STYLE_KEY)) {
             case "volt lime":
@@ -323,7 +310,6 @@ namespace drivenByStem {
      */
     //% block="show saved driver profile"
     //% blockId=raceday_show_profile
-    //% group="Profile" weight=20
     export function showSavedDriverProfile(): void {
         game.splash(teamName(), carName() + " | " + roleLens())
     }
@@ -334,7 +320,6 @@ namespace drivenByStem {
     //% block="save team setup speed $speed efficiency cost $efficiencyCost focus $focus"
     //% blockId=raceday_save_setup
     //% speed.defl=80 efficiencyCost.defl=1
-    //% group="Setup" weight=100
     export function saveTeamSetup(speed: number, efficiencyCost: number, focus: SetupFocus): void {
         settings.writeNumber(DRIVE_SPEED_KEY, speed)
         settings.writeNumber(DRAIN_KEY, efficiencyCost)
@@ -346,7 +331,6 @@ namespace drivenByStem {
      */
     //% block="saved drive speed"
     //% blockId=raceday_saved_drive_speed
-    //% group="Setup" weight=90
     export function savedDriveSpeed(): number {
         return settings.readNumber(DRIVE_SPEED_KEY)
     }
@@ -356,7 +340,6 @@ namespace drivenByStem {
      */
     //% block="saved efficiency"
     //% blockId=raceday_saved_efficiency
-    //% group="Setup" weight=80
     export function savedEfficiency(): number {
         return settings.readNumber(EFFICIENCY_KEY)
     }
@@ -366,7 +349,6 @@ namespace drivenByStem {
      */
     //% block="saved efficiency cost"
     //% blockId=raceday_saved_efficiency_cost
-    //% group="Setup" weight=75
     export function savedEfficiencyCost(): number {
         return settings.readNumber(DRAIN_KEY)
     }
@@ -376,7 +358,6 @@ namespace drivenByStem {
      */
     //% block="saved strategy points"
     //% blockId=raceday_saved_strategy
-    //% group="Setup" weight=70
     export function savedStrategyPoints(): number {
         return settings.readNumber(STRATEGY_KEY)
     }
@@ -386,7 +367,6 @@ namespace drivenByStem {
      */
     //% block="saved setup focus is $focus"
     //% blockId=raceday_setup_focus_is
-    //% group="Setup" weight=60
     export function setupFocusIs(focus: SetupFocus): boolean {
         return settings.readString(SETUP_FOCUS_KEY) == setupFocusName(focus)
     }
@@ -396,7 +376,6 @@ namespace drivenByStem {
      */
     //% block="set weather $weather"
     //% blockId=raceday_set_weather
-    //% group="Telemetry" weight=100
     export function setWeather(weather: WeatherMode): void {
         settings.writeString(WEATHER_KEY, weatherName(weather))
     }
@@ -406,7 +385,6 @@ namespace drivenByStem {
      */
     //% block="weather is $weather"
     //% blockId=raceday_weather_is
-    //% group="Telemetry" weight=90
     export function weatherIs(weather: WeatherMode): boolean {
         return settings.readString(WEATHER_KEY) == weatherName(weather)
     }
@@ -416,7 +394,6 @@ namespace drivenByStem {
      */
     //% block="reset collision count"
     //% blockId=raceday_reset_collisions
-    //% group="Telemetry" weight=80
     export function resetCollisionCount(): void {
         settings.writeNumber(COLLISION_KEY, 0)
     }
@@ -427,7 +404,6 @@ namespace drivenByStem {
     //% block="record collision score penalty $scorePenalty efficiency penalty $efficiencyPenalty"
     //% blockId=raceday_record_collision
     //% scorePenalty.defl=3 efficiencyPenalty.defl=1
-    //% group="Telemetry" weight=70
     export function recordCollision(scorePenalty: number, efficiencyPenalty: number): void {
         info.changeScoreBy(0 - scorePenalty)
         info.changeLifeBy(0 - efficiencyPenalty)
@@ -440,7 +416,6 @@ namespace drivenByStem {
      */
     //% block="collision count"
     //% blockId=raceday_collision_count
-    //% group="Telemetry" weight=60
     export function collisionCount(): number {
         return settings.readNumber(COLLISION_KEY)
     }
@@ -450,7 +425,6 @@ namespace drivenByStem {
      */
     //% block="record pit stop visit"
     //% blockId=raceday_record_pit_stop
-    //% group="Telemetry" weight=50
     export function recordPitStopVisit(): void {
         settings.writeNumber(PIT_STOPS_KEY, settings.readNumber(PIT_STOPS_KEY) + 1)
     }
@@ -460,7 +434,6 @@ namespace drivenByStem {
      */
     //% block="saved pit stop count"
     //% blockId=raceday_pit_stop_count
-    //% group="Telemetry" weight=40
     export function savedPitStopCount(): number {
         return settings.readNumber(PIT_STOPS_KEY)
     }
@@ -471,7 +444,6 @@ namespace drivenByStem {
     //% block="award strategy points $amount"
     //% blockId=raceday_award_strategy
     //% amount.defl=1
-    //% group="Telemetry" weight=30
     export function awardStrategyPoints(amount: number): void {
         settings.writeNumber(STRATEGY_KEY, settings.readNumber(STRATEGY_KEY) + amount)
     }
@@ -481,7 +453,6 @@ namespace drivenByStem {
      */
     //% block="save current run results"
     //% blockId=raceday_save_results
-    //% group="Review" weight=100
     export function saveCurrentRunResults(): void {
         settings.writeNumber(LAST_SCORE_KEY, info.score())
         settings.writeNumber(LAST_EFFICIENCY_KEY, info.life())
@@ -494,7 +465,6 @@ namespace drivenByStem {
      */
     //% block="last performance result"
     //% blockId=raceday_last_performance
-    //% group="Review" weight=90
     export function lastPerformanceResult(): number {
         return settings.readNumber(LAST_SCORE_KEY)
     }
@@ -504,7 +474,6 @@ namespace drivenByStem {
      */
     //% block="last efficiency result"
     //% blockId=raceday_last_efficiency
-    //% group="Review" weight=80
     export function lastEfficiencyResult(): number {
         return settings.readNumber(LAST_EFFICIENCY_KEY)
     }
@@ -514,7 +483,6 @@ namespace drivenByStem {
      */
     //% block="last strategy result"
     //% blockId=raceday_last_strategy
-    //% group="Review" weight=70
     export function lastStrategyResult(): number {
         return settings.readNumber(LAST_STRATEGY_KEY)
     }
@@ -525,7 +493,6 @@ namespace drivenByStem {
     //% block="set next test focus $note"
     //% blockId=raceday_set_next_focus
     //% note.defl="Review the data and test again."
-    //% group="Review" weight=60
     export function setNextTestFocus(note: string): void {
         settings.writeString(NEXT_FOCUS_KEY, note)
     }
@@ -535,7 +502,6 @@ namespace drivenByStem {
      */
     //% block="next test focus"
     //% blockId=raceday_next_focus
-    //% group="Review" weight=50
     export function nextTestFocus(): string {
         return settings.readString(NEXT_FOCUS_KEY)
     }
