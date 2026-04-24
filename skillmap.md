@@ -1,5 +1,5 @@
 # driven-by-stem
-* name: Driven by STEM, powered by Microsoft
+* name: Driven by STEM, enabled by Microsoft
 * description: Join Mercedes as an engineer for the day. Code your own F1 simulator, balance speed against efficiency, and test your decisions on the track. Explore real STEM careers while building systems that perform under pressure.
 * primarycolor: #ffd84d
 * secondarycolor: #b40707
@@ -7,7 +7,7 @@
 * highlightcolor: #42cdf4
 * completednodecolor: #067d14
 * allowcodecarryover: True
-* backgroundurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/background.jpg
+* backgroundurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/background.gif
 * bannerurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/banner.png
 
 ## driven-by-stem
