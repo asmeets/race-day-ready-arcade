@@ -15,13 +15,23 @@
 * description: Move from the Garage to the track and all the way to the winner's circle through one guided path of tutorials, tests, and remix-ready decisions.
 * layout: manual
 
+### intro-to-makecode
+* name: Intro to MakeCode
+* type: tutorial
+* description: Learn about MakeCode Arcade and block-based coding that you'll use to build your F1 simulator, and how to get around the editor.
+* imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-intro-to-makecode.png
+* position: 0 9
+* tags: beginner, start-here, introduction, makecode, blocks
+* next: garage-activity1
+* url: https://github.com/asmeets/driven-by-stem/tutorials/in-the-classroom/activity1
+
 ### garage-activity1
 * name: Mission Briefing
 * type: tutorial
 * description: Build your race car, wire up the controls, and set up your dashboard so you're ready to test.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-mission-briefing.png
-* position: 0 9
-* tags: beginner, start-here, mission, controls, points
+* position: 0 5
+* tags: beginner, kick-off, mission, controls, points
 * next: garage-activity2
 * url: https://github.com/asmeets/driven-by-stem/tutorials/the-garage/activity1
 
