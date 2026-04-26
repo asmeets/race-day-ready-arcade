@@ -3,41 +3,748 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driven by STEM</title>
+    <title>Driven by STEM, enabled by Microsoft</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #00D2BE 0%, #00847A 50%, #1a1a1a 100%);
+            background-attachment: fixed;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1.5rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 1;
+            margin-bottom: 0.75rem;
             color: white;
         }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #00847A;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn.primary {
+            background: #00D2BE;
+            color: white;
+        }
+        
+        .btn.primary:hover {
+            background: #00A19C;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin: 1.5rem auto;
+            max-width: 600px;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 0.75rem 2rem;
+            background: transparent;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00847A;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            background: rgba(0, 210, 190, 0.1);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #00D2BE 0%, #00847A 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 210, 190, 0.3);
+        }
+        
         .container {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
         }
-        h1 {
-            font-size: 3rem;
-            margin: 0 0 1rem 0;
+        
+        .toc {
+            position: sticky;
+            top: 20px;
+            width: 250px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
         }
+        
+        .toc h3 {
+            font-size: 1rem;
+            color: #00847A;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .toc ul {
+            list-style: none;
+        }
+        
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .toc a:hover {
+            background: rgba(0, 210, 190, 0.1);
+            color: #00847A;
+            padding-left: 1rem;
+        }
+        
+        .toc a.active {
+            background: rgba(0, 210, 190, 0.15);
+            color: #00847A;
+            font-weight: 600;
+            border-left: 3px solid #00D2BE;
+            padding-left: 1rem;
+        }
+        
+        .content {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            width: 100%;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 20px;
+        }
+        
+        section:last-child {
+            margin-bottom: 0;
+        }
+        
+        h2 {
+            color: #00847A;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #00D2BE;
+        }
+        
+        h3 {
+            color: #00A19C;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        
         p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+        
+        a {
+            color: #00847A;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(0, 210, 190, 0.1) 0%, rgba(0, 161, 156, 0.1) 100%);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 4px solid #00D2BE;
+            margin: 1.5rem 0;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .tab-content.active {
+                flex-direction: column;
+            }
+            
+            .toc {
+                position: static;
+                width: 100%;
+                max-height: none;
+                margin-bottom: 2rem;
+            }
+            
+            .content {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header p {
+                font-size: 0.9rem;
+            }
+            
+            .tabs {
+                margin: 1rem;
+            }
+            
+            .tab {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .content {
+                padding: 2rem 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.25rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            section {
+                scroll-margin-top: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏎️ Hello, World!</h1>
-        <p>Driven by STEM - F1 x Mercedes x Microsoft</p>
-        <p>GitHub Pages is working! 🎉</p>
+    <div class="header">
+        <h1>Driven by STEM, enabled by Microsoft</h1>
+        <p>F1 x Mercedes x Microsoft STEM Experience</p>
+        <div class="cta-buttons">
+            <a href="https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap" class="btn primary">🎮 Play the Game</a>
+            <a href="https://github.com/asmeets/driven-by-stem" class="btn">📦 View on GitHub</a>
+        </div>
     </div>
+    
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('students')">🎮 Students</button>
+        <button class="tab" onclick="switchTab('educators')">👩‍🏫 Educators</button>
+    </div>
+    
+    <div class="container">
+        
+        <!-- Students Tab Content -->
+        <div id="students-content" class="tab-content active">
+            <nav class="toc">
+                <h3>On This Page</h3>
+                <ul>
+                    <li><a href="#s-intro">Welcome</a></li>
+                    <li><a href="#s-video">Watch How It Works</a></li>
+                    <li><a href="#s-do">What You'll Do</a></li>
+                    <li><a href="#s-learn">What You'll Learn</a></li>
+                    <li><a href="#s-start">How to Get Started</a></li>
+                    <li><a href="#s-tips">Tips for Success</a></li>
+                    <li><a href="#s-help">Need Help?</a></li>
+                    <li><a href="#s-showcase">Student Showcase</a></li>
+                    <li><a href="#s-next">What's Next?</a></li>
+                </ul>
+            </nav>
+            
+            <article class="content">
+                <section id="s-intro">
+                    <h2>Welcome to Driven by STEM!</h2>
+                    <p>Ready to race? This isn't just about speed—it's about smart engineering choices that make you faster, safer, and more efficient on the track.</p>
+                    <p>In this game, you'll learn how real F1 engineers make decisions by testing different tradeoffs in your own race car.</p>
+                </section>
+                
+                <section id="s-video">
+                    <h2>📹 Watch How It Works</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Embedded video demo/trailer]</strong></p>
+                        <p style="opacity: 0.7;">• 2-3 minute gameplay overview video<br>
+                        • Show a student playing and making tradeoff decisions<br>
+                        • Highlight code-to-gameplay connection<br>
+                        • YouTube embed or direct video player</p>
+                    </div>
+                </section>
+                
+                <section id="s-do">
+                    <h2>What You'll Do</h2>
+                    <p>Jump into a fast-paced racing experience where you can:</p>
+                    <ul>
+                        <li>🏎️ Drive and test your car on the track</li>
+                        <li>⚙️ Tune your car's speed, handling, and efficiency</li>
+                        <li>🔬 See how each change affects your performance</li>
+                        <li>🎯 Make smart tradeoffs between speed and control</li>
+                        <li>💻 Change the code and watch what happens</li>
+                        <li>🏆 Compare different strategies and find what works best</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Screenshot gallery]</strong></p>
+                        <p style="opacity: 0.7;">• 3-4 gameplay screenshots showing different stages<br>
+                        • Code editor view with annotations<br>
+                        • Before/after comparison images</p>
+                    </div>
+                </section>
+                
+                <section id="s-learn">
+                    <h2>What You'll Learn</h2>
+                    <p>Through gameplay, you'll discover:</p>
+                    <ul>
+                        <li>How code changes create real results you can see and feel</li>
+                        <li>Why engineers balance performance, safety, and sustainability</li>
+                        <li>How to test ideas, learn from results, and improve your design</li>
+                        <li>What careers in racing, software, and engineering look like</li>
+                        <li>That the best solution isn't always the fastest one</li>
+                    </ul>
+                </section>
+                
+                <section id="s-start">
+                    <h2>How to Get Started</h2>
+                    <div class="highlight">
+                        <p><strong>Follow the skillmap activities:</strong></p>
+                        <ul>
+                            <li>Each activity teaches you one new skill</li>
+                            <li>You'll build the game step by step using code blocks</li>
+                            <li>Test your changes in the simulator right away</li>
+                            <li>Complete each challenge to unlock the next one</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>Ready to race?</strong></p>
+                        <div class="cta-buttons" style="margin-top: 1rem;">
+                            <a href="https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap" class="btn primary">🎮 Start Playing</a>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="s-tips">
+                    <h2>Tips for Success</h2>
+                    <ul>
+                        <li>Don't worry about getting it perfect—testing and trying again is how engineers work!</li>
+                        <li>Pay attention to how different values change the way your car handles</li>
+                        <li>Think about real race cars: what matters more on different tracks?</li>
+                        <li>Try extreme values to see what happens, then find the sweet spot</li>
+                        <li>Share your discoveries with classmates and compare strategies</li>
+                    </ul>
+                </section>
+                
+                <section id="s-help">
+                    <h2>❓ Need Help?</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: FAQ section]</strong></p>
+                        <p style="opacity: 0.7;">• How do I import the project?<br>
+                        • What if my car moves too fast/slow?<br>
+                        • How do I reset my progress?<br>
+                        • Troubleshooting common errors<br>
+                        • Where can I get more help?</p>
+                    </div>
+                </section>
+                
+                <section id="s-showcase">
+                    <h2>🌟 Student Showcase</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Student work examples]</strong></p>
+                        <p style="opacity: 0.7;">• 2-3 example remixes from students<br>
+                        • "What I learned" testimonials<br>
+                        • Creative modifications students made<br>
+                        • Career connections students discovered</p>
+                    </div>
+                </section>
+                
+                <section id="s-next">
+                    <h2>🚀 What's Next?</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Extension activities]</strong></p>
+                        <p style="opacity: 0.7;">• Advanced challenges to try<br>
+                        • Other MakeCode Arcade projects<br>
+                        • Related STEM careers to explore<br>
+                        • Links to F1 engineering resources</p>
+                    </div>
+                </section>
+            </article>
+        </div>
+        
+        <!-- Educators Tab Content -->
+        <div id="educators-content" class="tab-content">
+            <nav class="toc">
+                <h3>On This Page</h3>
+                <ul>
+                    <li><a href="#e-overview">Project Overview</a></li>
+                    <li><a href="#e-goals">Learning Goals</a></li>
+                    <li><a href="#e-standards">Standards Alignment</a></li>
+                    <li><a href="#e-lessons">Lesson Plans</a></li>
+                    <li><a href="#e-assessment">Assessment</a></li>
+                    <li><a href="#e-classroom">Using in Classroom</a></li>
+                    <li><a href="#e-facilitator">Facilitator Notes</a></li>
+                    <li><a href="#e-differentiation">Differentiation</a></li>
+                    <li><a href="#e-success">Success Stories</a></li>
+                    <li><a href="#e-community">Community</a></li>
+                    <li><a href="#e-contributors">For Contributors</a></li>
+                    <li><a href="#e-partners">Partner Resources</a></li>
+                </ul>
+            </nav>
+            
+            <article class="content">
+                <section id="e-overview">
+                    <h2>Project Overview</h2>
+                    
+                    <h3>What This Project Is</h3>
+                    <p>Driven by STEM Arcade is a Microsoft MakeCode Arcade project created for the F1 x Mercedes x Microsoft STEM and career exploration activation. It is designed as a playable game and a remixable learning experience for middle school students, facilitators, and live event audiences.</p>
+                    <p>The project stays compatible with MakeCode Arcade conventions so it can be opened, explored, and modified without turning into a hard-to-teach codebase.</p>
+                    
+                    <h3>Why It Exists</h3>
+                    <p>This project uses racing as a way to make engineering ideas visible. Instead of presenting STEM as a lecture, it lets learners feel tradeoffs through gameplay:</p>
+                    <ul>
+                        <li>more speed can mean less control</li>
+                        <li>better efficiency can support longer performance</li>
+                        <li>safer choices can change score, risk, and race results</li>
+                    </ul>
+                    <p>The goal is to connect game mechanics to real roles across software, engineering, strategy, testing, and sustainability in a way that is immediate, age-appropriate, and fun to discuss.</p>
+                </section>
+                
+                <section id="e-goals">
+                    <h2>Learning Goals</h2>
+                    <p>This repository is built to support short, concrete learning moments. Learners should be able to:</p>
+                    <ul>
+                        <li>see cause and effect between code changes and gameplay outcomes</li>
+                        <li>explore engineering tradeoffs instead of chasing speed alone</li>
+                        <li>practice testing, revising, and improving a design</li>
+                        <li>connect gameplay systems to careers in software, data, engineering, strategy, and accessibility</li>
+                        <li>leave with a project they can understand well enough to remix on their own</li>
+                    </ul>
+                    
+                    <h3>Guiding Design Principles</h3>
+                    <p>The game and the repository are shaped by a few non-negotiables:</p>
+                    <ul>
+                        <li><strong>accessibility first:</strong> short text, clear feedback, simple controls, and recoverable failure states</li>
+                        <li><strong>remixability:</strong> visible tuning values, readable helper functions, and code students can trace</li>
+                        <li><strong>event reliability:</strong> predictable behavior, projector-friendly clarity, and low-friction facilitator use</li>
+                        <li><strong>MakeCode Arcade compatibility:</strong> editor-friendly files, assets, and patterns that stay inside the Arcade ecosystem</li>
+                        <li><strong>meaningful tradeoffs:</strong> gameplay should highlight performance, handling, and sustainability together</li>
+                    </ul>
+                </section>
+                
+                <section id="e-standards">
+                    <h2>📚 Standards Alignment</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Standards alignment]</strong></p>
+                        <p style="opacity: 0.7;">• CSTA Computer Science Standards<br>
+                        • NGSS Engineering Design Standards<br>
+                        • ISTE Standards for Students<br>
+                        • Grade level recommendations<br>
+                        • Prior knowledge requirements</p>
+                    </div>
+                </section>
+                
+                <section id="e-lessons">
+                    <h2>📚 Lesson Plans & Resources</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Downloadable lesson plans]</strong></p>
+                        <p style="opacity: 0.7;">• Full lesson plan (45-60 min)<br>
+                        • Short activity version (20-30 min)<br>
+                        • Extended workshop guide (90-120 min)<br>
+                        • Presentation slides for educators<br>
+                        • Handouts and worksheets<br>
+                        • PDF downloads</p>
+                    </div>
+                </section>
+                
+                <section id="e-assessment">
+                    <h2>📊 Assessment & Evaluation</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Assessment materials]</strong></p>
+                        <p style="opacity: 0.7;">• Rubric for evaluating student work<br>
+                        • Reflection questions for discussion<br>
+                        • Self-assessment checklist for students<br>
+                        • Exit ticket templates<br>
+                        • Portfolio documentation guide</p>
+                    </div>
+                </section>
+                
+                <section id="e-classroom">
+                    <h2>Using This in Your Classroom</h2>
+                    
+                    <h3>Primary Build Path: Skillmap</h3>
+                    <p>This project is structured so the primary student-facing build flow runs through a MakeCode Arcade skillmap.</p>
+                    
+                    <div class="highlight">
+                        <p><strong>Intended flow:</strong></p>
+                        <ul>
+                            <li>learners open the project skillmap in Arcade</li>
+                            <li>each activity teaches one clear mechanic or engineering tradeoff</li>
+                            <li>students build in Blocks first, then test and remix</li>
+                            <li>completed tutorials unlock the next step in the pathway</li>
+                        </ul>
+                        <p><strong>Skillmap entry URL:</strong><br>
+                        <a href="https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap">https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap</a></p>
+                    </div>
+                    
+                    <h3>Alternative: Import to MakeCode Arcade</h3>
+                    <p>You can also have students import the full project into MakeCode Arcade:</p>
+                    <ul>
+                        <li>open MakeCode Arcade</li>
+                        <li>choose the GitHub import option</li>
+                        <li>paste this repository URL</li>
+                        <li>open the project and run it in the simulator</li>
+                    </ul>
+                    <p><em>Note: For guided learning, the skillmap URL above is recommended.</em></p>
+                </section>
+                
+                <section id="e-facilitator">
+                    <h2>Facilitator Notes</h2>
+                    <p>This repository is meant to support more than a game build—it's designed to support a live learning moment.</p>
+                    
+                    <h3>What to Expect</h3>
+                    <ul>
+                        <li>Learners can understand the goal quickly without a long setup</li>
+                        <li>Gameplay gives immediate feedback so students can test ideas and retry fast</li>
+                        <li>Remix tasks point to a small number of visible variables, functions, or events</li>
+                        <li>Discussions can connect game outcomes to roles in engineering, software, strategy, data, and sustainability</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Facilitation guide]</strong></p>
+                        <p style="opacity: 0.7;">• Pre-session setup checklist<br>
+                        • Suggested talking points for each activity<br>
+                        • Common student questions & answers<br>
+                        • Time management tips<br>
+                        • Troubleshooting technical issues<br>
+                        • Discussion prompts for career connections</p>
+                    </div>
+                    
+                    <h3>Tips for Live Events and Workshops</h3>
+                    <p>When adapting this project for an event, classroom, or workshop:</p>
+                    <ul>
+                        <li>Use short instructions that students can follow on a projector</li>
+                        <li>Demo the controls once and let students explore</li>
+                        <li>Point to specific variables or functions for remix activities</li>
+                        <li>Use projector-friendly visuals and clear state changes</li>
+                        <li>Allow time for discussion about what students discovered</li>
+                        <li>Connect game mechanics to real career pathways</li>
+                    </ul>
+                </section>
+                
+                <section id="e-differentiation">
+                    <h2>🎯 Differentiation Strategies</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Differentiation guide]</strong></p>
+                        <p style="opacity: 0.7;">• Scaffolding for novice programmers<br>
+                        • Extension challenges for advanced students<br>
+                        • Alternative activities for diverse learners<br>
+                        • Accessibility accommodations<br>
+                        • Multilingual support options<br>
+                        • Cross-curricular connections (math, physics, etc.)</p>
+                    </div>
+                </section>
+                
+                <section id="e-success">
+                    <h2>🏆 Success Stories</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Implementation case studies]</strong></p>
+                        <p style="opacity: 0.7;">• 2-3 educator testimonials<br>
+                        • Different implementation contexts (classroom, after-school, live event)<br>
+                        • Student impact stories<br>
+                        • Lessons learned from pilot programs<br>
+                        • Video interviews with educators</p>
+                    </div>
+                </section>
+                
+                <section id="e-community">
+                    <h2>🤝 Community & Support</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Community resources]</strong></p>
+                        <p style="opacity: 0.7;">• Educator community forum/Discord<br>
+                        • Office hours or Q&A sessions<br>
+                        • Professional development opportunities<br>
+                        • Newsletter sign-up<br>
+                        • Share your implementation form<br>
+                        • Contact information for support</p>
+                    </div>
+                </section>
+                
+                <section id="e-contributors">
+                    <h2>For Contributors</h2>
+                    <p>If you contribute to this project, keep changes:</p>
+                    <ul>
+                        <li><strong>Easy to teach:</strong> facilitators should be able to explain it in a minute or less</li>
+                        <li><strong>Easy to remix:</strong> students should be able to change values and see clear results</li>
+                        <li><strong>Easy to run:</strong> it should work reliably in a live classroom or activation setting</li>
+                    </ul>
+                    <p>This project is meant to feel like a pit lane for ideas: test a change, watch what happens, and improve the next run.</p>
+                    
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Technical documentation]</strong></p>
+                        <p style="opacity: 0.7;">• Architecture overview<br>
+                        • Code structure guide<br>
+                        • Asset creation guidelines<br>
+                        • Testing procedures<br>
+                        • Contribution workflow<br>
+                        • Link to detailed developer wiki</p>
+                    </div>
+                </section>
+                
+                <section id="e-partners">
+                    <h2>🔗 Partner Resources</h2>
+                    <div class="highlight">
+                        <p><strong>[PLACEHOLDER: Partner content]</strong></p>
+                        <p style="opacity: 0.7;">• F1 educational resources<br>
+                        • Mercedes F1 team insights<br>
+                        • Microsoft STEM initiatives<br>
+                        • Related MakeCode projects<br>
+                        • Industry career pathway information<br>
+                        • Partnership opportunities</p>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </div>
+    
+    <div class="footer">
+<!--        <p>&copy; 2026 F1 x Mercedes x Microsoft | Driven by STEM</p> -->
+    </div>
+    
+    <script>
+        function switchTab(tab) {
+            // Update tab buttons
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tab content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            document.getElementById(tab + '-content').classList.add('active');
+        }
+        
+        // Highlight active TOC link on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20px 0px -40% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.toc a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section[id]').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
