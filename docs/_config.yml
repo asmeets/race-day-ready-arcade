@@ -3,96 +3,22 @@ title: "Driven by STEM"
 description: "A classroom-ready MakeCode Arcade racing game that teaches middle school students about engineering tradeoffs, sustainability, and STEM careers through F1-inspired gameplay."
 url: "https://asmeets.github.io"
 baseurl: "/driven-by-stem"
-repository: "asmeets/driven-by-stem"
-logo: ""
 
 # Theme Settings
-remote_theme: zerostaticthemes/jekyll-serif-theme
+theme: jekyll-theme-primer
 
-# Contact
-email: ""
-phone: ""
-address: ""
-
-# Footer
-footer: "F1 x Mercedes x Microsoft | Driven by STEM"
-
-# Google Analytics (optional - leave empty if not using)
-google_analytics_id: ""
-
-# Social Links (optional)
-social:
-  github: "https://github.com/asmeets/driven-by-stem"
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
 
 # Reading Files
 include:
   - _pages
 exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
   - vendor
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - Capfile
-  - CHANGELOG
-  - config
-  - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
-  - LICENSE
-  - log
   - node_modules
-  - package.json
-  - Rakefile
-  - README
-  - tmp
+  - Gemfile
+  - Gemfile.lock
   - SETUP.md
   - index.html.bak
-encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-
-# Conversion
-markdown: kramdown
-highlighter: rouge
-
-# Markdown Processing
-kramdown:
-  input: GFM
-  auto_ids: true
-  syntax_highlighter: rouge
-
-# Sass/SCSS
-sass:
-  style: compressed
-
-# Plugins
-plugins:
-  - jekyll-remote-theme
-  - jekyll-sitemap
-  - jekyll-feed
-
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: page
-
-# Custom Variables for F1 Mercedes Branding
-brand:
-  primary_color: "#00D2BE"  # Mercedes Petronas Teal
-  secondary_color: "#00847A"  # Dark Teal
-  accent_color: "#00D2BE"
-
-# Site Footer
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/asmeets/driven-by-stem"
-    - label: "Play the Game"
-      icon: "fas fa-fw fa-gamepad"
-      url: "https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap"

@@ -1,23 +1,19 @@
 ---
-layout: home
+layout: default
 title: "Driven by STEM"
-description: "A classroom-ready MakeCode Arcade racing game teaching middle school students about engineering tradeoffs, sustainability, and STEM careers through F1-inspired gameplay."
-intro_image: false
-intro_image_absolute: false
-intro_image_hide_on_mobile: true
 ---
 
 # Driven by STEM
 
-## F1 x Mercedes x Microsoft MakeCode Arcade Project
+### F1 x Mercedes x Microsoft MakeCode Arcade Project
+
+A classroom-ready MakeCode Arcade racing game teaching middle school students about engineering tradeoffs, sustainability, and STEM careers through F1-inspired gameplay.
 
 Race, code, and learn! **Driven by STEM** brings together F1 racing excitement, Mercedes engineering insights, and Microsoft MakeCode to create an engaging STEM learning experience.
 
-<div style="margin: 2rem 0;">
-  <a href="https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap" class="button" style="margin-right: 1rem;">🎮 Play the Game</a>
-  <a href="/students/" class="button" style="margin-right: 1rem;">👩‍🎓 For Students</a>
-  <a href="/educators/" class="button">👩‍🏫 For Educators</a>
-</div>
+---
+
+**[🎮 Play the Game](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)** | **[👩‍🎓 For Students](/students/)** | **[👩‍🏫 For Educators](/educators/)** | **[ℹ️ About](/about/)**
 
 ---
 
@@ -35,23 +31,20 @@ Through hands-on coding in MakeCode Arcade, students experience these real engin
 
 ## Get Started
 
-<div class="row">
-  <div class="col-12 col-md-4">
-    <h3>For Students</h3>
-    <p>Learn by doing! Build your own racing game, experiment with code, and discover how engineering tradeoffs work in real F1 cars.</p>
-    <a href="/students/">Get Started →</a>
-  </div>
-  <div class="col-12 col-md-4">
-    <h3>For Educators</h3>
-    <p>Classroom-ready activities, lesson plans, and assessment tools to bring STEM careers and engineering thinking to your students.</p>
-    <a href="/educators/">Explore Resources →</a>
-  </div>
-  <div class="col-12 col-md-4">
-    <h3>About the Project</h3>
-    <p>Created through a partnership between F1, Mercedes-AMG Petronas Formula One Team, and Microsoft to inspire the next generation of engineers.</p>
-    <a href="/about/">Learn More →</a>
-  </div>
-</div>
+### For Students
+Learn by doing! Build your own racing game, experiment with code, and discover how engineering tradeoffs work in real F1 cars.
+
+**[Get Started →](/students/)**
+
+### For Educators
+Classroom-ready activities, lesson plans, and assessment tools to bring STEM careers and engineering thinking to your students.
+
+**[Explore Resources →](/educators/)**
+
+### About the Project
+Created through a partnership between F1, Mercedes-AMG Petronas Formula One Team, and Microsoft to inspire the next generation of engineers.
+
+**[Learn More →](/about/)**
 
 ---
 

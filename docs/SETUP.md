@@ -62,18 +62,17 @@ The built site will be in `docs/_site/`
 ### Configuration
 - **Gemfile** - Ruby gem dependencies
 - **_config.yml** - Jekyll site configuration
-- **_data/** - Navigation menus, features, and contact info
 
 ### Content Pages
-- **index.md** - Homepage (home layout)
+- **index.md** - Homepage
 - **_pages/students.md** - Student-facing content
 - **_pages/educators.md** - Educator resources
 - **_pages/about.md** - About the project
 
 ### Theme
-Using [Jekyll Serif](https://github.com/zerostaticthemes/jekyll-serif-theme) theme via `remote_theme`.
+Using [Primer](https://github.com/pages-themes/primer) - GitHub's design system theme.
 
-The theme is loaded from GitHub (`zerostaticthemes/jekyll-serif-theme`) using Jekyll's remote theme functionality, which is the recommended approach for GitHub Pages.
+Primer is a GitHub Pages-supported theme that provides a clean, minimal design with excellent typography and responsive layouts.
 
 ## GitHub Pages Deployment
 
