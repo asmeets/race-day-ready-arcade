@@ -1,7 +1,3 @@
-# Driven by STEM Arcade
-
-🏎️ **F1 x Mercedes x Microsoft STEM Experience**
-
 ## Quick Links
 
 - 🎮 **Play the Game:** https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap
