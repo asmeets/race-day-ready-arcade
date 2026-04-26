@@ -21,6 +21,11 @@ $link-color-visited: $mercedes-dark-teal;
 
 /* Custom Mercedes Branding Overrides */
 
+/* Hide the top navigation masthead */
+.masthead {
+  display: none !important;
+}
+
 /* Primary buttons and CTAs with teal */
 .btn--primary {
   background-color: $mercedes-teal !important;
