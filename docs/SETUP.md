@@ -71,7 +71,9 @@ The built site will be in `docs/_site/`
 - **_pages/about.md** - About the project
 
 ### Theme
-Using [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) Jekyll theme with custom Mercedes Petronas teal branding (#00D2BE).
+Using [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/) Jekyll theme via `remote_theme` with custom Mercedes Petronas teal branding (#00D2BE).
+
+The theme is loaded from GitHub (`mmistakes/minimal-mistakes`) rather than as a local gem, which is the recommended approach for GitHub Pages with Actions.
 
 ## GitHub Pages Deployment
 
