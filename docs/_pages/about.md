@@ -54,10 +54,10 @@ Built with **Microsoft MakeCode Arcade**, a block-based and text-based programmi
 ## Get Involved
 
 ### For Students
-[Start playing and coding now →](/students/)
+[Start playing and coding now →]({{ site.baseurl }}/students/)
 
 ### For Educators
-[Access lesson plans and resources →](/educators/)
+[Access lesson plans and resources →]({{ site.baseurl }}/educators/)
 
 ### For Contributors
 [Join our open-source community on GitHub →](https://github.com/asmeets/driven-by-stem)

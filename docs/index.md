@@ -13,7 +13,7 @@ Race, code, and learn! **Driven by STEM** brings together F1 racing excitement, 
 
 ---
 
-**[🎮 Play the Game](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)** | **[👩‍🎓 For Students](/students/)** | **[👩‍🏫 For Educators](/educators/)** | **[ℹ️ About](/about/)**
+**[🎮 Play the Game](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)** | **[👩‍🎓 For Students]({{ site.baseurl }}/students/)** | **[👩‍🏫 For Educators]({{ site.baseurl }}/educators/)** | **[ℹ️ About]({{ site.baseurl }}/about/)**
 
 ---
 
@@ -34,17 +34,17 @@ Through hands-on coding in MakeCode Arcade, students experience these real engin
 ### For Students
 Learn by doing! Build your own racing game, experiment with code, and discover how engineering tradeoffs work in real F1 cars.
 
-**[Get Started →](/students/)**
+**[Get Started →]({{ site.baseurl }}/students/)**
 
 ### For Educators
 Classroom-ready activities, lesson plans, and assessment tools to bring STEM careers and engineering thinking to your students.
 
-**[Explore Resources →](/educators/)**
+**[Explore Resources →]({{ site.baseurl }}/educators/)**
 
 ### About the Project
 Created through a partnership between F1, Mercedes-AMG Petronas Formula One Team, and Microsoft to inspire the next generation of engineers.
 
-**[Learn More →](/about/)**
+**[Learn More →]({{ site.baseurl }}/about/)**
 
 ---
 
