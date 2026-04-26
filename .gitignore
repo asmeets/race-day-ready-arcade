@@ -13,3 +13,6 @@ _site
 .DS_Store
 .vscode/*
 .github/*
+.vscode
+.github
+AGENTS.md
