@@ -1,0 +1,108 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+/* Mercedes Petronas F1 Team Colors */
+$mercedes-teal: #00D2BE;
+$mercedes-dark-teal: #00847A;
+$mercedes-silver: #c0c0c0;
+
+/* Override Minimal Mistakes variables */
+$primary-color: $mercedes-teal;
+$link-color: $mercedes-dark-teal;
+$link-color-hover: $mercedes-teal;
+$link-color-visited: $mercedes-dark-teal;
+
+/* Import Minimal Mistakes theme */
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+/* Custom Mercedes Branding Overrides */
+
+/* Primary buttons and CTAs with teal */
+.btn--primary {
+  background-color: $mercedes-teal !important;
+  color: #fff !important;
+  
+  &:hover {
+    background-color: $mercedes-dark-teal !important;
+  }
+}
+
+/* Archive link hover color */
+.archive__item-title {
+  a {
+    &:hover {
+      color: $mercedes-teal;
+    }
+  }
+}
+
+/* Accent borders and highlights */
+.notice {
+  border-left-color: $mercedes-teal;
+}
+
+.notice--info {
+  background-color: lighten($mercedes-teal, 45%);
+  border-left-color: $mercedes-teal;
+}
+
+/* TOC active link */
+.toc__menu a.active {
+  color: $mercedes-teal;
+  font-weight: bold;
+}
+
+/* Masthead link hover */
+.masthead__menu-item {
+  a:hover {
+    color: $mercedes-teal;
+  }
+}
+
+/* Page header overlay with teal accent */
+.page__hero--overlay {
+  .page__title,
+  .page__lead {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Feature row styling */
+.feature__item {
+  .archive__item-title {
+    margin-top: 0.5em;
+    font-size: 1.25em;
+  }
+}
+
+/* Footer links */
+.page__footer-follow {
+  a {
+    color: $mercedes-teal;
+    
+    &:hover {
+      color: $mercedes-dark-teal;
+    }
+  }
+}
+
+/* Code blocks with subtle teal accent */
+code.language-plaintext {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+/* Sidebar navigation */
+.nav__list {
+  .nav__items {
+    a {
+      &:hover {
+        color: $mercedes-teal;
+      }
+    }
+  }
+}

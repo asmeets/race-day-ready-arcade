@@ -16,170 +16,187 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #00D2BE 0%, #00847A 50%, #1a1a1a 100%);
-            background-attachment: fixed;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: #494e52;
+            background: #f8f9fa;
         }
         
-        .header {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 1.5rem 0;
-            text-align: center;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .header p {
-            font-size: 1rem;
-            opacity: 1;
-            margin-bottom: 0.75rem;
-            color: white;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-            padding: 0 1rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            color: #00847A;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn:hover {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .btn.primary {
+        .masthead {
             background: #00D2BE;
-            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
-        .btn.primary:hover {
-            background: #00A19C;
+        .masthead-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-title {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .site-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .top-nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .top-nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .top-nav a.btn-primary {
+            background: white;
+            color: #00847A;
+            font-weight: 600;
+        }
+        
+        .top-nav a.btn-primary:hover {
+            background: #f0f0f0;
+        }
+        
+        .page-header {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            padding: 2rem 0;
+        }
+        
+        .page-header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-description {
+            color: #7a8288;
+            font-size: 1.125rem;
         }
         
         .tabs {
             display: flex;
-            justify-content: center;
-            gap: 0;
-            margin: 1.5rem auto;
-            max-width: 600px;
-            background: white;
-            border-radius: 50px;
-            padding: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            border-bottom: 2px solid #e9ecef;
         }
         
         .tab {
-            flex: 1;
-            padding: 0.75rem 2rem;
+            padding: 0.75rem 1.5rem;
             background: transparent;
             border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #00847A;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .tab:hover {
-            background: rgba(0, 210, 190, 0.1);
-        }
-        
-        .tab.active {
-            background: linear-gradient(135deg, #00D2BE 0%, #00847A 100%);
-            color: white;
-            box-shadow: 0 2px 8px rgba(0, 210, 190, 0.3);
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1.5rem 3rem;
-        }
-        
-        .toc {
-            position: sticky;
-            top: 20px;
-            width: 250px;
-            flex-shrink: 0;
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            max-height: calc(100vh - 200px);
-            overflow-y: auto;
-        }
-        
-        .toc h3 {
             font-size: 1rem;
-            color: #00847A;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .toc ul {
-            list-style: none;
-        }
-        
-        .toc li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .toc a {
-            color: #555;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
+            font-weight: 500;
+            color: #7a8288;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
             transition: all 0.2s;
         }
         
-        .toc a:hover {
-            background: rgba(0, 210, 190, 0.1);
+        .tab:hover {
             color: #00847A;
-            padding-left: 1rem;
         }
         
-        .toc a.active {
-            background: rgba(0, 210, 190, 0.15);
+        .tab.active {
             color: #00847A;
-            font-weight: 600;
-            border-left: 3px solid #00D2BE;
-            padding-left: 1rem;
+            border-bottom-color: #00D2BE;
         }
         
-        .content {
-            flex: 1;
+        .page-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+        
+        .nav-list {
             background: white;
-            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 1.5rem;
+        }
+        
+        .nav-list-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #7a8288;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+        
+        .nav-list ul {
+            list-style: none;
+        }
+        
+        .nav-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-list a {
+            color: #494e52;
+            text-decoration: none;
+            font-size: 0.875rem;
+            display: block;
+            padding: 0.375rem 0.5rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .nav-list a:hover {
+            color: #00847A;
+            border-left-color: #e9ecef;
+        }
+        
+        .nav-list a.active {
+            color: #00847A;
+            border-left-color: #00D2BE;
+            font-weight: 600;
+        }
+        
+        .main-content {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
             padding: 3rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
+            min-height: 400px;
         }
         
         .tab-content {
@@ -187,15 +204,12 @@
         }
         
         .tab-content.active {
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
-            width: 100%;
+            display: block;
         }
         
         section {
             margin-bottom: 3rem;
-            scroll-margin-top: 20px;
+            scroll-margin-top: 2rem;
         }
         
         section:last-child {
@@ -203,145 +217,144 @@
         }
         
         h2 {
-            color: #00847A;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            color: #222;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
             padding-bottom: 0.5rem;
-            border-bottom: 3px solid #00D2BE;
+            border-bottom: 2px solid #f3f4f5;
         }
         
         h3 {
-            color: #00A19C;
-            font-size: 1.5rem;
+            color: #222;
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-top: 2rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
         
         p {
-            margin-bottom: 1rem;
-            color: #555;
+            margin-bottom: 1.25rem;
+            color: #494e52;
         }
         
         ul {
             margin-left: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
         }
         
         li {
             margin-bottom: 0.5rem;
-            color: #555;
+            color: #494e52;
         }
         
         a {
             color: #00847A;
             text-decoration: none;
-            font-weight: 500;
         }
         
         a:hover {
             text-decoration: underline;
         }
         
-        .highlight {
-            background: linear-gradient(135deg, rgba(0, 210, 190, 0.1) 0%, rgba(0, 161, 156, 0.1) 100%);
-            padding: 1.25rem;
-            border-radius: 8px;
+        .notice {
+            background: #f8f9fa;
             border-left: 4px solid #00D2BE;
+            padding: 1.5rem;
             margin: 1.5rem 0;
+            border-radius: 4px;
         }
         
-        .footer {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            color: white;
+        .notice p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .page-footer {
+            background: #f3f4f5;
+            border-top: 1px solid #e9ecef;
+            padding: 2rem 0;
+            margin-top: 3rem;
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 2rem;
+            color: #7a8288;
+            font-size: 0.875rem;
         }
         
         @media (max-width: 1024px) {
-            .container {
-                flex-direction: column;
+            .page-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
-            .tab-content.active {
-                flex-direction: column;
-            }
-            
-            .toc {
+            .sidebar {
                 position: static;
-                width: 100%;
-                max-height: none;
-                margin-bottom: 2rem;
-            }
-            
-            .content {
-                max-width: 100%;
             }
         }
         
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.75rem;
+            .masthead-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
             }
             
-            .header p {
-                font-size: 0.9rem;
+            .top-nav {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
             }
             
-            .tabs {
-                margin: 1rem;
-            }
-            
-            .tab {
-                padding: 0.75rem 1rem;
-                font-size: 1rem;
-            }
-            
-            .content {
-                padding: 2rem 1.5rem;
-            }
-            
-            h2 {
+            .page-title {
                 font-size: 1.5rem;
             }
             
-            h3 {
-                font-size: 1.25rem;
+            .page-content {
+                padding: 1rem;
             }
             
-            .cta-buttons {
-                flex-direction: column;
+            .main-content {
+                padding: 2rem 1.5rem;
             }
             
-            section {
-                scroll-margin-top: 20px;
+            .tabs {
+                overflow-x: auto;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Driven by STEM, enabled by Microsoft</h1>
-        <p>F1 x Mercedes x Microsoft STEM Experience</p>
-        <div class="cta-buttons">
-            <a href="https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap" class="btn primary">🎮 Play the Game</a>
-            <a href="https://github.com/asmeets/driven-by-stem" class="btn">📦 View on GitHub</a>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <div>
+                <a href="/" class="site-title">Driven by STEM</a>
+                <div class="site-subtitle">Enabled by Microsoft</div>
+            </div>
+            <nav class="top-nav">
+                <a href="https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap" class="btn-primary">Play the Game</a>
+                <a href="https://github.com/asmeets/driven-by-stem">View on GitHub</a>
+            </nav>
         </div>
     </div>
     
-    <div class="tabs">
-        <button class="tab active" onclick="switchTab('students')">🎮 Students</button>
-        <button class="tab" onclick="switchTab('educators')">👩‍🏫 Educators</button>
+    <div class="page-header">
+        <div class="page-header-inner">
+            <h1 class="page-title">F1 x Mercedes x Microsoft</h1>
+            <p class="page-description">A STEM experience exploring engineering tradeoffs through racing</p>
+            
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('students')">🎮 Students</button>
+                <button class="tab" onclick="switchTab('educators')">👩‍🏫 Educators</button>
+            </div>
+        </div>
     </div>
     
-    <div class="container">
+    <div class="page-content">
         
         <!-- Students Tab Content -->
         <div id="students-content" class="tab-content active">
-            <nav class="toc">
-                <h3>On This Page</h3>
-                <ul>
+            <aside class="sidebar">
+                <nav class="nav-list">
+                    <h4 class="nav-list-title">On This Page</h4>
+                    <ul>
                     <li><a href="#s-intro">Welcome</a></li>
                     <li><a href="#s-video">Watch How It Works</a></li>
                     <li><a href="#s-do">What You'll Do</a></li>
@@ -353,8 +366,9 @@
                     <li><a href="#s-next">What's Next?</a></li>
                 </ul>
             </nav>
+            </aside>
             
-            <article class="content">
+            <div class="main-content">
                 <section id="s-intro">
                     <h2>Welcome to Driven by STEM!</h2>
                     <p>Ready to race? This isn't just about speed—it's about smart engineering choices that make you faster, safer, and more efficient on the track.</p>
@@ -363,7 +377,7 @@
                 
                 <section id="s-video">
                     <h2>📹 Watch How It Works</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Embedded video demo/trailer]</strong></p>
                         <p style="opacity: 0.7;">• 2-3 minute gameplay overview video<br>
                         • Show a student playing and making tradeoff decisions<br>
@@ -384,7 +398,7 @@
                         <li>🏆 Compare different strategies and find what works best</li>
                     </ul>
                     
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Screenshot gallery]</strong></p>
                         <p style="opacity: 0.7;">• 3-4 gameplay screenshots showing different stages<br>
                         • Code editor view with annotations<br>
@@ -406,7 +420,7 @@
                 
                 <section id="s-start">
                     <h2>How to Get Started</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>Follow the skillmap activities:</strong></p>
                         <ul>
                             <li>Each activity teaches you one new skill</li>
@@ -434,7 +448,7 @@
                 
                 <section id="s-help">
                     <h2>❓ Need Help?</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: FAQ section]</strong></p>
                         <p style="opacity: 0.7;">• How do I import the project?<br>
                         • What if my car moves too fast/slow?<br>
@@ -446,7 +460,7 @@
                 
                 <section id="s-showcase">
                     <h2>🌟 Student Showcase</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Student work examples]</strong></p>
                         <p style="opacity: 0.7;">• 2-3 example remixes from students<br>
                         • "What I learned" testimonials<br>
@@ -457,7 +471,7 @@
                 
                 <section id="s-next">
                     <h2>🚀 What's Next?</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Extension activities]</strong></p>
                         <p style="opacity: 0.7;">• Advanced challenges to try<br>
                         • Other MakeCode Arcade projects<br>
@@ -465,14 +479,15 @@
                         • Links to F1 engineering resources</p>
                     </div>
                 </section>
-            </article>
+            </div>
         </div>
         
         <!-- Educators Tab Content -->
         <div id="educators-content" class="tab-content">
-            <nav class="toc">
-                <h3>On This Page</h3>
-                <ul>
+            <aside class="sidebar">
+                <nav class="nav-list">
+                    <h4 class="nav-list-title">On This Page</h4>
+                    <ul>
                     <li><a href="#e-overview">Project Overview</a></li>
                     <li><a href="#e-goals">Learning Goals</a></li>
                     <li><a href="#e-standards">Standards Alignment</a></li>
@@ -487,8 +502,9 @@
                     <li><a href="#e-partners">Partner Resources</a></li>
                 </ul>
             </nav>
+            </aside>
             
-            <article class="content">
+            <div class="main-content">
                 <section id="e-overview">
                     <h2>Project Overview</h2>
                     
@@ -530,7 +546,7 @@
                 
                 <section id="e-standards">
                     <h2>📚 Standards Alignment</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Standards alignment]</strong></p>
                         <p style="opacity: 0.7;">• CSTA Computer Science Standards<br>
                         • NGSS Engineering Design Standards<br>
@@ -542,7 +558,7 @@
                 
                 <section id="e-lessons">
                     <h2>📚 Lesson Plans & Resources</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Downloadable lesson plans]</strong></p>
                         <p style="opacity: 0.7;">• Full lesson plan (45-60 min)<br>
                         • Short activity version (20-30 min)<br>
@@ -555,7 +571,7 @@
                 
                 <section id="e-assessment">
                     <h2>📊 Assessment & Evaluation</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Assessment materials]</strong></p>
                         <p style="opacity: 0.7;">• Rubric for evaluating student work<br>
                         • Reflection questions for discussion<br>
@@ -571,7 +587,7 @@
                     <h3>Primary Build Path: Skillmap</h3>
                     <p>This project is structured so the primary student-facing build flow runs through a MakeCode Arcade skillmap.</p>
                     
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>Intended flow:</strong></p>
                         <ul>
                             <li>learners open the project skillmap in Arcade</li>
@@ -606,7 +622,7 @@
                         <li>Discussions can connect game outcomes to roles in engineering, software, strategy, data, and sustainability</li>
                     </ul>
                     
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Facilitation guide]</strong></p>
                         <p style="opacity: 0.7;">• Pre-session setup checklist<br>
                         • Suggested talking points for each activity<br>
@@ -630,7 +646,7 @@
                 
                 <section id="e-differentiation">
                     <h2>🎯 Differentiation Strategies</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Differentiation guide]</strong></p>
                         <p style="opacity: 0.7;">• Scaffolding for novice programmers<br>
                         • Extension challenges for advanced students<br>
@@ -643,7 +659,7 @@
                 
                 <section id="e-success">
                     <h2>🏆 Success Stories</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Implementation case studies]</strong></p>
                         <p style="opacity: 0.7;">• 2-3 educator testimonials<br>
                         • Different implementation contexts (classroom, after-school, live event)<br>
@@ -655,7 +671,7 @@
                 
                 <section id="e-community">
                     <h2>🤝 Community & Support</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Community resources]</strong></p>
                         <p style="opacity: 0.7;">• Educator community forum/Discord<br>
                         • Office hours or Q&A sessions<br>
@@ -676,7 +692,7 @@
                     </ul>
                     <p>This project is meant to feel like a pit lane for ideas: test a change, watch what happens, and improve the next run.</p>
                     
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Technical documentation]</strong></p>
                         <p style="opacity: 0.7;">• Architecture overview<br>
                         • Code structure guide<br>
@@ -689,7 +705,7 @@
                 
                 <section id="e-partners">
                     <h2>🔗 Partner Resources</h2>
-                    <div class="highlight">
+                    <div class="notice">
                         <p><strong>[PLACEHOLDER: Partner content]</strong></p>
                         <p style="opacity: 0.7;">• F1 educational resources<br>
                         • Mercedes F1 team insights<br>
@@ -699,13 +715,14 @@
                         • Partnership opportunities</p>
                     </div>
                 </section>
-            </article>
+            </div>
         </div>
     </div>
     
-    <div class="footer">
-<!--        <p>&copy; 2026 F1 x Mercedes x Microsoft | Driven by STEM</p> -->
-    </div>
+    <footer class="page-footer">
+        <p>&copy; 2026 F1 x Mercedes x Microsoft | Driven by STEM</p>
+        <p>Powered by <a href="https://pages.github.com/">GitHub Pages</a></p>
+    </footer>
     
     <script>
         function switchTab(tab) {
@@ -731,7 +748,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
-                    document.querySelectorAll('.toc a').forEach(link => {
+                    document.querySelectorAll('.nav-list a').forEach(link => {
                         link.classList.remove('active');
                         if (link.getAttribute('href') === `#${id}`) {
                             link.classList.add('active');
