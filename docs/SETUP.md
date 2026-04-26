@@ -62,16 +62,16 @@ The built site will be in `docs/_site/`
 ### Configuration
 - **Gemfile** - Ruby gem dependencies
 - **_config.yml** - Jekyll site configuration
-- **assets/css/main.scss** - Custom styles with Mercedes branding
+- **_data/** - Navigation menus, features, and contact info
 
 ### Content Pages
-- **index.md** - Homepage (splash layout)
+- **index.md** - Homepage (home layout)
 - **_pages/students.md** - Student-facing content
 - **_pages/educators.md** - Educator resources
 - **_pages/about.md** - About the project
 
 ### Theme
-Using [Jekyll Serif](https://github.com/zerostaticthemes/jekyll-serif-theme) theme via `remote_theme` with custom Mercedes Petronas teal branding (#00D2BE).
+Using [Jekyll Serif](https://github.com/zerostaticthemes/jekyll-serif-theme) theme via `remote_theme`.
 
 The theme is loaded from GitHub (`zerostaticthemes/jekyll-serif-theme`) using Jekyll's remote theme functionality, which is the recommended approach for GitHub Pages.
 
