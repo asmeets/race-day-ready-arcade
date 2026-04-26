@@ -70,9 +70,9 @@ The built site will be in `docs/_site/`
 - **_pages/about.md** - About the project
 
 ### Theme
-Using [Tactile](https://github.com/pages-themes/tactile) - A clean, responsive GitHub Pages theme with a modern look.
+Using [Leap Day](https://github.com/pages-themes/leap-day) - A fresh, vibrant GitHub Pages theme with a sidebar navigation.
 
-Tactile is a GitHub Pages-supported theme that provides excellent readability, professional styling, and a distinctive header design perfect for project documentation.
+Leap Day is a GitHub Pages-supported theme featuring a fixed sidebar, excellent readability, and a modern, professional appearance perfect for documentation sites.
 
 ## GitHub Pages Deployment
 
