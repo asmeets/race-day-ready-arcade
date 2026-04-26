@@ -4,6 +4,7 @@ description: "A classroom-ready MakeCode Arcade racing game that teaches middle 
 url: "https://asmeets.github.io"
 baseurl: "/driven-by-stem"
 repository: "asmeets/driven-by-stem"
+logo: ""
 
 # Theme Settings
 remote_theme: zerostaticthemes/jekyll-serif-theme
@@ -12,6 +13,12 @@ remote_theme: zerostaticthemes/jekyll-serif-theme
 email: ""
 phone: ""
 address: ""
+
+# Footer
+footer: "F1 x Mercedes x Microsoft | Driven by STEM"
+
+# Google Analytics (optional - leave empty if not using)
+google_analytics_id: ""
 
 # Social Links (optional)
 social:

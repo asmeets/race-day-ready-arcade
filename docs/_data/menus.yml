@@ -1,0 +1,11 @@
+- name: "Students"
+  url: "/students/"
+  weight: 1
+
+- name: "Educators"
+  url: "/educators/"
+  weight: 2
+
+- name: "About"
+  url: "/about/"
+  weight: 3
