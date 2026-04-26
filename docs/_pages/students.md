@@ -1,11 +1,7 @@
 ---
-layout: single
+layout: page
 title: "For Students"
 permalink: /students/
-toc: true
-toc_label: "On This Page"
-toc_icon: "list"
-toc_sticky: true
 ---
 
 ## Welcome to Driven by STEM! 🏎️
@@ -19,7 +15,6 @@ In this game, you'll learn how real F1 engineers make decisions by testing diffe
 **[PLACEHOLDER: Embedded video demo/trailer]**
 
 _Coming soon: 2-3 minute gameplay overview video showing a student playing and making tradeoff decisions, highlighting the code-to-gameplay connection._
-{: .notice--info}
 
 ## What You'll Do
 
@@ -35,7 +30,6 @@ Jump into a fast-paced racing experience where you can:
 **[PLACEHOLDER: Screenshot gallery]**
 
 _3-4 gameplay screenshots showing different stages, code editor views with annotations, and before/after comparisons._
-{: .notice}
 
 ## What You'll Learn
 
@@ -78,14 +72,12 @@ Common questions:
 - How do I reset my progress?
 - Troubleshooting common errors
 - Where can I get more help?
-{: .notice--warning}
 
 ## 🌟 Student Showcase
 
 **[PLACEHOLDER: Student work examples]**
 
 _Coming soon: Example remixes from students, "What I learned" testimonials, creative modifications, and career connections students discovered._
-{: .notice}
 
 ## 🚀 What's Next?
 
@@ -96,4 +88,3 @@ Explore:
 - Other MakeCode Arcade projects
 - Related STEM careers to explore
 - Links to F1 engineering resources
-{: .notice}

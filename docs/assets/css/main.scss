@@ -9,83 +9,86 @@ $mercedes-teal: #00D2BE;
 $mercedes-dark-teal: #00847A;
 $mercedes-silver: #c0c0c0;
 
-/* Override Minimal Mistakes variables */
-$primary-color: $mercedes-teal;
-$link-color: $mercedes-dark-teal;
-$link-color-hover: $mercedes-teal;
-$link-color-visited: $mercedes-dark-teal;
-
-/* Import Minimal Mistakes theme */
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
-@import "minimal-mistakes";
-
 /* Custom Mercedes Branding Overrides */
 
-/* Hide the top navigation masthead */
-.masthead {
-  display: none !important;
-}
-
-/* Primary buttons and CTAs with teal */
-.btn--primary {
-  background-color: $mercedes-teal !important;
-  color: #fff !important;
+/* Primary link color */
+a {
+  color: $mercedes-dark-teal;
+  transition: color 0.3s ease;
   
   &:hover {
-    background-color: $mercedes-dark-teal !important;
-  }
-}
-
-/* Archive link hover color */
-.archive__item-title {
-  a {
-    &:hover {
-      color: $mercedes-teal;
-    }
-  }
-}
-
-/* Accent borders and highlights */
-.notice {
-  border-left-color: $mercedes-teal;
-}
-
-.notice--info {
-  background-color: lighten($mercedes-teal, 45%);
-  border-left-color: $mercedes-teal;
-}
-
-/* TOC active link */
-.toc__menu a.active {
-  color: $mercedes-teal;
-  font-weight: bold;
-}
-
-/* Masthead link hover */
-.masthead__menu-item {
-  a:hover {
     color: $mercedes-teal;
   }
 }
 
-/* Page header overlay with teal accent */
-.page__hero--overlay {
-  .page__title,
-  .page__lead {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+/* Buttons with Mercedes teal */
+.button,
+.button-primary,
+button,
+.btn {
+  background-color: $mercedes-teal;
+  border-color: $mercedes-teal;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: $mercedes-dark-teal;
+    border-color: $mercedes-dark-teal;
+    color: white;
+    text-decoration: none;
   }
 }
 
-/* Feature row styling */
-.feature__item {
-  .archive__item-title {
-    margin-top: 0.5em;
-    font-size: 1.25em;
+/* Header/Navigation accent */
+.header {
+  border-bottom: 3px solid $mercedes-teal;
+}
+
+.header .logo a {
+  color: $mercedes-teal;
+  font-weight: bold;
+}
+
+/* Main menu links */
+.main-menu a {
+  color: #333;
+  
+  &:hover {
+    color: $mercedes-teal;
   }
 }
 
-/* Footer links */
-.page__footer-follow {
+/* Feature cards and content boxes */
+.feature,
+.service {
+  border-top: 3px solid $mercedes-teal;
+}
+
+/* Headings with subtle style */
+h1 {
+  color: #333;
+  border-bottom: 3px solid $mercedes-teal;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  color: #333;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid lighten($mercedes-teal, 30%);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Footer styling */
+.footer {
+  background-color: #f8f9fa;
+  border-top: 3px solid $mercedes-teal;
+  
   a {
     color: $mercedes-teal;
     
@@ -95,19 +98,26 @@ $link-color-visited: $mercedes-dark-teal;
   }
 }
 
-/* Code blocks with subtle teal accent */
-code.language-plaintext {
-  background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
+/* Content sections */
+.content {
+  line-height: 1.8;
 }
 
-/* Sidebar navigation */
-.nav__list {
-  .nav__items {
-    a {
-      &:hover {
-        color: $mercedes-teal;
-      }
-    }
+/* Responsive grid for homepage */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col-12 {
+  width: 100%;
+  padding: 0 15px;
+}
+
+@media (min-width: 768px) {
+  .col-md-4 {
+    width: 33.333%;
+    padding: 0 15px;
   }
 }

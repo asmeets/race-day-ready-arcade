@@ -1,11 +1,7 @@
 ---
-layout: single
+layout: page
 title: "For Educators"
 permalink: /educators/
-toc: true
-toc_label: "On This Page"
-toc_icon: "chalkboard-teacher"
-toc_sticky: true
 ---
 
 ## Project Overview
@@ -55,7 +51,6 @@ The game and the repository are shaped by a few non-negotiables:
 - ISTE Standards for Students
 - Grade level recommendations
 - Prior knowledge requirements
-{: .notice--info}
 
 ## 📚 Lesson Plans & Resources
 
@@ -68,7 +63,6 @@ Resources include:
 - Presentation slides for educators
 - Handouts and worksheets
 - PDF downloads
-{: .notice--info}
 
 ## 📊 Assessment & Evaluation
 
@@ -80,7 +74,6 @@ Available tools:
 - Self-assessment checklist for students
 - Exit ticket templates
 - Portfolio documentation guide
-{: .notice--info}
 
 ## Using This in Your Classroom
 
@@ -97,7 +90,6 @@ This project is structured so the primary student-facing build flow runs through
 
 **Skillmap entry URL:**  
 [https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)
-{: .notice--success}
 
 ### Alternative: Import to MakeCode Arcade
 
@@ -130,7 +122,6 @@ Topics covered:
 - Time management tips
 - Troubleshooting technical issues
 - Discussion prompts for career connections
-{: .notice--warning}
 
 ### Tips for Live Events and Workshops
 
@@ -153,7 +144,6 @@ Strategies for:
 - Accommodations for diverse needs
 - Multiple entry points to the content
 - Alternative assessment approaches
-{: .notice}
 
 ## 🎓 Success Stories
 
@@ -164,7 +154,6 @@ Strategies for:
 - Educator feedback and tips
 - Photos/videos from live events
 - Measured learning outcomes
-{: .notice}
 
 ## 👥 Community & Support
 
@@ -175,7 +164,6 @@ Strategies for:
 - Monthly educator meetups
 - Professional development webinars
 - Direct support contact
-{: .notice}
 
 ## 🛠️ For Contributors
 
@@ -187,7 +175,6 @@ Developer resources:
 - Testing procedures
 - Contribution workflow
 - Link to detailed developer wiki
-{: .notice}
 
 ## 🔗 Partner Resources
 
@@ -199,7 +186,6 @@ Developer resources:
 - Related MakeCode projects
 - Industry career pathway information
 - Partnership opportunities
-{: .notice}
 
 ---
 
