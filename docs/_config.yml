@@ -5,7 +5,7 @@ url: "https://asmeets.github.io"
 baseurl: "/driven-by-stem"
 
 # Theme Settings
-theme: jekyll-theme-primer
+theme: jekyll-theme-tactile
 
 # Plugins
 plugins:

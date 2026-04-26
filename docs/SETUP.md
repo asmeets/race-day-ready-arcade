@@ -70,9 +70,9 @@ The built site will be in `docs/_site/`
 - **_pages/about.md** - About the project
 
 ### Theme
-Using [Primer](https://github.com/pages-themes/primer) - GitHub's design system theme.
+Using [Tactile](https://github.com/pages-themes/tactile) - A clean, responsive GitHub Pages theme with a modern look.
 
-Primer is a GitHub Pages-supported theme that provides a clean, minimal design with excellent typography and responsive layouts.
+Tactile is a GitHub Pages-supported theme that provides excellent readability, professional styling, and a distinctive header design perfect for project documentation.
 
 ## GitHub Pages Deployment
 
