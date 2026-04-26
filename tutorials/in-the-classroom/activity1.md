@@ -4,26 +4,24 @@
 
 ## {Introduction @unplugged}
 
-![Psyched Monkey](/static/skillmap/interface/monkey.png "Psyched Monkey is Ready!" )
+**Are you ready to start coding?**
 
-**Are you ready to start coding your own games?**
-
-Complete this tutorial to find out how to:
+Complete this tutorial to learn how to:
 - follow tutorial prompts
 - find blocks in the toolbox
 - build code in the workspace
-- run your project on the built-in game screen
+- run your project in the simulator (the mini game window)
 
-Before you know it, you'll have an arcade game of your very own!
+Once you've mastered these skills, you'll be ready to build your own F1 racing simulator!
 
 
 ## {step 1}
 
-**⭐Welcome⭐**
+**⭐ Welcome ⭐**
 
 You've just discovered the most important part of following a tutorial — **reading instructions**!
 
-- :info: Sometimes you'll need to scroll to read all of the instructions.
+- :lightbulb: Sometimes you'll need to scroll to read all of the instructions.
 
 - :arrow right: When you're ready to move to the next step, click **Next** to continue.
 
@@ -68,7 +66,7 @@ is the area where you'll connect code blocks to build your program.
 ---
 
 - :mouse pointer:  Click inside the ``||game(noclick):splash " "||`` block that's already in the workspace
-and **change the sentence** to something more exciting.
+and **change the message** to something you'd like to say.
 
 ~hint What's a workspace? 🕵🏽
 
@@ -85,7 +83,7 @@ hint~
 
 #### ~ tutorialhint
 ```blocks
-game.splash("I like bananas!")
+game.splash("Let's start coding!")
 ```
 
 
@@ -143,7 +141,7 @@ container already in the workspace.
 #### ~ tutorialhint
 ```blocks
 scene.setBackgroundColor(7)
-game.splash("My monkey is better than yours")
+game.splash("Let's start coding!")
 ```
 
 
@@ -177,7 +175,7 @@ hint~
 
 ```blocks
 scene.setBackgroundColor(5)
-game.splash("My monkey is better than yours")
+game.splash("Let's start coding!")
 let mySprite = sprites.create(img`
 . . . . . f f f f f . . . . . .
 . . . . f e e e e e f . . . . .
@@ -203,15 +201,15 @@ let mySprite = sprites.create(img`
 
 
 
-## {Game Window}
+## {Simulator}
 
-Make sure to keep checking your [__*game window*__](#gamez "game simulator that shows the result of the code you have written") as you go.
+Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go.
 
-- :binoculars: Take a look at the game window. <br/>
+- :binoculars: Take a look at the simulator. <br/>
 Do you see a message that needs to be cleared? Then do you see the sprite you chose?
 
 
-![Look for the game window in the lower right](/static/skillmap/assets/game-window.png "Click the mini game window to pop open the bigger game window.")
+![Look for the simulator in the lower right](/static/skillmap/assets/game-window.png "Click the mini simulator to pop open the bigger view.")
 
 
 
@@ -261,7 +259,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 Next, there are [__*standard blocks*__](#sBlockIt "Single line blocks that make up the majority of most programs").
 
 Standard blocks are single-line blocks with notches at the top and bottom that
-allow them to attatch to other pieces. These blocks run in order from top
+allow them to attach to other pieces. These blocks run in order from top
 to bottom in the container where they're placed.
 
 Here is an example of a standard block:
@@ -341,15 +339,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 
 
 
-## {Play Time}
+## {Test Time}
 
-**🕹️ Time to play 🕹️**
+**🕹️ Time to test 🕹️**
 
-- :binoculars: Take a look at the game window. <br/>
+- :binoculars: Take a look at the simulator and click the **Ⓐ** button (or space bar) to clear your splash screen message.
 
-Click the **Ⓐ** button (or space bar) to clear your splash screen message.
-
-Click **Ⓐ** over and over again to see your effects!
+- :game: Now click **Ⓐ** over and over again to see your effects!
 
 
 
@@ -362,11 +358,13 @@ Click **Ⓐ** over and over again to see your effects!
 Take a look at all of the extra blocks in the toolbox.
 
 It's okay if you don't know what they all do.
-Play around with them to see what happens!
+Try adding them to see what happens!
+
+If something doesn't work the way you expect, that's normal! You can always undo (Ctrl+Z or Cmd+Z) or click the Reset button to start fresh.
 
 ---
 
-_💡 Test your game after every couple of steps to make sure
+_💡 Test your code in the simulator after every couple of steps to make sure
 it's behaving the way you want it to!_
 
 
@@ -376,78 +374,40 @@ it's behaving the way you want it to!_
 
 **🎈 Congratulations 🎈**
 
-You've completed the **"Intro to MakeCode Arcade"** tutorial!<br/>
-Now you're ready to make amazing things in Microsoft MakeCode Arcade.
+You've completed the **"Intro to MakeCode Arcade"** tutorial!
+
+You now know how to:
+- ✅ Follow tutorial instructions
+- ✅ Find blocks in the toolbox
+- ✅ Build code in the workspace
+- ✅ Test your work in the simulator
 
 ---
 
-What would you like to do next? 
+**Ready for the next challenge?**
 
-|      |      |      |       |      |
-|:----:|--|:----:|--|:----:|
-| [![Skillmap](/static/tutorials/interface/skillmap.png)](--skillmap#docs:/skillmap/dino) | &emsp;&emsp; | [![Tutorial1](/static/tutorials/interface/tutorial.png)](#tutorial:/tutorials/turkey-jr) | &emsp;&emsp; | [![Back Home](/static/tutorials/interface/home.png)](/) |
-| [**Try a Skillmap**](--skillmap#docs:/skillmap/dino) | | [**New Tutorial**](#tutorial:/tutorials/chase-the-pizza) | | [**Return Home**](/) | |
+Head to the **Garage** where you'll join the Mercedes F1 team as an engineer. You'll build your own racing simulator, make engineering decisions about speed and efficiency, and test your code on the track.
+
+Let's go! 🏎️
 
 
 
 ```ghost
 let mySprite: Sprite = null;
-mySprite.startEffect(effects.spray)
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    game.showLongText("The little unicorn walked into the meadow.", DialogLayout.Top)
-    scene.cameraShake(4, 500)
-})
 scene.setBackgroundColor(9)
 scene.setBackgroundImage()
+mySprite.startEffect(effects.spray)
+mySprite.startEffect(effects.confetti)
 mySprite.x += 0
-effects.confetti.startScreenEffect()
-effects.confetti.endScreenEffect()
-mySprite.setPosition(70, randint(100, 600))
-for (let index = 0; index < 4; index++) {
-    controller.moveSprite(mySprite)
-    music.setVolume(20)
-    music.playMelody("- - - - - - - - ", 120)
-}
-game.onUpdateInterval(5000, function () {
-    if (game.askForString("Continue?") == "Y" || game.askForString("Continue?") == "y") {
-        mySprite.say(":)")
-    }
-    game.splash("")
-})
-music.setVolume(20)
-
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    scene.setBackgroundImage(assets.image`into_forever_album_cover`)
-    thisSong = music.createSong(assets.song`into_the_forever`)
-})
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    music.stopAllSounds()
-})
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    music.play(thisSong, music.PlaybackMode.LoopingInBackground)
-})
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    scene.setBackgroundImage(assets.image`perfect_society_album_cover`)
-    thisSong = music.createSong(assets.song`perfectSociety`)
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    scene.setBackgroundImage(assets.image`once_more_album_art`)
-    thisSong = music.createSong(assets.song`once_more`)
-})
-controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    scene.setBackgroundImage(assets.image`i_am_groot_album_cover`)
-    thisSong = music.createSong(assets.song`i_am_groot`)
-})
-let thisSong: music.Playable = null
-scene.setBackgroundImage(assets.image`Zune`)
-
-    if (thisSong) {
-        music.play(thisSong, music.PlaybackMode.LoopingInBackground)
-    }
+mySprite.y += 0
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {})
+controller.moveSprite(mySprite)
+game.splash("")
+randint(0, 10)
 ```
 
 
 ```template
-game.splash("These blocks are in your workspace!")
+game.splash("Ready to learn MakeCode Arcade!")
 
 ```
