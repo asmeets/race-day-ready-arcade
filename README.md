@@ -5,10 +5,6 @@ Build, tune, and race a classroom-ready F1-inspired experience where every desig
 ## Quick Links
 
 - Play the Game: https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap
-- Issues: https://github.com/asmeets/driven-by-stem/issues
-- Wiki: https://github.com/asmeets/driven-by-stem/wiki
-- Project Board: https://github.com/users/asmeets/projects/4
-- Discussions: https://github.com/asmeets/driven-by-stem/discussions
 
 ## Project Overview
 
