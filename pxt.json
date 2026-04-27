@@ -14,6 +14,7 @@
         "main.blocks",
         "main.ts",
         "custom.ts",
+        "test-track.ts",
         "images.g.jres",
         "images.g.ts",
         "tutorials/in-the-classroom/activity1.md",

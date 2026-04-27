@@ -3,22 +3,39 @@
  */
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
+    // Saves the team's chosen drive speed so later stages can reuse the garage setup.
     const DRIVE_SPEED_KEY = "driveSpeed"
+    // Saves the car's current efficiency rating for gameplay and review screens.
     const EFFICIENCY_KEY = "efficiencyRating"
+    // Tracks strategy points earned from smart decisions during a run.
     const STRATEGY_KEY = "strategyPoints"
+    // Stores how much efficiency the current setup drains while driving.
     const DRAIN_KEY = "efficiencyDrain"
+    // Remembers the active weather so track conditions stay consistent.
     const WEATHER_KEY = "weatherCondition"
+    // Marks which stage of the skillmap the team is currently playing.
     const STAGE_KEY = "currentStage"
+    // Saves whether the team tuned the car for balance or pace in the garage.
     const SETUP_FOCUS_KEY = "setupFocus"
+    // Counts collisions so the game can reflect on control and handling tradeoffs.
     const COLLISION_KEY = "collisionCount"
+    // Counts pit stop visits for strategy discussions after a run.
     const PIT_STOPS_KEY = "pitStopsVisited"
+    // Saves the last run's score so students can compare results between tests.
     const LAST_SCORE_KEY = "lastResultScore"
+    // Saves the last run's remaining efficiency for debrief and iteration.
     const LAST_EFFICIENCY_KEY = "lastResultEfficiency"
+    // Saves the last run's strategy total for reflection activities.
     const LAST_STRATEGY_KEY = "lastResultStrategy"
+    // Stores the team's note about what to improve in the next test.
     const NEXT_FOCUS_KEY = "nextTestFocus"
+    // Saves the team's chosen name for profile and celebration screens.
     const TEAM_NAME_KEY = "teamName"
+    // Saves the student's car name so it appears across activities.
     const CAR_NAME_KEY = "carName"
+    // Remembers the role perspective the student selected for the experience.
     const ROLE_LENS_KEY = "roleLens"
+    // Saves the selected car style so the same look can be reapplied later.
     const CAR_STYLE_KEY = "carStyle"
 
     export enum RaceStage {
@@ -166,6 +183,16 @@ namespace drivenByStem {
         }
     }
 
+    function readNumberSetting(name: string, fallback: number): number {
+        const value = settings.readNumber(name)
+        return value == undefined ? fallback : value
+    }
+
+    function readStringSetting(name: string, fallback: string): string {
+        const value = settings.readString(name)
+        return value == undefined ? fallback : value
+    }
+
     /**
      * Load a race profile, or create one if this device has not saved setup data yet.
      */
@@ -224,6 +251,17 @@ namespace drivenByStem {
     }
 
     /**
+     * Start the optional pseudo-3D test track using the saved setup values.
+     */
+    //% block="start vehicle test track"
+    //% blockId=raceday_start_vehicle_test_track
+    //% group="Session" weight=60
+    export function startVehicleTestTrack(): void {
+        loadRaceProfile(80, 5)
+        drivenByStemSupport.startVehicleTestTrack()
+    }
+
+    /**
      * Save the team's name.
      */
     //% block="set team name to $name"
@@ -241,7 +279,7 @@ namespace drivenByStem {
     //% blockId=raceday_team_name
     //% group="Profile" weight=90
     export function teamName(): string {
-        return settings.readString(TEAM_NAME_KEY)
+        return readStringSetting(TEAM_NAME_KEY, "Apex Lab")
     }
 
     /**
@@ -262,7 +300,7 @@ namespace drivenByStem {
     //% blockId=raceday_car_name
     //% group="Profile" weight=70
     export function carName(): string {
-        return settings.readString(CAR_NAME_KEY)
+        return readStringSetting(CAR_NAME_KEY, "Velocity")
     }
 
     /**
@@ -282,7 +320,7 @@ namespace drivenByStem {
     //% blockId=raceday_role_lens
     //% group="Profile" weight=50
     export function roleLens(): string {
-        return settings.readString(ROLE_LENS_KEY)
+        return readStringSetting(ROLE_LENS_KEY, "performance engineer")
     }
 
     /**
@@ -348,7 +386,7 @@ namespace drivenByStem {
     //% blockId=raceday_saved_drive_speed
     //% group="Setup" weight=90
     export function savedDriveSpeed(): number {
-        return settings.readNumber(DRIVE_SPEED_KEY)
+        return readNumberSetting(DRIVE_SPEED_KEY, 80)
     }
 
     /**
@@ -358,7 +396,7 @@ namespace drivenByStem {
     //% blockId=raceday_saved_efficiency
     //% group="Setup" weight=80
     export function savedEfficiency(): number {
-        return settings.readNumber(EFFICIENCY_KEY)
+        return readNumberSetting(EFFICIENCY_KEY, 5)
     }
 
     /**
@@ -368,7 +406,7 @@ namespace drivenByStem {
     //% blockId=raceday_saved_efficiency_cost
     //% group="Setup" weight=75
     export function savedEfficiencyCost(): number {
-        return settings.readNumber(DRAIN_KEY)
+        return readNumberSetting(DRAIN_KEY, 1)
     }
 
     /**
@@ -378,7 +416,7 @@ namespace drivenByStem {
     //% blockId=raceday_saved_strategy
     //% group="Setup" weight=70
     export function savedStrategyPoints(): number {
-        return settings.readNumber(STRATEGY_KEY)
+        return readNumberSetting(STRATEGY_KEY, 0)
     }
 
     /**
@@ -431,7 +469,7 @@ namespace drivenByStem {
     export function recordCollision(scorePenalty: number, efficiencyPenalty: number): void {
         info.changeScoreBy(0 - scorePenalty)
         info.changeLifeBy(0 - efficiencyPenalty)
-        settings.writeNumber(COLLISION_KEY, settings.readNumber(COLLISION_KEY) + 1)
+        settings.writeNumber(COLLISION_KEY, readNumberSetting(COLLISION_KEY, 0) + 1)
         settings.writeNumber(EFFICIENCY_KEY, info.life())
     }
 
@@ -442,7 +480,7 @@ namespace drivenByStem {
     //% blockId=raceday_collision_count
     //% group="Telemetry" weight=60
     export function collisionCount(): number {
-        return settings.readNumber(COLLISION_KEY)
+        return readNumberSetting(COLLISION_KEY, 0)
     }
 
     /**
@@ -452,7 +490,7 @@ namespace drivenByStem {
     //% blockId=raceday_record_pit_stop
     //% group="Telemetry" weight=50
     export function recordPitStopVisit(): void {
-        settings.writeNumber(PIT_STOPS_KEY, settings.readNumber(PIT_STOPS_KEY) + 1)
+        settings.writeNumber(PIT_STOPS_KEY, readNumberSetting(PIT_STOPS_KEY, 0) + 1)
     }
 
     /**
@@ -462,7 +500,7 @@ namespace drivenByStem {
     //% blockId=raceday_pit_stop_count
     //% group="Telemetry" weight=40
     export function savedPitStopCount(): number {
-        return settings.readNumber(PIT_STOPS_KEY)
+        return readNumberSetting(PIT_STOPS_KEY, 0)
     }
 
     /**
@@ -473,7 +511,7 @@ namespace drivenByStem {
     //% amount.defl=1
     //% group="Telemetry" weight=30
     export function awardStrategyPoints(amount: number): void {
-        settings.writeNumber(STRATEGY_KEY, settings.readNumber(STRATEGY_KEY) + amount)
+        settings.writeNumber(STRATEGY_KEY, readNumberSetting(STRATEGY_KEY, 0) + amount)
     }
 
     /**
@@ -485,7 +523,7 @@ namespace drivenByStem {
     export function saveCurrentRunResults(): void {
         settings.writeNumber(LAST_SCORE_KEY, info.score())
         settings.writeNumber(LAST_EFFICIENCY_KEY, info.life())
-        settings.writeNumber(LAST_STRATEGY_KEY, settings.readNumber(STRATEGY_KEY))
+        settings.writeNumber(LAST_STRATEGY_KEY, readNumberSetting(STRATEGY_KEY, 0))
         settings.writeNumber(EFFICIENCY_KEY, info.life())
     }
 
@@ -496,7 +534,7 @@ namespace drivenByStem {
     //% blockId=raceday_last_performance
     //% group="Review" weight=90
     export function lastPerformanceResult(): number {
-        return settings.readNumber(LAST_SCORE_KEY)
+        return readNumberSetting(LAST_SCORE_KEY, 0)
     }
 
     /**
@@ -506,7 +544,7 @@ namespace drivenByStem {
     //% blockId=raceday_last_efficiency
     //% group="Review" weight=80
     export function lastEfficiencyResult(): number {
-        return settings.readNumber(LAST_EFFICIENCY_KEY)
+        return readNumberSetting(LAST_EFFICIENCY_KEY, 0)
     }
 
     /**
@@ -516,7 +554,7 @@ namespace drivenByStem {
     //% blockId=raceday_last_strategy
     //% group="Review" weight=70
     export function lastStrategyResult(): number {
-        return settings.readNumber(LAST_STRATEGY_KEY)
+        return readNumberSetting(LAST_STRATEGY_KEY, 0)
     }
 
     /**
@@ -537,6 +575,6 @@ namespace drivenByStem {
     //% blockId=raceday_next_focus
     //% group="Review" weight=50
     export function nextTestFocus(): string {
-        return settings.readString(NEXT_FOCUS_KEY)
+        return readStringSetting(NEXT_FOCUS_KEY, "Review the data and test again.")
     }
 }

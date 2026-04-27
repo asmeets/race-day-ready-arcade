@@ -106,6 +106,21 @@ _Note: For guided learning, the skillmap URL above is recommended._
 
 This repository is meant to support more than a game build—it's designed to support a live learning moment.
 
+### Optional Support: Session Test Track
+
+If students want a fast way to compare vehicle ideas after they build a car, you can use the Session block `start vehicle test track` as an optional support tool.
+
+- This block is not part of the required skillmap flow.
+- It starts a short pseudo-3D shakedown that uses the team's saved drive speed, saved efficiency, and saved efficiency cost.
+- Students should create a `Player` car first if they want to test their own vehicle art. If they have not created one yet, the support block will create a default car.
+- The track is single-player only. It is designed for quick test-and-compare loops, not multiplayer races.
+- A clean run can still award strategy points, and the run saves score, life, and collision results for later discussion.
+
+Suggested use:
+
+- Run it after a setup change and ask students what changed in their score, collisions, or remaining life.
+- Use it as a compare-and-explain checkpoint, not as a replacement for the guided tutorials.
+
 ### What to Expect
 
 - Learners can understand the goal quickly without a long setup
