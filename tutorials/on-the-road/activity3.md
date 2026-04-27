@@ -560,9 +560,11 @@ namespace drivenByStem {
 
 ![Avery - Sustainability Lead](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/avery.png)
 
+![Weather shift concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/weatherBg.png)
+
 Hi, I'm **Avery**, the sustainability lead on your team. I found my way into this role through a college engineering program, but what really hooked me wasn't the textbooks. It was realizing that **every design choice has a ripple effect** on energy, materials, heat, and safety. On a real team, I map those tradeoffs and make sure the environment stays part of the conversation when race conditions shift.
 
-In this gate, you'll **switch the track from dry to wet**, model how rain reduces grip, and tune your car's response so it **adapts instead of skids**. The best engineers don't just build for perfect conditions. They **design for the unexpected**. Let's see how you handle the rain.
+In this gate, you'll **switch the track from dry to wet**, model how rain reduces grip, and tune your car's response so it **adapts instead of skids**. The best engineers don't just build for perfect conditions. They **design for the unexpected**. The adaptation result you save here rolls straight into the Final Challenge.
 
 ```template
 let driveSpeed = 110
@@ -1005,6 +1007,10 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-**Awesome work!** You modeled changing conditions and adaptive response. You built a delayed timer that shifts weather mid-run, a speed-adjustment loop that responds to rain, puddle hazards that increase challenge, and a countdown-end event that rewards successful adaptation. The best design adapts rather than pushes harder. That's the core of resilient systems thinking.
+**Awesome work!** You modeled changing conditions and adaptive response. You built a delayed timer that shifts weather mid-run, a speed-adjustment loop that responds to rain, puddle hazards that increase challenge, and a countdown-end event that rewards successful adaptation. The result you saved here is now ready for the Final Challenge.
 
-Roles in this tutorial: sustainability lead, systems engineer, telemetry analyst, and performance engineer.
+Computer science idea: timers, conditionals, and saved state let one project react when the environment changes.
+
+Engineering idea: resilient systems adapt to changing conditions instead of assuming perfect ones.
+
+Team roles in this tutorial: sustainability lead, systems engineer, telemetry analyst, and performance engineer.

@@ -556,13 +556,15 @@ namespace drivenByStem {
 * markers: validate-exists
 ```
 
-## Pit Wall Decisions @showdialog
+## Pit Stop Briefings @showdialog
 
 ![Morgan - Strategist](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/morgan.png)
 
+![Pit stop marker concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/pitMarker.png)
+
 Hey, I'm **Morgan**, your strategist. I didn't start out crunching data; I started in track operations, learning **timing and logistics** by doing the work and talking with the engineers and analysts around me. On a real team, I monitor live conditions, **weigh safer options against riskier ones**, and help everyone make fast calls with different pieces of information.
 
-In this gate, you'll build a pit stop that **reads the setup choice you saved earlier** and turns it into a **real decision with real consequences**. The call you make here won't just happen and disappear. It will shape how the rest of your run plays out.
+In this gate, you'll build a pit stop that **reads the setup choice you saved earlier** and turns it into a **real decision with real consequences**. The call you make here won't just happen and disappear. Each pit stop visit you record here shows up again in Reflect and Review.
 
 ```template
 let driveSpeed = 110
@@ -772,7 +774,7 @@ game.onUpdateInterval(8000, function () {
 The pit stop doesn't give the same reward to everyone—it responds to the setup choice you saved earlier. If you optimized for pace, you get a speed boost; if you optimized for balance, you get efficiency back. This conditional logic mirrors how real teams tune their strategies to their car's strengths and the current race situation.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap Player and Food` block.
-* :racing_car: Inside an `if stage is Pit Stop` check, change `pitStopsVisited` by 1 and award a Strategy point.
+* :racing_car: Inside an `if stage is Pit Stop` check, change `pitStopsVisited` by 1, use `||drivenByStem:Driven by STEM||` to record the pit stop visit, and award a Strategy point.
 * :racing_car: Add an `if/else` using `setupFocusIs Pace`. Apply a pace reward in the true branch, a balance reward in the else branch.
 
 ~hint Rewards feel backwards? 🔄
@@ -791,6 +793,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
         //@highlight
         //@validate-exists
         pitStopsVisited += 1
+        //@highlight
+        //@validate-exists
+        drivenByStem.recordPitStopVisit()
         //@highlight
         //@validate-exists
         drivenByStem.awardStrategyPoints(1)
@@ -849,8 +854,10 @@ drivenByStem.recordPitStopVisit()
 
 ## Complete
 
-**Great job!** You built a pit stop system that reads your saved setup focus and turns it into a real mid-run decision. You created a spawner that generates pit markers on a timer, an overlap event that applies different rewards based on your earlier choice, and a save system that carries your strategy forward.
+**Great job!** You built a pit stop system that reads your saved setup focus and turns it into a real mid-run decision. You created a spawner that generates pit markers on a timer, an overlap event that applies different rewards based on your earlier choice, and a save system that carries your strategy forward into review.
+
+Computer science idea: conditionals and persistent counters let one decision show up again later in the project.
 
 Engineering idea: optimization means choosing the best next move with limited time and information.
 
-Roles in this tutorial: strategist, pit crew, data analyst, and operations lead.
+Team roles in this tutorial: strategist, pit crew, data analyst, and operations lead.

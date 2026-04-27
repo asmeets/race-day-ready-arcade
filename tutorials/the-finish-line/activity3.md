@@ -560,9 +560,11 @@ namespace drivenByStem {
 
 ![Kai - Operations Lead](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/kai.png)
 
+![Winners circle banner](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/finishBanner.png)
+
 Hi, I'm **Kai**, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because **reliability isn't luck, it's something you build**. On a real team I coordinate timelines, make sure resets go smoothly, and create **handoffs** so the next shift can pick up right where we left off.
 
-In this last gate, you'll use your saved data to **celebrate what you built**, explore where these skills connect to real careers, and leave with a **clear next-step idea**. Finishing is great, and a good handoff means the work keeps going.
+In this last gate, you'll use your saved data to **celebrate what you built**, explore where these skills connect to real careers, and leave with a **clear next-step idea**. Finishing is great, and a good handoff means the work keeps going. This final screen works because every earlier tutorial saved one more piece of the story.
 
 ```template
 drivenByStem.loadRaceProfile(80, 5)
@@ -833,5 +835,7 @@ if (finalStrategy >= 3) {
 **You finished the full journey!** You built a celebration screen that reads saved data, displays your team identity, shows performance metrics, and connects your choices to real career pathways. Events, variables, and saved data let choices made in one tutorial carry forward into the next. That's how you built a system that remembers.
 
 Computer science idea: events, variables, and saved data let choices made in one tutorial carry forward into the next.
+
+Engineering idea: reliable teams celebrate results and leave a clear handoff for the next test.
 
 Roles connected across the path: software engineer, systems engineer, performance engineer, strategist, data analyst, reliability engineer, and operations team.

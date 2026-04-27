@@ -556,13 +556,15 @@ namespace drivenByStem {
 * markers: validate-exists
 ```
 
-## Track Session @showdialog
+## Hit the Track @showdialog
 
 ![Casey - Telemetry Analyst](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/casey.png)
 
+![Track session concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/trackBg.png)
+
 Hey there, I'm **Casey**, the telemetry analyst on this team. I got into this work by tracking game stats and sports stats on my own, then picked up spreadsheets and some basic coding through a community college data course. On a real team, I clean messy data, build simple dashboards, and help engineers answer one big question: **did that change actually help?**
 
-In this gate, you'll drive under live conditions while the game **tracks every collision** and rewards clean, controlled laps with **evidence, not guesses**. That's exactly how real engineers decide whether a setup change worked. Get ready to let your data do the talking.
+In this gate, you'll drive under live conditions while the game **tracks every collision** and rewards clean, controlled laps with **evidence, not guesses**. That's exactly how real engineers decide whether a setup change worked. The run you save here is the evidence your pit and weather briefings will use next.
 
 ```template
 let driveSpeed = 110
@@ -988,6 +990,10 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-**Excellent!** You took your tuned setup onto a live track. You built spawner events that create obstacles and boost pickups, collision handlers that drain efficiency, a clean-driving reward system, and a countdown-end event that saved everything for the next stage. Every collision changes efficiency, and tracking that change is how engineers know whether a setup choice actually helped.
+**Excellent!** You took your tuned setup onto a live track. You built obstacle spawners, collision handlers that drain efficiency, a clean-driving reward system, and a countdown-end event that saved everything for the next stage. The results you saved here are the evidence Morgan and Avery will read next.
 
-Roles in this tutorial: race engineer, performance analyst, and controls software engineer.
+Computer science idea: events and counters turn moment-by-moment driving into data the rest of the project can read.
+
+Engineering idea: every collision changes efficiency, and tracking that change is how engineers know whether a setup choice actually helped.
+
+Team roles in this tutorial: telemetry analyst, race engineer, and controls software engineer.

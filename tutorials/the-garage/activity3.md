@@ -556,13 +556,15 @@ namespace drivenByStem {
 * markers: validate-exists
 ```
 
-## Shakedown Run @showdialog
+## Garage Shakedown @showdialog
 
 ![Jordan - Test Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/jordan.png)
 
+![Shakedown cone concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/garageCone.png)
+
 Hey, I'm **Jordan**, the test engineer on this crew. I didn't start out coding; I came up through hands-on troubleshooting, learning to **document problems clearly** before I ever touched an automated test. What hooked me was realizing you can turn "I think the car handles well" into **"I know it does, and here's the data."** That's exactly what a shakedown run is for: a short, controlled test before the real race begins.
 
-In this gate you'll start a **15-second shakedown stage** and track every collision, your score, and your remaining life. At the end, you'll **save those results** so the next stage can react to what you actually learned. Let's turn your guesses into evidence.
+In this gate you'll start a **15-second shakedown stage** and track every collision, your score, and your remaining life. At the end, you'll **save those results** so the next stage can react to what you actually learned. This short test is the evidence that powers Hit the Track.
 
 ```template
 let driveSpeed = 110
@@ -817,6 +819,8 @@ info.onCountdownEnd(function () {
 
 **Well done!** You just ran your first controlled test. You built timed events that spawn hazards and award points, an overlap handler that records collisions, and a countdown-end event that saves the results. You completed the full engineering loop: predict, test, measure, store.
 
-A shakedown tests whether design behavior matches design intent. That's exactly what you just proved.
+Computer science idea: timer events and saved data turn one short run into evidence the next stage can reuse.
 
-Roles in this tutorial: test engineer, reliability engineer, and data engineer.
+Engineering idea: a shakedown checks whether design behavior matches design intent before full conditions.
+
+Team roles in this tutorial: test engineer, reliability engineer, and data engineer.

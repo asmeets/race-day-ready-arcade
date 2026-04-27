@@ -556,13 +556,15 @@ namespace drivenByStem {
 * markers: validate-exists
 ```
 
-## Results Review @showdialog
+## Reflect and Review @showdialog
 
 ![Drew - UX/Game Designer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/drew.png)
 
+![Telemetry dashboard concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/telemetryScreen.png)
+
 Hey, I'm **Drew**, UX and game designer on the team. I got into this field by being the person who always asked "Wait… what am I supposed to do?" I started self-taught, watching tutorials and redesigning menus in my own projects, then added a formal design class and a lot of **playtesting with friends**. On a real team, I write clearer prompts, pick readable visuals, and run playtests to find exactly where people get confused.
 
-In this gate, you'll turn your run into a simple story: **one choice, one result, one next test**. Designers call it **"clear over clever."** Once you can read what your data is actually telling you, you'll be ready to make your final call before the winners circle.
+In this gate, you'll turn your run into a simple story: **one choice, one result, one next test**. Designers call it **"clear over clever."** Once you can read what your data is actually telling you, you'll be ready to make your final call before the winners circle. The next-test focus you save here becomes Kai's closing handoff.
 
 ```template
 drivenByStem.loadRaceProfile(80, 5)
@@ -790,8 +792,10 @@ if (pitStopsVisited > 0) {
 
 ## Complete
 
-**Nicely done!** You turned saved run data into readable evidence. You loaded Performance, Efficiency, and Strategy scores, built conditional logic to identify what needs attention next, and connected your pit stop count to a clear next-test recommendation. Stored values become usable evidence when the program reads them and makes a decision.
+**Nicely done!** You turned saved run data into readable evidence. You loaded Performance, Efficiency, and Strategy scores, built conditional logic to identify what needs attention next, and connected your pit stop count to a clear next-test recommendation. The next-test focus you saved here is the message Winners Circle reads next.
 
 Computer science idea: stored values become usable evidence when the program reads them and makes a decision.
 
 Engineering idea: review is part of the system, not a separate afterthought.
+
+Team roles in this tutorial: UX/game designer, strategist, and data analyst.

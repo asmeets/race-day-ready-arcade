@@ -556,13 +556,15 @@ namespace drivenByStem {
 * markers: validate-exists
 ```
 
-## Garage Briefing @showdialog
+## Mission Briefing @showdialog
 
 ![Sam - Software Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/sam.png)
 
+![Garage setup concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/garageBg.png)
+
 Hi, I'm **Sam**, your software engineer on this team. I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that **mix of self-taught plus structured learning** is what got me here.
 
-On a real racing team, I write and test control code, fix unexpected behavior, and keep the **dashboard reliable** when it matters most. In this gate, you'll do that same foundational work: **get the game running, build your car sprite, wire up the controls, and set up your dashboard**. That's the setup every project starts with, and you're ready for it.
+On a real racing team, I write and test control code, fix unexpected behavior, and keep the **dashboard reliable** when it matters most. In this gate, you'll do that same foundational work: **get the game running, build your car sprite, wire up the controls, and set up your dashboard**. That's the setup every project starts with, and the team identity you save here will carry forward through the whole path.
 
 ```template
 let driveSpeed = 80
@@ -903,6 +905,10 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ## Complete
 
-**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, and set up a live dashboard that tracks performance and efficiency. A faster car is useful only if the whole system can still control and support it.
+**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, and set up a live dashboard that tracks performance and efficiency. The team identity and car style you saved here are now ready to travel into the next tutorial.
 
-Roles in this tutorial: software engineer, systems engineer, and track engineer.
+Computer science idea: saved data lets one project remember earlier choices across multiple tutorials.
+
+Engineering idea: a fast system still needs reliable controls, readable feedback, and a clean reset path.
+
+Team roles in this tutorial: software engineer, systems engineer, and track engineer.

@@ -556,13 +556,15 @@ namespace drivenByStem {
 * markers: validate-exists
 ```
 
-## Setup Tradeoffs @showdialog
+## Setup and Tradeoffs @showdialog
 
 ![Riley - Performance Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/riley.png)
 
+![Garage tuning concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/enginePower.png)
+
 Hi, I'm **Riley**, a performance engineer on the race team. I got hooked on engineering by one question: why did that change make it *better*... or *worse*? I studied physics and math in college, though great performance engineers also come through technical programs, apprenticeships, or the military. What matters is **learning to test ideas with evidence**.
 
-On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's **fast and controllable**. In this gate you'll tune the car's speed setting, **make a prediction before you test**, and add a rule that captures a core engineering truth: **every strong option costs something somewhere else**.
+On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's **fast and controllable**. In this gate you'll tune the car's speed setting, **make a prediction before you test**, and add a rule that captures a core engineering truth: **every strong option costs something somewhere else**. The setup focus you save here is the same setup the shakedown and pit crew will read later.
 
 ```template
 let driveSpeed = 80
@@ -803,12 +805,16 @@ if (driveSpeed > 100) {
     efficiencyDrain = 1
 }
 //@highlight
+drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
 //@highlight
 drivenByStem.showSavedDriverProfile()
 ```
 
 ```ghost
 drivenByStem.setRoleLens(drivenByStem.RoleLens.SoftwareEngineer)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
+drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 ```
 
 ## {7. Save the Setup Focus}
@@ -819,9 +825,9 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.SoftwareEngineer)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* :racing_car: In `||drivenByStem:Driven by STEM||`, use `save team setup` inside the `if driveSpeed > 100` structure.
+* :racing_car: In `||drivenByStem:Driven by STEM||`, use `save team setup` inside both branches of the `if driveSpeed > 100` structure.
 * :racing_car: Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
-* :game pad: Add a `splash` in each branch that explains the tradeoff choice.
+* :game pad: Add a `splash` in each branch so the saved choice is easy to confirm before the shakedown.
 
 ~hint Setup not saving? ⏱️
 
@@ -843,9 +849,12 @@ if (driveSpeed > 100) {
 } else {
     efficiencyDrain = 1
 }
+drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
 drivenByStem.showSavedDriverProfile()
 //@highlight
 if (driveSpeed > 100) {
+    //@validate-exists
+    drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Pace)
     //@validate-exists
     game.splash("Performance engineer", "You chose raw pace. Monitor energy use.")
 } else {
@@ -856,13 +865,16 @@ if (driveSpeed > 100) {
 ```
 
 ```ghost
+drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Pace)
 drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Balance)
 ```
 
 ## Complete
 
-**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also chose a role lens that will shape how you see the data ahead.
+**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also saved the exact setup focus that later track, pit, and review steps will reuse.
 
-You built a real engineering tradeoff. Physics idea: increasing speed raises system demand. Computer science idea: variables plus conditionals let one program adapt to different design choices.
+Physics idea: increasing speed raises system demand.
+
+Computer science idea: variables plus conditionals let one program save different outcomes from the same decision.
 
 Team roles in this tutorial: performance engineer, sustainability engineer, and systems engineer.

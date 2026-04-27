@@ -560,9 +560,11 @@ namespace drivenByStem {
 
 ![Taylor - Systems Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/taylor.png)
 
+![Final challenge concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/finishBg.png)
+
 Hey, I'm **Taylor**, Systems Engineer. I got my start in a two-year electronics program, learning by doing, then kept building skills through coursework and certifications while I was already working in the field. On a real team, my job is **integration testing**: I connect all the subsystems together and make sure the **whole experience works**, not just one part in isolation.
 
-That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer. Now you'll **run them all at once** and see how they hold up together. This is your **final run**, and every choice you made along the way is about to show up in the result. Let's see what your full system can do.
+That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer. Now you'll **run them all at once** and see how they hold up together. This is your **final run**, and every choice you made along the way is about to show up in the result. The run you save here is the data Drew will read in Reflect and Review.
 
 ```template
 let driveSpeed = 110
@@ -957,6 +959,10 @@ info.onCountdownEnd(function () {
 
 ## Complete
 
-**You nailed it!** You ran all your subsystems together in one integrated final challenge. You built obstacle spawners, pit stop recovery events, collision handlers, and a countdown-end event that saved the complete run. Integration testing means running all subsystems together and checking that they work as a whole, not just each part in isolation. That's exactly what you just completed.
+**You nailed it!** You ran all your subsystems together in one integrated final challenge. You built obstacle spawners, pit stop recovery events, collision handlers, and a countdown-end event that saved the complete run. That saved run is the full-system evidence you'll analyze next.
 
-Roles in this tutorial: systems engineer, lead engineer, strategist, and cross-functional race team.
+Computer science idea: shared events and persistent data let multiple subsystems work together inside one project.
+
+Engineering idea: integration testing checks whether separate parts still behave correctly when they all run at once.
+
+Team roles in this tutorial: systems engineer, lead engineer, strategist, and cross-functional race team.
