@@ -564,23 +564,12 @@ namespace drivenByStem {
 
 Hey there, I'm **Casey**, the telemetry analyst on this team. I got into this work by tracking game stats and sports stats on my own, then picked up spreadsheets and some basic coding through a community college data course. On a real team, I clean messy data, build simple dashboards, and help engineers answer one big question: **did that change actually help?**
 
-In this gate, you'll drive under live conditions while the game **tracks every collision** and rewards clean, controlled laps with **evidence, not guesses**. That's exactly how real engineers decide whether a setup change worked. The run you save here is the evidence your pit and weather briefings will use next.
+In this gate, you'll drive under live conditions while the game **tracks every collision** and rewards clean, controlled laps with **evidence, not guesses**. That's exactly how real engineers decide whether a setup change worked. The run you save here updates the performance and efficiency picture your later stages will build from.
 
 ```template
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -606,17 +595,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -646,17 +625,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -675,7 +644,7 @@ scene.setBackgroundColor(11)
 Your speed choice and efficiency tradeoff from the garage should carry into this session. Loading saved values ensures that the car behaves consistently with what you tuned earlier. This is how engineers maintain setup continuity across test sessions — load the baseline, then measure what happens.
 
 * :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set driveSpeed from saved drive speed` into `on start`.
-* :id card: Drag `apply saved car style` and connect `raceCar` as the target sprite.
+* :id card: Drag `apply saved car style` so the saved livery is restored before the session starts.
 * :racing_car: Set `efficiencyDrain` from `||drivenByStem:Driven by STEM||` `saved efficiency cost`.
 
 ~hint Life draining wrong? 🔎
@@ -688,17 +657,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -737,17 +696,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -786,17 +735,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -960,7 +899,7 @@ game.onUpdateInterval(4000, function () {
 
 ---
 
-A test session isn't complete until you save the results. This event fires when the countdown ends, storing your score, efficiency, and collision data so future stages can build on what you learned. Engineers call this "closing the loop" — test, measure, document, move forward.
+A test session isn't complete until you save the results. This event fires when the countdown ends, storing your score, efficiency, and strategy state so future stages can build on what you learned. Engineers call this "closing the loop" — test, measure, document, move forward.
 
 * :game pad: Open `||info:Info||` and add `on countdown end`.
 * :racing_car: Inside the event, confirm the stage is `Track`.

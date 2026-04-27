@@ -568,19 +568,8 @@ In this gate, you'll build a pit stop that **reads the setup choice you saved ea
 
 ```template
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
 drivenByStem.applySavedCarStyle()
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -597,7 +586,7 @@ info.setLife(drivenByStem.savedEfficiency())
 Before any pit decisions can happen, the game needs to know which mode it's running in. Setting the stage tells all your event blocks whether they should execute pit logic or stay quiet. This is how real systems coordinate different operational modes—one clear signal that every subsystem can check.
 
 * :binoculars: Open `||loops(noclick):on start||` and find the existing setup code at the bottom.
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set start stage` into `on start`, set to **Pit Stop**.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `on start`, set to **Pit Stop**.
 
 ~hint Markers in wrong place? 🚨
 
@@ -609,17 +598,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.applySavedCarStyle()
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -652,17 +631,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.applySavedCarStyle()
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -696,17 +665,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.applySavedCarStyle()
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -771,7 +730,7 @@ game.onUpdateInterval(8000, function () {
 
 ---
 
-The pit stop doesn't give the same reward to everyone—it responds to the setup choice you saved earlier. If you optimized for pace, you get a speed boost; if you optimized for balance, you get efficiency back. This conditional logic mirrors how real teams tune their strategies to their car's strengths and the current race situation.
+The pit stop doesn't give the same reward to everyone—it responds to the setup choice you saved earlier. If you optimized for pace, you get a score boost; if you optimized for balance, you get efficiency back. This conditional logic mirrors how real teams tune their strategies to their car's strengths and the current race situation.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `on overlap Player and Food` block.
 * :racing_car: Inside an `if stage is Pit Stop` check, change `pitStopsVisited` by 1, use `||drivenByStem:Driven by STEM||` to record the pit stop visit, and award a Strategy point.
@@ -824,16 +783,16 @@ drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Balance)
 
 ---
 
-Your pit decision only matters if it carries forward to the next stage. Saving the updated results at the end of the countdown ensures that later gates can see what you did here and respond accordingly. This is how real telemetry systems preserve race data—each phase builds on the last, and nothing gets lost between transitions.
+Your pit decision only matters if it carries forward to the next stage. Saving the updated results at the end of the countdown ensures that later gates can see the score, efficiency, and strategy impact of what you did here. The pit-stop total itself is already being recorded every time you use a marker, and this end-of-run save captures the rest of the session snapshot.
 
-* :game pad: Open `||info:Info||` and add an `on countdown end` block.
+* :game pad: Open `||info:Info||` and add an `on countdown end` block so this stage saves the updated run state when the carried race timer finishes.
 * :racing_car: Inside the `if stage is Pit Stop` check, open `||drivenByStem:Driven by STEM||` and drag in `save current run results`.
 
 ~hint Next gate forgot your choice? 💾
 
 ---
 
-If the next gate doesn't seem to remember your pit stop, that's usually a save timing issue. Make sure the save happens after the decision changes something.
+If the next gate doesn't seem to remember your updated score or efficiency, check two things: the carried countdown from Hit the Track still exists in your code, and this save happens after the pit decision changes something.
 
 hint~
 

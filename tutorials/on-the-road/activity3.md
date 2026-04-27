@@ -4,6 +4,7 @@
 
 ```package
 settings-blocks=github:microsoft/pxt-settings-blocks#v1.0.0
+Timers=github:microsoft/arcade-timers#v1.1.0
 ```
 
 ```customts
@@ -564,23 +565,12 @@ namespace drivenByStem {
 
 Hi, I'm **Avery**, the sustainability lead on your team. I found my way into this role through a college engineering program, but what really hooked me wasn't the textbooks. It was realizing that **every design choice has a ripple effect** on energy, materials, heat, and safety. On a real team, I map those tradeoffs and make sure the environment stays part of the conversation when race conditions shift.
 
-In this gate, you'll **switch the track from dry to wet**, model how rain reduces grip, and tune your car's response so it **adapts instead of skids**. The best engineers don't just build for perfect conditions. They **design for the unexpected**. The adaptation result you save here rolls straight into the Final Challenge.
+In this gate, you'll **switch the track from dry to wet**, model how rain reduces grip, and tune your car's response so it **adapts instead of skids**. The best engineers don't just build for perfect conditions. They **design for the unexpected**. The adaptation work you do here can raise your team's strategy score before the Final Challenge.
 
 ```template
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -593,7 +583,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Racing conditions don't stay constant—weather changes everything. Setting the stage to Weather tells your code that it should now respond to environmental factors instead of standard track logic. This is the same principle used in real simulation systems where engineers model how rain, temperature, and grip affect performance before race day.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set start stage` into `||loops(noclick):on start||`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `||loops(noclick):on start||`.
 * :keyboard: Set the stage value to **Weather**.
 
 ~hint Rain everywhere? 🌧️
@@ -606,17 +596,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -646,17 +626,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -681,7 +651,7 @@ drivenByStem.setWeather(drivenByStem.WeatherMode.Rain)
 
 Your car doesn't reset to factory defaults every run—it carries forward the setup decisions you made earlier. Loading the saved speed, style, and efficiency cost means this stage builds on your previous work rather than starting from scratch. Real race teams do this too: they tune the car once in the garage, then carry that configuration through multiple sessions.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and set `driveSpeed` to **saved speed**.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and set `driveSpeed` to **saved drive speed**.
 * Use `||drivenByStem:Driven by STEM||` to apply the saved car style to `raceCar`.
 * Set `efficiencyDrain` from `||drivenByStem:Driven by STEM||` `saved efficiency cost`.
 
@@ -695,17 +665,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -744,17 +704,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -793,17 +743,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)

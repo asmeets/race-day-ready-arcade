@@ -568,7 +568,6 @@ In this gate, you'll turn your run into a simple story: **one choice, one result
 
 ```template
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 ```
 
 ## {1. Create review variables}
@@ -612,9 +611,9 @@ let pitStopsVisited = 0
 
 ---
 
-Saved data becomes meaningful when you load it for analysis. Starting the Review stage and reading your Performance, Efficiency, and Strategy scores brings the abstract numbers from your final run into concrete variables you can compare, evaluate, and act upon. This is the moment raw results become insight.
+Saved data becomes meaningful when you load it for analysis. Starting the Review stage and reading your latest saved Performance and Efficiency snapshot, plus your running Strategy score and pit-stop total, brings the abstract numbers from the full session into concrete variables you can compare, evaluate, and act upon. This is the moment raw results become insight.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and set start stage to `Review`.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and use `start stage` set to `Review`.
 * :racing_car: Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
 * :racing_car: Read the saved pit stop count into `pitStopsVisited`.
 
@@ -741,7 +740,7 @@ game.splash("Next test focus", drivenByStem.nextTestFocus())
 
 ---
 
-Every role on a racing team views data differently. By checking whether you used pit stops during the run, you're evaluating strategic adaptation—a skill that data analysts and strategists value highly. Connecting your results to a professional role helps you see how these decisions map to real career pathways.
+Every role on a racing team views data differently. By checking whether you used pit stops across the session, you're evaluating strategic adaptation—a skill that data analysts and strategists value highly. Connecting your results to a professional role helps you see how these decisions map to real career pathways.
 
 This step has no single correct answer. Try your own logic.
 
@@ -751,7 +750,7 @@ This step has no single correct answer. Try your own logic.
 ```
 
 * :paper plane: Open `||logic:Logic||`.
-* :game pad: If `pitStopsVisited` > `0`, show a message about using information during the run.
+* :game pad: If `pitStopsVisited` > `0`, show a message about using information during the session.
 * :game pad: Otherwise show a message about using more mid-run data next time.
 
 ~hint How to frame the message? 💬
@@ -792,7 +791,7 @@ if (pitStopsVisited > 0) {
 
 ## Complete
 
-**Nicely done!** You turned saved run data into readable evidence. You loaded Performance, Efficiency, and Strategy scores, built conditional logic to identify what needs attention next, and connected your pit stop count to a clear next-test recommendation. The next-test focus you saved here is the message Winners Circle reads next.
+**Nicely done!** You turned saved run data into readable evidence. You loaded the latest saved Performance and Efficiency snapshot, the running Strategy score, and the pit-stop total, then used that data to identify what needs attention next. The next-test focus you saved here is the message Winners Circle reads next.
 
 Computer science idea: stored values become usable evidence when the program reads them and makes a decision.
 

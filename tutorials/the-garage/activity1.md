@@ -658,17 +658,7 @@ scene.setBackgroundColor(6)
 game.splash("Miami test session", "Build a car you can explain.")
 //@highlight
 //@validate-exists
-raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 ```
 
 ## {4. Turn On Movement}
@@ -694,17 +684,7 @@ hint~
 ```blocks
 scene.setBackgroundColor(6)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 //@highlight
 //@validate-exists
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -735,17 +715,7 @@ hint~
 ```blocks
 scene.setBackgroundColor(6)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
@@ -786,17 +756,7 @@ hint~
 ```blocks
 scene.setBackgroundColor(6)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.loadRaceProfile(80, 5)
@@ -841,17 +801,7 @@ hint~
 ```blocks
 scene.setBackgroundColor(6)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.loadRaceProfile(80, 5)

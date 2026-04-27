@@ -569,19 +569,8 @@ In this gate you'll start a **15-second shakedown stage** and track every collis
 ```template
 let driveSpeed = 110
 let efficiencyDrain = 2
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```

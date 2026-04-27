@@ -569,17 +569,7 @@ On a real team I run A/B tests, translate driver feedback into data, and tune th
 ```template
 let driveSpeed = 80
 let efficiencyDrain = 1
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.applySavedCarStyle()
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
@@ -788,7 +778,7 @@ On a real race team, different engineers focus on different things — some moni
 
 ---
 
-There isn't one correct role here. Pick the lens that matches what you're monitoring: speed, efficiency, reliability, or data.
+There isn't one correct role here. Pick the lens that matches what you're monitoring: speed, decision-making, software behavior, or data.
 
 hint~
 
@@ -856,11 +846,11 @@ if (driveSpeed > 100) {
     //@validate-exists
     drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Pace)
     //@validate-exists
-    game.splash("Performance engineer", "You chose raw pace. Monitor energy use.")
+    game.splash("Pace setup", "You chose raw pace. Monitor energy use.")
 } else {
     //@validate-exists
     drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Balance)
-    game.splash("Sustainability engineer", "You chose a more efficient setup.")
+    game.splash("Balance setup", "You chose a more efficient setup.")
 }
 ```
 
@@ -877,4 +867,4 @@ Physics idea: increasing speed raises system demand.
 
 Computer science idea: variables plus conditionals let one program save different outcomes from the same decision.
 
-Team roles in this tutorial: performance engineer, sustainability engineer, and systems engineer.
+Team roles in this tutorial: performance engineer, strategist, software engineer, and data analyst.

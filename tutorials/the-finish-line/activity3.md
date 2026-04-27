@@ -568,7 +568,6 @@ In this last gate, you'll use your saved data to **celebrate what you built**, e
 
 ```template
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
 ```
 
 ## {1. Start Winners Circle stage}
@@ -665,9 +664,9 @@ let finalStrategy = 0
 
 ---
 
-The celebration is meaningful because it's personalized to your choices. Loading your saved recommendation, strategy score, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
+The celebration is meaningful because it's personalized to your choices. Loading your `next test focus`, session strategy total, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and set `nextTestFocus` from the saved recommendation.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and set `nextTestFocus` from the `next test focus` reporter.
 * :racing_car: Set `finalStrategy` from the saved strategy result.
 * :racing_car: Drag `show saved driver profile` into `on start`.
 
@@ -675,7 +674,7 @@ The celebration is meaningful because it's personalized to your choices. Loading
 
 ---
 
-If your saved recommendation is blank, that's a clue the Review gate didn't write it yet. Trace where it's supposed to be saved.
+If your `next test focus` text is blank, that's a clue the Review gate didn't write it yet. Trace where it's supposed to be saved.
 
 hint~
 
@@ -785,7 +784,7 @@ game.splash("Computer science mattered", "Events, variables, and saved data carr
 
 ---
 
-Every great team finishes one test by planning the next. Whether you succeeded in adaptation or identified an area to strengthen, closing with a specific next-test idea models how real engineering teams maintain momentum. Completion isn't the end—it's a handoff to the next iteration.
+Every great team finishes one test by planning the next. Whether your session strategy total is high or you identified an area to strengthen, closing with a specific next-test idea models how real engineering teams maintain momentum. Completion isn't the end—it's a handoff to the next iteration.
 
 This step has no single correct answer. Try your own logic.
 
@@ -824,7 +823,7 @@ if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
 game.splash("Computer science mattered", "Events, variables, and saved data carried your choices forward.")
 //@highlight
 if (finalStrategy >= 3) {
-    game.splash("Engineering takeaway", "You adapted well across the full run.")
+    game.splash("Engineering takeaway", "You adapted well across the full session.")
 } else {
     game.splash("Engineering takeaway", "Next test: " + nextTestFocus)
 }

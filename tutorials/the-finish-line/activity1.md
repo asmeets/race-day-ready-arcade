@@ -564,23 +564,12 @@ namespace drivenByStem {
 
 Hey, I'm **Taylor**, Systems Engineer. I got my start in a two-year electronics program, learning by doing, then kept building skills through coursework and certifications while I was already working in the field. On a real team, my job is **integration testing**: I connect all the subsystems together and make sure the **whole experience works**, not just one part in isolation.
 
-That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer. Now you'll **run them all at once** and see how they hold up together. This is your **final run**, and every choice you made along the way is about to show up in the result. The run you save here is the data Drew will read in Reflect and Review.
+That's exactly what this gate is about. You've built your performance system, your efficiency system, and your strategy layer. Now you'll **run them all at once** and see how your saved setup performs under one integrated test. This is your **final run**, and the result you save here is the data Drew will read in Reflect and Review.
 
 ```template
 let driveSpeed = 110
-let raceCar = sprites.create(img`
-    . . . 6 6 6 6 . .
-    . . 6 8 8 8 6 . .
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    6 6 6 6 6 6 6 6 6
-    . 6 6 6 6 6 6 6 .
-    . 6 5 6 6 6 5 6 .
-    . . 6 6 6 6 6 . .
-    . . . 6 6 6 . . .
-`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.setRoleLens(drivenByStem.RoleLens.SoftwareEngineer)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
@@ -606,7 +595,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img``, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -636,7 +625,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img``, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -668,7 +657,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img``, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -694,7 +683,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 
 ---
 
-You can't improve what you don't measure. Creating dedicated variables for collisions and pit stops gives the reflection stage concrete evidence to analyze. These counters will tell the complete story of how your system performed under pressure, turning an abstract run into specific, reviewable data.
+You can't improve what you don't measure. Creating dedicated variables for collisions and pit stops gives this final challenge clear evidence to show as it happens. These counters help you tell a specific story about how the run went under pressure, even before you save the final summary data.
 
 * :paper plane: Open `||variables:Variables||` and create `finalCollisions`. Set it to `0`.
 * :paper plane: Create `finalPitStops` and set it to `0`.
@@ -709,7 +698,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img``, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -749,7 +738,7 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(img``, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -803,7 +792,16 @@ game.onUpdateInterval(2500, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
-        let obstacle = sprites.create(img``, SpriteKind.Enemy)
+        let obstacle = sprites.create(img`
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . f f f f f f . . . . . . .
+            . . f f f 2 2 f f f . . . . . .
+            . . f f f 2 2 f f f . . . . . .
+            . . . f f f f f f . . . . . . .
+            . . . . . . . . . . . . . . . .
+            . . . . . . . . . . . . . . . .
+        `, SpriteKind.Enemy)
         //@highlight
         //@validate-exists
         obstacle.setPosition(randint(10, 150), 0)
@@ -845,7 +843,16 @@ game.onUpdateInterval(7000, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
-        let pitMarker = sprites.create(img``, SpriteKind.Food)
+        let pitMarker = sprites.create(img`
+            . . . . . . . . . . . . . . . .
+            . . . . 4 4 4 4 4 4 4 4 . . . .
+            . . . 4 4 . . . . . . 4 4 . . .
+            . . . 4 . . . . . . . . 4 . . .
+            . . . 4 . . . . . . . . 4 . . .
+            . . . 4 4 . . . . . . 4 4 . . .
+            . . . . 4 4 4 4 4 4 4 4 . . . .
+            . . . . . . . . . . . . . . . .
+        `, SpriteKind.Food)
         //@highlight
         //@validate-exists
         pitMarker.setPosition(randint(20, 140), randint(20, 100))
