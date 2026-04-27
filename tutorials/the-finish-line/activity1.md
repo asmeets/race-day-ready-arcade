@@ -624,11 +624,11 @@ The final challenge deserves its own visual identity. A distinct background colo
 * :tree: Open `||scene:Scene||` inside `||loops(noclick):on start||`.
 * :tree: Add `set background color` and pick a color that contrasts with your car and obstacles.
 
-~hint Hazards hard to see? 🎨
+~hint Hazards hard to distinguish? 🎨
 
 ---
 
-If hazards feel hard to see, fix the visuals before you fix the code. A system can be "correct" and still be unusable if signals aren't readable.
+If hazards are hard to distinguish, fix the visuals before you fix the code. A system can be "correct" and still be unusable if signals aren't readable.
 
 hint~
 

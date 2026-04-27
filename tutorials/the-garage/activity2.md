@@ -647,7 +647,7 @@ hint~
 
 ---
 
-If the car still feels slow, something is probably resetting your speed later. Scan your stacks and look for another place where `driveSpeed` gets set.
+If the car still feels slow, something is probably resetting your speed later. Scan your stacks and search for another place where `driveSpeed` gets set.
 
 hint~
 
@@ -697,7 +697,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 
 In real racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, the `efficiencyDrain` variable represents how much energy each mistake costs. Creating this variable lets you model tradeoffs — a core concept in engineering and game balance.
 
-* :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyDrain`.
+* :paper plane: Open `||variables:Variables||`, select **Make a Variable**, and name it `efficiencyDrain`.
 * :paper plane: Add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
@@ -772,7 +772,7 @@ if (driveSpeed > 100) {
 
 ---
 
-On a real race team, different engineers focus on different things — some watch performance, others track efficiency, some monitor reliability. Choosing a role lens determines how you'll interpret the data you collect. There's no single "right" lens, just different ways of looking at the same system.
+On a real race team, different engineers focus on different things — some monitor performance, others track efficiency, some monitor reliability. Choosing a role lens determines how you'll interpret the data you collect. There's no single "right" lens, just different ways of analyzing the same system.
 
 ```validation.local
 # BlocksExistValidator
@@ -786,7 +786,7 @@ On a real race team, different engineers focus on different things — some watc
 
 ---
 
-There isn't one correct role here. Pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
+There isn't one correct role here. Pick the lens that matches what you're monitoring: speed, efficiency, reliability, or data.
 
 hint~
 
@@ -847,7 +847,7 @@ drivenByStem.showSavedDriverProfile()
 //@highlight
 if (driveSpeed > 100) {
     //@validate-exists
-    game.splash("Performance engineer", "You chose raw pace. Watch energy use.")
+    game.splash("Performance engineer", "You chose raw pace. Monitor energy use.")
 } else {
     //@validate-exists
     drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Balance)

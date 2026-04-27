@@ -48,7 +48,7 @@
 ### garage-activity3
 * name: Garage Shakedown
 * type: tutorial
-* description: Run a 15-second test to see how clean you can drive and what your setup really does.
+* description: Run a 15-second test to discover how clean you can drive and what your setup really does.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-garage-shakedown.png
 * position: 3 6
 * tags: beginner, test-run, compare, feedback, improve
@@ -68,7 +68,7 @@
 ### road-activity2
 * name: Pit Stop Briefings
 * type: tutorial
-* description: Build a pit stop system that lets you recover energy mid-run and see how strategy changes results.
+* description: Build a pit stop system that lets you recover energy mid-run and discover how strategy changes results.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-pit-stop-briefings.png
 * position: 7 6
 * tags: level-up, pit-stop, team-roles, upgrades, strategy
@@ -108,7 +108,7 @@
 ### finish-activity3
 * name: Winners Circle
 * type: tutorial
-* description: Celebrate your results, explore career connections, and see where these skills can take you next.
+* description: Celebrate your results, explore career connections, and discover where these skills can take you next.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-winners-circle.png
 * position: 10 7
 * tags: celebrate, careers, stem, remix, reflection

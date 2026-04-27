@@ -629,7 +629,7 @@ game.splash("Miami test session", "Build a car you can explain.")
 In racing games and simulations, the car is more than just an image — it's an interactive object with properties like position, speed, and collision detection. Creating a sprite gives you a programmable object you can control, move, and respond to events. This is how digital simulations represent real-world objects.
 
 * :paper plane: Open `||sprites:Sprites||` and drag `set mySprite to sprite of kind Player` into `||loops(noclick):on start||`.
-* :keyboard: Rename the variable to `raceCar`, then click the image square to choose or draw a car.
+* :keyboard: Rename the variable to `raceCar`, then select the image square to choose or draw a car.
 
 ~hint What's a sprite? 💡
 

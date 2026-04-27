@@ -633,7 +633,7 @@ A shakedown run needs clear boundaries — what are you measuring, and for how l
 
 ---
 
-If the countdown doesn't start, look for where that block lives. Countdown setup works best in on start, not inside an overlap or timer event.
+If the countdown doesn't start, search for where that block lives. Countdown setup works best in on start, not inside an overlap or timer event.
 
 hint~
 
@@ -679,7 +679,7 @@ hint~
 
 ---
 
-If you notice score climbing outside the shakedown, that's a sign your stage check is missing or mismatched. That's the first thing I'd audit.
+If score climbs outside the shakedown, that's a sign your stage check is missing or mismatched. That's the first thing I'd audit.
 
 hint~
 

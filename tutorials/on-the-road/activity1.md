@@ -634,11 +634,11 @@ In a live event or classroom, multiple people will watch the same screen. High-c
 * :tree: Open `||scene:Scene||` and drag `set background color` into `on start`.
 * :mouse pointer: Pick a color that contrasts strongly with the car sprite.
 
-~hint Car hard to see? 🎨
+~hint Car hard to distinguish? 🎨
 
 ---
 
-If your car disappears into the background, change one color so the important stuff pops.
+If your car blends into the background, change one color so the important elements stand out.
 
 hint~
 
@@ -721,7 +721,7 @@ let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 
 You can't improve what you don't measure. These variables let the game track how many collisions happen over time and compare clean stretches to messy ones. Data analysts use patterns like this to identify trends and reward consistency. Tracking isn't just counting — it's building evidence.
 
-* :paper plane: Open `||variables:Variables||`, click `Make a Variable`, and name it `trackCollisions`.
+* :paper plane: Open `||variables:Variables||`, select `Make a Variable`, and name it `trackCollisions`.
 * :paper plane: Make a second variable called `lastTrackCollisionCount`.
 * :keyboard: Set both to `0` inside `on start`.
 
@@ -968,7 +968,7 @@ A test session isn't complete until you save the results. This event fires when 
 
 ---
 
-If the end-of-run message never appears, check that your countdown is running and that you added the countdown-end event.
+If the end-of-run message doesn't display, check that your countdown is running and that you added the countdown-end event.
 
 hint~
 

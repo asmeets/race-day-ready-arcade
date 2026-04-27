@@ -23,7 +23,7 @@ I'll be guiding you through each step. Reading instructions carefully is how I l
 
 - :lightbulb: Sometimes you'll need to scroll to read all of the instructions.
 
-- :arrow right: When you're ready to move to the next step, click **Next** to continue.
+- :arrow right: When you're ready to move to the next step, select **Next** to continue.
 
 ## {2. Finding Hidden Hints}
 
@@ -33,9 +33,9 @@ I'll be guiding you through each step. Reading instructions carefully is how I l
 
 I like to hide extra info in "clue boxes" to keep the main instructions focused. These collapsible hints give you troubleshooting tips, definitions, and extra guidance — the same kind of notes I write for my team when we're debugging code.
 
-- :mouse pointer: Click the clue box below to see what's inside.
+- :mouse pointer: Select the clue box below to reveal what's inside.
 
-~hint Click here to see a clue 🕵🏽
+~hint Select here to reveal a clue 🕵🏽
 
 ---
 
@@ -48,7 +48,7 @@ hint~
 
 Sometimes, I like to show you recommended blocks for a step.
 
-- :mouse pointer: Click the round lightbulb button below to see an example.
+- :mouse pointer: Select the round lightbulb button below to reveal an example.
 
 
 
@@ -68,7 +68,7 @@ game.splash("You found me!")
 
 Your [__*workspace*__](#workIt "The area where you build code") is where you'll connect code blocks to build your program. I spend most of my day in a workspace like this, snapping together logic that controls race car systems. Only blocks connected in the workspace will run when your game starts.
 
-- :mouse pointer: Click inside the ``||game(noclick):splash " "||`` block that's already in the workspace and **change the message** to something you'd like to say.
+- :mouse pointer: Select inside the ``||game(noclick):splash " "||`` block that's already in the workspace and **change the message** to something you'd like to say.
 
 ~hint What's a workspace? 🕵🏽
 
@@ -116,13 +116,13 @@ or with highlighted text, like this:
 
 
 
-~hint Want to see something cool? 🕵🏽
+~hint Want to discover something cool? 🕵🏽
 
 ---
 
-When you need to find a block in the toolbox and we use highlighted text in the instruction, you can click the colored section of text and it will automatically open the toolbox category you need.
+When you need to find a block in the toolbox and we use highlighted text in the instruction, you can select the colored section of text and it will automatically open the toolbox category you need.
 
-Try it now by clicking the block below!<br/>
+Try it now by selecting the block below!<br/>
 
 ``||game:splash " "||``
 
@@ -141,7 +141,7 @@ Let's see how this works. Every game needs a visual environment, and setting the
 - :tree: Find the ``||scene:set background color to [ ]||`` block and snap it in **at the top of**
 the ``||loops(noclick):on start||`` container already in the workspace.
 
-- :paint brush:  Click the empty square to set the background to your favorite color.
+- :paint brush:  Select the empty square to set the background to your favorite color.
 
 #### ~ tutorialhint
 ```blocks
@@ -157,12 +157,12 @@ game.splash("Let's start coding!")
 
 ---
 
-If you can't find the block you need, click the highlighted text and the correct category will open for you. Now let's add a character! In game development, any character or moving object is called a sprite. On our team, we track car position, speed, and state using objects with properties — sprites work the same way and they're the foundation of almost every game you'll build.
+If you can't find the block you need, select the highlighted text and the correct category will open for you. Now let's add a character! In game development, any character or moving object is called a sprite. On our team, we track car position, speed, and state using objects with properties — sprites work the same way and they're the foundation of almost every game you'll build.
 
 - :paper plane: Snap ``||variables(sprites):set [my sprite] to sprite [ ] of kind [Player]||`` into **the end** of the ``||loops(noclick):on start||`` container.
 
 
-- :paint brush:  Click the empty box to draw a [__*sprite*__](#sprote "A 2-D image that moves on the screen")
+- :paint brush:  Select the empty box to draw a [__*sprite*__](#sprote "A 2-D image that moves on the screen")
  or switch to the **Gallery** to pick one of ours.
 
 
@@ -213,13 +213,13 @@ let mySprite = sprites.create(img`
 
 ---
 
-Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go. The simulator is your testing lab — it shows you exactly what your code does. I test my code constantly during development. Testing frequently helps you catch bugs early and see your progress, just like running a systems check before the race.
+Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go. The simulator is your testing lab — it shows you exactly what your code does. I test my code constantly during development. Testing frequently helps you catch bugs early and track your progress, just like running a systems check before the race.
 
-- :binoculars: Take a look at the simulator. <br/>
-Do you see a message that needs to be cleared? Then do you see the sprite you chose?
+- :binoculars: Check the simulator. <br/>
+Is there a message that needs to be cleared? Then check if the sprite you chose is present.
 
 
-![Look for the simulator in the lower right](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/game-window.png "Click the mini simulator to pop open the bigger view.")
+![Find the simulator in the lower right](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/game-window.png "Select the mini simulator to open the bigger view.")
 
 
 
@@ -294,11 +294,11 @@ _(This block sends water spraying from the center of your sprite.)_
 
 ---
 
-Visual effects make games more exciting and give players instant feedback. When you trigger an effect from a button press, players immediately see the result of their action. In our race dashboards, instant visual feedback tells the driver exactly what's happening — this feedback loop is essential to both racing and good game design.
+Visual effects make games more exciting and give players instant feedback. When you trigger an effect from a button press, players immediately experience the result of their action. In our race dashboards, instant feedback tells the driver exactly what's happening — this feedback loop is essential to both racing and good game design.
 
 - :paper plane: Find a ``||sprites:[mySprite] start [spray] effect ⊕||`` block and snap it into the ``||controller(noclick):on [A] button pressed||`` container that's already in your workspace...then choose a new effect!
 
-- :mouse pointer: Click the **+** to the right of the new block to pop open an extra option.
+- :mouse pointer: Select the **+** to the right of the new block to reveal an extra option.
 
 
 
@@ -339,7 +339,7 @@ Randomness makes games unpredictable and replayable. Instead of the same effect 
 
 - :calculator: From the ``||math:Math||`` category, grab a ``||math: pick random [0] to [10]||`` value block and snap it in to replace **500**.
 
-- :mouse pointer: Change the random range to pick between **100** and **600**.
+- :mouse pointer: Update the random range to pick between **100** and **600**.
 
 
 
@@ -363,11 +363,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ---
 
-🕹️ Time to test! This is how I work every day — add a feature, test it, make sure it works as expected. Testing frequently helps you catch bugs early and see your progress. On race day, we don't get second chances, so we test everything thoroughly beforehand.
+**Time to test!** This is how I work every day — add a feature, test it, make sure it works as expected. Testing frequently helps you catch bugs early and track your progress. On race day, we don't get second chances, so we test everything thoroughly beforehand.
 
-- :binoculars: Take a look at the simulator and click the **Ⓐ** button (or space bar) to clear your splash screen message.
+- :binoculars: Check the simulator and press the **Ⓐ** button (or space bar) to clear your splash screen message.
 
-- :game pad: Now click **Ⓐ** over and over again to see your effects!
+- :game pad: Now press **Ⓐ** over and over again to activate your effects!
 
 ## {Finale @unplugged}
 

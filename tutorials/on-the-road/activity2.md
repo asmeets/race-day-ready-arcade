@@ -560,7 +560,7 @@ namespace drivenByStem {
 
 ![Morgan - Strategist](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/morgan.png)
 
-Hey, I'm **Morgan**, your strategist. I didn't start out crunching data; I started in track operations, learning **timing and logistics** by doing the work and talking with the engineers and analysts around me. On a real team, I watch live conditions, **weigh safer options against riskier ones**, and help everyone make fast calls with different pieces of information.
+Hey, I'm **Morgan**, your strategist. I didn't start out crunching data; I started in track operations, learning **timing and logistics** by doing the work and talking with the engineers and analysts around me. On a real team, I monitor live conditions, **weigh safer options against riskier ones**, and help everyone make fast calls with different pieces of information.
 
 In this gate, you'll build a pit stop that **reads the setup choice you saved earlier** and turns it into a **real decision with real consequences**. The call you make here won't just happen and disappear. It will shape how the rest of your run plays out.
 
@@ -601,7 +601,7 @@ Before any pit decisions can happen, the game needs to know which mode it's runn
 
 ---
 
-If pit markers show up on the track, that's a stage-mismatch clue. Look for a missing "if stage is Pit Stop" check.
+If pit markers show up on the track, that's a stage-mismatch clue. Search for a missing "if stage is Pit Stop" check.
 
 hint~
 
