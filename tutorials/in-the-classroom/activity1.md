@@ -7,6 +7,10 @@
 
 Hi, I'm **Sam**, a software engineer with the Mercedes F1 team. Before you join us in the garage to build your racing simulator, you need to learn the **essentials of MakeCode Arcade**: following instructions, finding blocks, building code, and testing your work. These are the same skills I use every day writing control code for race cars.
 
+**Why blocks?** Block-based coding lets you drag and snap together visual pieces instead of typing syntax. It's how I learned — you focus on logic and problem-solving first, then typing comes naturally later. Many professional developers still use visual tools for prototyping because they're fast and clear.
+
+**Why 8-bit style?** Arcade uses classic pixel art and simple mechanics so you can build complete games quickly. The constraints teach you to solve problems creatively — the same way Formula 1 engineers work within strict regulations to build the fastest cars. Simple foundations, powerful results.
+
 You've already started by reading these instructions — that's the most important step! Let's get you ready to join the team.
 
 ## {1. Reading Tutorial Instructions}
@@ -367,7 +371,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ## {Finale @unplugged}
 
-**🎈 Congratulations 🎈**
+** Congratulations! **
 
 You've completed the **"Intro to MakeCode Arcade"** tutorial!
 
