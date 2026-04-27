@@ -610,16 +610,17 @@ drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 
 ---
 
-The final challenge deserves its own visual identity. A distinct background color signals to players that this is the culminating test, while strong contrast ensures that every obstacle and opportunity remains clearly visible during high-speed decision-making.
+The final challenge deserves its own visual identity. Start with a distinct background color so the scene stays readable, then add the shared finish background image to show that this is the culminating test. Strong contrast still matters because every obstacle and opportunity needs to stay visible during high-speed decision-making.
 
 * :tree: Open `||scene:Scene||` inside `||loops(noclick):on start||`.
 * :tree: Add `set background color` and pick a color that contrasts with your car and obstacles.
+* :tree: Add `set background image to` under it and choose the shared `finishBg` image.
 
 ~hint Hazards hard to distinguish? 🎨
 
 ---
 
-If hazards are hard to distinguish, fix the visuals before you fix the code. A system can be "correct" and still be unusable if signals aren't readable.
+If hazards are hard to distinguish, simplify the scene and test again. A system can be "correct" and still be unusable if signals aren't readable.
 
 hint~
 
@@ -630,9 +631,11 @@ drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
-//@highlight
 //@validate-exists
 scene.setBackgroundColor(8)
+//@highlight
+//@validate-exists
+scene.setBackgroundImage(assets.image`finishBg`)
 ```
 
 ## {3. Load saved setup + costs}
@@ -663,6 +666,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
+scene.setBackgroundImage(assets.image`finishBg`)
 //@highlight
 //@validate-exists
 driveSpeed = drivenByStem.savedDriveSpeed()
@@ -792,16 +796,7 @@ game.onUpdateInterval(2500, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
-        let obstacle = sprites.create(img`
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . f f f f f f . . . . . . .
-            . . f f f 2 2 f f f . . . . . .
-            . . f f f 2 2 f f f . . . . . .
-            . . . f f f f f f . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-        `, SpriteKind.Enemy)
+        let obstacle = sprites.create(assets.image`trackObstacle`, SpriteKind.Enemy)
         //@highlight
         //@validate-exists
         obstacle.setPosition(randint(10, 150), 0)
@@ -843,16 +838,7 @@ game.onUpdateInterval(7000, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
         //@highlight
         //@validate-exists
-        let pitMarker = sprites.create(img`
-            . . . . . . . . . . . . . . . .
-            . . . . 4 4 4 4 4 4 4 4 . . . .
-            . . . 4 4 . . . . . . 4 4 . . .
-            . . . 4 . . . . . . . . 4 . . .
-            . . . 4 . . . . . . . . 4 . . .
-            . . . 4 4 . . . . . . 4 4 . . .
-            . . . . 4 4 4 4 4 4 4 4 . . . .
-            . . . . . . . . . . . . . . . .
-        `, SpriteKind.Food)
+        let pitMarker = sprites.create(assets.image`pitMarker`, SpriteKind.Food)
         //@highlight
         //@validate-exists
         pitMarker.setPosition(randint(20, 140), randint(20, 100))

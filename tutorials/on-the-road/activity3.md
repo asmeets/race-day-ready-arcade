@@ -775,7 +775,7 @@ info.startCountdown(25)
 Weather doesn't wait for you to be ready. By triggering rain after 10 seconds, you're modeling how real conditions change without warning, forcing drivers and teams to adapt in real time. This delayed event tests whether your system can handle dynamic state changes—a core challenge in motorsport engineering.
 
 * :game pad: Open `||Timers:Timers||` and add an `after (10000) ms` event block.
-* :racing_car: Inside, check that the stage is **Weather**, then set weather to **Rain**, set `weatherChanged` to **1**, change the background color, and show a **"Rain lowers grip"** splash.
+* :racing_car: Inside, check that the stage is **Weather**, then set weather to **Rain**, set `weatherChanged` to **1**, change the background color, switch to the shared `weatherBg` image, and show a **"Rain lowers grip"** splash.
 
 ~hint Rain never starts? ☔
 
@@ -794,9 +794,11 @@ timer.after(10000, function () {
         //@highlight
         //@validate-exists
         weatherChanged = 1
-        //@highlight
         //@validate-exists
         scene.setBackgroundColor(9)
+        //@highlight
+        //@validate-exists
+        scene.setBackgroundImage(assets.image`weatherBg`)
         //@highlight
         //@validate-exists
         game.splash("Rain lowers grip", "Adapt your driving.")
@@ -871,16 +873,7 @@ game.onUpdateInterval(2500, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
         //@highlight
         //@validate-exists
-        let puddle = sprites.create(img`
-            . . . . . . . . . . . . . . . .
-            . . . 9 9 9 . . . 9 9 9 . . .
-            . . 9 9 9 9 9 . 9 9 9 9 9 . .
-            . . . 9 9 9 . . . 9 9 9 . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-        `, SpriteKind.Enemy)
+        let puddle = sprites.create(assets.image`rainPuddle`, SpriteKind.Enemy)
         //@highlight
         //@validate-exists
         puddle.setPosition(randint(10, 150), randint(10, 110))

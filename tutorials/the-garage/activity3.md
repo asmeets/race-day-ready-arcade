@@ -711,12 +711,7 @@ hint~
 game.onUpdateInterval(2000, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.GarageShakedown)) {
         //@validate-exists
-        let cone = sprites.create(img`
-            . . . c . . .
-            . . c a c . .
-            . c a a a c .
-            c a a a a a c
-        `, SpriteKind.Enemy)
+        let cone = sprites.create(assets.image`garageCone`, SpriteKind.Enemy)
         cone.setPosition(randint(20, 140), randint(20, 100))
         //@validate-exists
         cone.lifespan = 1500

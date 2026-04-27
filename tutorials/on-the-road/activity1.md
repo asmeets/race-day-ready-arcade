@@ -610,16 +610,17 @@ drivenByStem.startStage(drivenByStem.RaceStage.Track)
 
 ---
 
-In a live event or classroom, multiple people will watch the same screen. High-contrast backgrounds make the car and obstacles easy to track, even from across a room. Good visual design isn't just about aesthetics — it's about making the important information visible.
+In a live event or classroom, multiple people will watch the same screen. Start with a high-contrast color so the car stays easy to track, then add a shared background image to give the session a stronger track identity. Good visual design isn't just about aesthetics — it's about making the important information visible.
 
 * :tree: Open `||scene:Scene||` and drag `set background color` into `on start`.
 * :mouse pointer: Pick a color that contrasts strongly with the car sprite.
+* :tree: Add `set background image to` under it and choose the shared `trackBg` image.
 
 ~hint Car hard to distinguish? 🎨
 
 ---
 
-If your car blends into the background, change one color so the important elements stand out.
+If your car blends into the scene, keep the background simple and test again. Readability matters more than decoration.
 
 hint~
 
@@ -630,9 +631,11 @@ drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
-//@highlight
 //@validate-exists
 scene.setBackgroundColor(11)
+//@highlight
+//@validate-exists
+scene.setBackgroundImage(assets.image`trackBg`)
 ```
 
 ## {3. Load Your Saved Setup}
@@ -663,6 +666,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
 scene.setBackgroundColor(11)
+scene.setBackgroundImage(assets.image`trackBg`)
 //@highlight
 //@validate-exists
 driveSpeed = drivenByStem.savedDriveSpeed()
@@ -786,16 +790,7 @@ game.onUpdateInterval(2000, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
         //@highlight
         //@validate-exists
-        let obs = sprites.create(img`
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . f f f f f f . . . . . . .
-            . . f f f 2 2 f f f . . . . . .
-            . . f f f 2 2 f f f . . . . . .
-            . . . f f f f f f . . . . . . .
-            . . . . . . . . . . . . . . . .
-            . . . . . . . . . . . . . . . .
-        `, SpriteKind.Enemy)
+        let obs = sprites.create(assets.image`trackObstacle`, SpriteKind.Enemy)
         //@highlight
         //@validate-exists
         obs.setPosition(randint(0, 160), 0)

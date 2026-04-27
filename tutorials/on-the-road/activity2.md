@@ -706,16 +706,7 @@ game.onUpdateInterval(8000, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.PitStop)) {
         //@highlight
         //@validate-exists
-        let pitMarker = sprites.create(img`
-            . . . . . . . . . . . . . . . .
-            . . . . 4 4 4 4 4 4 4 4 . . . .
-            . . . 4 4 . . . . . . 4 4 . . .
-            . . . 4 . . . . . . . . 4 . . .
-            . . . 4 . . . . . . . . 4 . . .
-            . . . 4 4 . . . . . . 4 4 . . .
-            . . . . 4 4 4 4 4 4 4 4 . . . .
-            . . . . . . . . . . . . . . . .
-        `, SpriteKind.Food)
+        let pitMarker = sprites.create(assets.image`pitMarker`, SpriteKind.Food)
         //@highlight
         pitMarker.setPosition(randint(20, 140), randint(20, 100))
         //@highlight
