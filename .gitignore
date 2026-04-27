@@ -11,6 +11,7 @@ _site
 .header.json
 .simstate.json
 .DS_Store
+.venv-racetrack-slicer/
 .vscode/*
 .github/*
 .vscode
