@@ -1,35 +1,33 @@
 # Intro to MakeCode Arcade
 ### @explicitHints true
-### @hideDone true
 
-## {Introduction @unplugged}
+## Welcome — Let's Learn the Essentials @showdialog
 
-**Are you ready to start coding?**
+![Sam - Software Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/sam.png)
 
-Complete this tutorial to learn how to:
-- follow tutorial prompts
-- find blocks in the toolbox
-- build code in the workspace
-- run your project in the simulator (the mini game window)
+Hi, I'm **Sam**, a software engineer with the Mercedes F1 team. Before you join us in the garage to build your racing simulator, you need to learn the **essentials of MakeCode Arcade**: following instructions, finding blocks, building code, and testing your work. These are the same skills I use every day writing control code for race cars.
 
-Once you've mastered these skills, you'll be ready to build your own F1 racing simulator!
+You've already started by reading these instructions — that's the most important step! Let's get you ready to join the team.
 
+## {1. Reading Tutorial Instructions}
 
-## {step 1}
+**Your First Essential Skill**
 
-**⭐ Welcome ⭐**
+---
 
-You've just discovered the most important part of following a tutorial — **reading instructions**!
+I'll be guiding you through each step. Reading instructions carefully is how I learned to code, and it's still how I work today. Every tutorial gives you clear guidance to build something new.
 
 - :lightbulb: Sometimes you'll need to scroll to read all of the instructions.
 
 - :arrow right: When you're ready to move to the next step, click **Next** to continue.
 
+## {2. Finding Hidden Hints}
 
+**Discovering Tutorial Features**
 
-## {step 2}
+---
 
-We like to hide extra info in "clue boxes" to shorten the instructions.
+I like to hide extra info in "clue boxes" to keep the main instructions focused. These collapsible hints give you troubleshooting tips, definitions, and extra guidance — the same kind of notes I write for my team when we're debugging code.
 
 - :mouse pointer: Click the clue box below to see what's inside.
 
@@ -44,7 +42,7 @@ You found a clue!
 hint~
 
 
-Sometimes, we like to show you recommended blocks for a step.
+Sometimes, I like to show you recommended blocks for a step.
 
 - :mouse pointer: Click the round lightbulb button below to see an example.
 
@@ -58,21 +56,21 @@ game.splash("You found me!")
 
 
 
-## {Using the workspace}
+## {3. Using the Workspace}
 
-Your [__*workspace*__](#workIt "The area where you build code")
-is the area where you'll connect code blocks to build your program.
+**Building Your First Code**
 
 ---
 
-- :mouse pointer:  Click inside the ``||game(noclick):splash " "||`` block that's already in the workspace
-and **change the message** to something you'd like to say.
+Your [__*workspace*__](#workIt "The area where you build code") is where you'll connect code blocks to build your program. I spend most of my day in a workspace like this, snapping together logic that controls race car systems. Only blocks connected in the workspace will run when your game starts.
+
+- :mouse pointer: Click inside the ``||game(noclick):splash " "||`` block that's already in the workspace and **change the message** to something you'd like to say.
 
 ~hint What's a workspace? 🕵🏽
 
 ---
 
-![The Workspace](/static/tutorials/interface/workspace.png " " )
+![The Workspace](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/workspace.png " " )
 
 The **workspace** is the area to the right of the toolbox where you build your program.
 
@@ -89,29 +87,32 @@ game.splash("Let's start coding!")
 
 ## Meet the Blocks  @showdialog
 
-Blocks can be dragged out from the  [__*toolbox*__](#tools "The strip to the left of your workspace that lists block categories."), <br/>
-connected, duplicated, and deleted.
+Blocks can be dragged out from the  [__*toolbox*__](#tools "The strip to the left of your workspace that lists block categories."), connected, duplicated, and deleted.
 
 Keep going to learn more about blocks.
 
-![Block Animation](/static/skillmap/interface/use_blocks.gif "Blocks appear, duplicate, and delete." )
+![Block Animation](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/use_blocks.gif "Blocks appear, duplicate, and delete." )
 
 
 
-## {Your Toolbox}
+## {4. Finding Blocks in the Toolbox}
 
-**Blocks don't always start in the workspace.**
+**Navigating Your Block Categories**
 
-When you need to add a block, we will either suggest it using an image like this:
+---
+
+Blocks don't always start in the workspace. The toolbox on the left organizes hundreds of blocks into categories. When I'm writing control code for the race car, I need to find the right function quickly — learning to navigate your tools fast is an essential skill that will serve you well.
+
+When you need to add a block, I'll either suggest it using an image like this:
 ```block
 game.splash(" ")
 ```
-or with highlighted text, like this:<br/>
- ``||game:splash " "||``<br/>
+or with highlighted text, like this:
+ ``||game:splash " "||``
 
 
 
-~hint Wanna see something cool? 🕵🏽
+~hint Want to see something cool? 🕵🏽
 
 ---
 
@@ -119,22 +120,22 @@ When you need to find a block in the toolbox and we use highlighted text in the 
 
 Try it now by clicking the block below!<br/>
 
-``||game:splash " "||``<br/>
+``||game:splash " "||``
 
 hint~
 
 
 
-## {Your Toolbox 2}
+## {5. Setting the Scene}
 
-**Let's see how this works**
+**Creating Your Game Environment**
 
-- :tree:  Find the<br/>
-``||scene:set background color to [ ]||``<br/>
-block and snap it in **at the top of**
-the<br/>
-``||loops(noclick):on start||``<br/>
-container already in the workspace.
+---
+
+Let's see how this works. Every game needs a visual environment, and setting the background color is often the first step. When I'm building a dashboard or simulator, I start with the basics like this. Simple choices like color set the mood and make your work instantly recognizable.
+
+- :tree: Find the ``||scene:set background color to [ ]||`` block and snap it in **at the top of**
+the ``||loops(noclick):on start||`` container already in the workspace.
 
 - :paint brush:  Click the empty square to set the background to your favorite color.
 
@@ -146,14 +147,15 @@ game.splash("Let's start coding!")
 
 
 
-## {The Exception}
+## {6. Creating Your First Sprite}
 
-If you can't find the block you need, click the highlighted text and the correct category will open for you.
+**Adding a Character to Your Game**
 
-- :paper plane:  Snap
-<br/>``||variables(sprites):set [my sprite] to sprite [ ] of kind [Player]||``<br/>
-into **the end** of the <br/>
-``||loops(noclick):on start||`` container.
+---
+
+If you can't find the block you need, click the highlighted text and the correct category will open for you. Now let's add a character! In game development, any character or moving object is called a sprite. On our team, we track car position, speed, and state using objects with properties — sprites work the same way and they're the foundation of almost every game you'll build.
+
+- :paper plane: Snap ``||variables(sprites):set [my sprite] to sprite [ ] of kind [Player]||`` into **the end** of the ``||loops(noclick):on start||`` container.
 
 
 - :paint brush:  Click the empty box to draw a [__*sprite*__](#sprote "A 2-D image that moves on the screen")
@@ -201,15 +203,19 @@ let mySprite = sprites.create(img`
 
 
 
-## {Simulator}
+## {7. Testing in the Simulator}
 
-Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go.
+**Seeing Your Code in Action**
+
+---
+
+Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go. The simulator is your testing lab — it shows you exactly what your code does. I test my code constantly during development. Testing frequently helps you catch bugs early and see your progress, just like running a systems check before the race.
 
 - :binoculars: Take a look at the simulator. <br/>
 Do you see a message that needs to be cleared? Then do you see the sprite you chose?
 
 
-![Look for the simulator in the lower right](/static/skillmap/assets/game-window.png "Click the mini simulator to pop open the bigger view.")
+![Look for the simulator in the lower right](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/game-window.png "Click the mini simulator to pop open the bigger view.")
 
 
 
@@ -236,11 +242,15 @@ _(This block runs code when the A button is pressed.)_
 
 
 
-## {Use a container block}
+## {8. Adding Player Controls}
 
-- :game:   Find the<br/>
-``||controller:on [A] button pressed ||`` <br/>
-container and drag it into **an empty area of** the workspace.
+**Responding to Button Presses**
+
+---
+
+Now let's give players control! Container blocks like this one run code when specific events happen — in this case, when the player presses a button. In the race car, our control systems respond to sensor events in real time. Event-driven programming is how we build responsive systems, and it's how games respond to player actions.
+
+- :game pad: Find the ``||controller:on [A] button pressed ||`` container and drag it into **an empty area of** the workspace.
 
 
 
@@ -274,16 +284,17 @@ _(This block sends water spraying from the center of your sprite.)_
 
 
 
-## {Standard Blocks 2}
+## {9. Adding Visual Effects}
 
-- :paper plane:   Find a <br/>
-``||sprites:[mySprite] start [spray] effect ⊕||``<br/>
-block and snap it into the  <br/>
-``||controller(noclick):on [A] button pressed||``<br/>
-container that's already in your workspace...then choose a new effect!
+**Making Your Game More Engaging**
 
-- :mouse pointer:   Click the **+** to the right of the new block to pop open an
-extra option.
+---
+
+Visual effects make games more exciting and give players instant feedback. When you trigger an effect from a button press, players immediately see the result of their action. In our race dashboards, instant visual feedback tells the driver exactly what's happening — this feedback loop is essential to both racing and good game design.
+
+- :paper plane: Find a ``||sprites:[mySprite] start [spray] effect ⊕||`` block and snap it into the ``||controller(noclick):on [A] button pressed||`` container that's already in your workspace...then choose a new effect!
+
+- :mouse pointer: Click the **+** to the right of the new block to pop open an extra option.
 
 
 
@@ -305,7 +316,7 @@ Value blocks are special pieces that add information to other
 blocks. Sometimes they're pointy, sometimes they're rounded,
 but they always need another block to snap into. Value blocks look something like this:
 
-![Value Blocks](/static/skillmap/interface/parameter-blocks.png "This is what the shape of an value block looks like" )
+![Value Blocks](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/parameter-blocks.png "This is what the shape of an value block looks like" )
 
 _💡 Value blocks have different shapes
 depending on what kind of information they add. Each value will only
@@ -314,14 +325,17 @@ fit in certain types of spaces._
 
 
 
-## {Value Blocks 2}
+## {10. Adding Randomness}
 
+**Making Your Game More Dynamic**
 
-- :calculator:   From the ``||math:Math||`` category, grab a <br/>
-``||math: pick random [0] to [10]||``<br/>
-value block and snap it in to replace **500**.
+---
 
-- :mouse pointer:   Change the random range to pick between **100** and **600**.
+Randomness makes games unpredictable and replayable. Instead of the same effect duration every time, we'll use a random value so each button press creates a slightly different experience. In racing simulators, I add variability to make training scenarios more realistic. This technique keeps players engaged and tests their adaptability.
+
+- :calculator: From the ``||math:Math||`` category, grab a ``||math: pick random [0] to [10]||`` value block and snap it in to replace **500**.
+
+- :mouse pointer: Change the random range to pick between **100** and **600**.
 
 
 
@@ -339,36 +353,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 
 
 
-## {Test Time}
+## {11. Testing Your Interactive Game}
 
-**🕹️ Time to test 🕹️**
-
-- :binoculars: Take a look at the simulator and click the **Ⓐ** button (or space bar) to clear your splash screen message.
-
-- :game: Now click **Ⓐ** over and over again to see your effects!
-
-
-
-
-
-## {Putting it Together}
-
-**🎨 Now get creative 🎨**
-
-Take a look at all of the extra blocks in the toolbox.
-
-It's okay if you don't know what they all do.
-Try adding them to see what happens!
-
-If something doesn't work the way you expect, that's normal! You can always undo (Ctrl+Z or Cmd+Z) or click the Reset button to start fresh.
+**Playing What You Built**
 
 ---
 
-_💡 Test your code in the simulator after every couple of steps to make sure
-it's behaving the way you want it to!_
+🕹️ Time to test! This is how I work every day — add a feature, test it, make sure it works as expected. Testing frequently helps you catch bugs early and see your progress. On race day, we don't get second chances, so we test everything thoroughly beforehand.
 
+- :binoculars: Take a look at the simulator and click the **Ⓐ** button (or space bar) to clear your splash screen message.
 
-
+- :game pad: Now click **Ⓐ** over and over again to see your effects!
 
 ## {Finale @unplugged}
 
@@ -386,11 +381,9 @@ You now know how to:
 
 **Ready for the next challenge?**
 
-Head to the **Garage** where you'll join the Mercedes F1 team as an engineer. You'll build your own racing simulator, make engineering decisions about speed and efficiency, and test your code on the track.
+Now you're ready to join me and the rest of the Mercedes F1 team in the **Garage**. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. I'll be there to guide you every step of the way.
 
 Let's go! 🏎️
-
-
 
 ```ghost
 let mySprite: Sprite = null;

@@ -2,7 +2,7 @@
 * name: Driven by STEM, enabled by Microsoft
 * description: Join Mercedes as an engineer for the day. Code your own F1 simulator, balance speed against efficiency, and test your decisions on the track. Explore real STEM careers while building systems that perform under pressure.
 * primarycolor: #ffd84d
-* secondarycolor: #b40707
+* secondarycolor: #000
 * tertiarycolor: #EAF3F8
 * highlightcolor: #42cdf4
 * completednodecolor: #067d14
