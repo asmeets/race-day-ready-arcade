@@ -5,7 +5,7 @@ namespace SpriteKind {
 
 namespace drivenByStemSupport {
     const TEST_TRACK_LENGTH_MULTIPLIER = 1.5
-    const TEST_TRACK_DURATION_SECONDS = 15 * TEST_TRACK_LENGTH_MULTIPLIER
+    const TEST_TRACK_DURATION_SECONDS = 60
     const TEST_TRACK_COURSE_DISTANCE = 2800 * TEST_TRACK_LENGTH_MULTIPLIER
     const TEST_TRACK_HORIZON = 80
     const TEST_TRACK_WORLD_Y = -10000
@@ -29,23 +29,32 @@ namespace drivenByStemSupport {
     const TEST_TRACK_HUD_STRIP_HEIGHT = 20
     const TEST_TRACK_HUD_TEXT_Y = 6
     const TEST_TRACK_COLLISION_SPEED_LOSS = 90
+    const TEST_TRACK_FALSE_START_PENALTY_MILLISECONDS = 5000
     const TEST_TRACK_GAS_MULTIPLIER = 10
     const TEST_TRACK_MIN_GAS = 30
+    const TEST_TRACK_MAX_GAS = 100
     const TEST_TRACK_BASE_GAS_DRAIN = 1.5
     const TEST_TRACK_SPEED_GAS_DIVISOR = 220
     const TEST_TRACK_OFFROAD_GAS_DRAIN = 1.2
     const TEST_TRACK_GAS_BAR_WIDTH = 28
     const TEST_TRACK_GAS_BAR_HEIGHT = 4
-    const TEST_TRACK_GAS_BAR_OFFSET = 46
+    const TEST_TRACK_GAS_BAR_OFFSET = -34
     const TEST_TRACK_MPH_FACTOR = 0.621371
     const TEST_TRACK_SUMMARY_ROUNDING = 10
     const TEST_TRACK_RUN_DURATION_MILLISECONDS = TEST_TRACK_DURATION_SECONDS * 1000
+    const TEST_TRACK_HUD_RIGHT_PADDING = 8
     const TEST_TRACK_START_LIGHT_COUNT = 5
     const TEST_TRACK_LIGHT_STEP_MILLISECONDS = 450
     const TEST_TRACK_LIGHT_HOLD_MILLISECONDS = 700
     const TEST_TRACK_GO_FLASH_MILLISECONDS = 650
+    const TEST_TRACK_LIGHT_BEEP_FREQUENCY = 784
+    const TEST_TRACK_LIGHT_BEEP_DURATION = 90
+    const TEST_TRACK_GO_TONE_FREQUENCY = 988
+    const TEST_TRACK_GO_TONE_DURATION = 280
     const TEST_TRACK_QUICK_REACTION_MILLISECONDS = 400
     const TEST_TRACK_STEADY_REACTION_MILLISECONDS = 800
+    const TEST_TRACK_CUSTOM_SPRITE_SWAP_INDEX = 10
+    const TEST_TRACK_NEAR_CONE_SWAP_INDEX = 6
     const TEST_TRACK_SKYLINE_BASE_Y = 28
     const TEST_TRACK_SKYLINE_SCROLL_DIVISOR = 48
 
@@ -121,7 +130,9 @@ namespace drivenByStemSupport {
         segmentPos: number
         elapsedMilliseconds: number
         starterElapsedMilliseconds: number
+        starterLightsAnnounced: number
         reactionTimeMilliseconds: number
+        falseStartPenaltyApplied: boolean
         goFlashMilliseconds: number
         gasBar: StatusBarSprite
         gasRemaining: number
@@ -146,7 +157,9 @@ namespace drivenByStemSupport {
             this.segmentPos = 0
             this.elapsedMilliseconds = 0
             this.starterElapsedMilliseconds = 0
+            this.starterLightsAnnounced = 0
             this.reactionTimeMilliseconds = -1
+            this.falseStartPenaltyApplied = false
             this.goFlashMilliseconds = 0
             this.gasBar = gasBar
             this.gasRemaining = gasMax
@@ -167,7 +180,7 @@ namespace drivenByStemSupport {
 
         const playerCar = ensurePlayerCar()
         const maxDriveSpeed = clampToRange(drivenByStem.savedDriveSpeed() * 3, TEST_TRACK_MIN_SPEED_CAP, TEST_TRACK_MAX_SPEED)
-        const gasMax = Math.max(TEST_TRACK_MIN_GAS, drivenByStem.savedEfficiency() * TEST_TRACK_GAS_MULTIPLIER)
+        const gasMax = clampToRange(drivenByStem.savedEfficiency() * TEST_TRACK_GAS_MULTIPLIER, TEST_TRACK_MIN_GAS, TEST_TRACK_MAX_GAS)
         const gasDrainBase = TEST_TRACK_BASE_GAS_DRAIN * Math.max(1, drivenByStem.savedEfficiencyCost())
         const gasBar = createGasBar(gasMax)
         const displayUnit = drivenByStem.speedDisplayUnit()
@@ -257,11 +270,16 @@ namespace drivenByStemSupport {
         const accelerating = launched && controller.up.isPressed() && !controller.down.isPressed()
         const braking = launched && controller.down.isPressed() && !controller.up.isPressed()
 
+        if (!launched && launchInputPressed()) {
+            triggerFalseStart()
+            return
+        }
+
         if (launched) {
             captureReactionIfNeeded(steeringDelta, accelerating, braking)
             activeTrack.elapsedMilliseconds += deltaTime * 1000
             activeTrack.carWorldX += 0 - steeringDelta
-            activeTrack.distanceOffset += (deltaTime * activeTrack.speed) | 0
+            activeTrack.distanceOffset += deltaTime * activeTrack.speed
 
             if (activeTrack.distanceOffset >= activeTrack.nextObstacleDistance && activeTrack.obstacles.length < TEST_TRACK_MAX_OBSTACLES) {
                 spawnObstacle()
@@ -332,8 +350,8 @@ namespace drivenByStemSupport {
         }
 
         drawHudStrip(canvas)
-        canvas.print(formatElapsedTime(launched ? activeTrack.elapsedMilliseconds : 0), 8, TEST_TRACK_HUD_TEXT_Y, 1)
-        canvas.print(formatSpeed(activeTrack.speed, activeTrack.displayUnit), 96, TEST_TRACK_HUD_TEXT_Y, 1)
+        canvas.printCenter(formatElapsedTime(launched ? activeTrack.elapsedMilliseconds : 0), TEST_TRACK_HUD_TEXT_Y, 1, image.font8)
+        drawRightAlignedHudText(canvas, formatSpeed(activeTrack.speed, activeTrack.displayUnit), TEST_TRACK_HUD_TEXT_Y)
         drawStarterOverlay(canvas)
 
         if (launched && activeTrack.distanceOffset >= TEST_TRACK_COURSE_DISTANCE) {
@@ -363,6 +381,12 @@ namespace drivenByStemSupport {
         }
 
         activeTrack.starterElapsedMilliseconds += deltaTime * 1000
+        const lightsOn = Math.min(TEST_TRACK_START_LIGHT_COUNT, integerDivide(activeTrack.starterElapsedMilliseconds, TEST_TRACK_LIGHT_STEP_MILLISECONDS))
+        if (lightsOn > activeTrack.starterLightsAnnounced) {
+            activeTrack.starterLightsAnnounced = lightsOn
+            playStarterBeep()
+        }
+
         if (activeTrack.starterElapsedMilliseconds >= starterDurationMilliseconds()) {
             launchTrackRun()
         }
@@ -377,6 +401,19 @@ namespace drivenByStemSupport {
         activeTrack.speed = 0
         activeTrack.topSpeed = 0
         activeTrack.goFlashMilliseconds = TEST_TRACK_GO_FLASH_MILLISECONDS
+        playGoTone()
+    }
+
+    function playStarterBeep(): void {
+        control.runInParallel(function () {
+            music.playTone(TEST_TRACK_LIGHT_BEEP_FREQUENCY, TEST_TRACK_LIGHT_BEEP_DURATION)
+        })
+    }
+
+    function playGoTone(): void {
+        control.runInParallel(function () {
+            music.playTone(TEST_TRACK_GO_TONE_FREQUENCY, TEST_TRACK_GO_TONE_DURATION)
+        })
     }
 
     function captureReactionIfNeeded(steeringDelta: number, accelerating: boolean, braking: boolean): void {
@@ -425,9 +462,33 @@ namespace drivenByStemSupport {
         activeTrack.car.y = TEST_TRACK_CAR_SCREEN_Y
     }
 
+    function launchInputPressed(): boolean {
+        return controller.up.isPressed()
+            || controller.down.isPressed()
+            || controller.left.isPressed()
+            || controller.right.isPressed()
+    }
+
+    function triggerFalseStart(): void {
+        if (!(trackIsActive()) || trackHasLaunched() || activeTrack.falseStartPenaltyApplied) {
+            return
+        }
+
+        activeTrack.falseStartPenaltyApplied = true
+        activeTrack.elapsedMilliseconds += TEST_TRACK_FALSE_START_PENALTY_MILLISECONDS
+        scene.cameraShake(2, 200)
+        game.splash("False start", "+5.0 s penalty")
+    }
+
     function drawHudStrip(canvas: Image): void {
         canvas.fillRect(0, 0, TEST_TRACK_CANVAS_WIDTH, TEST_TRACK_HUD_STRIP_HEIGHT, 12)
         canvas.fillRect(0, TEST_TRACK_HUD_STRIP_HEIGHT - 1, TEST_TRACK_CANVAS_WIDTH, 1, 15)
+    }
+
+    function drawRightAlignedHudText(canvas: Image, text: string, y: number): void {
+        const font = image.font8
+        const x = TEST_TRACK_CANVAS_WIDTH - TEST_TRACK_HUD_RIGHT_PADDING - text.length * font.charWidth
+        canvas.print(text, x, y, 1, font)
     }
 
     function drawCityScape(canvas: Image): void {
@@ -472,7 +533,7 @@ namespace drivenByStemSupport {
     }
 
     function spawnObstacle(): void {
-        const obstacle = sprites.create(trackObstacleImage(), SpriteKind.TestTrackObstacle)
+        const obstacle = sprites.create(smallConeImage, SpriteKind.TestTrackObstacle)
         obstacle.data = new TestTrackObstacleData(randint(-30, 30), worldZByDepth[TEST_TRACK_END_POS - 1] + activeTrack.distanceOffset, randint(0, 2))
         activeTrack.obstacles.push(obstacle)
         activeTrack.nextObstacleDistance = activeTrack.distanceOffset + randint(300, 420)
@@ -482,7 +543,7 @@ namespace drivenByStemSupport {
         const size = Math.max(1, scaleByDepth[index] * 20 >> 8)
         obstacle.y = 120 - index
         obstacle.x = (roadOffsetByDepth[index] >> 8) + 80 + (scaleByDepth[index] * data.laneOffset >> 8)
-        obstacle.setImage(pickObstacleImage(size, data.variant))
+        obstacle.setImage(pickObstacleImage(size, data.variant, index))
     }
 
     function createGasBar(gasMax: number): StatusBarSprite {
@@ -496,21 +557,17 @@ namespace drivenByStemSupport {
         return gasBar
     }
 
-    function pickObstacleImage(size: number, variant: number): Image {
+    function pickObstacleImage(size: number, variant: number, index: number): Image {
         if (size <= tinyConeImage.width) {
             return tinyConeImage
         }
 
-        if (size <= smallConeImage.width) {
+        if (index > TEST_TRACK_CUSTOM_SPRITE_SWAP_INDEX || size <= smallConeImage.width) {
             return smallConeImage
         }
 
-        if (size <= mediumConeImage.width) {
+        if (index > TEST_TRACK_NEAR_CONE_SWAP_INDEX || size <= mediumConeImage.width) {
             return mediumConeImage
-        }
-
-        if (size <= mediumTrackObstacleImage.width) {
-            return mediumTrackObstacleImage
         }
 
         const obstacleOptions = [garageConeImage(), rainPuddleImage(), trackObstacleImage()]
@@ -575,20 +632,18 @@ namespace drivenByStemSupport {
     function buildEfficiencyReport(completedCourse: boolean): string {
         const elapsedSeconds = roundToTenth(activeTrack.elapsedMilliseconds / 1000)
         const gasBurned = Math.max(0, roundToTenth(activeTrack.gasMax - activeTrack.gasRemaining))
-        const gasLeft = Math.max(0, roundToTenth(activeTrack.gasRemaining))
         const averageSpeed = elapsedSeconds > 0 ? activeTrack.distanceOffset / elapsedSeconds : 0
         const reportTitle = completedCourse ? "Your Efficiency Report" : "Run report"
         const courseLine = completedCourse ? "Course completed!" : "Course not finished"
 
         return reportTitle
             + "\n" + courseLine
-            + "\nTime: " + elapsedSeconds + " s"
-            + "\nStart: " + reactionSummary(activeTrack.reactionTimeMilliseconds)
-            + "\nTop speed: " + formatSpeed(activeTrack.topSpeed, activeTrack.displayUnit)
-            + "\nAvg speed: " + formatSpeed(averageSpeed, activeTrack.displayUnit)
-            + "\nGas burned: " + drivenByStem.formatFuelAmount(gasBurned)
-            + "\nGas left: " + drivenByStem.formatFuelAmount(gasLeft)
-            + "\nCollisions: " + activeTrack.collisionCount
+            + "\n- Time: " + elapsedSeconds + " s"
+            + "\n- Reaction: " + reactionSummary(activeTrack.reactionTimeMilliseconds)
+            + "\n- Top speed: " + formatSpeed(activeTrack.topSpeed, activeTrack.displayUnit)
+            + "\n- Avg speed: " + formatSpeed(averageSpeed, activeTrack.displayUnit)
+            + "\n- Gas burned: " + drivenByStem.formatFuelAmount(gasBurned)
+            + "\n- Crashes: " + activeTrack.collisionCount
     }
 
     function showFinishBanner(summary: string): void {
