@@ -275,9 +275,6 @@ namespace drivenByStemSupport {
         for (let i = 0; i < TEST_TRACK_END_POS; i++) {
             const dx = i < segmentPosition ? activeTrack.previousSegmentDx : activeTrack.segmentDx
             curveAccumulator += dx
-            if (i == 40) {
-                activeTrack.carWorldX += 30 * dx
-            }
             roadX += curveAccumulator
             roadOffsetByDepth[i] = roadX
         }
