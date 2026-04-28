@@ -26,6 +26,8 @@ namespace drivenByStemSupport {
     const TEST_TRACK_COAST_DECELERATION = 45
     const TEST_TRACK_CANVAS_WIDTH = 160
     const TEST_TRACK_CANVAS_HEIGHT = 120
+    const TEST_TRACK_HUD_STRIP_HEIGHT = 20
+    const TEST_TRACK_HUD_TEXT_Y = 6
     const TEST_TRACK_COLLISION_SPEED_LOSS = 90
     const TEST_TRACK_GAS_MULTIPLIER = 10
     const TEST_TRACK_MIN_GAS = 30
@@ -330,8 +332,9 @@ namespace drivenByStemSupport {
             activeTrack.topSpeed = Math.max(activeTrack.topSpeed, activeTrack.speed)
         }
 
-        canvas.print(formatElapsedTime(launched ? activeTrack.elapsedMilliseconds : 0), 8, 15, 1)
-        canvas.print(formatSpeed(activeTrack.speed, activeTrack.displayUnit), 96, 15, 1)
+        drawHudStrip(canvas)
+        canvas.print(formatElapsedTime(launched ? activeTrack.elapsedMilliseconds : 0), 8, TEST_TRACK_HUD_TEXT_Y, 1)
+        canvas.print(formatSpeed(activeTrack.speed, activeTrack.displayUnit), 96, TEST_TRACK_HUD_TEXT_Y, 1)
         drawStarterOverlay(canvas)
 
         if (launched && activeTrack.distanceOffset >= TEST_TRACK_COURSE_DISTANCE) {
@@ -421,6 +424,11 @@ namespace drivenByStemSupport {
     function holdCarAtStart(): void {
         activeTrack.car.x = TEST_TRACK_CAR_SCREEN_X
         activeTrack.car.y = TEST_TRACK_CAR_SCREEN_Y
+    }
+
+    function drawHudStrip(canvas: Image): void {
+        canvas.fillRect(0, 0, TEST_TRACK_CANVAS_WIDTH, TEST_TRACK_HUD_STRIP_HEIGHT, 12)
+        canvas.fillRect(0, TEST_TRACK_HUD_STRIP_HEIGHT - 1, TEST_TRACK_CANVAS_WIDTH, 1, 15)
     }
 
     function drawCityScape(canvas: Image): void {
