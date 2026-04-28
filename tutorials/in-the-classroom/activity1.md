@@ -371,9 +371,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ## {Finale @unplugged}
 
-** Congratulations! **
+**Congratulations!**
 
-You've completed the **"Intro to MakeCode Arcade"** tutorial!
+You've completed the Intro to MakeCode Arcade tutorial!
 
 You now know how to:
 - ✅ Follow tutorial instructions
@@ -381,13 +381,9 @@ You now know how to:
 - ✅ Build code in the workspace
 - ✅ Test your work in the simulator
 
----
-
 **Ready for the next challenge?**
 
-Now you're ready to join me and the rest of the Mercedes F1 team in the **Garage**. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. I'll be there to guide you every step of the way.
-
-Let's go! 🏎️
+Now you're ready to join me and the rest of the Mercedes F1 team in the **Garage**. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. I'll be there to guide you every step of the way. **Let's go!** 🏎️
 
 ```ghost
 let mySprite: Sprite = null;

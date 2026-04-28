@@ -29,6 +29,8 @@ namespace drivenByStem {
     const CAR_NAME_KEY = "carName"
     const ROLE_LENS_KEY = "roleLens"
     const CAR_STYLE_KEY = "carStyle"
+    const SPEED_UNIT_KEY = "speedDisplayUnit"
+    const FUEL_UNIT_KEY = "fuelDisplayUnit"
 
     export enum RaceStage {
         //% block="garage"
@@ -83,6 +85,20 @@ namespace drivenByStem {
         VoltLime,
         //% block="heat red"
         HeatRed
+    }
+
+    export enum SpeedUnit {
+        //% block="km/h"
+        KilometersPerHour,
+        //% block="mph"
+        MilesPerHour
+    }
+
+    export enum FuelUnit {
+        //% block="gallons"
+        Gallons,
+        //% block="liters"
+        Liters
     }
 
     function stageName(stage: RaceStage): string {
@@ -155,6 +171,26 @@ namespace drivenByStem {
         }
     }
 
+    function speedUnitName(unit: SpeedUnit): string {
+        switch (unit) {
+            case SpeedUnit.MilesPerHour:
+                return "mph"
+            case SpeedUnit.KilometersPerHour:
+            default:
+                return "km/h"
+        }
+    }
+
+    function fuelUnitName(unit: FuelUnit): string {
+        switch (unit) {
+            case FuelUnit.Liters:
+                return "L"
+            case FuelUnit.Gallons:
+            default:
+                return "gal"
+        }
+    }
+
     function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
         let styled = target.image.clone()
         styled.replace(6, bodyColor)
@@ -200,6 +236,8 @@ namespace drivenByStem {
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
         ensureStringSetting(CAR_STYLE_KEY, "silver flash")
+        ensureStringSetting(SPEED_UNIT_KEY, "mph")
+        ensureStringSetting(FUEL_UNIT_KEY, "gal")
     }
 
     /**
@@ -230,6 +268,72 @@ namespace drivenByStem {
     //% group="Session" weight=70
     export function resetSavedSession(): void {
         settings.clear()
+    }
+
+    /**
+     * Build the team's base car and apply the saved starting speed.
+     */
+    //% block="build base car with image $carImage"
+    //% blockId=raceday_build_base_car
+    //% carImage.shadow=screen_image_picker
+    //% group="Session" weight=65
+    export function buildBaseCar(carImage: Image): void {
+        let car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!car) {
+            car = sprites.create(carImage, SpriteKind.Player)
+        } else {
+            car.setImage(carImage.clone())
+        }
+        car.setFlag(SpriteFlag.StayInScreen, true)
+        const startingSpeed = settings.exists(DRIVE_SPEED_KEY) ? settings.readNumber(DRIVE_SPEED_KEY) : 80
+        controller.moveSprite(car, startingSpeed, startingSpeed)
+    }
+
+    /**
+     * Update the saved player's car controls to use a new speed value.
+     */
+    //% block="set base car speed to $speed"
+    //% blockId=raceday_set_base_car_speed
+    //% speed.defl=80 speed.min=0 speed.max=200
+    //% group="Session" weight=59
+    export function setBaseCarSpeed(speed: number): void {
+        const car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!car) return
+        controller.moveSprite(car, speed, speed)
+        car.setFlag(SpriteFlag.StayInScreen, true)
+    }
+
+    /**
+     * Set the speed display unit for the shakedown dashboard.
+     */
+    //% block="set speed display unit to $unit"
+    //% blockId=raceday_set_speed_display_unit
+    //% unit.defl=SpeedUnit.MilesPerHour
+    //% group="Session" weight=58
+    export function setSpeedDisplayUnit(unit: SpeedUnit): void {
+        settings.writeString(SPEED_UNIT_KEY, speedUnitName(unit))
+    }
+
+    /**
+     * Set the fuel display unit for the shakedown dashboard.
+     */
+    //% block="set fuel display unit to $unit"
+    //% blockId=raceday_set_fuel_display_unit
+    //% unit.defl=FuelUnit.Gallons
+    //% group="Session" weight=57
+    export function setFuelDisplayUnit(unit: FuelUnit): void {
+        settings.writeString(FUEL_UNIT_KEY, fuelUnitName(unit))
+    }
+
+    /**
+     * Start the optional pseudo-3D test track using the saved setup values.
+     */
+    //% block="start vehicle test track"
+    //% blockId=raceday_start_vehicle_test_track
+    //% group="Session" weight=56
+    export function startVehicleTestTrack(): void {
+        loadRaceProfile(80, 5)
+        drivenByStemSupport.startVehicleTestTrack()
     }
 
     /**
@@ -340,12 +444,13 @@ namespace drivenByStem {
     /**
      * Save the team's garage setup choices.
      */
-    //% block="save team setup speed $speed efficiency cost $efficiencyCost focus $focus"
+    //% block="save team setup speed $speed efficiency $efficiency efficiency cost $efficiencyCost focus $focus"
     //% blockId=raceday_save_setup
-    //% speed.defl=80 efficiencyCost.defl=1
+    //% speed.defl=80 efficiency.defl=5 efficiencyCost.defl=1
     //% group="Setup" weight=100
-    export function saveTeamSetup(speed: number, efficiencyCost: number, focus: SetupFocus): void {
+    export function saveTeamSetup(speed: number, efficiency: number, efficiencyCost: number, focus: SetupFocus): void {
         settings.writeNumber(DRIVE_SPEED_KEY, speed)
+        settings.writeNumber(EFFICIENCY_KEY, efficiency)
         settings.writeNumber(DRAIN_KEY, efficiencyCost)
         settings.writeString(SETUP_FOCUS_KEY, setupFocusName(focus))
     }
@@ -560,17 +665,9 @@ namespace drivenByStem {
 
 ![Sam - Software Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/sam.png)
 
-![Garage setup concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/garageBg.png)
+**Hi, I'm Sam, your software engineer on this team.** I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that mix of self-taught plus structured learning is what got me here.
 
-Hi, I'm **Sam**, your software engineer on this team. I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that **mix of self-taught plus structured learning** is what got me here.
-
-On a real racing team, I write and test control code, fix unexpected behavior, and keep the **dashboard reliable** when it matters most. In this gate, you'll do that same foundational work: **get the game running, build your car sprite, wire up the controls, and set up your dashboard**. That's the setup every project starts with, and the team identity you save here will carry forward through the whole path.
-
-```template
-let driveSpeed = 80
-let efficiencyDrain = 1
-let raceCar: Sprite = null
-```
+On a real racing team, I write and test control code, fix unexpected behavior, and keep the dashboard reliable when it matters most. In this gate, you'll do that same foundational work: get the game running, build your car sprite, wire up the controls, and set up your dashboard. That's the setup every project starts with, and the team identity you save here will carry forward through the whole path.
 
 ## {1. Set the Garage Background}
 
@@ -578,22 +675,24 @@ let raceCar: Sprite = null
 
 ---
 
-Every game starts with a scene. Setting the background color gives your game a visual identity from the moment it launches. This is the first thing players see, and it sets the tone for the entire racing experience.
+Every game starts with a scene. Setting the garage background gives your game a clear location from the moment it launches. This is the first thing players experience, and it helps the whole racing setup feel like a real team workspace.
 
-* :tree: Open `||scene:Scene||` and drag `set background color` into `||loops(noclick):on start||`.
+* :tree: Open `||scene:Scene||` and drag `||scene:set background image to||` into `||loops(noclick):on start||`.
+* :mouse pointer: Select the gray image square on the block to open the image picker.
+* :mouse pointer: Select the "My Assets" button and choose the garage background image, `garageBg`.
 
-~hint Background not changing? 🔍
+~hint Garage image missing? 🔍
 
 ---
 
-If the background doesn't change, make sure the block is snapped into the `on start` stack. A block sitting nearby won't run.
+If the garage scene does not appear, make sure the block is snapped into the `on start` stack. Then open the gray image square, go to `My Assets`, and check that `garageBg` is selected.
 
 hint~
 
 ```blocks
 //@highlight
 //@validate-exists
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`garageBg`)
 ```
 
 ## {2. Add a Mission Message}
@@ -602,10 +701,11 @@ scene.setBackgroundColor(6)
 
 ---
 
-Clear communication is essential in both games and engineering. A mission message tells players what they're about to do and why it matters. Think of it like a team briefing before a test session — everyone needs to know the objective.
+Clear communication is essential in both games and engineering. A mission message tells players what they're about to do and why it matters. Think of it like a team briefing before a test session - everyone needs to know the objective.
 
-* :game pad: Open `||game:Game||` and drag `splash` under the background block in `||loops(noclick):on start||`.
-* :keyboard: Type a short, one-sentence mission line.
+* :game pad: Open `||game:Game||` and drag `||game:splash||` under the background block in `||loops(noclick):on start||`.
+* :keyboard: Type a short, one-sentence mission line like "Miami test session."
+* :keyboard: Select the + icon in the `||game:splash||` block to add a second line that provides what the player will do like "Build a car you can explain."
 
 ~hint Message too long? ⚡
 
@@ -616,7 +716,7 @@ Keep this message short. If a player has to read a paragraph at launch, it's too
 hint~
 
 ```blocks
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`garageBg`)
 //@highlight
 //@validate-exists
 game.splash("Miami test session", "Build a car you can explain.")
@@ -628,10 +728,12 @@ game.splash("Miami test session", "Build a car you can explain.")
 
 ---
 
-In racing games and simulations, the car is more than just an image — it's an interactive object with properties like position, speed, and collision detection. Creating a sprite gives you a programmable object you can control, move, and respond to events. This is how digital simulations represent real-world objects.
+In racing games and simulations, the car is more than just an image — it's an interactive object with properties like position, speed, and collision detection.<br><br>Building and designing a sprite gives you a programmable object you can control, move, and respond to events. This is how digital simulations represent real-world objects.
 
-* :paper plane: Open `||sprites:Sprites||` and drag `set mySprite to sprite of kind Player` into `||loops(noclick):on start||`.
-* :keyboard: Rename the variable to `raceCar`, then select the image square to choose or draw a car.
+* :paper plane: Open `||sprites:Sprites||` and drag `||sprites:set mySprite to sprite of kind Player||` into `||loops(noclick):on start||`.
+* :mouse pointer: Select the `mySprite` drop-down in the `||sprites:set mySprite to sprite of kind Player||` block and select `||variables(sprites):Rename variable...||`
+* :keyboard: Rename the variable to `raceCar`.
+* :mouse pointer: Select the image square to choose a car from My Assets or draw your own car.
 
 ~hint What's a sprite? 💡
 
@@ -654,11 +756,11 @@ Use `raceCar` consistently. One mismatched name can make the right blocks feel w
 hint~
 
 ```blocks
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
 //@highlight
 //@validate-exists
-raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 ```
 
 ## {4. Turn On Movement}
@@ -669,9 +771,11 @@ raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 
 A car that can't move isn't much of a simulator. Wiring up controller input to sprite movement is how you transform button presses into on-screen action. Real racing simulators do the same thing — they translate driver input (steering, throttle, brakes) into vehicle behavior. Here you're building that connection.
 
-* :binoculars: The template already includes `driveSpeed`. Use it as the speed value throughout.
-* :game pad: Open `||controller:Controller||` and drag `move mySprite with buttons` into `||loops(noclick):on start||`, targeting `raceCar` with `driveSpeed`.
-* :paper plane: Open `||sprites:Sprites||` and add `stay in screen` so the car can't leave the view.
+* :game pad: Open `||controller:Controller||` and drag `||controller:move mySprite with buttons||` into `||loops(noclick):on start||`.
+* :keyboard: Select the + icon and enter `80` for both horizontal and vertical velocity values (vx and vy).
+* :paper plane: Open `||sprites:Sprites||` and add `||sprites:set mysprite auto destroy off||`.
+* :mouse pointer: In the `||sprites:set raceCar auto destroy off||` change "auto destroy" to "stay in screen".
+* :mouse pointer: In the `||sprites:set raceCar auto destroy off||` change the "Off" to "On" so your car can't leave the view.
 
 ~hint Car won't move? 🔧
 
@@ -682,12 +786,12 @@ If the car won't move, check which sprite the controller block is targeting. Thi
 hint~
 
 ```blocks
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 //@highlight
 //@validate-exists
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+controller.moveSprite(raceCar, 80, 80)
 //@highlight
 //@validate-exists
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
@@ -701,8 +805,10 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Professional race teams don't start from scratch every session — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. Loading saved data lets your choices carry forward across different stages, just like real engineering systems that remember past configurations and results.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `load race profile` and `start stage` (Garage) in `||loops(noclick):on start||`.
-* :racing_car: Set `driveSpeed` from the saved value.
+* :game pad: We first need to load our game defaults. Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:load race profile||` to `||loops(noclick):on start||`.
+* :game pad: Next we need to set the current stage of our game. Add the `||drivenByStem:start stage (Garage)||` block in the `||loops(noclick):on start||`. 
+* :mouse pointer: To set our car's speed we need to add the `||drivenByStem:set base car speed to||` block to `||loops(noclick):on start||`.
+* :racing car: Then we set the speed using the `||drivenByStem:saved drive speed||` variable from the ||`drivenByStem`|| toolbox in the `||drivenByStem:set base car speed to||` on top of the existing "80" value.
 
 ~hint Blocks missing? 👀
 
@@ -713,10 +819,10 @@ If the blocks are missing, scroll the toolbox. Custom categories can hide farthe
 hint~
 
 ```blocks
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
 //@validate-exists
@@ -726,7 +832,7 @@ drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.Garage)
 //@highlight
 //@validate-exists
-driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 ```
 
 ## {6. Save Team Identity}
@@ -737,8 +843,11 @@ driveSpeed = drivenByStem.savedDriveSpeed()
 
 Every racing team has an identity — a name, a car livery, a style. Setting these values personalizes your simulation and creates a sense of ownership. More importantly, saving these choices means the system remembers who you are across multiple sessions, just like how real team data persists across race weekends.
 
-* :id card: Still in `||drivenByStem:Driven by STEM||`, set your team name, car name, and car style.
-* :id card: Add blocks to apply the saved style to `raceCar` and show the driver profile.
+* :id card: Set your own team name using the `||drivenByStem.set team name to ""||` block.
+* :id card: Customize your car with a name using the `||drivenByStem.set car name to ""||` block.
+* :id card: Pick your car style using the `||drivenByStem.set car style to ""||` block.
+* :mouse pointer: Add `||drivenByStem.apply saved car style||` so your car applies your changes on screen in the simulator. 
+* :mouse pointer: Lastly, add `||drivenByStem.show saved driver profile||` to check that your team details were saved.
 
 ~hint Why consistency matters? 💭
 
@@ -754,14 +863,14 @@ hint~
 ```
 
 ```blocks
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.Garage)
-driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 //@highlight
 //@validate-exists
 drivenByStem.setTeamName("Apex Lab")
@@ -780,33 +889,36 @@ drivenByStem.setCarStyle(drivenByStem.CarStyle.VoltLime)
 drivenByStem.setCarStyle(drivenByStem.CarStyle.HeatRed)
 ```
 
-## {7. Add the Dashboard}
+## {7. Choose Dashboard Units}
 
-**Displaying Real-Time Performance Data**
-
----
-
-Racing drivers rely on dashboard displays to monitor speed, fuel, tire wear, and system health in real time. Your game's HUD (Heads-Up Display) does the same thing — it shows score and efficiency so players can make informed decisions. Visible data turns abstract numbers into actionable information.
-
-* :game pad: Open `||info:Info||` and set score to `0` and life to saved efficiency in `||loops(noclick):on start||`.
-
-~hint Life value looks wrong? 🐛
+**Preparing the Shakedown Readout**
 
 ---
 
-If your life value looks wrong, make sure you're pulling the saved efficiency value, not leaving it at a default.
+Racing teams need data they can read fast. Your shakedown dashboard will show speed and fuel during the test track, so this step lets you choose the units your team wants to read. Small display choices like this help teams compare results clearly.
+
+* :racing car: Add `||drivenByStem:set speed display unit to||` at the bottom of `||loops(noclick):on start||`.
+* :mouse pointer: Select `mph` or `km/h` for the speed readout.
+* :racing car: Add `||drivenByStem:set fuel display unit to||` at the bottom of `||loops(noclick):on start||`.
+* :mouse pointer: Choose `gallons` or `liters` for the fuel readout.
+
+~hint Wrong units later? 🐛
+
+---
+
+If the test track later shows the wrong units, check these blocks in `on start`. The last unit blocks in that stack are the settings the dashboard will use.
 
 hint~
 
 ```blocks
-scene.setBackgroundColor(6)
+scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
-raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.Garage)
-driveSpeed = drivenByStem.savedDriveSpeed()
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 drivenByStem.setTeamName("Apex Lab")
 drivenByStem.setCarName("Velocity")
 drivenByStem.setCarStyle(drivenByStem.CarStyle.SilverFlash)
@@ -814,9 +926,9 @@ drivenByStem.applySavedCarStyle()
 drivenByStem.showSavedDriverProfile()
 //@highlight
 //@validate-exists
-info.setScore(0)
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 //@validate-exists
-info.setLife(drivenByStem.savedEfficiency())
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
 
 ## {8. Add a Reset Button}
@@ -825,16 +937,16 @@ info.setLife(drivenByStem.savedEfficiency())
 
 ---
 
-In a classroom or activation event, multiple students will use the same device. A reset button clears saved data so each new group starts fresh. This is good systems thinking — designing for the context where your project will actually be used.
+If you share your project with a friend, or multiple people want to try your game, a reset button clears saved data so each new group starts fresh. This is good systems thinking — designing for the context where your project will actually be used.
 
 ```validation.local
 # BlocksExistValidator
 * Enabled: false
 ```
 
-* :game pad: Open `||controller:Controller||` and drag `on button pressed` into the workspace outside of `||loops(noclick):on start||`.
+* :game pad: Open `||controller:Controller||` and drag `||controller.on button pressed||` into the workspace outside of `||loops(noclick):on start||`.
 * :mouse pointer: Change the button to `B`.
-* :racing_car: Inside the event, add `reset saved session` and `game reset`.
+* :racing car: Inside the `||controller.on button pressed||` event, add `||drivenByStem.reset saved session||` and `||game.reset game||`.
 
 ~hint Button not working? ⚠️
 
@@ -855,10 +967,4 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ## Complete
 
-**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, and set up a live dashboard that tracks performance and efficiency. The team identity and car style you saved here are now ready to travel into the next tutorial.
-
-Computer science idea: saved data lets one project remember earlier choices across multiple tutorials.
-
-Engineering idea: a fast system still needs reliable controls, readable feedback, and a clean reset path.
-
-Team roles in this tutorial: software engineer, systems engineer, and track engineer.
+**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, and chose how your shakedown dashboard will show speed and fuel. The team identity and display settings you saved here are now ready to travel into the next tutorial.<br><br>In the next stage, you'll take this setup onto the test track and start collecting data on your car's performance. That data will be the key to improving your design and climbing the leaderboard, so get ready to put it to work!<br><br> Select the "Done" button to go to the next stage.

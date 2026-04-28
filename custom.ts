@@ -294,6 +294,18 @@ namespace drivenByStem {
         target.setImage(styled)
     }
 
+    function ensureBaseCar(carImage: Image): Sprite {
+        let car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!(car)) {
+            car = sprites.create(carImage, SpriteKind.Player)
+        } else {
+            car.setImage(carImage.clone())
+        }
+
+        car.setFlag(SpriteFlag.StayInScreen, true)
+        return car
+    }
+
     function ensureNumberSetting(name: string, value: number): void {
         if (!(settings.exists(name))) {
             settings.writeNumber(name, value)
@@ -389,6 +401,18 @@ namespace drivenByStem {
     }
 
     /**
+     * Build the team's base car and apply the saved starting speed.
+     */
+    //% block="build base car with image $carImage"
+    //% blockId=raceday_build_base_car
+    //% carImage.shadow=screen_image_picker
+    //% group="Session" weight=65
+    export function buildBaseCar(carImage: Image): void {
+        const car = ensureBaseCar(carImage)
+        controller.moveSprite(car, savedDriveSpeed(), savedDriveSpeed())
+    }
+
+    /**
      * Start the optional pseudo-3D test track using the saved setup values.
      */
     //% block="start vehicle test track"
@@ -397,6 +421,23 @@ namespace drivenByStem {
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
         drivenByStemSupport.startVehicleTestTrack()
+    }
+
+    /**
+     * Update the saved player's car controls to use a new speed value.
+     */
+    //% block="set base car speed to $speed"
+    //% blockId=raceday_set_base_car_speed
+    //% speed.defl=80 speed.min=0 speed.max=200
+    //% group="Session" weight=59
+    export function setBaseCarSpeed(speed: number): void {
+        const car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!(car)) {
+            return
+        }
+
+        controller.moveSprite(car, speed, speed)
+        car.setFlag(SpriteFlag.StayInScreen, true)
     }
 
     /**
@@ -565,12 +606,13 @@ namespace drivenByStem {
     /**
      * Save the team's garage setup choices.
      */
-    //% block="save team setup speed $speed efficiency cost $efficiencyCost focus $focus"
+    //% block="save team setup speed $speed efficiency $efficiency efficiency cost $efficiencyCost focus $focus"
     //% blockId=raceday_save_setup
-    //% speed.defl=80 efficiencyCost.defl=1
+    //% speed.defl=80 efficiency.defl=5 efficiencyCost.defl=1
     //% group="Setup" weight=100
-    export function saveTeamSetup(speed: number, efficiencyCost: number, focus: SetupFocus): void {
+    export function saveTeamSetup(speed: number, efficiency: number, efficiencyCost: number, focus: SetupFocus): void {
         settings.writeNumber(DRIVE_SPEED_KEY, speed)
+        settings.writeNumber(EFFICIENCY_KEY, sanitizeEfficiencyValue(efficiency, 5))
         settings.writeNumber(DRAIN_KEY, efficiencyCost)
         settings.writeString(SETUP_FOCUS_KEY, setupFocusName(focus))
     }

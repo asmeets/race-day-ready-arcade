@@ -29,6 +29,8 @@ namespace drivenByStem {
     const CAR_NAME_KEY = "carName"
     const ROLE_LENS_KEY = "roleLens"
     const CAR_STYLE_KEY = "carStyle"
+    const SPEED_UNIT_KEY = "speedDisplayUnit"
+    const FUEL_UNIT_KEY = "fuelDisplayUnit"
 
     export enum RaceStage {
         //% block="garage"
@@ -83,6 +85,20 @@ namespace drivenByStem {
         VoltLime,
         //% block="heat red"
         HeatRed
+    }
+
+    export enum SpeedUnit {
+        //% block="km/h"
+        KilometersPerHour,
+        //% block="mph"
+        MilesPerHour
+    }
+
+    export enum FuelUnit {
+        //% block="gallons"
+        Gallons,
+        //% block="liters"
+        Liters
     }
 
     function stageName(stage: RaceStage): string {
@@ -155,6 +171,26 @@ namespace drivenByStem {
         }
     }
 
+    function speedUnitName(unit: SpeedUnit): string {
+        switch (unit) {
+            case SpeedUnit.MilesPerHour:
+                return "mph"
+            case SpeedUnit.KilometersPerHour:
+            default:
+                return "km/h"
+        }
+    }
+
+    function fuelUnitName(unit: FuelUnit): string {
+        switch (unit) {
+            case FuelUnit.Liters:
+                return "L"
+            case FuelUnit.Gallons:
+            default:
+                return "gal"
+        }
+    }
+
     function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
         let styled = target.image.clone()
         styled.replace(6, bodyColor)
@@ -200,6 +236,8 @@ namespace drivenByStem {
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
         ensureStringSetting(CAR_STYLE_KEY, "silver flash")
+        ensureStringSetting(SPEED_UNIT_KEY, "mph")
+        ensureStringSetting(FUEL_UNIT_KEY, "gal")
     }
 
     /**
@@ -230,6 +268,72 @@ namespace drivenByStem {
     //% group="Session" weight=70
     export function resetSavedSession(): void {
         settings.clear()
+    }
+
+    /**
+     * Build the team's base car and apply the saved starting speed.
+     */
+    //% block="build base car with image $carImage"
+    //% blockId=raceday_build_base_car
+    //% carImage.shadow=screen_image_picker
+    //% group="Session" weight=65
+    export function buildBaseCar(carImage: Image): void {
+        let car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!car) {
+            car = sprites.create(carImage, SpriteKind.Player)
+        } else {
+            car.setImage(carImage.clone())
+        }
+        car.setFlag(SpriteFlag.StayInScreen, true)
+        const startingSpeed = settings.exists(DRIVE_SPEED_KEY) ? settings.readNumber(DRIVE_SPEED_KEY) : 80
+        controller.moveSprite(car, startingSpeed, startingSpeed)
+    }
+
+    /**
+     * Update the saved player's car controls to use a new speed value.
+     */
+    //% block="set base car speed to $speed"
+    //% blockId=raceday_set_base_car_speed
+    //% speed.defl=80 speed.min=0 speed.max=200
+    //% group="Session" weight=59
+    export function setBaseCarSpeed(speed: number): void {
+        const car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!car) return
+        controller.moveSprite(car, speed, speed)
+        car.setFlag(SpriteFlag.StayInScreen, true)
+    }
+
+    /**
+     * Set the speed display unit for the shakedown dashboard.
+     */
+    //% block="set speed display unit to $unit"
+    //% blockId=raceday_set_speed_display_unit
+    //% unit.defl=SpeedUnit.MilesPerHour
+    //% group="Session" weight=58
+    export function setSpeedDisplayUnit(unit: SpeedUnit): void {
+        settings.writeString(SPEED_UNIT_KEY, speedUnitName(unit))
+    }
+
+    /**
+     * Set the fuel display unit for the shakedown dashboard.
+     */
+    //% block="set fuel display unit to $unit"
+    //% blockId=raceday_set_fuel_display_unit
+    //% unit.defl=FuelUnit.Gallons
+    //% group="Session" weight=57
+    export function setFuelDisplayUnit(unit: FuelUnit): void {
+        settings.writeString(FUEL_UNIT_KEY, fuelUnitName(unit))
+    }
+
+    /**
+     * Start the optional pseudo-3D test track using the saved setup values.
+     */
+    //% block="start vehicle test track"
+    //% blockId=raceday_start_vehicle_test_track
+    //% group="Session" weight=56
+    export function startVehicleTestTrack(): void {
+        loadRaceProfile(80, 5)
+        drivenByStemSupport.startVehicleTestTrack()
     }
 
     /**
@@ -340,12 +444,13 @@ namespace drivenByStem {
     /**
      * Save the team's garage setup choices.
      */
-    //% block="save team setup speed $speed efficiency cost $efficiencyCost focus $focus"
+    //% block="save team setup speed $speed efficiency $efficiency efficiency cost $efficiencyCost focus $focus"
     //% blockId=raceday_save_setup
-    //% speed.defl=80 efficiencyCost.defl=1
+    //% speed.defl=80 efficiency.defl=5 efficiencyCost.defl=1
     //% group="Setup" weight=100
-    export function saveTeamSetup(speed: number, efficiencyCost: number, focus: SetupFocus): void {
+    export function saveTeamSetup(speed: number, efficiency: number, efficiencyCost: number, focus: SetupFocus): void {
         settings.writeNumber(DRIVE_SPEED_KEY, speed)
+        settings.writeNumber(EFFICIENCY_KEY, efficiency)
         settings.writeNumber(DRAIN_KEY, efficiencyCost)
         settings.writeString(SETUP_FOCUS_KEY, setupFocusName(focus))
     }
@@ -567,15 +672,11 @@ Hi, I'm **Riley**, a performance engineer on the race team. I got hooked on engi
 On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's **fast and controllable**. In this gate you'll tune the car's speed setting, **make a prediction before you test**, and add a rule that captures a core engineering truth: **every strong option costs something somewhere else**. The setup focus you save here is the same setup the shakedown and pit crew will read later.
 
 ```template
-let driveSpeed = 80
-let efficiencyDrain = 1
-let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.buildBaseCar(assets.image`playerCar`)
 drivenByStem.applySavedCarStyle()
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
-raceCar.setFlag(SpriteFlag.StayInScreen, true)
-info.setScore(0)
-info.setLife(drivenByStem.savedEfficiency())
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
 
 ## {1. Start the Setup Stage and Make a Prediction}
@@ -592,7 +693,6 @@ Real engineers don't just change things and hope for the best — they predict o
 ```
 
 * :racing_car: Open `||drivenByStem:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
-* :racing_car: Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
 * :game pad: Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
 ~hint Splash not showing? 📍
@@ -606,8 +706,6 @@ hint~
 ```blocks
 //@highlight
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-//@highlight
-driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 game.splash("Predict first", "What will more speed do to control and energy?")
 ```
@@ -645,11 +743,10 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 //@highlight
 //@validate-exists
-driveSpeed = 110
+let driveSpeed = 110
 ```
 
 ## {3. Make Movement Use driveSpeed}
@@ -660,8 +757,8 @@ driveSpeed = 110
 
 A variable is only useful if your code actually reads it. By wiring your movement system to the `driveSpeed` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
 
-* :game pad: Open `||controller:Controller||` and find `move mySprite with buttons`.
-* :mouse pointer: Replace any number values in the speed fields with the `driveSpeed` variable.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set base car speed to` into `||loops(noclick):on start||`.
+* :mouse pointer: Replace the number value with the `driveSpeed` variable.
 
 ~hint Speed not changing? 🔌
 
@@ -673,40 +770,41 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
+let driveSpeed = 110
 //@highlight
 //@validate-exists
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+drivenByStem.setBaseCarSpeed(driveSpeed)
 ```
 
-## {4. Create the Efficiency Variable}
+## {4. Create the Efficiency Variables}
 
 **Modeling System Costs**
 
 ---
 
-In real racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, the `efficiencyDrain` variable represents how much energy each mistake costs. Creating this variable lets you model tradeoffs — a core concept in engineering and game balance.
+In real racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `efficiencyRating` represents how much energy the car starts with, and `efficiencyDrain` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
 
-* :paper plane: Open `||variables:Variables||`, select **Make a Variable**, and name it `efficiencyDrain`.
-* :paper plane: Add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
+* :paper plane: Open `||variables:Variables||`, select **Make a Variable**, and name it `efficiencyRating`.
+* :paper plane: Set `efficiencyRating` to `||drivenByStem:Driven by STEM||` `saved efficiency`.
+* :paper plane: Create `efficiencyDrain`, then add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
 
 ---
 
-If you can't find `efficiencyDrain` in a dropdown, it usually means it was created with a different spelling. Double-check the exact variable name.
+If you can't find one of the efficiency variables in a dropdown, it usually means it was created with a different spelling. Double-check the exact variable name.
 
 hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let driveSpeed = 110
+drivenByStem.setBaseCarSpeed(driveSpeed)
 //@highlight
+//@validate-exists
+let efficiencyRating = drivenByStem.savedEfficiency()
 //@validate-exists
 let efficiencyDrain = 1
 ```
@@ -720,7 +818,8 @@ let efficiencyDrain = 1
 This is where your simulation gets smart. A conditional statement lets your code make different choices based on the current situation. In this case, you're programming a realistic tradeoff: higher speed means higher energy cost. This is how engineers encode real-world physics into software systems.
 
 * :paper plane: Open `||logic:Logic||` and add `if then else` in `||loops(noclick):on start||` with the condition `driveSpeed > 100`.
-* :keyboard: In the `then` branch, set `efficiencyDrain` to `2`; in the `else` branch, set it to `1`.
+* :keyboard: In the `then` branch, set `efficiencyRating` to `saved efficiency - 1` and `efficiencyDrain` to `2`.
+* :keyboard: In the `else` branch, set `efficiencyRating` to `saved efficiency` and `efficiencyDrain` to `1`.
 
 ~hint What's a conditional? 🔀
 
@@ -730,7 +829,7 @@ In programming, a **CONDITIONAL** (or if-else statement) lets your code make dec
 
 The structure is: **IF** (condition is true) **THEN** do this, **ELSE** do that instead.
 
-In this step, you're building a rule: IF speed is high, THEN efficiency costs more, ELSE it costs less.
+In this step, you're building a rule: IF speed is high, THEN the car starts with less efficiency and each mistake costs more, ELSE it keeps the stronger baseline.
 
 hint~
 
@@ -744,16 +843,20 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let driveSpeed = 110
+drivenByStem.setBaseCarSpeed(driveSpeed)
+let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
 //@highlight
 //@validate-exists
 if (driveSpeed > 100) {
+    //@validate-exists
+    efficiencyRating = drivenByStem.savedEfficiency() - 1
     efficiencyDrain = 2
 } else {
+    //@validate-exists
+    efficiencyRating = drivenByStem.savedEfficiency()
     efficiencyDrain = 1
 }
 ```
@@ -784,14 +887,16 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let driveSpeed = 110
+drivenByStem.setBaseCarSpeed(driveSpeed)
+let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
 if (driveSpeed > 100) {
+    efficiencyRating = drivenByStem.savedEfficiency() - 1
     efficiencyDrain = 2
 } else {
+    efficiencyRating = drivenByStem.savedEfficiency()
     efficiencyDrain = 1
 }
 //@highlight
@@ -829,14 +934,16 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+let driveSpeed = 110
+drivenByStem.setBaseCarSpeed(driveSpeed)
+let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
 if (driveSpeed > 100) {
+    efficiencyRating = drivenByStem.savedEfficiency() - 1
     efficiencyDrain = 2
 } else {
+    efficiencyRating = drivenByStem.savedEfficiency()
     efficiencyDrain = 1
 }
 drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
@@ -844,24 +951,24 @@ drivenByStem.showSavedDriverProfile()
 //@highlight
 if (driveSpeed > 100) {
     //@validate-exists
-    drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Pace)
+    drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Pace)
     //@validate-exists
     game.splash("Pace setup", "You chose raw pace. Monitor energy use.")
 } else {
     //@validate-exists
-    drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Balance)
+    drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Balance)
     game.splash("Balance setup", "You chose a more efficient setup.")
 }
 ```
 
 ```ghost
-drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Pace)
-drivenByStem.saveTeamSetup(driveSpeed, efficiencyDrain, drivenByStem.SetupFocus.Balance)
+drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Pace)
+drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Balance)
 ```
 
 ## Complete
 
-**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also saved the exact setup focus that later track, pit, and review steps will reuse.
+**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also saved both the setup speed and the starting efficiency that later track, pit, and review steps will reuse.
 
 Physics idea: increasing speed raises system demand.
 

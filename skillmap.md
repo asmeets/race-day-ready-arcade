@@ -28,7 +28,7 @@
 ### garage-activity1
 * name: Mission Briefing
 * type: tutorial
-* description: Build your race car, wire up the controls, and set up your dashboard so you're ready to test.
+* description: Build your race car, wire up the controls, and choose how your shakedown dashboard reads speed and fuel.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-mission-briefing.png
 * position: 0 5
 * tags: beginner, kick-off, mission, controls, points
@@ -48,7 +48,7 @@
 ### garage-activity3
 * name: Garage Shakedown
 * type: tutorial
-* description: Run a 15-second test to discover how clean you can drive and what your setup really does.
+* description: Launch the shakedown test track, read fuel, time, and speed, and compare what your setup really does.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-garage-shakedown.png
 * position: 3 6
 * tags: beginner, test-run, compare, feedback, improve
