@@ -40,11 +40,13 @@ namespace drivenByStemSupport {
     const TEST_TRACK_OFFROAD_GAS_DRAIN = 1.2
     const TEST_TRACK_GAS_BAR_WIDTH = 28
     const TEST_TRACK_GAS_BAR_HEIGHT = 4
-    const TEST_TRACK_GAS_BAR_OFFSET = -34
+    const TEST_TRACK_GAS_BAR_OFFSET = -18
     const TEST_TRACK_MPH_FACTOR = 0.621371
     const TEST_TRACK_SUMMARY_ROUNDING = 10
     const TEST_TRACK_RUN_DURATION_MILLISECONDS = TEST_TRACK_DURATION_SECONDS * 1000
     const TEST_TRACK_HUD_RIGHT_PADDING = 8
+    const TEST_TRACK_FUEL_LABEL_X = 8
+    const TEST_TRACK_FUEL_LABEL_Y = 6
     const TEST_TRACK_START_LIGHT_COUNT = 5
     const TEST_TRACK_STAGE_WAIT_MILLISECONDS = 2000
     const TEST_TRACK_LIGHT_STEP_MILLISECONDS = 450
@@ -383,6 +385,7 @@ namespace drivenByStemSupport {
         }
 
         drawHudStrip(canvas)
+        drawFuelHudLabel(canvas)
         canvas.printCenter(formatElapsedTime(launched ? activeTrack.elapsedMilliseconds : 0), TEST_TRACK_HUD_TEXT_Y, 1, image.font8)
         drawRightAlignedHudText(canvas, formatSpeed(activeTrack.speed, activeTrack.displayUnit), TEST_TRACK_HUD_TEXT_Y)
         drawStarterOverlay(canvas)
@@ -545,11 +548,12 @@ namespace drivenByStemSupport {
     }
 
     function drawStagePrompt(canvas: Image): void {
-        const promptX = 46
-        const promptY = 30
-        canvas.fillRect(promptX, promptY, 68, 14, 15)
-        canvas.fillRect(promptX + 2, promptY + 2, 64, 10, 12)
-        canvas.print("Press A to Stage", promptX + 10, promptY + 3, 1)
+        const promptX = 40
+        const promptY = 27
+        canvas.fillRect(promptX, promptY, 80, 20, 15)
+        canvas.fillRect(promptX + 2, promptY + 2, 76, 16, 12)
+        canvas.print("Press A", promptX + 12, promptY + 2, 1)
+        canvas.print("to Stage", promptX + 8, promptY + 10, 1)
     }
 
     function holdCarAtStart(): void {
@@ -583,6 +587,10 @@ namespace drivenByStemSupport {
     function drawHudStrip(canvas: Image): void {
         canvas.fillRect(0, 0, TEST_TRACK_CANVAS_WIDTH, TEST_TRACK_HUD_STRIP_HEIGHT, 12)
         canvas.fillRect(0, TEST_TRACK_HUD_STRIP_HEIGHT - 1, TEST_TRACK_CANVAS_WIDTH, 1, 15)
+    }
+
+    function drawFuelHudLabel(canvas: Image): void {
+        canvas.print("FUEL", TEST_TRACK_FUEL_LABEL_X, TEST_TRACK_FUEL_LABEL_Y, 1, image.font8)
     }
 
     function drawRightAlignedHudText(canvas: Image, text: string, y: number): void {
@@ -650,10 +658,9 @@ namespace drivenByStemSupport {
         const gasBar = statusbars.create(TEST_TRACK_GAS_BAR_WIDTH, TEST_TRACK_GAS_BAR_HEIGHT, StatusBarKind.Energy)
         gasBar.max = gasMax
         gasBar.value = gasMax
-        gasBar.setLabel("FUEL", 1)
         gasBar.setBarBorder(1, 1)
         gasBar.positionDirection(CollisionDirection.Top)
-        gasBar.setOffsetPadding(TEST_TRACK_GAS_BAR_OFFSET, 0)
+        gasBar.setOffsetPadding(TEST_TRACK_GAS_BAR_OFFSET, 2)
         return gasBar
     }
 
