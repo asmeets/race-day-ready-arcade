@@ -53,11 +53,11 @@ Built with **Microsoft MakeCode Arcade**, a block-based and text-based programmi
 
 ## Get Involved
 
-### For Students
-[Start playing and coding now →]({{ site.baseurl }}/students/)
+### For Educators and Facilitators
+[Open the guide and session resources →]({{ site.baseurl }}/educators/)
 
-### For Educators
-[Access lesson plans and resources →]({{ site.baseurl }}/educators/)
+### Play the Skillmap
+[Launch the MakeCode Arcade learning path →](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)
 
 ### For Contributors
 [Join our open-source community on GitHub →](https://github.com/asmeets/driven-by-stem)
@@ -76,5 +76,5 @@ Built with **Microsoft MakeCode Arcade**, a block-based and text-based programmi
 
 <div style="text-align: center; margin-top: 3rem;">
   <p><small>&copy; 2026 F1 x Mercedes x Microsoft | Driven by STEM</small></p>
-  <p><small>Built with <a href="https://pages.github.com/">GitHub Pages</a> and <a href="https://mmistakes.github.io/minimal-mistakes/">Minimal Mistakes</a></small></p>
+  <p><small>Built with <a href="https://pages.github.com/">GitHub Pages</a> and <a href="https://github.com/pages-themes/leap-day">Leap Day</a></small></p>
 </div>

@@ -65,9 +65,14 @@ The built site will be in `docs/_site/`
 
 ### Content Pages
 - **index.md** - Homepage
-- **_pages/students.md** - Student-facing content
-- **_pages/educators.md** - Educator resources
+- **_pages/educators.md** - Educator and facilitator hub page
+- **_layouts/facilitator-guide.html** - Shared left-nav lesson plan layout
+- **_pages/educators-*.md** - Individual facilitator lesson plan sections
 - **_pages/about.md** - About the project
+
+Current facilitator section names are Summary, Goals, Requirements, Standards, Foundations, Accessibility, Definitions, Agenda, Run of Show, Supplementals, and Feedback.
+
+Student-facing guidance is intentionally kept in the MakeCode Arcade skillmap flow rather than in this docs site.
 
 ### Theme
 Using [Leap Day](https://github.com/pages-themes/leap-day) - A fresh, vibrant GitHub Pages theme with a sidebar navigation.
@@ -98,5 +103,5 @@ Ensure your GitHub Actions workflow is set up to build with Jekyll (not just cop
 ## Resources
 
 - [Jekyll Documentation](https://jekyllrb.com/docs/)
-- [Minimal Mistakes Documentation](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/)
+- [GitHub Pages themes](https://pages.github.com/themes/)
 - [GitHub Pages Jekyll Docs](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll)
