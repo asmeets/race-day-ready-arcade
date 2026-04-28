@@ -4,8 +4,8 @@
 @import "main";
 
 .hero.is-primary {
-  background-color: #000;
-  color: #fff;
+  background-color: #000 !important;
+  color: #fff !important;
 }
 
 .navbar.is-primary {
@@ -55,7 +55,7 @@
 .educator-page-nav-list {
   margin-left: 1em !important;
   padding-left: 0;
-  list-style: none;
+  list-style: none !important;
 }
 
 .educator-page-nav-list li {
