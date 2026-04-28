@@ -4,7 +4,7 @@ namespace SpriteKind {
 }
 
 namespace drivenByStemSupport {
-    const TEST_TRACK_LENGTH_MULTIPLIER = 1.5
+    const TEST_TRACK_LENGTH_MULTIPLIER = 1
     const TEST_TRACK_DURATION_SECONDS = 60
     const TEST_TRACK_COURSE_DISTANCE = 2800 * TEST_TRACK_LENGTH_MULTIPLIER
     const TEST_TRACK_HORIZON = 80
@@ -549,7 +549,7 @@ namespace drivenByStemSupport {
         const promptY = 30
         canvas.fillRect(promptX, promptY, 68, 14, 15)
         canvas.fillRect(promptX + 2, promptY + 2, 64, 10, 12)
-        canvas.print("Press A", promptX + 10, promptY + 3, 1)
+        canvas.print("Press A to Stage", promptX + 10, promptY + 3, 1)
     }
 
     function holdCarAtStart(): void {
@@ -653,7 +653,7 @@ namespace drivenByStemSupport {
         gasBar.setLabel("FUEL", 1)
         gasBar.setBarBorder(1, 1)
         gasBar.positionDirection(CollisionDirection.Top)
-        gasBar.setOffsetPadding(TEST_TRACK_GAS_BAR_OFFSET, 2)
+        gasBar.setOffsetPadding(TEST_TRACK_GAS_BAR_OFFSET, 0)
         return gasBar
     }
 
