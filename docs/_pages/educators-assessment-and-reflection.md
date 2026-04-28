@@ -5,13 +5,13 @@ permalink: /educators/feedback/
 educator_nav: feedback
 ---
 
-This page is here to make reflection and assessment feel usable in a live classroom or event setting. In this project, assessment works best when it stays close to the gameplay: what students changed, what they noticed, what they can explain, and what they would test next.
+This page is designed to make reflection and assessment usable in a live classroom or event setting. In this project, assessment works best when it stays close to the gameplay: what students changed, what they noticed, what they can explain, and what they would test next.
 
 ## What This Page Is For
 
 This experience does not need a long quiz or formal lab report to produce useful evidence of learning. Most of the strongest evidence will come from short explanations, observed decisions, replay comparisons, and brief reflection moments.
 
-Use this page when you want to:
+This page supports:
 
 - build in classroom reflection opportunities during or after the session
 - assess whether students understood the main ideas of tradeoffs, testing, and iteration
@@ -20,7 +20,7 @@ Use this page when you want to:
 
 ## What to Look For
 
-You are not looking for polished technical vocabulary. You are looking for evidence that students can connect a choice to a result.
+The focus is not on polished technical vocabulary. The focus is on evidence that students can connect a choice to a result.
 
 - learners can identify a change they made or observed in code, blocks, or setup
 - learners can describe the gameplay result of that change

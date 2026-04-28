@@ -5,7 +5,7 @@ permalink: /educators/standards/
 educator_nav: standards
 ---
 
-This page is intended to make standards alignment easier to discuss without letting it take over the live experience. Use it when you need to connect the session to planning, reporting, or curriculum conversations.
+This page is intended to make standards alignment easier to discuss without letting it take over the live experience. It is most useful in planning, reporting, or curriculum conversations.
 
 ## Standards Alignment Areas
 

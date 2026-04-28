@@ -5,7 +5,7 @@ permalink: /educators/goals/
 educator_nav: goals
 ---
 
-This page makes the intended student outcomes explicit before you step into the room. Use it when you want a clearer sense of what learners should understand, do, and talk about by the end of the experience.
+This page makes the intended student outcomes explicit before facilitation begins. It provides a clearer sense of what learners should understand, do, and talk about by the end of the experience.
 
 These goals are not a script and they are not a checklist to rush through. They are a planning anchor for keeping the session focused on the outcomes that matter most: visible cause and effect, meaningful tradeoffs, evidence-based explanation, and a stronger sense of belonging in STEM.
 

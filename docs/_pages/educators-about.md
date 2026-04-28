@@ -1,8 +1,8 @@
 ---
-layout: page
-show_sidebar: false
+layout: educator-page
 title: "About Driven by STEM"
 permalink: /educators/about/
+educator_nav: about
 ---
 
 This page is meant to give a clear short explanation of what *Driven by STEM* is and why it is designed the way it is. It is most useful when you need a concise description of the experience before getting into the fuller educator materials.

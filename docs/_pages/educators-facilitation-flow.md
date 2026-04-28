@@ -5,7 +5,7 @@ permalink: /educators/run-of-show/
 educator_nav: run-of-show
 ---
 
-Think of this page as the play-by-play for the live session. Use it after you have reviewed the [Agenda]({{ site.baseurl }}/educators/agenda/) and want the moves inside each time block: what to say, when to pause, what to watch for, and how to keep the room moving without losing the learning.
+This page serves as the play-by-play for the live session. It works best after reviewing the [Agenda]({{ site.baseurl }}/educators/agenda/) and then moving into the details inside each time block: what to say, when to pause, what to watch for, and how to keep the room moving without losing the learning.
 
 ## Before Learners Begin
 
@@ -17,7 +17,7 @@ Have the room and devices ready before students start arriving. The launch shoul
 - if devices are shared, post or say the roles clearly: **Driver** controls, **Navigator** reads and explains
 - keep your opening explanation to under a minute so students reach action quickly
 
-What you are trying to establish:
+The opening should establish:
 
 - this is a build-test-improve session
 - there is not one perfect answer

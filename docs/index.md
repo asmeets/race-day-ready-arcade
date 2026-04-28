@@ -6,7 +6,7 @@ permalink: /
 
 This guide is here to give educators, facilitators, and event leads more than a launch link. It is meant to make the experience easier to understand, easier to facilitate, and easier to reflect on afterward.
 
-If you are new to the project, start with the [Quick Start](#quick-start) section below. If you already know the basics, use the rest of the guide to align your prep, facilitation, and follow-up.
+For readers who are new to the project, the [Quick Start](#quick-start) section below is the best entry point. For readers who already know the basics, the rest of the guide supports preparation, facilitation, and follow-up.
 
 ## Quick Start
 

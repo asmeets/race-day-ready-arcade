@@ -5,7 +5,7 @@ permalink: /educators/requirements/
 educator_nav: requirements
 ---
 
-This checklist is designed to make pre-session preparation easy to scan and easy to use. Work through it before the session so the experience launches cleanly, stays readable, and can recover quickly if something small goes wrong.
+This checklist is designed to make pre-session preparation easy to scan and easy to use. Completing it before the session helps the experience launch cleanly, stay readable, and recover quickly if something small goes wrong.
 
 ## Pre-Session Checklist
 

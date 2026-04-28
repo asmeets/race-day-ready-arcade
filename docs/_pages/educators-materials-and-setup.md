@@ -5,7 +5,7 @@ permalink: /educators/supplementals/
 educator_nav: supplementals
 ---
 
-This page collects the extension paths that are most useful once the core session is working well. Use it when a group finishes early, wants another round of challenge, or leaves with enough momentum that one session does not feel like enough.
+This page collects the extension paths that are most useful once the core session is working well. It is most useful when a group finishes early, wants another round of challenge, or leaves with enough momentum that one session does not feel like enough.
 
 The aim is to help you extend the experience in ways that stay concrete, teachable, and connected to the original learning goals.
 

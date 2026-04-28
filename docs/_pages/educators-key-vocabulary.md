@@ -5,7 +5,7 @@ permalink: /educators/definitions/
 educator_nav: definitions
 ---
 
-This page gives educators and learners a shared language for the experience. Use it to support discussion, troubleshooting, and reflection without turning vocabulary into a separate lesson.
+This page gives educators and learners a shared language for the experience. It supports discussion, troubleshooting, and reflection without turning vocabulary into a separate lesson.
 
 These terms help learners talk more clearly about what they are seeing, building, and improving. When learners understand the language, they are better able to explain their thinking, collaborate with peers, and connect hands-on gameplay to broader engineering and design ideas.
 

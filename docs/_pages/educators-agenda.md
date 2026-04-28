@@ -5,7 +5,7 @@ permalink: /educators/agenda/
 educator_nav: agenda
 ---
 
-Use this page as the pacing guide for the 90-minute format. It is here to help you plan the arc of the experience, staff transitions, and learner momentum before you move into the more detailed facilitator language and pause-point guidance in [Run of Show]({{ site.baseurl }}/educators/run-of-show/). If you need remix ideas or follow-up pathways beyond the core schedule, use the [Supplementals]({{ site.baseurl }}/educators/supplementals/) page alongside this one.
+This page serves as the pacing guide for the 90-minute format. It helps with planning the arc of the experience, staff transitions, and learner momentum before moving into the more detailed facilitator language and pause-point guidance in [Run of Show]({{ site.baseurl }}/educators/run-of-show/). For remix ideas or follow-up pathways beyond the core schedule, [Supplementals]({{ site.baseurl }}/educators/supplementals/) works as the companion page.
 
 ## 90-Minute Activation
 
