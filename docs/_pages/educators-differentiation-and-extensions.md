@@ -81,6 +81,13 @@ Important game events should be understandable in more than one way.
 - keep celebration and warning feedback distinct so students do not have to guess what a signal means
 - confirm that important HUD elements and tutorial text are readable on the actual projector and learner devices you plan to use
 
+If readability falls short in the room, the fastest recovery is usually to simplify the shared reference point rather than stopping the session entirely.
+
+- shift attention to one score lens or one mechanic at a time instead of trying to read every HUD element aloud
+- move learners into pairs around a readable device if the projector view is unreliable
+- narrate one key result verbally, then send teams back to testing instead of lingering on a hard-to-read summary screen
+- deprioritize any screen or prompt that depends on fine text and keep the session anchored in movement, outcomes, and one short reflection question
+
 ## Belonging and Confidence
 
 Accessibility is not only about technical access. It is also about whether students feel that their way of contributing matters.
@@ -99,5 +106,6 @@ Before the session begins, these are the key questions to check:
 - Can the room read the main text, score areas, and prompts from where they are sitting?
 - Can a student understand the next step without a long explanation from the facilitator?
 - Do learners have a clear role if devices need to be shared?
-- Do you know which mechanic you would simplify first if the room becomes overloaded?
-- Do you know which stretch prompt you would use if a group finishes early?
+- Is there a clear fallback if the projector view or HUD text is harder to read than expected?
+- Is there a clear mechanic to simplify first if the room becomes overloaded?
+- Is there a clear stretch prompt to use if a group finishes early?

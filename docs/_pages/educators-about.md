@@ -49,6 +49,8 @@ Educators can use it in several formats:
 - a shorter museum or event-floor demo
 - a longer facilitated activation with more time for remixing and discussion
 
+The [Agenda]({{ site.baseurl }}/educators/agenda/) page includes a full 90-minute version plus shorter-format guidance for 60-minute classroom delivery and 30-minute event-floor use.
+
 ## What Makes the Project Classroom-Ready
 
 - It runs in the browser and launches through a single skillmap link.

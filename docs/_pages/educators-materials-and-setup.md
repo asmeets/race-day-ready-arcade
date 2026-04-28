@@ -61,7 +61,7 @@ The On the Road tutorials ask students to load saved setup values, spawn obstacl
 **Facilitator prompts**
 
 - Is this remix rewarding speed, control, or strategy the most right now?
-- What would a telemetry analyst want to measure after this change?
+- What should a telemetry analyst measure after this change?
 - If the rain starts earlier or later, how does that change what counts as a smart choice?
 - Did your remix make the game easier to understand or just harder to survive?
 
@@ -87,7 +87,7 @@ The Finish Line tutorials ask students to run a combined final challenge, track 
 - Does this remix help players understand their result more clearly?
 - What evidence from the run should show up in the summary?
 - If you changed the closing message, who is it helping most: a confident player, a frustrated player, or a first-time coder?
-- What should the player want to test next after reading this screen?
+- What should the player test next after reading this screen?
 
 **Three remix levels**
 

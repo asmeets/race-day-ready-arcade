@@ -165,7 +165,7 @@ One short written response is often enough when an individual artifact is needed
 
 ### Share-Out Comparison
 
-Invite two or three teams to compare different strategies and explain what each one improved or made harder.
+Two or three teams can compare different strategies and explain what each one improved or made harder.
 
 This format is especially useful when you want assessment evidence without stopping the momentum of the room.
 

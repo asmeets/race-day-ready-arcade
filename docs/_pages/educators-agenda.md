@@ -11,7 +11,7 @@ This page serves as the pacing guide for the 90-minute format. It helps with pla
 
 This format is a good fit for a live activation where you want enough time for learners to build across all three stages, talk about tradeoffs, and still leave room for one guided remix or replay moment. The schedule below is detailed enough for planning, but still flexible enough to adjust for crowd energy, device sharing, or short resets between groups.
 
-### 1. Welcome, Device Check, and Team Framing: 10 minutes
+### 1. Welcome, Device Check, and Team Framing (10 minutes)
 
 The first few minutes set the tone before learners touch the tutorials.
 
@@ -23,7 +23,7 @@ The first few minutes set the tone before learners touch the tutorials.
 
 By the end of this segment, learners should know what they are building, how they will work together, and what to do first.
 
-### 2. Stage 1, The Garage: 20 minutes
+### 2. Stage 1, The Garage (20 minutes)
 
 This segment should move quickly toward a first visible success. Learners are building confidence, making an initial setup choice, and seeing that their decisions will carry forward.
 
@@ -44,7 +44,7 @@ If students need more challenge in this stage:
 - invite them to revise the tradeoff rule so the car feels more balanced or more extreme, then test again
 - have them improve the Garage feedback, such as the mission message, readout, or retry flow, so another player could understand the result faster
 
-### 3. Stage 2, On the Road: 25 minutes
+### 3. Stage 2, On the Road (25 minutes)
 
 This is the longest work block because it is where students see their earlier decisions in motion and begin making more dynamic judgments.
 
@@ -65,7 +65,7 @@ If students need more challenge in this stage:
 - invite them to change a pit stop or weather variable and predict how the smartest strategy will shift
 - have them compare two runs and explain whether their remix rewarded speed, control, or long-term consistency most strongly
 
-### 4. Stage 3, The Finish Line: 15 minutes
+### 4. Stage 3, The Finish Line (15 minutes)
 
 This section should feel like a culmination, not a rush to the end. Learners bring their prior choices into the final challenge, then use the reflection steps to make sense of the result.
 
@@ -86,7 +86,7 @@ If students need more challenge in this stage:
 - invite them to revise the next-test recommendation so it gives more specific advice instead of a general reflection
 - have them change the Winners Circle or closing message so it connects both to a role and to one concrete code or gameplay decision
 
-### 5. Remix, Share, or Replay: 15 minutes
+### 5. Remix, Share, or Replay (15 minutes)
 
 This time works best as one manageable extension rather than a full open-ended build session. In most cases, a small remix that creates a visible difference quickly is the strongest choice.
 
@@ -101,7 +101,7 @@ Good remix choices for this block include:
 - changing collision, reward, or weather pressure from On the Road
 - improving summary language or next-test advice from The Finish Line
 
-### 6. Closing Reflection and Transition: 5 minutes
+### 6. Closing Reflection and Transition (5 minutes)
 
 A short reflection at the end captures learning without turning the final minutes into a long debrief.
 
@@ -118,3 +118,26 @@ By the end of the session, learners should leave with a clear sense that coding 
 - if the room is moving slowly, prioritize reaching one complete run through all three stages over squeezing in every discussion prompt
 - if the room is moving quickly, use the extra time for replay and compare rather than adding a brand-new task
 - if you are supporting a live activation with multiple adults, align ahead of time on who handles launch support, who circulates for debugging, and who leads the closing share-out
+
+## Shorter Formats
+
+When the full 90-minute format is not available, the safest cut is to reduce extension time before cutting the build-test-reflect arc.
+
+### 60-Minute Classroom Version
+
+- 8 minutes for welcome, device check, and team framing
+- 15 minutes for The Garage
+- 18 minutes for On the Road
+- 12 minutes for The Finish Line
+- 7 minutes for closing reflection
+
+This version keeps all three stages. The first cut should be the dedicated remix block, followed by shorter whole-group pauses inside each stage.
+
+### 30-Minute Event-Floor or Demo Version
+
+- 5 minutes for launch and role setup
+- 10 minutes for a guided path through The Garage into one visible shakedown result
+- 10 minutes for one On the Road moment with a single pit stop, obstacle, or weather comparison
+- 5 minutes for one brief reflection and career connection
+
+This version should prioritize one visible setup choice, one test result, and one reflection question. The Finish Line can be omitted in this format if time is too tight, but the session should still end with a short compare-and-explain moment.
