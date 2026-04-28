@@ -79,6 +79,8 @@ Using [Bulma Clean Theme](https://github.com/chrisrhymes/bulma-clean-theme/) - A
 
 The site uses `remote_theme` plus `jekyll-remote-theme` for GitHub Pages compatibility, and local style overrides live in `assets/css/app.scss`.
 
+GitHub Pages still builds this docs site with an older Jekyll and Sass toolchain, so the theme is pinned to `v0.14.0` in `_config.yml`. Newer Bulma Clean Theme releases use Sass features that native GitHub Pages builds do not compile.
+
 ## GitHub Pages Deployment
 
 Your site will be automatically built and deployed to:

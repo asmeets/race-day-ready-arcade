@@ -5,7 +5,7 @@ url: "https://asmeets.github.io"
 baseurl: "/driven-by-stem"
 
 # Theme Settings
-remote_theme: chrisrhymes/bulma-clean-theme
+remote_theme: chrisrhymes/bulma-clean-theme@v0.14.0
 
 # Plugins
 plugins:
