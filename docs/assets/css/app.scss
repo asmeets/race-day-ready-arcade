@@ -3,6 +3,16 @@
 
 @import "main";
 
+.hero.is-primary.is-bold {
+  background-color: #000;
+  color: #fff;
+}
+
+.navbar.is-primary {
+  background-color: #888;
+  color: #000;
+}}
+
 .hero.is-medium .hero-body {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
