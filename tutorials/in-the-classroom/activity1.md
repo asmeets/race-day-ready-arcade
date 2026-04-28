@@ -1,15 +1,17 @@
 # Intro to MakeCode Arcade
 ### @explicitHints true
 
-## Welcome — Let's Learn the Essentials @showdialog
+## Welcome! Let's Learn the Essentials @showdialog
 
-![Sam - Software Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/sam.png)
+![Drew - UX/Game Designer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/drew.png)
 
-Hi, I'm **Sam**, a software engineer with the Mercedes F1 team. Before you join us in the garage to build your racing simulator, you need to learn the **essentials of MakeCode Arcade**: following instructions, finding blocks, building code, and testing your work. These are the same skills I use every day writing control code for race cars.
+Hi, I'm Drew, UX and game designer on the team. I got into this field by being the person who always asked "Wait... what am I supposed to do?" I started self-taught, watching tutorials and redesigning menus in my own projects, then added a formal design class and a lot of play testing with friends. 
 
-**Why blocks?** Block-based coding lets you drag and snap together visual pieces instead of typing syntax. It's how I learned — you focus on logic and problem-solving first, then typing comes naturally later. Many professional developers still use visual tools for prototyping because they're fast and clear.
+Before you join Sam in the garage to build your racing simulator, you need to learn the essentials of MakeCode Arcade: following instructions, finding blocks, building code, and testing your work. These are the same skills I use when I test game flow, write clearer prompts, and figure out where players get stuck.
 
-**Why 8-bit style?** Arcade uses classic pixel art and simple mechanics so you can build complete games quickly. The constraints teach you to solve problems creatively — the same way Formula 1 engineers work within strict regulations to build the fastest cars. Simple foundations, powerful results.
+- **Why blocks?** Block-based coding lets you drag and snap together visual pieces instead of typing syntax. It's how I learned — you focus on logic and problem-solving first, then typing comes naturally later. Many professional developers still use visual tools for prototyping because they're fast and clear.
+
+- **Why 8-bit style?** Arcade uses classic pixel art and simple mechanics so you can build complete games quickly. The constraints teach you to solve problems creatively — the same way Formula 1 engineers work within strict regulations to build the fastest cars. Simple foundations, powerful results.
 
 You've already started by reading these instructions — that's the most important step! Let's get you ready to join the team.
 
@@ -31,7 +33,7 @@ I'll be guiding you through each step. Reading instructions carefully is how I l
 
 ---
 
-I like to hide extra info in "clue boxes" to keep the main instructions focused. These collapsible hints give you troubleshooting tips, definitions, and extra guidance — the same kind of notes I write for my team when we're debugging code.
+I like to hide extra info in "clue boxes" to keep the main instructions focused. These collapsible hints give you troubleshooting tips, definitions, and extra guidance — the same kind of notes I write when we're playtesting and figuring out where someone got stuck.
 
 - :mouse pointer: Select the clue box below to reveal what's inside.
 
@@ -66,7 +68,7 @@ game.splash("You found me!")
 
 ---
 
-Your [__*workspace*__](#workIt "The area where you build code") is where you'll connect code blocks to build your program. I spend most of my day in a workspace like this, snapping together logic that controls race car systems. Only blocks connected in the workspace will run when your game starts.
+Your [__*workspace*__](#workIt "The area where you build code") is where you'll connect code blocks to build your program. I spend a lot of my day in a workspace like this, building and testing interactions so the next step feels clear. Only blocks connected in the workspace will run when your game starts.
 
 - :mouse pointer: Select inside the ``||game(noclick):splash " "||`` block that's already in the workspace and **change the message** to something you'd like to say.
 
@@ -105,7 +107,7 @@ Keep going to learn more about blocks.
 
 ---
 
-Blocks don't always start in the workspace. The toolbox on the left organizes hundreds of blocks into categories. When I'm writing control code for the race car, I need to find the right function quickly — learning to navigate your tools fast is an essential skill that will serve you well.
+Blocks don't always start in the workspace. The toolbox on the left organizes hundreds of blocks into categories. When I'm prototyping menus, tutorials, or HUD screens, I need to find the right block quickly — learning to navigate your tools fast is an essential skill that will serve you well.
 
 When you need to add a block, I'll either suggest it using an image like this:
 ```block
@@ -157,7 +159,7 @@ game.splash("Let's start coding!")
 
 ---
 
-If you can't find the block you need, select the highlighted text and the correct category will open for you. Now let's add a character! In game development, any character or moving object is called a sprite. On our team, we track car position, speed, and state using objects with properties — sprites work the same way and they're the foundation of almost every game you'll build.
+If you can't find the block you need, select the highlighted text and the correct category will open for you. Now let's add a character! In game development, any character or moving object is called a sprite. When I prototype a game, I use objects with properties like position, speed, and state to test how the experience feels. Sprites work the same way, and they're the foundation of almost every game you'll build.
 
 - :paper plane: Snap ``||variables(sprites):set [my sprite] to sprite [ ] of kind [Player]||`` into **the end** of the ``||loops(noclick):on start||`` container.
 
@@ -335,7 +337,7 @@ fit in certain types of spaces._
 
 ---
 
-Randomness makes games unpredictable and replayable. Instead of the same effect duration every time, we'll use a random value so each button press creates a slightly different experience. In racing simulators, I add variability to make training scenarios more realistic. This technique keeps players engaged and tests their adaptability.
+Randomness makes games unpredictable and replayable. Instead of the same effect duration every time, we'll use a random value so each button press creates a slightly different experience. In playtesting, small variations help me check whether an interaction still feels fun and readable each time. This technique keeps players engaged and tests their adaptability.
 
 - :calculator: From the ``||math:Math||`` category, grab a ``||math: pick random [0] to [10]||`` value block and snap it in to replace **500**.
 
@@ -383,7 +385,7 @@ You now know how to:
 
 **Ready for the next challenge?**
 
-Now you're ready to join me and the rest of the Mercedes F1 team in the **Garage**. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. I'll be there to guide you every step of the way. **Let's go!** 🏎️
+Now you're ready to head into the **Garage** and meet **Sam**, the software engineer on the team. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. Sam will guide you through that next stage. **Let's go!** 🏎️
 
 ```ghost
 let mySprite: Sprite = null;

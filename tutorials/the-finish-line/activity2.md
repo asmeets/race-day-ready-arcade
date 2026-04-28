@@ -562,7 +562,7 @@ namespace drivenByStem {
 
 ![Telemetry dashboard concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/telemetryScreen.png)
 
-Hey, I'm **Drew**, UX and game designer on the team. I got into this field by being the person who always asked "Wait… what am I supposed to do?" I started self-taught, watching tutorials and redesigning menus in my own projects, then added a formal design class and a lot of **playtesting with friends**. On a real team, I write clearer prompts, pick readable visuals, and run playtests to find exactly where people get confused.
+Nice to see you again, I'm **Drew**, UX and game designer on the team. Since you've already met me, here's something new: a big part of my job is watching for the exact moment someone hesitates. If a player pauses, clicks the wrong thing, or asks "What am I supposed to do now?", that's useful design data. I turn those moments into clearer prompts, better screen layouts, and simpler next steps.
 
 In this gate, you'll turn your run into a simple story: **one choice, one result, one next test**. Designers call it **"clear over clever."** Once you can read what your data is actually telling you, you'll be ready to make your final call before the winners circle. The next-test focus you save here becomes Kai's closing handoff.
 
