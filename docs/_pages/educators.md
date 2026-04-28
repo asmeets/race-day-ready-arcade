@@ -1,70 +1,208 @@
 ---
-layout: facilitator-guide
-title: "For Educators and Facilitators"
+layout: default
+title: "For Educators"
 permalink: /educators/
-facilitator_nav: home
 ---
 
-## Guide At A Glance
+## Project Overview
 
-This guide is meant to work like a cover sheet for the full facilitator packet. Start with the sections that help you orient yourself, then move into the pages that support planning, delivery, and reflection.
+### What This Project Is
 
-### What This Experience Supports
+Driven by STEM Arcade is a Microsoft MakeCode Arcade project created for the F1 x Mercedes x Microsoft STEM and career exploration activation. It is designed as a playable game and a remixable learning experience for middle school students, facilitators, and live event audiences.
 
-Driven by STEM Arcade is designed to help adults run a playable, remixable learning experience that makes engineering tradeoffs visible.
+The project stays compatible with MakeCode Arcade conventions so it can be opened, explored, and modified without turning into a hard-to-teach codebase.
 
-- learners can see cause and effect between code changes and gameplay outcomes
-- teams can compare speed, handling, and efficiency decisions without long setup time
-- facilitators can connect gameplay moments to software, testing, strategy, sustainability, and data roles
-- classrooms and live activations can use the same core flow with light adjustments
+### Why It Exists
 
-## Quick Start
+This project uses racing as a way to make engineering ideas visible. Instead of presenting STEM as a lecture, it lets learners feel tradeoffs through gameplay:
 
-If you only have a few minutes to prepare:
+- more speed can mean less control
+- better efficiency can support longer performance
+- safer choices can change score, risk, and race results
 
-1. Open the [Requirements]({{ site.baseurl }}/educators/requirements/) page and run the checklist.
-2. Launch the [skillmap](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap) to confirm it loads.
-3. Review [Agenda]({{ site.baseurl }}/educators/agenda/) and [Run of Show]({{ site.baseurl }}/educators/run-of-show/) for the session sequence.
-4. Pick one prompt from [Feedback]({{ site.baseurl }}/educators/feedback/) for your closing discussion.
+The goal is to connect game mechanics to real roles across software, engineering, strategy, testing, and sustainability in a way that is immediate, age-appropriate, and fun to discuss.
 
-## Recommended Reading Order
+## Learning Goals
 
-If you are opening the guide for the first time, the fastest useful path is Summary, Goals, Requirements, Agenda, Run of Show, and Feedback. The other sections are there when you need more specificity for standards, accessibility, vocabulary, and follow-up support.
+This repository is built to support short, concrete learning moments. Learners should be able to:
 
-### [Summary]({{ site.baseurl }}/educators/summary/)
-Open this first for the quickest overview of what Driven by STEM is, who it is for, and why it works well in classrooms, workshops, and live events.
+- see cause and effect between code changes and gameplay outcomes
+- explore engineering tradeoffs instead of chasing speed alone
+- practice testing, revising, and improving a design
+- connect gameplay systems to careers in software, data, engineering, strategy, and accessibility
+- leave with a project they can understand well enough to remix on their own
 
-### [Goals]({{ site.baseurl }}/educators/goals/)
-Use this page to anchor the session around the intended learning outcomes, facilitation goals, and the design principles that should stay visible throughout delivery.
+### Guiding Design Principles
 
-### [Requirements]({{ site.baseurl }}/educators/requirements/)
-This is the readiness checklist. Use it to confirm devices, room setup, launch links, and facilitator prep before learners arrive.
+The game and the repository are shaped by a few non-negotiables:
 
-### [Standards]({{ site.baseurl }}/educators/standards/)
-Use this page when you need to connect the experience to instructional standards and program goals without letting the live session become paperwork-heavy.
+- **accessibility first:** short text, clear feedback, simple controls, and recoverable failure states
+- **remixability:** visible tuning values, readable helper functions, and code students can trace
+- **event reliability:** predictable behavior, projector-friendly clarity, and low-friction facilitator use
+- **MakeCode Arcade compatibility:** editor-friendly files, assets, and patterns that stay inside the Arcade ecosystem
+- **meaningful tradeoffs:** gameplay should highlight performance, handling, and sustainability together
 
-### [Foundations]({{ site.baseurl }}/educators/foundations/)
-This page explains the ideas underneath the lesson, including engineering tradeoffs, testing through iteration, and the career connections that the experience is designed to surface.
+## 📚 Standards Alignment
 
-### [Accessibility]({{ site.baseurl }}/educators/accessibility/)
-Review this section to keep the experience readable, inclusive, and reliable for shared-device play, projector use, and mixed-experience groups.
+**[PLACEHOLDER: Standards alignment]**
 
-### [Definitions]({{ site.baseurl }}/educators/definitions/)
-Use this page for the key terms that help learners describe what they changed, what happened, and why those choices matter.
+- CSTA Computer Science Standards
+- NGSS Engineering Design Standards
+- ISTE Standards for Students
+- Grade level recommendations
+- Prior knowledge requirements
 
-## Plan And Deliver
+## 📚 Lesson Plans & Resources
 
-### [Agenda]({{ site.baseurl }}/educators/agenda/)
-This page gives the high-level pacing for a typical session so you can quickly judge how the experience fits your available time.
+**[PLACEHOLDER: Downloadable lesson plans]**
 
-### [Run of Show]({{ site.baseurl }}/educators/run-of-show/)
-Use this section for the detailed facilitation sequence, including where to pause, what to ask, and how to keep the room moving.
+Resources include:
+- Full lesson plan (45-60 min)
+- Short activity version (20-30 min)
+- Extended workshop guide (90-120 min)
+- Presentation slides for educators
+- Handouts and worksheets
+- PDF downloads
 
-### [Supplementals]({{ site.baseurl }}/educators/supplementals/)
-This page holds optional supports such as alternate launch paths, follow-up ideas, and extra resources you may want before or after the main session.
+## 📊 Assessment & Evaluation
 
-### [Feedback]({{ site.baseurl }}/educators/feedback/)
-Use this section for reflection prompts, observable evidence of learning, and short ways to capture what learners understood or want to test next.
+**[PLACEHOLDER: Assessment materials]**
+
+Available tools:
+- Rubric for evaluating student work
+- Reflection questions for discussion
+- Self-assessment checklist for students
+- Exit ticket templates
+- Portfolio documentation guide
+
+## Using This in Your Classroom
+
+### Primary Build Path: Skillmap
+
+This project is structured so the primary student-facing build flow runs through a MakeCode Arcade skillmap.
+
+**Intended flow:**
+
+- learners open the project skillmap in Arcade
+- each activity teaches one clear mechanic or engineering tradeoff
+- students build in Blocks first, then test and remix
+- completed tutorials unlock the next step in the pathway
+
+**Skillmap entry URL:**  
+[https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)
+
+### Alternative: Import to MakeCode Arcade
+
+You can also have students import the full project into MakeCode Arcade:
+
+- open MakeCode Arcade
+- choose the GitHub import option
+- paste this repository URL
+- open the project and run it in the simulator
+
+_Note: For guided learning, the skillmap URL above is recommended._
+
+## Facilitator Notes
+
+This repository is meant to support more than a game build—it's designed to support a live learning moment.
+
+### Session Test Track
+
+The Session block `start vehicle test track` now powers the Garage Shakedown tutorial and also works well as a quick compare tool during facilitation.
+
+- This block is part of the Garage Shakedown skillmap flow and can still be reused as an extra compare-and-explain tool.
+- It starts a short pseudo-3D shakedown that uses the team's saved drive speed, gas capacity from saved efficiency, and gas drain from saved efficiency cost.
+- The run now opens with a five-light race starter so teams get a clear launch moment before the timer begins.
+- Students can choose whether speed is shown in `km/h` or `mph` and whether fuel is shown in `gallons` or `liters` before they launch the track.
+- Students should create a `Player` car first if they want to test their own vehicle art. If they have not created one yet, the support block will create a default car.
+- The track is single-player only. It is designed for quick test-and-compare loops, not multiplayer races.
+- A clean run can still award strategy points, and the finish report highlights reaction time, course time, gas burned, gas left, speed, and obstacle hits for later discussion.
+
+Suggested use:
+
+- Run it again after a setup change and ask students what changed in their reaction time, course time, gas burned, top speed, or obstacle hits.
+- Use it as a compare-and-explain checkpoint during or after Garage Shakedown.
+
+### What to Expect
+
+- Learners can understand the goal quickly without a long setup
+- Gameplay gives immediate feedback so students can test ideas and retry fast
+- Remix tasks point to a small number of visible variables, functions, or events
+- Discussions can connect game outcomes to roles in engineering, software, strategy, data, and sustainability
+
+**[PLACEHOLDER: Facilitation guide]**
+
+Topics covered:
+- Pre-session setup checklist
+- Suggested talking points for each activity
+- Common student questions & answers
+- Time management tips
+- Troubleshooting technical issues
+- Discussion prompts for career connections
+
+### Tips for Live Events and Workshops
+
+When adapting this project for an event, classroom, or workshop:
+
+- Use short instructions that students can follow on a projector
+- Demo the controls once and let students explore
+- Point to specific variables or functions for remix activities
+- Use projector-friendly visuals and clear state changes
+- Allow time for discussion about what students discovered
+- Connect game mechanics to real career pathways
+
+## 🎯 Differentiation Strategies
+
+**[PLACEHOLDER: Differentiation guide]**
+
+Strategies for:
+- Supporting struggling learners
+- Extending for advanced students
+- Accommodations for diverse needs
+- Multiple entry points to the content
+- Alternative assessment approaches
+
+## 🎓 Success Stories
+
+**[PLACEHOLDER: Implementation examples]**
+
+- Case studies from pilot classrooms
+- Student testimonials
+- Educator feedback and tips
+- Photos/videos from live events
+- Measured learning outcomes
+
+## 👥 Community & Support
+
+**[PLACEHOLDER: Community resources]**
+
+- Discussion forum for educators
+- Shared lesson plan repository
+- Monthly educator meetups
+- Professional development webinars
+- Direct support contact
+
+## 🛠️ For Contributors
+
+**[PLACEHOLDER: Contribution guidelines]**
+
+Developer resources:
+- How to set up development environment
+- Code structure and architecture
+- Testing procedures
+- Contribution workflow
+- Link to detailed developer wiki
+
+## 🔗 Partner Resources
+
+**[PLACEHOLDER: Partner content]**
+
+- F1 educational resources
+- Mercedes F1 team insights
+- Microsoft STEM initiatives
+- Related MakeCode projects
+- Industry career pathway information
+- Partnership opportunities
 
 ---
 
@@ -72,3 +210,5 @@ Use this section for reflection prompts, observable evidence of learning, and sh
 
 - [📖 GitHub Repository](https://github.com/asmeets/driven-by-stem)
 - [🎮 Play the Game](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)
+- [👥 Project Wiki](https://github.com/asmeets/driven-by-stem/wiki)
+- [💬 Discussions](https://github.com/asmeets/driven-by-stem/discussions)

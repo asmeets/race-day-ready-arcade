@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Summary"
 permalink: /educators/summary/
-facilitator_nav: summary
 ---
 
 Use this section for the quick context adults need before they open the experience with learners.

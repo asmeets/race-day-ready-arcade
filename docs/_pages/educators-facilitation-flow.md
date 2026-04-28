@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Run of Show"
 permalink: /educators/run-of-show/
-facilitator_nav: run-of-show
 ---
 
 This section outlines the detailed facilitation moves for a classroom lesson, workshop, or live activation.

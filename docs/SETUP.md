@@ -64,9 +64,7 @@ The built site will be in `docs/_site/`
 - **_config.yml** - Jekyll site configuration
 
 ### Content Pages
-- **index.md** - Homepage
-- **_pages/educators.md** - Educator and facilitator hub page
-- **_layouts/facilitator-guide.html** - Shared left-nav lesson plan layout
+- **index.md** - Homepage and educator/facilitator hub page
 - **_pages/educators-*.md** - Individual facilitator lesson plan sections
 - **_pages/about.md** - About the project
 

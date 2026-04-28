@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Goals"
 permalink: /educators/goals/
-facilitator_nav: goals
 ---
 
 Use this page to frame what success looks like for a session.

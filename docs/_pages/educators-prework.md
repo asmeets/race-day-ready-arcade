@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Requirements"
 permalink: /educators/requirements/
-facilitator_nav: requirements
 ---
 
 Use this section to confirm the session has what it needs before learners arrive.

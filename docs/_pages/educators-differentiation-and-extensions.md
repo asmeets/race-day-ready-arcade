@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Accessibility"
 permalink: /educators/accessibility/
-facilitator_nav: accessibility
 ---
 
 Use this section to keep the experience readable, inclusive, and reliable in classrooms and live events.

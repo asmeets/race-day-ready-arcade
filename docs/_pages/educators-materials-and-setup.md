@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Supplementals"
 permalink: /educators/supplementals/
-facilitator_nav: supplementals
 ---
 
 Use this section for optional resources, alternate launch paths, and follow-up supports that extend the main session.

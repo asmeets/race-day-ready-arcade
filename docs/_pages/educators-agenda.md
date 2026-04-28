@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Agenda"
 permalink: /educators/agenda/
-facilitator_nav: agenda
 ---
 
 Use this section for the high-level timing and pacing of a standard session.

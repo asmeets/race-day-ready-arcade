@@ -54,7 +54,7 @@ Built with **Microsoft MakeCode Arcade**, a block-based and text-based programmi
 ## Get Involved
 
 ### For Educators and Facilitators
-[Open the guide and session resources →]({{ site.baseurl }}/educators/)
+[Open the guide and session resources →]({{ site.baseurl }}/)
 
 ### Play the Skillmap
 [Launch the MakeCode Arcade learning path →](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)

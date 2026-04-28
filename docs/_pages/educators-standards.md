@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Standards"
 permalink: /educators/standards/
-facilitator_nav: standards
 ---
 
 Use this section to connect the experience to standards conversations without turning the session into compliance-first paperwork.

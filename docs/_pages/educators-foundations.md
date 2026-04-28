@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Foundations"
 permalink: /educators/foundations/
-facilitator_nav: foundations
 ---
 
 Use this section to understand the core ideas behind the experience before you teach it.

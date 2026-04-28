@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Definitions"
 permalink: /educators/definitions/
-facilitator_nav: definitions
 ---
 
 These terms help learners talk about what they are seeing, building, and improving.

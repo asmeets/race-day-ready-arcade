@@ -1,8 +1,7 @@
 ---
-layout: facilitator-guide
+layout: default
 title: "Feedback"
 permalink: /educators/feedback/
-facilitator_nav: feedback
 ---
 
 Use this section to capture what learners understood, what they tried, and what should improve in the next run.
