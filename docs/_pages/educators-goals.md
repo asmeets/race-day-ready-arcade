@@ -5,7 +5,9 @@ permalink: /educators/goals/
 educator_nav: goals
 ---
 
-Use this page to clarify what the session is trying to produce for learners and what strong facilitation should make possible.
+This page makes the intended student outcomes explicit before you step into the room. Use it when you want a clearer sense of what learners should understand, do, and talk about by the end of the experience.
+
+These goals are not a script and they are not a checklist to rush through. They are a planning anchor for keeping the session focused on the outcomes that matter most: visible cause and effect, meaningful tradeoffs, evidence-based explanation, and a stronger sense of belonging in STEM.
 
 ## Learning Goals
 
@@ -19,13 +21,13 @@ By the end of the experience, learners should be able to:
 
 ## Computer Science and STEM Goals
 
-The session should make a few core ideas visible through play rather than long explanation.
+This section aligns most directly with middle school CSTA concept areas, especially **Algorithms and Programming** and **Data and Analysis**. The goal is not to turn the session into a standards lesson. The goal is to make these ideas visible through play, prediction, testing, and discussion.
 
-- **Inputs and outputs:** a button press, event, or condition change causes a clear result.
-- **Variables and tuning:** setup choices change how the system behaves.
-- **Testing and iteration:** students try something, observe the outcome, and improve.
-- **Data and feedback:** score, collisions, handling, and other signals become evidence for decision-making.
-- **Constraints and optimization:** there is no single perfect setup because improving one thing can create a cost elsewhere.
+- **Inputs, outputs, and events:** learners see that a button press, overlap, or condition change causes a clear system response, which supports event-driven thinking in CSTA Algorithms and Programming.
+- **Variables and program behavior:** learners adjust visible setup values and observe how those changes affect movement, efficiency, score, or control, which supports CSTA expectations around using variables to influence program behavior.
+- **Testing, debugging, and iteration:** learners make a change, test it, notice what happened, and revise, which supports CSTA goals around iterative program development and debugging.
+- **Data and evidence-based decisions:** learners use score, collisions, handling, and other feedback signals as evidence when explaining what happened and what to change next, which supports CSTA Data and Analysis.
+- **Constraints and optimization:** learners see that there is no single perfect setup because improving one outcome can create a cost elsewhere, which supports computational problem-solving and engineering reasoning under constraints.
 
 ## Facilitation Goals
 

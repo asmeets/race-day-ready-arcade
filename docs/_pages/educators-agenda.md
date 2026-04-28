@@ -5,68 +5,116 @@ permalink: /educators/agenda/
 educator_nav: agenda
 ---
 
-Use this section for high-level timing and pacing before you move into the fuller facilitation notes in Run of Show.
+Use this page as the pacing guide for the 90-minute format. It is here to help you plan the arc of the experience, staff transitions, and learner momentum before you move into the more detailed facilitator language and pause-point guidance in [Run of Show]({{ site.baseurl }}/educators/run-of-show/). If you need remix ideas or follow-up pathways beyond the core schedule, use the [Supplementals]({{ site.baseurl }}/educators/supplementals/) page alongside this one.
 
-## Recommended 45-60 Minute Agenda
+## 90-Minute Activation
 
-### 1. Welcome and Framing: 5-8 minutes
+This format is a good fit for a live activation where you want enough time for learners to build across all three stages, talk about tradeoffs, and still leave room for one guided remix or replay moment. The schedule below is detailed enough for planning, but still flexible enough to adjust for crowd energy, device sharing, or short resets between groups.
 
-- introduce the challenge in plain language
-- explain that the session is about tradeoffs, not only speed
-- preview the build-test-improve rhythm students will use
+### 1. Welcome, Device Check, and Team Framing: 10 minutes
 
-### 2. Stage 1: The Garage: 12-15 minutes
+Use the first few minutes to get everyone into the right mindset before they touch the tutorials.
 
-- launch the skillmap
-- let learners move through the mission, early setup choices, and first shakedown
-- pause after the first visible test result so students can compare predictions to outcomes
+- welcome learners and frame the experience as a build-test-improve challenge rather than a lecture
+- confirm devices are open and the skillmap is ready to launch
+- explain the idea of tradeoffs in plain language
+- establish partner roles if devices are shared, such as Driver and Navigator
+- preview that students will see software, data, design, and strategy roles throughout the experience
 
-### 3. Stage 2: On the Road: 12-15 minutes
+By the end of this segment, learners should know what they are building, how they will work together, and what to do first.
 
-- continue into active driving, pit stop briefings, and changing conditions
-- ask learners what changed once the car left the Garage
-- surface at least one moment where strategy mattered as much as raw speed
+### 2. Stage 1, The Garage: 20 minutes
 
-### 4. Replay, Remix, or Compare: 8-12 minutes
+This segment should move quickly toward a first visible success. Learners are building confidence, making an initial setup choice, and seeing that their decisions will carry forward.
 
-- give teams time to retry one part of the experience or adjust one visible choice
-- keep the change small enough that the outcome is easy to notice
-- use one compare-and-explain pause before the room scatters into very different directions
+- guide students through the opening build steps without letting the room stall on perfect understanding
+- pause briefly for prediction once setup values and tradeoff ideas appear
+- make sure learners reach the Garage Shakedown so they can test the effect of an early choice
+- use the first test result as a compare-and-explain moment, not just a completion checkpoint
 
-### 5. Reflection and Closing: 5-10 minutes
+What this block is for:
 
-- ask learners to name one change, one result, and one next step
-- connect those choices to one or two real roles on a team
-- end on progress, not on who finished with the highest score
+- getting everyone to a playable state
+- helping students connect one code choice to one gameplay outcome
+- setting up the idea that speed, efficiency, and strategy interact rather than stand alone
 
-## Recommended 90-Minute Activation Version
+If students need more challenge in this stage:
 
-This longer version leaves more time for discussion, career connection, and one or two guided remix moments.
+- ask them to change both speed and efficiency, then explain which tradeoff became more obvious in the shakedown
+- invite them to revise the tradeoff rule so the car feels more balanced or more extreme, then test again
+- have them improve the Garage feedback, such as the mission message, readout, or retry flow, so another player could understand the result faster
 
-### 1. Opening and Team Framing: 10 minutes
+### 3. Stage 2, On the Road: 25 minutes
 
-Set the mission, explain tradeoffs, and establish shared-device roles if needed.
+This is the longest work block because it is where students see their earlier decisions in motion and begin making more dynamic judgments.
 
-### 2. Stage 1: The Garage: 20 minutes
+- let the game do some of the teaching through movement, collisions, pit stops, and changing conditions
+- pause once students have a visible track moment to name what their earlier setup is helping or hurting
+- use pit stop briefings and weather changes to connect code decisions to real team roles without slowing the room down too much
+- keep learners moving so they experience both the base challenge and the adaptation layer
 
-Give enough time for setup decisions, prediction, and a first shakedown run.
+What this block is for:
 
-### 3. Stage 2: On the Road: 25 minutes
+- seeing tradeoffs play out under pressure
+- connecting student choices to roles like telemetry analyst, strategist, and sustainability lead
+- giving students enough time to notice that not every strong choice is simply the fastest one
 
-Let students feel the effect of their decisions in motion and pause at pit stop moments for short role-connected discussion.
+If students need more challenge in this stage:
 
-### 4. Stage 3: The Finish Line: 15 minutes
+- ask them to adjust one reward and one penalty at the same time, then decide whether the track still feels fair
+- invite them to change a pit stop or weather variable and predict how the smartest strategy will shift
+- have them compare two runs and explain whether their remix rewarded speed, control, or long-term consistency most strongly
 
-Use the final challenge and review steps to connect outcomes back to tradeoffs and next-step thinking.
+### 4. Stage 3, The Finish Line: 15 minutes
 
-### 5. Remix, Share, or Replay: 10-15 minutes
+This section should feel like a culmination, not a rush to the end. Learners bring their prior choices into the final challenge, then use the reflection steps to make sense of the result.
 
-Invite one small revision that produces an immediate visible effect.
+- guide students into the final challenge and make sure they understand they are now combining systems they built earlier
+- leave enough room for the one-screen review and reflection steps to matter
+- emphasize evidence from the run, such as collisions, pit choices, or saved results, instead of vague reactions
+- connect the final reflection to next-test thinking and team roles
 
-### 6. Closing Reflection: 5 minutes
+What this block is for:
 
-Use a quick exit prompt or spoken share-out to capture what changed, what mattered, and what students would try next.
+- helping students interpret results, not just finish the tutorial
+- reinforcing that testing and iteration are part of engineering
+- preparing the room for a short remix, replay, or share-out
 
-## Shorter Event Version
+If students need more challenge in this stage:
 
-For a fast activation, trim the build time, use one visible compare-and-explain pause, and close with a single spoken reflection instead of a written artifact.
+- ask them to improve the review so it shows clearer evidence from the run, such as which result mattered most
+- invite them to revise the next-test recommendation so it gives more specific advice instead of a general reflection
+- have them change the Winners Circle or closing message so it connects both to a role and to one concrete code or gameplay decision
+
+### 5. Remix, Share, or Replay: 15 minutes
+
+Use this time for one manageable extension, not a full open-ended build session. The best choice is usually a small remix that creates a visible difference quickly.
+
+- invite learners to change one variable, reward rule, message, or reflection screen element
+- encourage pairs to predict what will change before they test again
+- if time or device flow is tight, let teams share a remix idea verbally instead of fully building it
+- if a replay is more realistic than a code change, use the replay to compare decisions and results
+
+Good remix choices for this block include:
+
+- adjusting speed or efficiency values from The Garage
+- changing collision, reward, or weather pressure from On the Road
+- improving summary language or next-test advice from The Finish Line
+
+### 6. Closing Reflection and Transition: 5 minutes
+
+Close with a short reflection that captures learning without turning the final minutes into a long debrief.
+
+- ask learners to name one choice they made and one effect they observed
+- invite one or two students to connect a game moment to a real team role
+- ask what they would test next if they had another round
+- reset the room for the next group or transition to the next event activity
+
+By the end of the session, learners should leave with a clear sense that coding involved visible decisions, testing, and revision, not just following directions.
+
+## Planning Notes for the 90-Minute Format
+
+- build in a small time buffer inside the On the Road or Remix block in case device login, pairing, or navigation takes longer than expected
+- if the room is moving slowly, prioritize reaching one complete run through all three stages over squeezing in every discussion prompt
+- if the room is moving quickly, use the extra time for replay and compare rather than adding a brand-new task
+- if you are supporting a live activation with multiple adults, align ahead of time on who handles launch support, who circulates for debugging, and who leads the closing share-out

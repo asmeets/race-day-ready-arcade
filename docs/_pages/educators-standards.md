@@ -5,7 +5,7 @@ permalink: /educators/standards/
 educator_nav: standards
 ---
 
-Use this section to connect the experience to standards conversations without turning the live session into compliance-first paperwork.
+This page is intended to make standards alignment easier to discuss without letting it take over the live experience. Use it when you need to connect the session to planning, reporting, or curriculum conversations.
 
 ## Standards Alignment Areas
 
@@ -20,7 +20,7 @@ The experience supports core computer science ideas by making them visible throu
 
 ### Engineering and Design
 
-Driven by STEM is especially strong when framed as an engineering design experience.
+*Driven by STEM* is especially strong when framed as an engineering design experience.
 
 - learners make choices under constraints rather than chase one perfect answer
 - the activity highlights tradeoffs between performance, control, efficiency, and sustainability
