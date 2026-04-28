@@ -5,11 +5,9 @@ permalink: /
 educator_nav: home
 ---
 
-## Guide At A Glance
-
 This guide is meant to work like a cover sheet for the full educator packet. Start with the sections that help you orient yourself, then move into the pages that support planning, delivery, and reflection.
 
-### What This Experience Supports
+## What This Experience Supports
 
 Driven by STEM is designed to help educators run a playable, remixable learning experience that makes engineering tradeoffs visible.
 
@@ -18,7 +16,7 @@ Driven by STEM is designed to help educators run a playable, remixable learning 
 - educators can connect gameplay moments to software, testing, strategy, sustainability, and data roles
 - classrooms and live activations can use the same core flow with light adjustments
 
-## Quick Start
+# Quick Start
 
 If you only have a few minutes to prepare:
 
@@ -26,9 +24,3 @@ If you only have a few minutes to prepare:
 2. Launch the [skillmap](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap) to confirm it loads.
 3. Review [Agenda]({{ site.baseurl }}/educators/agenda/) and [Run of Show]({{ site.baseurl }}/educators/run-of-show/) for the session sequence.
 4. Pick one prompt from [Feedback]({{ site.baseurl }}/educators/feedback/) for your closing discussion.
-
-## Links
-
-- [🎮 Play the Game](https://arcade.makecode.com/--skillmap#github:asmeets/driven-by-stem/skillmap)
-- [📖 GitHub Repository](https://github.com/asmeets/driven-by-stem)
-
