@@ -1,8 +1,18 @@
+namespace SpriteKind {
+    export const DrivenByStemUi = SpriteKind.create()
+}
+
 /**
  * Custom blocks for the Driven by STEM skillmap.
  */
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
+    const RESULT_FRAME_WIDTH = 152
+    const RESULT_FRAME_HEIGHT = 112
+    const RESULT_FRAME_BORDER = 6
+    const RESULT_FRAME_TILE = 6
+    const LITERS_PER_GALLON = 3.78541
+
     // Saves the team's chosen drive speed so later stages can reuse the garage setup.
     const DRIVE_SPEED_KEY = "driveSpeed"
     // Saves the car's current efficiency rating for gameplay and review screens.
@@ -63,6 +73,10 @@ namespace drivenByStem {
     const CAR_STYLE_KEY = "carStyle"
     // Saves whether the team wants speed shown in km/h or mph during support runs.
     const SPEED_UNIT_KEY = "speedDisplayUnit"
+    // Saves whether support-mode fuel values are shown in gallons or liters.
+    const FUEL_UNIT_KEY = "fuelDisplayUnit"
+
+    let resultsFrameImage: Image
 
     export enum RaceStage {
         //% block="garage"
@@ -124,6 +138,13 @@ namespace drivenByStem {
         KilometersPerHour,
         //% block="mph"
         MilesPerHour
+    }
+
+    export enum FuelUnit {
+        //% block="gallons"
+        Gallons,
+        //% block="liters"
+        Liters
     }
 
     function stageName(stage: RaceStage): string {
@@ -206,6 +227,65 @@ namespace drivenByStem {
         }
     }
 
+    function fuelUnitName(unit: FuelUnit): string {
+        switch (unit) {
+            case FuelUnit.Liters:
+                return "L"
+            case FuelUnit.Gallons:
+            default:
+                return "gal"
+        }
+    }
+
+    function sanitizeEfficiencyValue(value: number, fallback: number): number {
+        if (value < 1 || value > 10) {
+            return fallback
+        }
+
+        return value
+    }
+
+    function sanitizeFuelValue(value: number): number {
+        return Math.max(0, Math.min(value, 100))
+    }
+
+    function convertFuelValue(baseFuel: number, unit: string): number {
+        if (unit == "L") {
+            return baseFuel * LITERS_PER_GALLON
+        }
+
+        return baseFuel
+    }
+
+    function roundToTenth(value: number): number {
+        return Math.round(value * 10) / 10
+    }
+
+    function checkerboardFrame(): Image {
+        if (resultsFrameImage) {
+            return resultsFrameImage
+        }
+
+        const frame = image.create(RESULT_FRAME_WIDTH, RESULT_FRAME_HEIGHT)
+        for (let x = 0; x < RESULT_FRAME_WIDTH; x++) {
+            for (let y = 0; y < RESULT_FRAME_HEIGHT; y++) {
+                const borderPixel = x < RESULT_FRAME_BORDER
+                    || x >= RESULT_FRAME_WIDTH - RESULT_FRAME_BORDER
+                    || y < RESULT_FRAME_BORDER
+                    || y >= RESULT_FRAME_HEIGHT - RESULT_FRAME_BORDER
+
+                if (borderPixel) {
+                    const tileX = (x / RESULT_FRAME_TILE) | 0
+                    const tileY = (y / RESULT_FRAME_TILE) | 0
+                    frame.setPixel(x, y, (tileX + tileY) & 1 ? 1 : 15)
+                }
+            }
+        }
+
+        resultsFrameImage = frame
+        return resultsFrameImage
+    }
+
     function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
         let styled = target.image.clone()
         styled.replace(6, bodyColor)
@@ -246,6 +326,7 @@ namespace drivenByStem {
     export function loadRaceProfile(defaultSpeed: number, defaultEfficiency: number): void {
         ensureNumberSetting(DRIVE_SPEED_KEY, defaultSpeed)
         ensureNumberSetting(EFFICIENCY_KEY, defaultEfficiency)
+        settings.writeNumber(EFFICIENCY_KEY, sanitizeEfficiencyValue(readNumberSetting(EFFICIENCY_KEY, defaultEfficiency), defaultEfficiency))
         ensureNumberSetting(STRATEGY_KEY, 0)
         ensureNumberSetting(DRAIN_KEY, 1)
         ensureStringSetting(WEATHER_KEY, "dry")
@@ -263,8 +344,8 @@ namespace drivenByStem {
         ensureNumberSetting(PREVIOUS_TOP_SPEED_KEY, 0)
         ensureNumberSetting(LAST_REACTION_KEY, -1)
         ensureNumberSetting(PREVIOUS_REACTION_KEY, -1)
-        ensureStringSetting(LAST_SPEED_UNIT_KEY, "km/h")
-        ensureStringSetting(PREVIOUS_SPEED_UNIT_KEY, "km/h")
+        ensureStringSetting(LAST_SPEED_UNIT_KEY, "mph")
+        ensureStringSetting(PREVIOUS_SPEED_UNIT_KEY, "mph")
         ensureNumberSetting(LAST_HITS_KEY, 0)
         ensureNumberSetting(PREVIOUS_HITS_KEY, 0)
         ensureNumberSetting(LAST_STRATEGY_KEY, 0)
@@ -273,7 +354,8 @@ namespace drivenByStem {
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
         ensureStringSetting(CAR_STYLE_KEY, "silver flash")
-        ensureStringSetting(SPEED_UNIT_KEY, "km/h")
+        ensureStringSetting(SPEED_UNIT_KEY, "mph")
+        ensureStringSetting(FUEL_UNIT_KEY, "gal")
     }
 
     /**
@@ -322,6 +404,7 @@ namespace drivenByStem {
      */
     //% block="set speed display unit to $unit"
     //% blockId=raceday_set_speed_display_unit
+    //% unit.defl=SpeedUnit.MilesPerHour
     //% group="Session" weight=55
     export function setSpeedDisplayUnit(unit: SpeedUnit): void {
         settings.writeString(SPEED_UNIT_KEY, speedUnitName(unit))
@@ -334,7 +417,44 @@ namespace drivenByStem {
     //% blockId=raceday_speed_display_unit
     //% group="Session" weight=50
     export function speedDisplayUnit(): string {
-        return readStringSetting(SPEED_UNIT_KEY, "km/h")
+        return readStringSetting(SPEED_UNIT_KEY, "mph")
+    }
+
+    /**
+     * Set the fuel display unit for support-mode test track runs.
+     */
+    //% block="set fuel display unit to $unit"
+    //% blockId=raceday_set_fuel_display_unit
+    //% unit.defl=FuelUnit.Gallons
+    //% group="Session" weight=54
+    export function setFuelDisplayUnit(unit: FuelUnit): void {
+        settings.writeString(FUEL_UNIT_KEY, fuelUnitName(unit))
+    }
+
+    /**
+     * Read the saved fuel display unit.
+     */
+    //% block="fuel display unit"
+    //% blockId=raceday_fuel_display_unit
+    //% group="Session" weight=53
+    export function fuelDisplayUnit(): string {
+        return readStringSetting(FUEL_UNIT_KEY, "gal")
+    }
+
+    //% blockHidden=true
+    export function formatFuelAmount(baseFuel: number): string {
+        const unit = fuelDisplayUnit()
+        return roundToTenth(convertFuelValue(sanitizeFuelValue(baseFuel), unit)) + " " + unit
+    }
+
+    //% blockHidden=true
+    export function showResultsDialog(message: string): void {
+        const frame = sprites.create(checkerboardFrame(), SpriteKind.DrivenByStemUi)
+        frame.setFlag(SpriteFlag.RelativeToCamera, true)
+        frame.setPosition(80, 60)
+        frame.z = scene.HUD_Z - 3
+        game.showLongText(message, DialogLayout.Full)
+        frame.destroy()
     }
 
     /**
@@ -472,7 +592,7 @@ namespace drivenByStem {
     //% blockId=raceday_saved_efficiency
     //% group="Setup" weight=80
     export function savedEfficiency(): number {
-        return readNumberSetting(EFFICIENCY_KEY, 5)
+        return sanitizeEfficiencyValue(readNumberSetting(EFFICIENCY_KEY, 5), 5)
     }
 
     /**
@@ -602,7 +722,7 @@ namespace drivenByStem {
         settings.writeNumber(LAST_TIME_KEY, 0)
         settings.writeNumber(LAST_TOP_SPEED_KEY, 0)
         settings.writeNumber(LAST_REACTION_KEY, -1)
-        settings.writeString(LAST_SPEED_UNIT_KEY, readStringSetting(SPEED_UNIT_KEY, "km/h"))
+        settings.writeString(LAST_SPEED_UNIT_KEY, readStringSetting(SPEED_UNIT_KEY, "mph"))
         settings.writeNumber(LAST_HITS_KEY, 0)
         settings.writeNumber(LAST_STRATEGY_KEY, readNumberSetting(STRATEGY_KEY, 0))
         settings.writeNumber(EFFICIENCY_KEY, info.life())
@@ -615,23 +735,22 @@ namespace drivenByStem {
     export function saveSupportRunResults(performanceResult: number, efficiencyRemaining: number, elapsedSeconds: number, reactionSeconds: number, topSpeed: number, speedUnit: string, hitCount: number): void {
         if (readNumberSetting(LAST_TIME_KEY, 0) > 0) {
             settings.writeNumber(PREVIOUS_SCORE_KEY, readNumberSetting(LAST_SCORE_KEY, 0))
-            settings.writeNumber(PREVIOUS_EFFICIENCY_KEY, readNumberSetting(LAST_EFFICIENCY_KEY, 0))
+            settings.writeNumber(PREVIOUS_EFFICIENCY_KEY, sanitizeFuelValue(readNumberSetting(LAST_EFFICIENCY_KEY, 0)))
             settings.writeNumber(PREVIOUS_TIME_KEY, readNumberSetting(LAST_TIME_KEY, 0))
             settings.writeNumber(PREVIOUS_TOP_SPEED_KEY, readNumberSetting(LAST_TOP_SPEED_KEY, 0))
             settings.writeNumber(PREVIOUS_REACTION_KEY, readNumberSetting(LAST_REACTION_KEY, -1))
-            settings.writeString(PREVIOUS_SPEED_UNIT_KEY, readStringSetting(LAST_SPEED_UNIT_KEY, "km/h"))
+            settings.writeString(PREVIOUS_SPEED_UNIT_KEY, readStringSetting(LAST_SPEED_UNIT_KEY, "mph"))
             settings.writeNumber(PREVIOUS_HITS_KEY, readNumberSetting(LAST_HITS_KEY, 0))
         }
 
         settings.writeNumber(LAST_SCORE_KEY, performanceResult)
-        settings.writeNumber(LAST_EFFICIENCY_KEY, efficiencyRemaining)
+        settings.writeNumber(LAST_EFFICIENCY_KEY, sanitizeFuelValue(efficiencyRemaining))
         settings.writeNumber(LAST_TIME_KEY, elapsedSeconds)
         settings.writeNumber(LAST_TOP_SPEED_KEY, topSpeed)
         settings.writeNumber(LAST_REACTION_KEY, reactionSeconds)
         settings.writeString(LAST_SPEED_UNIT_KEY, speedUnit)
         settings.writeNumber(LAST_HITS_KEY, hitCount)
         settings.writeNumber(LAST_STRATEGY_KEY, readNumberSetting(STRATEGY_KEY, 0))
-        settings.writeNumber(EFFICIENCY_KEY, efficiencyRemaining)
     }
 
     /**
@@ -651,7 +770,7 @@ namespace drivenByStem {
     //% blockId=raceday_last_efficiency
     //% group="Review" weight=80
     export function lastEfficiencyResult(): number {
-        return readNumberSetting(LAST_EFFICIENCY_KEY, 0)
+        return sanitizeFuelValue(readNumberSetting(LAST_EFFICIENCY_KEY, 0))
     }
 
     /**
@@ -701,7 +820,7 @@ namespace drivenByStem {
     //% blockId=raceday_last_test_speed_unit
     //% group="Review" weight=62
     export function lastTestSpeedUnit(): string {
-        return readStringSetting(LAST_SPEED_UNIT_KEY, "km/h")
+        return readStringSetting(LAST_SPEED_UNIT_KEY, "mph")
     }
 
     /**
@@ -726,7 +845,7 @@ namespace drivenByStem {
             return
         }
 
-        game.showLongText(buildSavedTestComparison(), DialogLayout.Full)
+        showResultsDialog(buildSavedTestComparison())
     }
 
     function buildSavedTestComparison(): string {
@@ -734,12 +853,12 @@ namespace drivenByStem {
         const currentTime = readNumberSetting(LAST_TIME_KEY, 0)
         const previousTopSpeed = readNumberSetting(PREVIOUS_TOP_SPEED_KEY, 0)
         const currentTopSpeed = readNumberSetting(LAST_TOP_SPEED_KEY, 0)
-        const previousSpeedUnit = readStringSetting(PREVIOUS_SPEED_UNIT_KEY, "km/h")
-        const currentSpeedUnit = readStringSetting(LAST_SPEED_UNIT_KEY, "km/h")
+        const previousSpeedUnit = readStringSetting(PREVIOUS_SPEED_UNIT_KEY, "mph")
+        const currentSpeedUnit = readStringSetting(LAST_SPEED_UNIT_KEY, "mph")
         const previousReaction = readNumberSetting(PREVIOUS_REACTION_KEY, -1)
         const currentReaction = readNumberSetting(LAST_REACTION_KEY, -1)
-        const previousGas = readNumberSetting(PREVIOUS_EFFICIENCY_KEY, 0)
-        const currentGas = readNumberSetting(LAST_EFFICIENCY_KEY, 0)
+        const previousGas = sanitizeFuelValue(readNumberSetting(PREVIOUS_EFFICIENCY_KEY, 0))
+        const currentGas = sanitizeFuelValue(readNumberSetting(LAST_EFFICIENCY_KEY, 0))
         const previousHits = readNumberSetting(PREVIOUS_HITS_KEY, 0)
         const currentHits = readNumberSetting(LAST_HITS_KEY, 0)
         const previousScore = readNumberSetting(PREVIOUS_SCORE_KEY, 0)
@@ -756,8 +875,8 @@ namespace drivenByStem {
             + "\nLast time: " + previousTime + " s"
             + "\nThis reaction: " + formatReactionValue(currentReaction)
             + "\nLast reaction: " + formatReactionValue(previousReaction)
-            + "\nThis gas left: " + currentGas
-            + "\nLast gas left: " + previousGas
+            + "\nThis gas left: " + formatFuelAmount(currentGas)
+            + "\nLast gas left: " + formatFuelAmount(previousGas)
             + "\nThis hits: " + currentHits
             + "\nLast hits: " + previousHits
             + "\nThis top: " + currentTopSpeed + " " + currentSpeedUnit
