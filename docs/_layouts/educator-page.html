@@ -1,6 +1,6 @@
 ---
 layout: page
-show_sidebar: false
+show_sidebar: true
 ---
 
 <div class="educator-page-shell">
@@ -9,9 +9,9 @@ show_sidebar: false
   </div>
 
   <aside class="educator-page-nav" aria-label="Educator guide sections">
-    <p class="educator-page-nav-label">Educator Guide</p>
+    <p class="educator-page-nav-label">Table of Contents</p>
     <ul class="educator-page-nav-list">
-      <li>{% if page.educator_nav == "home" %}<span aria-current="page"><strong>Overview</strong></span>{% else %}<a href="{{ site.baseurl }}/">Overview</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "home" %}<span aria-current="page"><strong>Home</strong></span>{% else %}<a href="{{ site.baseurl }}/">Home</a>{% endif %}</li>
       <li>{% if page.educator_nav == "summary" %}<span aria-current="page"><strong>Summary</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/summary/">Summary</a>{% endif %}</li>
       <li>{% if page.educator_nav == "goals" %}<span aria-current="page"><strong>Goals</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/goals/">Goals</a>{% endif %}</li>
       <li>{% if page.educator_nav == "requirements" %}<span aria-current="page"><strong>Requirements</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/requirements/">Requirements</a>{% endif %}</li>
