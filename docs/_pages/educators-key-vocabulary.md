@@ -5,7 +5,7 @@ permalink: /educators/definitions/
 educator_nav: definitions
 ---
 
-These terms help learners talk about what they are seeing, building, and improving.
+These terms help learners talk about what they are seeing, building, and improving. Key vocabulary enables educators to build a shared language with learners, making it easier to discuss design decisions, troubleshoot problems, and reflect on learning. When learners understand these terms, they can better articulate their thinking, collaborate with peers, and connect their hands-on experiences to broader engineering and design concepts.
 
 ## Core Terms
 

@@ -28,7 +28,6 @@ namespace drivenByStem {
     const TEAM_NAME_KEY = "teamName"
     const CAR_NAME_KEY = "carName"
     const ROLE_LENS_KEY = "roleLens"
-    const CAR_STYLE_KEY = "carStyle"
     const SPEED_UNIT_KEY = "speedDisplayUnit"
     const FUEL_UNIT_KEY = "fuelDisplayUnit"
 
@@ -76,15 +75,6 @@ namespace drivenByStem {
         SoftwareEngineer,
         //% block="data analyst"
         DataAnalyst
-    }
-
-    export enum CarStyle {
-        //% block="silver flash"
-        SilverFlash,
-        //% block="volt lime"
-        VoltLime,
-        //% block="heat red"
-        HeatRed
     }
 
     export enum SpeedUnit {
@@ -159,18 +149,6 @@ namespace drivenByStem {
         }
     }
 
-    function carStyleName(style: CarStyle): string {
-        switch (style) {
-            case CarStyle.VoltLime:
-                return "volt lime"
-            case CarStyle.HeatRed:
-                return "heat red"
-            case CarStyle.SilverFlash:
-            default:
-                return "silver flash"
-        }
-    }
-
     function speedUnitName(unit: SpeedUnit): string {
         switch (unit) {
             case SpeedUnit.MilesPerHour:
@@ -189,14 +167,6 @@ namespace drivenByStem {
             default:
                 return "gal"
         }
-    }
-
-    function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
-        let styled = target.image.clone()
-        styled.replace(6, bodyColor)
-        styled.replace(8, accentColor)
-        styled.replace(5, trimColor)
-        target.setImage(styled)
     }
 
     function ensureNumberSetting(name: string, value: number): void {
@@ -235,7 +205,6 @@ namespace drivenByStem {
         ensureStringSetting(TEAM_NAME_KEY, "Apex Lab")
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
-        ensureStringSetting(CAR_STYLE_KEY, "silver flash")
         ensureStringSetting(SPEED_UNIT_KEY, "mph")
         ensureStringSetting(FUEL_UNIT_KEY, "gal")
     }
@@ -396,39 +365,6 @@ namespace drivenByStem {
     //% group="Profile" weight=50
     export function roleLens(): string {
         return settings.readString(ROLE_LENS_KEY)
-    }
-
-    /**
-     * Save the car's style.
-     */
-    //% block="set car style to $style"
-    //% blockId=raceday_set_car_style
-    //% group="Profile" weight=40
-    export function setCarStyle(style: CarStyle): void {
-        settings.writeString(CAR_STYLE_KEY, carStyleName(style))
-    }
-
-    /**
-     * Apply the saved style colors to the player's car sprite.
-     */
-    //% block="apply saved car style"
-    //% blockId=raceday_apply_car_style
-    //% group="Profile" weight=30
-    export function applySavedCarStyle(): void {
-        const car = sprites.allOfKind(SpriteKind.Player)[0]
-        if (!car) return
-        switch (settings.readString(CAR_STYLE_KEY)) {
-            case "volt lime":
-                applyCarPalette(car, 7, 6, 1)
-                break
-            case "heat red":
-                applyCarPalette(car, 2, 4, 1)
-                break
-            case "silver flash":
-            default:
-                applyCarPalette(car, 1, 9, 8)
-                break
-        }
     }
 
     /**
@@ -841,19 +777,19 @@ drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 
 ---
 
-Every racing team has an identity — a name, a car livery, a style. Setting these values personalizes your simulation and creates a sense of ownership. More importantly, saving these choices means the system remembers who you are across multiple sessions, just like how real team data persists across race weekends.
+Every racing team has an identity — a name, a car name, and a look. In this step, you'll save your team details and then edit the sprite directly so the car on screen feels like your own design. That gives students practice with the image editor while keeping the project personal and remixable.
 
-* :id card: Set your own team name using the `||drivenByStem.set team name to ""||` block.
-* :id card: Customize your car with a name using the `||drivenByStem.set car name to ""||` block.
-* :id card: Pick your car style using the `||drivenByStem.set car style to ""||` block.
-* :mouse pointer: Add `||drivenByStem.apply saved car style||` so your car applies your changes on screen in the simulator. 
-* :mouse pointer: Lastly, add `||drivenByStem.show saved driver profile||` to check that your team details were saved.
+* :id card: Set your own team name using the `||drivenByStem:set team name to||` block.
+* :id card: Customize your car with a name using the `||drivenByStem:set car name to||` block.
+* :mouse pointer: Click the image in your existing `||sprites(noclick):set raceCar to sprite of kind Player||` block and change a few colors, add a stripe, or add a number for your team.
+* :game pad: Run the simulator and make sure your edited car shows up on screen.
+* :mouse pointer: Lastly, add `||drivenByStem:show saved driver profile||` to check that your team details were saved.
 
-~hint Why consistency matters? 💭
+~hint Car not changing? 🎨
 
 ---
 
-Consistent names and styles help you spot what's actually changing in the code. If everything looks different, it's harder to debug.
+If your car is not changing, edit the image inside the existing `raceCar` sprite block from Step 3. If you drag in a second sprite block, you may end up customizing the wrong car.
 
 hint~
 
@@ -877,16 +813,7 @@ drivenByStem.setTeamName("Apex Lab")
 //@validate-exists
 drivenByStem.setCarName("Velocity")
 //@validate-exists
-drivenByStem.setCarStyle(drivenByStem.CarStyle.SilverFlash)
-//@validate-exists
-drivenByStem.applySavedCarStyle()
-//@validate-exists
 drivenByStem.showSavedDriverProfile()
-```
-
-```ghost
-drivenByStem.setCarStyle(drivenByStem.CarStyle.VoltLime)
-drivenByStem.setCarStyle(drivenByStem.CarStyle.HeatRed)
 ```
 
 ## {7. Choose Dashboard Units}
@@ -921,8 +848,6 @@ drivenByStem.startStage(drivenByStem.RaceStage.Garage)
 drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 drivenByStem.setTeamName("Apex Lab")
 drivenByStem.setCarName("Velocity")
-drivenByStem.setCarStyle(drivenByStem.CarStyle.SilverFlash)
-drivenByStem.applySavedCarStyle()
 drivenByStem.showSavedDriverProfile()
 //@highlight
 //@validate-exists
@@ -967,4 +892,4 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ## Complete
 
-**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, and chose how your shakedown dashboard will show speed and fuel. The team identity and display settings you saved here are now ready to travel into the next tutorial.<br><br>In the next stage, you'll take this setup onto the test track and start collecting data on your car's performance. That data will be the key to improving your design and climbing the leaderboard, so get ready to put it to work!<br><br> Select the "Done" button to go to the next stage.
+**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, customized your team's car, and chose how your shakedown dashboard will show speed and fuel. The team details you saved and the car you customized here are now ready to travel into the next tutorial.<br><br>In the next stage, you'll take this setup onto the test track and start collecting data on your car's performance. That data will be the key to improving your design and climbing the leaderboard, so get ready to put it to work!<br><br> Select the "Done" button to go to the next stage.

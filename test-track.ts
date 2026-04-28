@@ -236,7 +236,6 @@ namespace drivenByStemSupport {
         }
 
         playerCar = sprites.create(defaultPlayerCarImage(), SpriteKind.Player)
-        drivenByStem.applySavedCarStyle()
         return playerCar
     }
 

@@ -69,8 +69,6 @@ namespace drivenByStem {
     const CAR_NAME_KEY = "carName"
     // Remembers the role perspective the student selected for the experience.
     const ROLE_LENS_KEY = "roleLens"
-    // Saves the selected car style so the same look can be reapplied later.
-    const CAR_STYLE_KEY = "carStyle"
     // Saves whether the team wants speed shown in km/h or mph during support runs.
     const SPEED_UNIT_KEY = "speedDisplayUnit"
     // Saves whether support-mode fuel values are shown in gallons or liters.
@@ -122,15 +120,6 @@ namespace drivenByStem {
         SoftwareEngineer,
         //% block="data analyst"
         DataAnalyst
-    }
-
-    export enum CarStyle {
-        //% block="silver flash"
-        SilverFlash,
-        //% block="volt lime"
-        VoltLime,
-        //% block="heat red"
-        HeatRed
     }
 
     export enum SpeedUnit {
@@ -205,18 +194,6 @@ namespace drivenByStem {
         }
     }
 
-    function carStyleName(style: CarStyle): string {
-        switch (style) {
-            case CarStyle.VoltLime:
-                return "volt lime"
-            case CarStyle.HeatRed:
-                return "heat red"
-            case CarStyle.SilverFlash:
-            default:
-                return "silver flash"
-        }
-    }
-
     function speedUnitName(unit: SpeedUnit): string {
         switch (unit) {
             case SpeedUnit.MilesPerHour:
@@ -284,14 +261,6 @@ namespace drivenByStem {
 
         resultsFrameImage = frame
         return resultsFrameImage
-    }
-
-    function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
-        let styled = target.image.clone()
-        styled.replace(6, bodyColor)
-        styled.replace(8, accentColor)
-        styled.replace(5, trimColor)
-        target.setImage(styled)
     }
 
     function ensureBaseCar(carImage: Image): Sprite {
@@ -365,7 +334,6 @@ namespace drivenByStem {
         ensureStringSetting(TEAM_NAME_KEY, "Apex Lab")
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
-        ensureStringSetting(CAR_STYLE_KEY, "silver flash")
         ensureStringSetting(SPEED_UNIT_KEY, "mph")
         ensureStringSetting(FUEL_UNIT_KEY, "gal")
     }
@@ -558,39 +526,6 @@ namespace drivenByStem {
     //% group="Profile" weight=50
     export function roleLens(): string {
         return readStringSetting(ROLE_LENS_KEY, "performance engineer")
-    }
-
-    /**
-     * Save the car's style.
-     */
-    //% block="set car style to $style"
-    //% blockId=raceday_set_car_style
-    //% group="Profile" weight=40
-    export function setCarStyle(style: CarStyle): void {
-        settings.writeString(CAR_STYLE_KEY, carStyleName(style))
-    }
-
-    /**
-     * Apply the saved style colors to the player's car sprite.
-     */
-    //% block="apply saved car style"
-    //% blockId=raceday_apply_car_style
-    //% group="Profile" weight=30
-    export function applySavedCarStyle(): void {
-        const car = sprites.allOfKind(SpriteKind.Player)[0]
-        if (!car) return
-        switch (settings.readString(CAR_STYLE_KEY)) {
-            case "volt lime":
-                applyCarPalette(car, 7, 6, 1)
-                break
-            case "heat red":
-                applyCarPalette(car, 2, 4, 1)
-                break
-            case "silver flash":
-            default:
-                applyCarPalette(car, 1, 9, 8)
-                break
-        }
     }
 
     /**

@@ -29,7 +29,6 @@ namespace drivenByStem {
     const TEAM_NAME_KEY = "teamName"
     const CAR_NAME_KEY = "carName"
     const ROLE_LENS_KEY = "roleLens"
-    const CAR_STYLE_KEY = "carStyle"
     const SPEED_UNIT_KEY = "speedDisplayUnit"
     const FUEL_UNIT_KEY = "fuelDisplayUnit"
 
@@ -77,15 +76,6 @@ namespace drivenByStem {
         SoftwareEngineer,
         //% block="data analyst"
         DataAnalyst
-    }
-
-    export enum CarStyle {
-        //% block="silver flash"
-        SilverFlash,
-        //% block="volt lime"
-        VoltLime,
-        //% block="heat red"
-        HeatRed
     }
 
     export enum SpeedUnit {
@@ -160,18 +150,6 @@ namespace drivenByStem {
         }
     }
 
-    function carStyleName(style: CarStyle): string {
-        switch (style) {
-            case CarStyle.VoltLime:
-                return "volt lime"
-            case CarStyle.HeatRed:
-                return "heat red"
-            case CarStyle.SilverFlash:
-            default:
-                return "silver flash"
-        }
-    }
-
     function speedUnitName(unit: SpeedUnit): string {
         switch (unit) {
             case SpeedUnit.MilesPerHour:
@@ -190,14 +168,6 @@ namespace drivenByStem {
             default:
                 return "gal"
         }
-    }
-
-    function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
-        let styled = target.image.clone()
-        styled.replace(6, bodyColor)
-        styled.replace(8, accentColor)
-        styled.replace(5, trimColor)
-        target.setImage(styled)
     }
 
     function ensureNumberSetting(name: string, value: number): void {
@@ -236,7 +206,6 @@ namespace drivenByStem {
         ensureStringSetting(TEAM_NAME_KEY, "Apex Lab")
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
-        ensureStringSetting(CAR_STYLE_KEY, "silver flash")
         ensureStringSetting(SPEED_UNIT_KEY, "mph")
         ensureStringSetting(FUEL_UNIT_KEY, "gal")
     }
@@ -397,39 +366,6 @@ namespace drivenByStem {
     //% group="Profile" weight=50
     export function roleLens(): string {
         return settings.readString(ROLE_LENS_KEY)
-    }
-
-    /**
-     * Save the car's style.
-     */
-    //% block="set car style to $style"
-    //% blockId=raceday_set_car_style
-    //% group="Profile" weight=40
-    export function setCarStyle(style: CarStyle): void {
-        settings.writeString(CAR_STYLE_KEY, carStyleName(style))
-    }
-
-    /**
-     * Apply the saved style colors to the player's car sprite.
-     */
-    //% block="apply saved car style"
-    //% blockId=raceday_apply_car_style
-    //% group="Profile" weight=30
-    export function applySavedCarStyle(): void {
-        const car = sprites.allOfKind(SpriteKind.Player)[0]
-        if (!car) return
-        switch (settings.readString(CAR_STYLE_KEY)) {
-            case "volt lime":
-                applyCarPalette(car, 7, 6, 1)
-                break
-            case "heat red":
-                applyCarPalette(car, 2, 4, 1)
-                break
-            case "silver flash":
-            default:
-                applyCarPalette(car, 1, 9, 8)
-                break
-        }
     }
 
     /**
@@ -754,10 +690,10 @@ drivenByStem.setWeather(drivenByStem.WeatherMode.Rain)
 
 ---
 
-Your car doesn't reset to factory defaults every run—it carries forward the setup decisions you made earlier. Loading the saved speed, style, and efficiency cost means this stage builds on your previous work rather than starting from scratch. Real race teams do this too: they tune the car once in the garage, then carry that configuration through multiple sessions.
+Your car doesn't reset to factory defaults every run—it carries forward the setup decisions you made earlier. Loading the saved speed and efficiency cost means this stage builds on your previous work rather than starting from scratch, and keeping the same `raceCar` sprite preserves the car you designed in the garage. Real race teams do this too: they tune the car once in the garage, then carry that configuration through multiple sessions.
 
 * :racing_car: Open `||drivenByStem:Driven by STEM||` and set `driveSpeed` to **saved drive speed**.
-* Use `||drivenByStem:Driven by STEM||` to apply the saved car style to `raceCar`.
+* Keep using the same `raceCar` sprite you customized in the garage.
 * Set `efficiencyDrain` from `||drivenByStem:Driven by STEM||` `saved efficiency cost`.
 
 ~hint Speed feels inconsistent? ⚡
@@ -780,9 +716,6 @@ scene.setBackgroundColor(7)
 //@highlight
 //@validate-exists
 driveSpeed = drivenByStem.savedDriveSpeed()
-//@highlight
-//@validate-exists
-drivenByStem.applySavedCarStyle()
 //@highlight
 //@validate-exists
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
@@ -817,7 +750,6 @@ drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 scene.setBackgroundColor(7)
 driveSpeed = drivenByStem.savedDriveSpeed()
-drivenByStem.applySavedCarStyle()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@highlight
 //@validate-exists
@@ -856,7 +788,6 @@ drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 scene.setBackgroundColor(7)
 driveSpeed = drivenByStem.savedDriveSpeed()
-drivenByStem.applySavedCarStyle()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 let weatherChanged = 0
 let weatherCollisions = 0
