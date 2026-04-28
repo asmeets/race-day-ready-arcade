@@ -41,6 +41,7 @@ namespace drivenByStemSupport {
     const TEST_TRACK_GAS_BAR_WIDTH = 28
     const TEST_TRACK_GAS_BAR_HEIGHT = 4
     const TEST_TRACK_GAS_BAR_OFFSET = -18
+    const TEST_TRACK_GAS_BAR_PADDING = 8
     const TEST_TRACK_MPH_FACTOR = 0.621371
     const TEST_TRACK_SUMMARY_ROUNDING = 10
     const TEST_TRACK_RUN_DURATION_MILLISECONDS = TEST_TRACK_DURATION_SECONDS * 1000
@@ -550,10 +551,14 @@ namespace drivenByStemSupport {
     function drawStagePrompt(canvas: Image): void {
         const promptX = 40
         const promptY = 27
+        const promptInnerWidth = 76
+        const font = image.font8
+        const pressAX = promptX + 2 + ((promptInnerWidth - "Press A".length * font.charWidth) >> 1)
+        const toStageX = promptX + 2 + ((promptInnerWidth - "to Stage".length * font.charWidth) >> 1)
         canvas.fillRect(promptX, promptY, 80, 20, 15)
         canvas.fillRect(promptX + 2, promptY + 2, 76, 16, 12)
-        canvas.print("Press A", promptX + 12, promptY + 2, 1)
-        canvas.print("to Stage", promptX + 8, promptY + 10, 1)
+        canvas.print("Press A", pressAX, promptY + 2, 1, font)
+        canvas.print("to Stage", toStageX, promptY + 10, 1, font)
     }
 
     function holdCarAtStart(): void {
@@ -660,7 +665,7 @@ namespace drivenByStemSupport {
         gasBar.value = gasMax
         gasBar.setBarBorder(1, 1)
         gasBar.positionDirection(CollisionDirection.Top)
-        gasBar.setOffsetPadding(TEST_TRACK_GAS_BAR_OFFSET, 2)
+        gasBar.setOffsetPadding(TEST_TRACK_GAS_BAR_OFFSET, TEST_TRACK_GAS_BAR_PADDING)
         return gasBar
     }
 
