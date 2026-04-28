@@ -583,13 +583,13 @@ namespace drivenByStemSupport {
 
         return reportTitle
             + "\n" + courseLine
-            + "\n• Time: " + elapsedSeconds + " s"
-            + "\n• Start: " + reactionSummary(activeTrack.reactionTimeMilliseconds)
-            + "\n• Top speed: " + formatSpeed(activeTrack.topSpeed, activeTrack.displayUnit)
-            + "\n• Avg speed: " + formatSpeed(averageSpeed, activeTrack.displayUnit)
-            + "\n• Gas burned: " + drivenByStem.formatFuelAmount(gasBurned)
-            + "\n• Gas left: " + drivenByStem.formatFuelAmount(gasLeft)
-            + "\n• Collisions: " + activeTrack.collisionCount
+            + "\nTime: " + elapsedSeconds + " s"
+            + "\nStart: " + reactionSummary(activeTrack.reactionTimeMilliseconds)
+            + "\nTop speed: " + formatSpeed(activeTrack.topSpeed, activeTrack.displayUnit)
+            + "\nAvg speed: " + formatSpeed(averageSpeed, activeTrack.displayUnit)
+            + "\nGas burned: " + drivenByStem.formatFuelAmount(gasBurned)
+            + "\nGas left: " + drivenByStem.formatFuelAmount(gasLeft)
+            + "\nCollisions: " + activeTrack.collisionCount
     }
 
     function showFinishBanner(summary: string): void {
