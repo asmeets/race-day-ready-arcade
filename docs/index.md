@@ -5,7 +5,7 @@ permalink: /
 educator_nav: home
 ---
 
-This guide is meant to work like a cover sheet for the full educator packet. Start with the sections that help you orient yourself, then move into the pages that support planning, delivery, and reflection.
+Welcome! This guide walks you through everything you need to run Driven by STEM in your classroom. Start by getting oriented, then dive into the sections that support your prep, facilitation, and post-session reflection.
 
 ## What This Experience Supports
 

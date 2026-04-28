@@ -3,7 +3,7 @@
 
 @import "main";
 
-.hero.is-primary.is-bold {
+.hero.is-primary {
   background-color: #000;
   color: #fff;
 }
@@ -53,8 +53,9 @@
 }
 
 .educator-page-nav-list {
-  margin: 0;
-  padding-left: 1.1rem;
+  margin-left: 1em !important;
+  padding-left: 0;
+  list-style: none;
 }
 
 .educator-page-nav-list li {
