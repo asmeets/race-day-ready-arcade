@@ -18,7 +18,7 @@ namespace drivenByStemSupport {
     const TEST_TRACK_MAX_OBSTACLES = 5
     const TEST_TRACK_SCORE_DIVISOR = 120
     const TEST_TRACK_MIN_SPEED_CAP = 110
-    const TEST_TRACK_MAX_SPEED = 500
+    const TEST_TRACK_MAX_SPEED = 378
     const TEST_TRACK_OFFROAD_DRAG = 200
     const TEST_TRACK_STEER_DRAG = 20
     const TEST_TRACK_ACCELERATION = 50
@@ -166,7 +166,7 @@ namespace drivenByStemSupport {
         resetTrack()
 
         const playerCar = ensurePlayerCar()
-        const maxDriveSpeed = clampToRange(drivenByStem.savedDriveSpeed() * 3, TEST_TRACK_MIN_SPEED_CAP, TEST_TRACK_MAX_SPEED - 80)
+        const maxDriveSpeed = clampToRange(drivenByStem.savedDriveSpeed() * 3, TEST_TRACK_MIN_SPEED_CAP, TEST_TRACK_MAX_SPEED)
         const gasMax = Math.max(TEST_TRACK_MIN_GAS, drivenByStem.savedEfficiency() * TEST_TRACK_GAS_MULTIPLIER)
         const gasDrainBase = TEST_TRACK_BASE_GAS_DRAIN * Math.max(1, drivenByStem.savedEfficiencyCost())
         const gasBar = createGasBar(gasMax)
@@ -269,7 +269,6 @@ namespace drivenByStemSupport {
         }
 
         canvas.fillRect(0, 0, TEST_TRACK_CANVAS_WIDTH, TEST_TRACK_CANVAS_HEIGHT, 9)
-        drawCityScape(canvas)
         canvas.fillRect(0, TEST_TRACK_CAR_SCREEN_Y - TEST_TRACK_HORIZON - 2, TEST_TRACK_CANVAS_WIDTH, TEST_TRACK_HORIZON + 20, 6)
 
         let roadX = activeTrack.carWorldX | 0
