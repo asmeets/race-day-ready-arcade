@@ -5,10 +5,11 @@ url: "https://asmeets.github.io"
 baseurl: "/driven-by-stem"
 
 # Theme Settings
-theme: jekyll-theme-leap-day
+remote_theme: chrisrhymes/bulma-clean-theme
 
 # Plugins
 plugins:
+  - jekyll-remote-theme
   - jekyll-sitemap
   - jekyll-feed
 

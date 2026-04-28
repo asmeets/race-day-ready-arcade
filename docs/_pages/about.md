@@ -1,5 +1,6 @@
 ---
-layout: default
+layout: page
+show_sidebar: false
 title: "About Driven by STEM"
 permalink: /about/
 ---
@@ -76,5 +77,5 @@ Built with **Microsoft MakeCode Arcade**, a block-based and text-based programmi
 
 <div style="text-align: center; margin-top: 3rem;">
   <p><small>&copy; 2026 F1 x Mercedes x Microsoft | Driven by STEM</small></p>
-  <p><small>Built with <a href="https://pages.github.com/">GitHub Pages</a> and <a href="https://github.com/pages-themes/leap-day">Leap Day</a></small></p>
+  <p><small>Built with <a href="https://pages.github.com/">GitHub Pages</a> and <a href="https://github.com/chrisrhymes/bulma-clean-theme/">Bulma Clean Theme</a></small></p>
 </div>

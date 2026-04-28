@@ -62,6 +62,7 @@ The built site will be in `docs/_site/`
 ### Configuration
 - **Gemfile** - Ruby gem dependencies
 - **_config.yml** - Jekyll site configuration
+- **assets/css/app.scss** - Bulma Clean Theme stylesheet entrypoint and local docs overrides
 
 ### Content Pages
 - **index.md** - Homepage and educator hub page
@@ -74,9 +75,9 @@ Current educator section names are Summary, Goals, Requirements, Standards, Foun
 Student-facing guidance is intentionally kept in the MakeCode Arcade skillmap flow rather than in this docs site.
 
 ### Theme
-Using [Leap Day](https://github.com/pages-themes/leap-day) - A fresh, vibrant GitHub Pages theme with a sidebar navigation.
+Using [Bulma Clean Theme](https://github.com/chrisrhymes/bulma-clean-theme/) - A Bulma-based Jekyll theme with flexible layouts and navigation options.
 
-Leap Day is a GitHub Pages-supported theme featuring a fixed sidebar, excellent readability, and a modern, professional appearance perfect for documentation sites.
+The site uses `remote_theme` plus `jekyll-remote-theme` for GitHub Pages compatibility, and local style overrides live in `assets/css/app.scss`.
 
 ## GitHub Pages Deployment
 
@@ -97,10 +98,10 @@ Images are optional. See `assets/images/README.md` for guidance on adding visual
 
 ### Theme Not Loading
 
-Ensure your GitHub Actions workflow is set up to build with Jekyll (not just copy static files).
+Ensure your GitHub Actions workflow is set up to build with Jekyll and that `jekyll-remote-theme` is enabled in both `_config.yml` and the docs Gemfile.
 
 ## Resources
 
 - [Jekyll Documentation](https://jekyllrb.com/docs/)
-- [GitHub Pages themes](https://pages.github.com/themes/)
+- [Bulma Clean Theme](https://github.com/chrisrhymes/bulma-clean-theme/)
 - [GitHub Pages Jekyll Docs](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll)
