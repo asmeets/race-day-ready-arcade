@@ -661,22 +661,34 @@ namespace drivenByStem {
 * markers: validate-exists
 ```
 
-## Setup and Tradeoffs @showdialog
+## Setup Tradeoffs @showdialog
 
 ![Riley - Performance Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/riley.png)
 
-![Garage tuning concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/enginePower.png)
+Hi, I'm Riley, a performance engineer on the race team. I got hooked on engineering by one question: why did that change make it *better*... or *worse*? I studied physics and math in college, though great performance engineers also come through technical programs, apprenticeships, or the military. What matters is learning to test ideas with evidence.
 
-Hi, I'm **Riley**, a performance engineer on the race team. I got hooked on engineering by one question: why did that change make it *better*... or *worse*? I studied physics and math in college, though great performance engineers also come through technical programs, apprenticeships, or the military. What matters is **learning to test ideas with evidence**.
-
-On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's **fast and controllable**. In this gate you'll tune the car's speed setting, **make a prediction before you test**, and add a rule that captures a core engineering truth: **every strong option costs something somewhere else**. The setup focus you save here is the same setup the shakedown and pit crew will read later.
+On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's fast and controllable. In this gate you'll tune the car's speed setting, make a prediction before you test, and add a rule that captures a core engineering truth: every strong option costs something somewhere else. Your saved car style and dashboard unit choices carry forward from the last gate while you tune the setup.
 
 ```template
+let driveSpeed = 80
+let efficiencyDrain = 1
+let raceCar = sprites.create(img`
+    . . . 6 6 6 6 . .
+    . . 6 8 8 8 6 . .
+    . 6 6 6 6 6 6 6 .
+    . 6 5 6 6 6 5 6 .
+    6 6 6 6 6 6 6 6 6
+    . 6 6 6 6 6 6 6 .
+    . 6 5 6 6 6 5 6 .
+    . . 6 6 6 6 6 . .
+    . . . 6 6 6 . . .
+`, SpriteKind.Player)
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.buildBaseCar(assets.image`playerCar`)
 drivenByStem.applySavedCarStyle()
 drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
+controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
 ## {1. Start the Setup Stage and Make a Prediction}
@@ -693,6 +705,7 @@ Real engineers don't just change things and hope for the best — they predict o
 ```
 
 * :racing_car: Open `||drivenByStem:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
+* :racing_car: Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
 * :game pad: Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
 
 ~hint Splash not showing? 📍
@@ -706,6 +719,8 @@ hint~
 ```blocks
 //@highlight
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+//@highlight
+driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 game.splash("Predict first", "What will more speed do to control and energy?")
 ```
@@ -737,16 +752,17 @@ hint~
 
 ---
 
-If the car still feels slow, something is probably resetting your speed later. Scan your stacks and search for another place where `driveSpeed` gets set.
+If the car still feels slow, something is probably resetting your speed later. Scan your stacks and look for another place where `driveSpeed` gets set.
 
 hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
 //@highlight
 //@validate-exists
-let driveSpeed = 110
+driveSpeed = 110
 ```
 
 ## {3. Make Movement Use driveSpeed}
@@ -770,8 +786,9 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-let driveSpeed = 110
+driveSpeed = 110
 //@highlight
 //@validate-exists
 drivenByStem.setBaseCarSpeed(driveSpeed)
@@ -785,7 +802,7 @@ drivenByStem.setBaseCarSpeed(driveSpeed)
 
 In real racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `efficiencyRating` represents how much energy the car starts with, and `efficiencyDrain` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
 
-* :paper plane: Open `||variables:Variables||`, select **Make a Variable**, and name it `efficiencyRating`.
+* :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyRating`.
 * :paper plane: Set `efficiencyRating` to `||drivenByStem:Driven by STEM||` `saved efficiency`.
 * :paper plane: Create `efficiencyDrain`, then add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
 
@@ -799,12 +816,14 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-let driveSpeed = 110
+driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 //@highlight
 //@validate-exists
 let efficiencyRating = drivenByStem.savedEfficiency()
+//@highlight
 //@validate-exists
 let efficiencyDrain = 1
 ```
@@ -843,8 +862,9 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-let driveSpeed = 110
+driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -867,7 +887,7 @@ if (driveSpeed > 100) {
 
 ---
 
-On a real race team, different engineers focus on different things — some monitor performance, others track efficiency, some monitor reliability. Choosing a role lens determines how you'll interpret the data you collect. There's no single "right" lens, just different ways of analyzing the same system.
+On a real race team, different engineers focus on different things — some watch performance, others track efficiency, some monitor reliability. Choosing a role lens determines how you'll interpret the data you collect. There's no single "right" lens, just different ways of looking at the same system.
 
 ```validation.local
 # BlocksExistValidator
@@ -881,14 +901,15 @@ On a real race team, different engineers focus on different things — some moni
 
 ---
 
-There isn't one correct role here. Pick the lens that matches what you're monitoring: speed, decision-making, software behavior, or data.
+There isn't one correct role here. Pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
 
 hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-let driveSpeed = 110
+driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -922,7 +943,7 @@ Engineering isn't just about making good decisions in the moment — it's about 
 
 * :racing_car: In `||drivenByStem:Driven by STEM||`, use `save team setup` inside both branches of the `if driveSpeed > 100` structure.
 * :racing_car: Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
-* :game pad: Add a `splash` in each branch so the saved choice is easy to confirm before the shakedown.
+* :game pad: Add a `splash` in each branch that explains the tradeoff choice.
 
 ~hint Setup not saving? ⏱️
 
@@ -934,8 +955,9 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+driveSpeed = drivenByStem.savedDriveSpeed()
 game.splash("Predict first", "What will more speed do to control and energy?")
-let driveSpeed = 110
+driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -968,10 +990,8 @@ drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, driven
 
 ## Complete
 
-**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also saved both the setup speed and the starting efficiency that later track, pit, and review steps will reuse.
+**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also saved both the setup speed and the starting efficiency that later track and review steps will reuse.
 
-Physics idea: increasing speed raises system demand.
+You built a real engineering tradeoff. Physics idea: increasing speed raises system demand. Computer science idea: variables plus conditionals let one program adapt to different design choices.
 
-Computer science idea: variables plus conditionals let one program save different outcomes from the same decision.
-
-Team roles in this tutorial: performance engineer, strategist, software engineer, and data analyst.
+Team roles in this tutorial: performance engineer, sustainability engineer, and systems engineer.

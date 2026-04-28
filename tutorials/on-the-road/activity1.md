@@ -29,6 +29,8 @@ namespace drivenByStem {
     const CAR_NAME_KEY = "carName"
     const ROLE_LENS_KEY = "roleLens"
     const CAR_STYLE_KEY = "carStyle"
+    const SPEED_UNIT_KEY = "speedDisplayUnit"
+    const FUEL_UNIT_KEY = "fuelDisplayUnit"
 
     export enum RaceStage {
         //% block="garage"
@@ -83,6 +85,20 @@ namespace drivenByStem {
         VoltLime,
         //% block="heat red"
         HeatRed
+    }
+
+    export enum SpeedUnit {
+        //% block="km/h"
+        KilometersPerHour,
+        //% block="mph"
+        MilesPerHour
+    }
+
+    export enum FuelUnit {
+        //% block="gallons"
+        Gallons,
+        //% block="liters"
+        Liters
     }
 
     function stageName(stage: RaceStage): string {
@@ -155,6 +171,26 @@ namespace drivenByStem {
         }
     }
 
+    function speedUnitName(unit: SpeedUnit): string {
+        switch (unit) {
+            case SpeedUnit.MilesPerHour:
+                return "mph"
+            case SpeedUnit.KilometersPerHour:
+            default:
+                return "km/h"
+        }
+    }
+
+    function fuelUnitName(unit: FuelUnit): string {
+        switch (unit) {
+            case FuelUnit.Liters:
+                return "L"
+            case FuelUnit.Gallons:
+            default:
+                return "gal"
+        }
+    }
+
     function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
         let styled = target.image.clone()
         styled.replace(6, bodyColor)
@@ -200,6 +236,8 @@ namespace drivenByStem {
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
         ensureStringSetting(CAR_STYLE_KEY, "silver flash")
+        ensureStringSetting(SPEED_UNIT_KEY, "mph")
+        ensureStringSetting(FUEL_UNIT_KEY, "gal")
     }
 
     /**
@@ -230,6 +268,72 @@ namespace drivenByStem {
     //% group="Session" weight=70
     export function resetSavedSession(): void {
         settings.clear()
+    }
+
+    /**
+     * Build the team's base car and apply the saved starting speed.
+     */
+    //% block="build base car with image $carImage"
+    //% blockId=raceday_build_base_car
+    //% carImage.shadow=screen_image_picker
+    //% group="Session" weight=65
+    export function buildBaseCar(carImage: Image): void {
+        let car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!car) {
+            car = sprites.create(carImage, SpriteKind.Player)
+        } else {
+            car.setImage(carImage.clone())
+        }
+        car.setFlag(SpriteFlag.StayInScreen, true)
+        const startingSpeed = settings.exists(DRIVE_SPEED_KEY) ? settings.readNumber(DRIVE_SPEED_KEY) : 80
+        controller.moveSprite(car, startingSpeed, startingSpeed)
+    }
+
+    /**
+     * Update the saved player's car controls to use a new speed value.
+     */
+    //% block="set base car speed to $speed"
+    //% blockId=raceday_set_base_car_speed
+    //% speed.defl=80 speed.min=0 speed.max=200
+    //% group="Session" weight=59
+    export function setBaseCarSpeed(speed: number): void {
+        const car = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!car) return
+        controller.moveSprite(car, speed, speed)
+        car.setFlag(SpriteFlag.StayInScreen, true)
+    }
+
+    /**
+     * Set the speed display unit for the shakedown dashboard.
+     */
+    //% block="set speed display unit to $unit"
+    //% blockId=raceday_set_speed_display_unit
+    //% unit.defl=SpeedUnit.MilesPerHour
+    //% group="Session" weight=58
+    export function setSpeedDisplayUnit(unit: SpeedUnit): void {
+        settings.writeString(SPEED_UNIT_KEY, speedUnitName(unit))
+    }
+
+    /**
+     * Set the fuel display unit for the shakedown dashboard.
+     */
+    //% block="set fuel display unit to $unit"
+    //% blockId=raceday_set_fuel_display_unit
+    //% unit.defl=FuelUnit.Gallons
+    //% group="Session" weight=57
+    export function setFuelDisplayUnit(unit: FuelUnit): void {
+        settings.writeString(FUEL_UNIT_KEY, fuelUnitName(unit))
+    }
+
+    /**
+     * Start the optional pseudo-3D test track using the saved setup values.
+     */
+    //% block="start vehicle test track"
+    //% blockId=raceday_start_vehicle_test_track
+    //% group="Session" weight=56
+    export function startVehicleTestTrack(): void {
+        loadRaceProfile(80, 5)
+        drivenByStemSupport.startVehicleTestTrack()
     }
 
     /**
@@ -340,12 +444,13 @@ namespace drivenByStem {
     /**
      * Save the team's garage setup choices.
      */
-    //% block="save team setup speed $speed efficiency cost $efficiencyCost focus $focus"
+    //% block="save team setup speed $speed efficiency $efficiency efficiency cost $efficiencyCost focus $focus"
     //% blockId=raceday_save_setup
-    //% speed.defl=80 efficiencyCost.defl=1
+    //% speed.defl=80 efficiency.defl=5 efficiencyCost.defl=1
     //% group="Setup" weight=100
-    export function saveTeamSetup(speed: number, efficiencyCost: number, focus: SetupFocus): void {
+    export function saveTeamSetup(speed: number, efficiency: number, efficiencyCost: number, focus: SetupFocus): void {
         settings.writeNumber(DRIVE_SPEED_KEY, speed)
+        settings.writeNumber(EFFICIENCY_KEY, efficiency)
         settings.writeNumber(DRAIN_KEY, efficiencyCost)
         settings.writeString(SETUP_FOCUS_KEY, setupFocusName(focus))
     }

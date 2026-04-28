@@ -3,6 +3,15 @@
 
 @import "main";
 
+.hero.is-medium .hero-body {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.hero .title.is-2 {
+  margin-bottom: 0;
+}
+
 .educator-page-shell {
   display: flex;
   gap: 2rem;
