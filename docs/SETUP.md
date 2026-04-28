@@ -64,11 +64,12 @@ The built site will be in `docs/_site/`
 - **_config.yml** - Jekyll site configuration
 
 ### Content Pages
-- **index.md** - Homepage and educator/facilitator hub page
-- **_pages/educators-*.md** - Individual facilitator lesson plan sections
+- **index.md** - Homepage and educator hub page
+- **_layouts/educator-page.html** - Shared educator page layout with right-side section navigation
+- **_pages/educators-*.md** - Individual educator lesson plan sections
 - **_pages/about.md** - About the project
 
-Current facilitator section names are Summary, Goals, Requirements, Standards, Foundations, Accessibility, Definitions, Agenda, Run of Show, Supplementals, and Feedback.
+Current educator section names are Summary, Goals, Requirements, Standards, Foundations, Accessibility, Definitions, Agenda, Run of Show, Supplementals, and Feedback.
 
 Student-facing guidance is intentionally kept in the MakeCode Arcade skillmap flow rather than in this docs site.
 
