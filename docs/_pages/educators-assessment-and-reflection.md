@@ -13,10 +13,10 @@ This experience does not need a long quiz or formal lab report to produce useful
 
 This page supports:
 
-- build in classroom reflection opportunities during or after the session
-- assess whether students understood the main ideas of tradeoffs, testing, and iteration
-- capture evidence of computer science thinking without interrupting the flow too heavily
-- decide what counts as strong student work in a short, active session
+- classroom reflection opportunities during or after the session
+- assessment of whether students understood the main ideas of tradeoffs, testing, and iteration
+- collection of evidence of computer science thinking without interrupting the flow too heavily
+- clearer definitions of what counts as strong student work in a short, active session
 
 ## What to Look For
 
@@ -34,7 +34,7 @@ Reflection works best when it is distributed across the experience instead of sa
 
 ### During Build and Test Moments
 
-Use short spoken pauses when students have just made a visible change.
+Short spoken pauses work best when students have just made a visible change.
 
 - after the first Garage setup choice, ask what students predict the choice will help or hurt
 - after the Garage Shakedown, ask what result matched the prediction and what did not
@@ -51,7 +51,7 @@ Replay and remix moments are strong opportunities for feedback because students 
 
 ### At the End of the Session
 
-Close with one short reflection rather than a long writing task.
+One short reflection usually works better than a long writing task.
 
 - name one choice and one effect
 - explain one tradeoff that mattered
@@ -85,7 +85,7 @@ Student work in this experience can be assessed through observation, short expla
 
 ### Simple Assessment Categories
 
-If you want a lightweight classroom assessment frame, these four categories work well:
+For a lightweight classroom assessment frame, these four categories work well:
 
 - **Cause and Effect**: Can the student explain what changed and what happened next?
 - **Tradeoff Reasoning**: Can the student describe what improved and what became harder?
@@ -94,7 +94,7 @@ If you want a lightweight classroom assessment frame, these four categories work
 
 ## Lightweight Rubric
 
-If you want to score student work more formally, use this rubric as a quick classroom tool. It is designed for short sessions, partner work, spoken explanations, and visible gameplay evidence. You do not need every category for every student response, but the full rubric works well for an exit response, short conference, replay explanation, or remix share-out.
+For more formal scoring, this rubric works as a quick classroom tool. It is designed for short sessions, partner work, spoken explanations, and visible gameplay evidence. Not every category is needed for every student response, but the full rubric works well for an exit response, short conference, replay explanation, or remix share-out.
 
 | Category | 4 - Strong | 3 - Proficient | 2 - Developing | 1 - Emerging |
 | --- | --- | --- | --- | --- |
@@ -135,11 +135,11 @@ These responses are not wrong, but they show that the student may need one more 
 
 ## Quick Ways to Gather Evidence
 
-Choose the method that fits the time and energy of the room.
+The best method depends on the time and energy of the room.
 
 ### Observation Checklist
 
-Use a simple note sheet while circulating.
+A simple note sheet works well while circulating.
 
 - Did the team make a prediction before testing?
 - Could they name one change they made?
@@ -148,7 +148,7 @@ Use a simple note sheet while circulating.
 
 ### Verbal Conference
 
-Pause at a checkpoint and ask one team one short question.
+A checkpoint conversation with one team is often enough.
 
 - What did you change?
 - What effect did that have?
@@ -156,7 +156,7 @@ Pause at a checkpoint and ask one team one short question.
 
 ### Exit Ticket
 
-Use one short written response when you want an individual artifact.
+One short written response is often enough when an individual artifact is needed.
 
 - One tradeoff I noticed was...
 - One change that affected the outcome was...
@@ -180,11 +180,11 @@ This format is especially useful when you want assessment evidence without stopp
 
 ## Quick Reflection Formats
 
-Match the format to the time you have.
+The format should match the time available.
 
 ### Fast Pair Share
 
-Ask partners to answer:
+Partners can answer:
 
 - one thing we changed
 - one thing we noticed
@@ -192,13 +192,13 @@ Ask partners to answer:
 
 ### Whole-Group Compare
 
-Invite two or three teams to share different strategies and what each one improved or made harder.
+Two or three teams can share different strategies and what each one improved or made harder.
 
 This works well when you want students to hear that more than one reasonable solution can exist.
 
 ### Exit Ticket
 
-Use one short prompt instead of a full worksheet.
+One short prompt usually works better than a full worksheet.
 
 - one tradeoff I noticed was...
 - one thing I would remix next is...
@@ -206,7 +206,7 @@ Use one short prompt instead of a full worksheet.
 
 ### Gallery or Demo Walk
 
-If learners created different remixes or ended with different outcomes, invite a short showcase.
+When learners created different remixes or ended with different outcomes, a short showcase works well.
 
 - ask teams to show one decision they made
 - ask visitors to name what tradeoff they think that team was managing
@@ -216,7 +216,7 @@ If learners created different remixes or ended with different outcomes, invite a
 
 Short spoken explanations are often better evidence than a long written worksheet in a fast-moving session. If the room is energized, capture one sentence from each team instead of slowing the experience down with too much writing.
 
-If you need something more classroom-facing, the most defensible approach is a simple combination of:
+For a more classroom-facing option, the strongest combination is usually:
 
 - one observed moment during play
 - one short reflection response

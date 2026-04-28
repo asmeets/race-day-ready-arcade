@@ -3,6 +3,10 @@
 
 @import "main";
 
+.navbar-start {
+  display: none !important;
+}
+
 .hero.is-primary {
   background-color: #000 !important;
   background-image: unset !important;

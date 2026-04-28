@@ -7,7 +7,7 @@ educator_nav: supplementals
 
 This page collects the extension paths that are most useful once the core session is working well. It is most useful when a group finishes early, wants another round of challenge, or leaves with enough momentum that one session does not feel like enough.
 
-The aim is to help you extend the experience in ways that stay concrete, teachable, and connected to the original learning goals.
+The aim is to extend the experience in ways that stay concrete, teachable, and connected to the original learning goals.
 
 ## Recommended Path
 
@@ -15,9 +15,9 @@ The core experience is designed to be delivered as a single, guided skillmap ses
 
 ### Guided Skillmap Session
 
-Use this for most classrooms, workshops, and activations. Learners follow the MakeCode Arcade pathway in order and build one concept at a time. This path gives the clearest student on-ramp and keeps the experience cumulative across stages.
+This format works for most classrooms, workshops, and activations. Learners follow the MakeCode Arcade pathway in order and build one concept at a time. This path gives the clearest student on-ramp and keeps the experience cumulative across stages.
 
-Facilitation supports are built into the skillmap, but you can also use the [Run of Show]({{ site.baseurl }}/educators/run-of-show/) notes to plan specific pause points, discussion prompts, and remix moments.
+Facilitation supports are built into the skillmap, and the [Run of Show]({{ site.baseurl }}/educators/run-of-show/) notes provide specific pause points, discussion prompts, and remix moments.
 
 ## Stage-Based Remix Ideas
 
@@ -99,7 +99,7 @@ The best remix prompts are the ones that can be explained in a few sentences, po
 
 ## Follow-Up Ideas
 
-The session can end at the skillmap, but it does not have to. If you have more time, or if learners leave wanting to keep exploring, these follow-up options help extend the experience without losing the original learning thread.
+The session can end at the skillmap, but it does not have to. When more time is available, or when learners leave wanting to keep exploring, these follow-up options extend the experience without losing the original learning thread.
 
 ### Continue the Remix Loop
 
@@ -135,7 +135,7 @@ The session can end at the skillmap, but it does not have to. If you have more t
 
 ### Simple Closing Moves if Time Is Short
 
-If you only have a few extra minutes after the main experience, a small follow-up can still be useful.
+Even a few extra minutes after the main experience can support a useful follow-up.
 
 - ask each team to name one thing they changed and one thing they would test next
 - ask for one role connection from the room

@@ -9,7 +9,7 @@ This page serves as the play-by-play for the live session. It works best after r
 
 ## Before Learners Begin
 
-Have the room and devices ready before students start arriving. The launch should feel immediate.
+The room and devices should be ready before students start arriving. The launch should feel immediate.
 
 - open the skillmap on the facilitator device and project the starting view
 - confirm that at least one fallback device is ready in case a learner machine stalls
@@ -29,7 +29,7 @@ Suggested opening language:
 
 ## How to Keep the Whole Audience Involved
 
-This session works best when learners are not just staring at screens waiting for the next instruction. Build in short, low-pressure participation moves that ask students to predict, notice, compare, and connect.
+This session works best when learners are not just staring at screens waiting for the next instruction. Short, low-pressure participation moves help students predict, notice, compare, and connect.
 
 - use quick partner talk before whole-group discussion so more students rehearse an answer
 - ask for a show of hands, thumb vote, or one-word response when you need a fast room read
@@ -46,9 +46,9 @@ Good whole-group prompts include:
 
 ## STEM and Career Moves to Weave In
 
-The career and STEM connections should come from what students are already doing in the game. Do not stop the session for a separate mini-lesson unless the room clearly needs it.
+Career and STEM connections are strongest when they come from what students are already doing in the game. A separate mini-lesson is rarely necessary unless the room clearly needs it.
 
-Use short connections like these:
+Short connections like these work well:
 
 - when students tune speed, efficiency, or grip, name variables, constraints, and optimization
 - when students react to collisions, pit stops, or weather, name data, feedback, and system response
@@ -71,7 +71,7 @@ Useful career lenses to bring in during discussion:
 
 Get learners into the activity quickly, reduce uncertainty, and establish how they will work.
 
-### What to do
+### High-level facilitation moves
 
 - welcome learners and point them to the skillmap right away
 - confirm everyone can access the activity before giving a longer explanation
@@ -87,13 +87,13 @@ Get learners into the activity quickly, reduce uncertainty, and establish how th
 - say when role rotations will happen so shared devices do not become one-person devices
 - give the room a simple success target for the first few minutes: open the project, enter the first steps, and get to the first visible build moment
 
-### What to say
+### Sample language
 
 - "You are going to build, test, compare, and improve."
 - "If something does not go the way you expect, that is useful data, not failure."
 - "Your job is not just to finish. Your job is to notice what your choices changed."
 
-### Questions to ask the audience
+### Audience questions
 
 - Who has ever changed something in a game or app just to see what would happen?
 - What do you think engineers do when two good goals compete with each other?
@@ -435,7 +435,7 @@ Questions to ask the audience:
 
 Give learners one more chance to act on what they learned instead of ending with passive discussion alone.
 
-### What to do
+### High-level facilitation moves
 
 - invite one small revision that creates a visible difference quickly
 - ask learners to predict before they replay or test again
@@ -486,7 +486,7 @@ Questions to ask the audience:
 
 End with a short, confident reflection that captures learning without draining the room.
 
-### What to do
+### High-level facilitation moves
 
 - ask each team to name one choice and one effect
 - invite one or two students to connect a game moment to a team role

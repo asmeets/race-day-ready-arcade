@@ -43,7 +43,7 @@ Educators running the session should aim to:
 
 The project is also trying to do something relational, not just technical. Students should leave with the sense that thoughtful observation, communication, and persistence are real strengths in STEM spaces.
 
-You are on the right path if the room communicates these messages:
+The room is moving in the right direction when it communicates these messages:
 
 - there are many valid ways to approach a problem
 - technical work is not only for students who already see themselves as "the coding kid"
@@ -52,7 +52,7 @@ You are on the right path if the room communicates these messages:
 
 ## Evidence of Success
 
-You are on track if learners can do most of the following in simple language:
+The session is on track when learners can do most of the following in simple language:
 
 - say what changed
 - explain what happened next

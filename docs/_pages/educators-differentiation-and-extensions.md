@@ -9,7 +9,7 @@ This page focuses on how to adapt the experience without losing what makes it wo
 
 ## What to Adapt First
 
-If you need to make changes for access, pacing, or confidence, start with the learning conditions before you change the content.
+When changes are needed for access, pacing, or confidence, the learning conditions should change before the content does.
 
 - shorten the amount of new information students need to process at one time
 - keep the skillmap sequence intact so learners still move through Garage, On the Road, and Finish Line in order
@@ -33,7 +33,7 @@ These supports do not remove the need for facilitation, but they do give you a s
 
 ## Adaptations for Pacing and Cognitive Load
 
-Use these moves when students need a slower on-ramp, more repetition, or less information at once.
+These moves work well when students need a slower on-ramp, more repetition, or less information at once.
 
 - keep directions to one action at a time and point to one block, value, or mechanic before moving on
 - pause after each first success, such as car movement, the first shakedown, or the first obstacle interaction
@@ -53,7 +53,7 @@ This project works well with shared-device play when roles are explicit and usef
 
 ## Adaptations for Learners Who Need More Support
 
-Use these moves when learners are new to coding, hesitant to participate, or easily overloaded.
+These moves work well for learners who are new to coding, hesitant to participate, or easily overloaded.
 
 - preselect one or two vocabulary terms to teach directly instead of front-loading the full definitions list
 - preview the purpose of a stage before students build, for example "In this part, we test whether a faster car creates a new cost"
@@ -93,7 +93,7 @@ Accessibility is not only about technical access. It is also about whether stude
 
 ## Quick Planning Check
 
-Before the session begins, check these questions:
+Before the session begins, these are the key questions to check:
 
 - Can learners access the game with the input method they will actually use?
 - Can the room read the main text, score areas, and prompts from where they are sitting?

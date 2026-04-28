@@ -75,7 +75,7 @@ The experience is strongest when educators reinforce that the game is tracking m
 
 These three lenses give educators a simple way to ask better questions during facilitation. They also prevent the session from collapsing into a single story of winning or losing.
 
-Good facilitation keeps returning to questions like:
+Strong facilitation keeps returning to questions like:
 
 - Which score lens improved?
 - Which one got harder to manage?
@@ -113,7 +113,7 @@ If those ideas are becoming more visible over time, the session is on track.
 - comparisons that use evidence instead of guesses alone
 - students connecting a gameplay moment to a team role or real-world decision
 
-You can also listen for what is missing.
+It also helps to listen for what is missing.
 
 - If students can describe what happened but not why, they may need more support naming the rule or variable behind the result.
 - If students can repeat instructions but cannot interpret the result, they may need a slower compare-and-explain pause.

@@ -40,7 +40,7 @@ This checklist is designed to make pre-session preparation easy to scan and easy
 
 ## Recommended Dry Run
 
-Run one short pass through the skillmap yourself before the session. The goal is not mastery. The goal is to notice where learners may stall, which terms need plain-language explanation, and where you want to pause the group.
+One short pass through the skillmap before the session is usually enough. The goal is not mastery. The goal is to notice where learners may stall, which terms need plain-language explanation, and where the group may need a pause.
 
 During the dry run, check these items:
 
@@ -51,7 +51,7 @@ During the dry run, check these items:
 
 ## Fallback Plan
 
-Have one simple backup plan ready in case devices or connectivity are uneven.
+One simple backup plan should be ready in case devices or connectivity are uneven.
 
 - [ ] Keep one facilitator machine ready to demo a step live.
 - [ ] Be ready to pair learners into Driver and Navigator roles on a shared device.

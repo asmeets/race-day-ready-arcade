@@ -5,7 +5,7 @@ permalink: /educators/about/
 educator_nav: about
 ---
 
-This page is meant to give a clear short explanation of what *Driven by STEM* is and why it is designed the way it is. It is most useful when you need a concise description of the experience before getting into the fuller educator materials.
+This page gives a clear short explanation of what *Driven by STEM* is and why it is designed the way it is. It works best as a concise description of the experience before moving into the fuller educator materials.
 
 *Driven by STEM* is a MakeCode Arcade learning experience built for the F1 x Mercedes x Microsoft STEM and career exploration activation. It is designed to feel like a short, active invitation into engineering thinking: students make a choice, test it, notice what changed, and talk about why it changed.
 

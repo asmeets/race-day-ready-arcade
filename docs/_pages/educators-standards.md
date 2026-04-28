@@ -60,7 +60,7 @@ It is less effective when standards are used to interrupt the build-test-improve
 
 ## What to Capture as Evidence
 
-If you need documentation for planning or reporting, useful evidence includes:
+For planning or reporting, useful evidence includes:
 
 - a student's explanation of what they changed and why
 - a prediction before a test run
@@ -70,4 +70,4 @@ If you need documentation for planning or reporting, useful evidence includes:
 
 ## Facilitation Note
 
-Do the standards mapping in your planning notes. During the live session, keep the focus on play, evidence, and discussion.
+Standards mapping belongs in planning notes. During the live session, the focus should stay on play, evidence, and discussion.

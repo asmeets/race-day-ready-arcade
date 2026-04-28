@@ -13,7 +13,7 @@ This format is a good fit for a live activation where you want enough time for l
 
 ### 1. Welcome, Device Check, and Team Framing: 10 minutes
 
-Use the first few minutes to get everyone into the right mindset before they touch the tutorials.
+The first few minutes set the tone before learners touch the tutorials.
 
 - welcome learners and frame the experience as a build-test-improve challenge rather than a lecture
 - confirm devices are open and the skillmap is ready to launch
@@ -88,7 +88,7 @@ If students need more challenge in this stage:
 
 ### 5. Remix, Share, or Replay: 15 minutes
 
-Use this time for one manageable extension, not a full open-ended build session. The best choice is usually a small remix that creates a visible difference quickly.
+This time works best as one manageable extension rather than a full open-ended build session. In most cases, a small remix that creates a visible difference quickly is the strongest choice.
 
 - invite learners to change one variable, reward rule, message, or reflection screen element
 - encourage pairs to predict what will change before they test again
@@ -103,7 +103,7 @@ Good remix choices for this block include:
 
 ### 6. Closing Reflection and Transition: 5 minutes
 
-Close with a short reflection that captures learning without turning the final minutes into a long debrief.
+A short reflection at the end captures learning without turning the final minutes into a long debrief.
 
 - ask learners to name one choice they made and one effect they observed
 - invite one or two students to connect a game moment to a real team role
