@@ -23,8 +23,32 @@ namespace drivenByStem {
     const PIT_STOPS_KEY = "pitStopsVisited"
     // Saves the last run's score so students can compare results between tests.
     const LAST_SCORE_KEY = "lastResultScore"
+    // Saves the previous support run score for direct A/B comparisons.
+    const PREVIOUS_SCORE_KEY = "previousResultScore"
     // Saves the last run's remaining efficiency for debrief and iteration.
     const LAST_EFFICIENCY_KEY = "lastResultEfficiency"
+    // Saves the previous support run remaining gas for comparison.
+    const PREVIOUS_EFFICIENCY_KEY = "previousResultEfficiency"
+    // Saves the last support run time so teams can compare pace between tests.
+    const LAST_TIME_KEY = "lastResultTime"
+    // Saves the previous support run time for direct comparison.
+    const PREVIOUS_TIME_KEY = "previousResultTime"
+    // Saves the last support run top speed for setup comparisons.
+    const LAST_TOP_SPEED_KEY = "lastResultTopSpeed"
+    // Saves the previous support run top speed.
+    const PREVIOUS_TOP_SPEED_KEY = "previousResultTopSpeed"
+    // Saves the last support run reaction time from lights-out to first input.
+    const LAST_REACTION_KEY = "lastResultReaction"
+    // Saves the previous support run reaction time.
+    const PREVIOUS_REACTION_KEY = "previousResultReaction"
+    // Saves which speed unit was used when the last support run finished.
+    const LAST_SPEED_UNIT_KEY = "lastResultSpeedUnit"
+    // Saves which speed unit the previous support run used.
+    const PREVIOUS_SPEED_UNIT_KEY = "previousResultSpeedUnit"
+    // Saves how many hits happened in the last support run.
+    const LAST_HITS_KEY = "lastResultHits"
+    // Saves how many hits happened in the previous support run.
+    const PREVIOUS_HITS_KEY = "previousResultHits"
     // Saves the last run's strategy total for reflection activities.
     const LAST_STRATEGY_KEY = "lastResultStrategy"
     // Stores the team's note about what to improve in the next test.
@@ -37,6 +61,8 @@ namespace drivenByStem {
     const ROLE_LENS_KEY = "roleLens"
     // Saves the selected car style so the same look can be reapplied later.
     const CAR_STYLE_KEY = "carStyle"
+    // Saves whether the team wants speed shown in km/h or mph during support runs.
+    const SPEED_UNIT_KEY = "speedDisplayUnit"
 
     export enum RaceStage {
         //% block="garage"
@@ -91,6 +117,13 @@ namespace drivenByStem {
         VoltLime,
         //% block="heat red"
         HeatRed
+    }
+
+    export enum SpeedUnit {
+        //% block="km/h"
+        KilometersPerHour,
+        //% block="mph"
+        MilesPerHour
     }
 
     function stageName(stage: RaceStage): string {
@@ -163,6 +196,16 @@ namespace drivenByStem {
         }
     }
 
+    function speedUnitName(unit: SpeedUnit): string {
+        switch (unit) {
+            case SpeedUnit.MilesPerHour:
+                return "mph"
+            case SpeedUnit.KilometersPerHour:
+            default:
+                return "km/h"
+        }
+    }
+
     function applyCarPalette(target: Sprite, bodyColor: number, accentColor: number, trimColor: number): void {
         let styled = target.image.clone()
         styled.replace(6, bodyColor)
@@ -211,13 +254,26 @@ namespace drivenByStem {
         ensureNumberSetting(COLLISION_KEY, 0)
         ensureNumberSetting(PIT_STOPS_KEY, 0)
         ensureNumberSetting(LAST_SCORE_KEY, 0)
+        ensureNumberSetting(PREVIOUS_SCORE_KEY, 0)
         ensureNumberSetting(LAST_EFFICIENCY_KEY, defaultEfficiency)
+        ensureNumberSetting(PREVIOUS_EFFICIENCY_KEY, defaultEfficiency)
+        ensureNumberSetting(LAST_TIME_KEY, 0)
+        ensureNumberSetting(PREVIOUS_TIME_KEY, 0)
+        ensureNumberSetting(LAST_TOP_SPEED_KEY, 0)
+        ensureNumberSetting(PREVIOUS_TOP_SPEED_KEY, 0)
+        ensureNumberSetting(LAST_REACTION_KEY, -1)
+        ensureNumberSetting(PREVIOUS_REACTION_KEY, -1)
+        ensureStringSetting(LAST_SPEED_UNIT_KEY, "km/h")
+        ensureStringSetting(PREVIOUS_SPEED_UNIT_KEY, "km/h")
+        ensureNumberSetting(LAST_HITS_KEY, 0)
+        ensureNumberSetting(PREVIOUS_HITS_KEY, 0)
         ensureNumberSetting(LAST_STRATEGY_KEY, 0)
         ensureStringSetting(NEXT_FOCUS_KEY, "Review the data and test again.")
         ensureStringSetting(TEAM_NAME_KEY, "Apex Lab")
         ensureStringSetting(CAR_NAME_KEY, "Velocity")
         ensureStringSetting(ROLE_LENS_KEY, "performance engineer")
         ensureStringSetting(CAR_STYLE_KEY, "silver flash")
+        ensureStringSetting(SPEED_UNIT_KEY, "km/h")
     }
 
     /**
@@ -259,6 +315,26 @@ namespace drivenByStem {
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
         drivenByStemSupport.startVehicleTestTrack()
+    }
+
+    /**
+     * Set the speed display unit for support-mode test track runs.
+     */
+    //% block="set speed display unit to $unit"
+    //% blockId=raceday_set_speed_display_unit
+    //% group="Session" weight=55
+    export function setSpeedDisplayUnit(unit: SpeedUnit): void {
+        settings.writeString(SPEED_UNIT_KEY, speedUnitName(unit))
+    }
+
+    /**
+     * Read the saved speed display unit.
+     */
+    //% block="speed display unit"
+    //% blockId=raceday_speed_display_unit
+    //% group="Session" weight=50
+    export function speedDisplayUnit(): string {
+        return readStringSetting(SPEED_UNIT_KEY, "km/h")
     }
 
     /**
@@ -523,8 +599,39 @@ namespace drivenByStem {
     export function saveCurrentRunResults(): void {
         settings.writeNumber(LAST_SCORE_KEY, info.score())
         settings.writeNumber(LAST_EFFICIENCY_KEY, info.life())
+        settings.writeNumber(LAST_TIME_KEY, 0)
+        settings.writeNumber(LAST_TOP_SPEED_KEY, 0)
+        settings.writeNumber(LAST_REACTION_KEY, -1)
+        settings.writeString(LAST_SPEED_UNIT_KEY, readStringSetting(SPEED_UNIT_KEY, "km/h"))
+        settings.writeNumber(LAST_HITS_KEY, 0)
         settings.writeNumber(LAST_STRATEGY_KEY, readNumberSetting(STRATEGY_KEY, 0))
         settings.writeNumber(EFFICIENCY_KEY, info.life())
+    }
+
+    /**
+     * Save support-mode run results without depending on the life HUD.
+     */
+    //% blockHidden=true
+    export function saveSupportRunResults(performanceResult: number, efficiencyRemaining: number, elapsedSeconds: number, reactionSeconds: number, topSpeed: number, speedUnit: string, hitCount: number): void {
+        if (readNumberSetting(LAST_TIME_KEY, 0) > 0) {
+            settings.writeNumber(PREVIOUS_SCORE_KEY, readNumberSetting(LAST_SCORE_KEY, 0))
+            settings.writeNumber(PREVIOUS_EFFICIENCY_KEY, readNumberSetting(LAST_EFFICIENCY_KEY, 0))
+            settings.writeNumber(PREVIOUS_TIME_KEY, readNumberSetting(LAST_TIME_KEY, 0))
+            settings.writeNumber(PREVIOUS_TOP_SPEED_KEY, readNumberSetting(LAST_TOP_SPEED_KEY, 0))
+            settings.writeNumber(PREVIOUS_REACTION_KEY, readNumberSetting(LAST_REACTION_KEY, -1))
+            settings.writeString(PREVIOUS_SPEED_UNIT_KEY, readStringSetting(LAST_SPEED_UNIT_KEY, "km/h"))
+            settings.writeNumber(PREVIOUS_HITS_KEY, readNumberSetting(LAST_HITS_KEY, 0))
+        }
+
+        settings.writeNumber(LAST_SCORE_KEY, performanceResult)
+        settings.writeNumber(LAST_EFFICIENCY_KEY, efficiencyRemaining)
+        settings.writeNumber(LAST_TIME_KEY, elapsedSeconds)
+        settings.writeNumber(LAST_TOP_SPEED_KEY, topSpeed)
+        settings.writeNumber(LAST_REACTION_KEY, reactionSeconds)
+        settings.writeString(LAST_SPEED_UNIT_KEY, speedUnit)
+        settings.writeNumber(LAST_HITS_KEY, hitCount)
+        settings.writeNumber(LAST_STRATEGY_KEY, readNumberSetting(STRATEGY_KEY, 0))
+        settings.writeNumber(EFFICIENCY_KEY, efficiencyRemaining)
     }
 
     /**
@@ -555,6 +662,164 @@ namespace drivenByStem {
     //% group="Review" weight=70
     export function lastStrategyResult(): number {
         return readNumberSetting(LAST_STRATEGY_KEY, 0)
+    }
+
+    /**
+     * Read the last support run time in seconds.
+     */
+    //% block="last test time seconds"
+    //% blockId=raceday_last_test_time
+    //% group="Review" weight=65
+    export function lastTestTimeSeconds(): number {
+        return readNumberSetting(LAST_TIME_KEY, 0)
+    }
+
+    /**
+     * Read the last support run top speed value.
+     */
+    //% block="last test top speed"
+    //% blockId=raceday_last_test_top_speed
+    //% group="Review" weight=64
+    export function lastTestTopSpeed(): number {
+        return readNumberSetting(LAST_TOP_SPEED_KEY, 0)
+    }
+
+    /**
+     * Read the last support run reaction time in seconds.
+     */
+    //% block="last test reaction seconds"
+    //% blockId=raceday_last_test_reaction
+    //% group="Review" weight=63
+    export function lastTestReactionSeconds(): number {
+        return readNumberSetting(LAST_REACTION_KEY, -1)
+    }
+
+    /**
+     * Read the last support run speed unit.
+     */
+    //% block="last test speed unit"
+    //% blockId=raceday_last_test_speed_unit
+    //% group="Review" weight=62
+    export function lastTestSpeedUnit(): string {
+        return readStringSetting(LAST_SPEED_UNIT_KEY, "km/h")
+    }
+
+    /**
+     * Check whether a previous support run is available for comparison.
+     */
+    //% block="has saved test comparison"
+    //% blockId=raceday_has_saved_test_comparison
+    //% group="Review" weight=61
+    export function hasSavedTestComparison(): boolean {
+        return readNumberSetting(PREVIOUS_TIME_KEY, 0) > 0
+    }
+
+    /**
+     * Show the current and previous support test runs side by side.
+     */
+    //% block="show saved test comparison"
+    //% blockId=raceday_show_saved_test_comparison
+    //% group="Review" weight=60
+    export function showSavedTestComparison(): void {
+        if (!(hasSavedTestComparison())) {
+            game.splash("No comparison yet", "Run the test track twice to compare results.")
+            return
+        }
+
+        game.showLongText(buildSavedTestComparison(), DialogLayout.Full)
+    }
+
+    function buildSavedTestComparison(): string {
+        const previousTime = readNumberSetting(PREVIOUS_TIME_KEY, 0)
+        const currentTime = readNumberSetting(LAST_TIME_KEY, 0)
+        const previousTopSpeed = readNumberSetting(PREVIOUS_TOP_SPEED_KEY, 0)
+        const currentTopSpeed = readNumberSetting(LAST_TOP_SPEED_KEY, 0)
+        const previousSpeedUnit = readStringSetting(PREVIOUS_SPEED_UNIT_KEY, "km/h")
+        const currentSpeedUnit = readStringSetting(LAST_SPEED_UNIT_KEY, "km/h")
+        const previousReaction = readNumberSetting(PREVIOUS_REACTION_KEY, -1)
+        const currentReaction = readNumberSetting(LAST_REACTION_KEY, -1)
+        const previousGas = readNumberSetting(PREVIOUS_EFFICIENCY_KEY, 0)
+        const currentGas = readNumberSetting(LAST_EFFICIENCY_KEY, 0)
+        const previousHits = readNumberSetting(PREVIOUS_HITS_KEY, 0)
+        const currentHits = readNumberSetting(LAST_HITS_KEY, 0)
+        const previousScore = readNumberSetting(PREVIOUS_SCORE_KEY, 0)
+        const currentScore = readNumberSetting(LAST_SCORE_KEY, 0)
+
+        return "Test comparison"
+            + "\nPace: " + lowerIsBetterCue(previousTime, currentTime, "this run faster", "last run faster", "same pace")
+            + "\nReaction: " + reactionCue(previousReaction, currentReaction)
+            + "\nGas: " + higherIsBetterCue(previousGas, currentGas, "this run burned less", "last run burned less", "same gas use")
+            + "\nHits: " + lowerIsBetterCue(previousHits, currentHits, "this run had fewer hits", "last run had fewer hits", "same hits")
+            + "\nScore: " + higherIsBetterCue(previousScore, currentScore, "this run scored higher", "last run scored higher", "same score")
+            + "\nTop speed: " + topSpeedCue(previousTopSpeed, currentTopSpeed, previousSpeedUnit, currentSpeedUnit)
+            + "\nThis time: " + currentTime + " s"
+            + "\nLast time: " + previousTime + " s"
+            + "\nThis reaction: " + formatReactionValue(currentReaction)
+            + "\nLast reaction: " + formatReactionValue(previousReaction)
+            + "\nThis gas left: " + currentGas
+            + "\nLast gas left: " + previousGas
+            + "\nThis hits: " + currentHits
+            + "\nLast hits: " + previousHits
+            + "\nThis top: " + currentTopSpeed + " " + currentSpeedUnit
+            + "\nLast top: " + previousTopSpeed + " " + previousSpeedUnit
+            + "\nThis score: " + currentScore
+            + "\nLast score: " + previousScore
+    }
+
+    function lowerIsBetterCue(previousValue: number, currentValue: number, currentWins: string, previousWins: string, tie: string): string {
+        if (currentValue < previousValue) {
+            return currentWins
+        }
+
+        if (currentValue > previousValue) {
+            return previousWins
+        }
+
+        return tie
+    }
+
+    function higherIsBetterCue(previousValue: number, currentValue: number, currentWins: string, previousWins: string, tie: string): string {
+        if (currentValue > previousValue) {
+            return currentWins
+        }
+
+        if (currentValue < previousValue) {
+            return previousWins
+        }
+
+        return tie
+    }
+
+    function topSpeedCue(previousValue: number, currentValue: number, previousUnit: string, currentUnit: string): string {
+        if (previousUnit != currentUnit) {
+            return "units changed"
+        }
+
+        return higherIsBetterCue(previousValue, currentValue, "this run reached a higher top speed", "last run reached a higher top speed", "same top speed")
+    }
+
+    function reactionCue(previousValue: number, currentValue: number): string {
+        if (previousValue < 0 && currentValue < 0) {
+            return "no input in either run"
+        }
+
+        if (currentValue < 0) {
+            return "this run never reacted"
+        }
+
+        if (previousValue < 0) {
+            return "this run captured the first reaction"
+        }
+
+        return lowerIsBetterCue(previousValue, currentValue, "this run reacted sooner", "last run reacted sooner", "same reaction time")
+    }
+
+    function formatReactionValue(reactionSeconds: number): string {
+        if (reactionSeconds < 0) {
+            return "no input"
+        }
+
+        return reactionSeconds + " s"
     }
 
     /**
