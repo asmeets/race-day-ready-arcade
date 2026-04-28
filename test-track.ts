@@ -28,6 +28,8 @@ namespace drivenByStemSupport {
     const TEST_TRACK_CANVAS_HEIGHT = 120
     const TEST_TRACK_HUD_STRIP_HEIGHT = 20
     const TEST_TRACK_HUD_TEXT_Y = 6
+    const TEST_TRACK_CURB_LIGHT_COLOR = 1
+    const TEST_TRACK_CURB_DARK_COLOR = 15
     const TEST_TRACK_COLLISION_SPEED_LOSS = 90
     const TEST_TRACK_FALSE_START_PENALTY_MILLISECONDS = 5000
     const TEST_TRACK_GAS_MULTIPLIER = 10
@@ -44,6 +46,7 @@ namespace drivenByStemSupport {
     const TEST_TRACK_RUN_DURATION_MILLISECONDS = TEST_TRACK_DURATION_SECONDS * 1000
     const TEST_TRACK_HUD_RIGHT_PADDING = 8
     const TEST_TRACK_START_LIGHT_COUNT = 5
+    const TEST_TRACK_STAGE_WAIT_MILLISECONDS = 2000
     const TEST_TRACK_LIGHT_STEP_MILLISECONDS = 450
     const TEST_TRACK_LIGHT_HOLD_MILLISECONDS = 700
     const TEST_TRACK_GO_FLASH_MILLISECONDS = 650
@@ -51,6 +54,12 @@ namespace drivenByStemSupport {
     const TEST_TRACK_LIGHT_BEEP_DURATION = 90
     const TEST_TRACK_GO_TONE_FREQUENCY = 988
     const TEST_TRACK_GO_TONE_DURATION = 280
+    const TEST_TRACK_ENGINE_REV_LOW_FREQUENCY = 196
+    const TEST_TRACK_ENGINE_REV_MID_FREQUENCY = 262
+    const TEST_TRACK_ENGINE_REV_HIGH_FREQUENCY = 330
+    const TEST_TRACK_ENGINE_REV_PEAK_FREQUENCY = 392
+    const TEST_TRACK_ENGINE_REV_STEP_DURATION = 120
+    const TEST_TRACK_ENGINE_REV_PEAK_DURATION = 180
     const TEST_TRACK_QUICK_REACTION_MILLISECONDS = 400
     const TEST_TRACK_STEADY_REACTION_MILLISECONDS = 800
     const TEST_TRACK_CUSTOM_SPRITE_SWAP_INDEX = 10
@@ -129,10 +138,12 @@ namespace drivenByStemSupport {
         previousSegmentDx: number
         segmentPos: number
         elapsedMilliseconds: number
+        stagedAtLine: boolean
+        starterDelayMilliseconds: number
         starterElapsedMilliseconds: number
         starterLightsAnnounced: number
         reactionTimeMilliseconds: number
-        falseStartPenaltyApplied: boolean
+        falseStartLocked: boolean
         goFlashMilliseconds: number
         gasBar: StatusBarSprite
         gasRemaining: number
@@ -156,10 +167,12 @@ namespace drivenByStemSupport {
             this.previousSegmentDx = 0
             this.segmentPos = 0
             this.elapsedMilliseconds = 0
+            this.stagedAtLine = false
+            this.starterDelayMilliseconds = 0
             this.starterElapsedMilliseconds = 0
             this.starterLightsAnnounced = 0
             this.reactionTimeMilliseconds = -1
-            this.falseStartPenaltyApplied = false
+            this.falseStartLocked = false
             this.goFlashMilliseconds = 0
             this.gasBar = gasBar
             this.gasRemaining = gasMax
@@ -196,6 +209,7 @@ namespace drivenByStemSupport {
         info.showScore(false)
 
         activeTrack = new TestTrackState(playerCar, maxDriveSpeed, gasBar, gasMax, gasDrainBase, displayUnit)
+        hideCarUntilStage()
         trackStarted = true
     }
 
@@ -249,6 +263,14 @@ namespace drivenByStemSupport {
 
             drawTrackFrame()
         })
+
+        controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+            if (!(trackIsActive()) || trackHasLaunched() || activeTrack.stagedAtLine) {
+                return
+            }
+
+            pullCarToStartLine()
+        })
     }
 
     function trackIsActive(): boolean {
@@ -270,7 +292,11 @@ namespace drivenByStemSupport {
         const accelerating = launched && controller.up.isPressed() && !controller.down.isPressed()
         const braking = launched && controller.down.isPressed() && !controller.up.isPressed()
 
-        if (!launched && launchInputPressed()) {
+        if (!launched && !launchInputPressed()) {
+            activeTrack.falseStartLocked = false
+        }
+
+        if (activeTrack.stagedAtLine && !launched && launchInputPressed() && !activeTrack.falseStartLocked) {
             triggerFalseStart()
             return
         }
@@ -330,7 +356,7 @@ namespace drivenByStemSupport {
             canvas.fillRect(roadLeft, y, roadWidth, 1, 11)
 
             if (sideWidth > 0) {
-                const sideColor = (worldZByDepth[i] + activeTrack.distanceOffset) & 32 ? 1 : 2
+                const sideColor = (worldZByDepth[i] + activeTrack.distanceOffset) & 32 ? TEST_TRACK_CURB_LIGHT_COLOR : TEST_TRACK_CURB_DARK_COLOR
                 canvas.fillRect(roadLeft, y, sideWidth, 1, sideColor)
                 canvas.fillRect(roadLeft + roadWidth - sideWidth, y, sideWidth, 1, sideColor)
             }
@@ -338,8 +364,10 @@ namespace drivenByStemSupport {
             if (i == 5) {
                 if (launched) {
                     offRoad = updateCarPosition(roadLeft, roadWidth, steeringDelta, accelerating, braking)
-                } else {
+                } else if (activeTrack.stagedAtLine) {
                     holdCarAtStart()
+                } else {
+                    hideCarUntilStage()
                 }
             }
         }
@@ -347,6 +375,11 @@ namespace drivenByStemSupport {
         if (launched) {
             updateGas(deltaTime, offRoad)
             activeTrack.topSpeed = Math.max(activeTrack.topSpeed, activeTrack.speed)
+
+            if (activeTrack.gasRemaining <= 0) {
+                finishTestTrack(false)
+                return
+            }
         }
 
         drawHudStrip(canvas)
@@ -380,6 +413,17 @@ namespace drivenByStemSupport {
             return
         }
 
+        if (!activeTrack.stagedAtLine) {
+            return
+        }
+
+        if (activeTrack.starterDelayMilliseconds > 0) {
+            activeTrack.starterDelayMilliseconds = Math.max(0, activeTrack.starterDelayMilliseconds - deltaTime * 1000)
+            if (activeTrack.starterDelayMilliseconds > 0) {
+                return
+            }
+        }
+
         activeTrack.starterElapsedMilliseconds += deltaTime * 1000
         const lightsOn = Math.min(TEST_TRACK_START_LIGHT_COUNT, integerDivide(activeTrack.starterElapsedMilliseconds, TEST_TRACK_LIGHT_STEP_MILLISECONDS))
         if (lightsOn > activeTrack.starterLightsAnnounced) {
@@ -404,6 +448,27 @@ namespace drivenByStemSupport {
         playGoTone()
     }
 
+    function pullCarToStartLine(): void {
+        activeTrack.falseStartLocked = false
+        activeTrack.car.setFlag(SpriteFlag.Invisible, false)
+        holdCarAtStart()
+        restartStarterSequence()
+    }
+
+    function restartStarterSequence(): void {
+        activeTrack.stagedAtLine = true
+        activeTrack.raceStarted = false
+        activeTrack.speed = 0
+        activeTrack.topSpeed = 0
+        activeTrack.goFlashMilliseconds = 0
+        activeTrack.starterDelayMilliseconds = TEST_TRACK_STAGE_WAIT_MILLISECONDS
+        activeTrack.starterElapsedMilliseconds = 0
+        activeTrack.starterLightsAnnounced = 0
+        activeTrack.car.setFlag(SpriteFlag.Invisible, false)
+        holdCarAtStart()
+        playEngineRev()
+    }
+
     function playStarterBeep(): void {
         control.runInParallel(function () {
             music.playTone(TEST_TRACK_LIGHT_BEEP_FREQUENCY, TEST_TRACK_LIGHT_BEEP_DURATION)
@@ -413,6 +478,15 @@ namespace drivenByStemSupport {
     function playGoTone(): void {
         control.runInParallel(function () {
             music.playTone(TEST_TRACK_GO_TONE_FREQUENCY, TEST_TRACK_GO_TONE_DURATION)
+        })
+    }
+
+    function playEngineRev(): void {
+        control.runInParallel(function () {
+            music.playTone(TEST_TRACK_ENGINE_REV_LOW_FREQUENCY, TEST_TRACK_ENGINE_REV_STEP_DURATION)
+            music.playTone(TEST_TRACK_ENGINE_REV_MID_FREQUENCY, TEST_TRACK_ENGINE_REV_STEP_DURATION)
+            music.playTone(TEST_TRACK_ENGINE_REV_HIGH_FREQUENCY, TEST_TRACK_ENGINE_REV_STEP_DURATION)
+            music.playTone(TEST_TRACK_ENGINE_REV_PEAK_FREQUENCY, TEST_TRACK_ENGINE_REV_PEAK_DURATION)
         })
     }
 
@@ -427,7 +501,20 @@ namespace drivenByStemSupport {
     }
 
     function drawStarterOverlay(canvas: Image): void {
-        if (!(trackIsActive()) || trackHasLaunched() && activeTrack.goFlashMilliseconds <= 0) {
+        if (!(trackIsActive())) {
+            return
+        }
+
+        if (!activeTrack.stagedAtLine) {
+            drawStagePrompt(canvas)
+            return
+        }
+
+        if (!trackHasLaunched() && activeTrack.starterDelayMilliseconds > 0) {
+            return
+        }
+
+        if (trackHasLaunched() && activeTrack.goFlashMilliseconds <= 0) {
             return
         }
 
@@ -457,9 +544,21 @@ namespace drivenByStemSupport {
         }
     }
 
+    function drawStagePrompt(canvas: Image): void {
+        const promptX = 46
+        const promptY = 30
+        canvas.fillRect(promptX, promptY, 68, 14, 15)
+        canvas.fillRect(promptX + 2, promptY + 2, 64, 10, 12)
+        canvas.print("Press A", promptX + 10, promptY + 3, 1)
+    }
+
     function holdCarAtStart(): void {
         activeTrack.car.x = TEST_TRACK_CAR_SCREEN_X
         activeTrack.car.y = TEST_TRACK_CAR_SCREEN_Y
+    }
+
+    function hideCarUntilStage(): void {
+        activeTrack.car.setFlag(SpriteFlag.Invisible, true)
     }
 
     function launchInputPressed(): boolean {
@@ -470,14 +569,15 @@ namespace drivenByStemSupport {
     }
 
     function triggerFalseStart(): void {
-        if (!(trackIsActive()) || trackHasLaunched() || activeTrack.falseStartPenaltyApplied) {
+        if (!(trackIsActive()) || trackHasLaunched() || activeTrack.falseStartLocked) {
             return
         }
 
-        activeTrack.falseStartPenaltyApplied = true
+        activeTrack.falseStartLocked = true
         activeTrack.elapsedMilliseconds += TEST_TRACK_FALSE_START_PENALTY_MILLISECONDS
         scene.cameraShake(2, 200)
         game.splash("False start", "+5.0 s penalty")
+        restartStarterSequence()
     }
 
     function drawHudStrip(canvas: Image): void {
@@ -550,7 +650,7 @@ namespace drivenByStemSupport {
         const gasBar = statusbars.create(TEST_TRACK_GAS_BAR_WIDTH, TEST_TRACK_GAS_BAR_HEIGHT, StatusBarKind.Energy)
         gasBar.max = gasMax
         gasBar.value = gasMax
-        gasBar.setLabel("GAS", 1)
+        gasBar.setLabel("FUEL", 1)
         gasBar.setBarBorder(1, 1)
         gasBar.positionDirection(CollisionDirection.Top)
         gasBar.setOffsetPadding(TEST_TRACK_GAS_BAR_OFFSET, 2)
@@ -804,6 +904,7 @@ namespace drivenByStemSupport {
     function resetTrack(): void {
         if (trackStarted) {
             activeTrack.active = false
+            activeTrack.car.setFlag(SpriteFlag.Invisible, false)
             clearObstacles()
             activeTrack.gasBar.destroy()
         }
