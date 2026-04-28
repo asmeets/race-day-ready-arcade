@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Agenda"
 permalink: /educators/agenda/
+educator_nav: agenda
 ---
 
 Use this section for the high-level timing and pacing of a standard session.

@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Supplementals"
 permalink: /educators/supplementals/
+educator_nav: supplementals
 ---
 
 Use this section for optional resources, alternate launch paths, and follow-up supports that extend the main session.

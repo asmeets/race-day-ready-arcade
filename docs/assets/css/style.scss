@@ -1,0 +1,53 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.educator-page-shell {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.educator-page-main {
+  flex: 1 1 34rem;
+  min-width: 0;
+}
+
+.educator-page-nav {
+  flex: 0 0 15rem;
+  width: min(100%, 15rem);
+  padding: 1rem 1.1rem;
+  border: 1px solid #c8c8c8;
+  border-radius: 0.75rem;
+  background: #f7f7f7;
+  position: sticky;
+  top: 1rem;
+}
+
+.educator-page-nav-label {
+  margin: 0 0 0.35rem 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.educator-page-nav-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.educator-page-nav-list li {
+  margin: 0.35rem 0;
+}
+
+@media (max-width: 960px) {
+  .educator-page-shell {
+    flex-direction: column;
+  }
+
+  .educator-page-nav {
+    position: static;
+    width: 100%;
+  }
+}

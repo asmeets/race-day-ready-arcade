@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Goals"
 permalink: /educators/goals/
+educator_nav: goals
 ---
 
 Use this page to frame what success looks like for a session.
@@ -17,7 +18,7 @@ By the end of the experience, learners should be able to:
 
 ## Facilitation Goals
 
-Adults running the session should aim to:
+Educators running the session should aim to:
 
 - keep the experience moving with short instructions and fast test loops
 - point learners to a small number of visible variables, functions, or blocks

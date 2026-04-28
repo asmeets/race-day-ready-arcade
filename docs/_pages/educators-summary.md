@@ -1,10 +1,11 @@
 ---
-layout: default
+layout: educator-page
 title: "Summary"
 permalink: /educators/summary/
+educator_nav: summary
 ---
 
-Use this section for the quick context adults need before they open the experience with learners.
+Use this section for the quick context educators need before they open the experience with learners.
 
 ## What Driven by STEM Is
 
@@ -19,9 +20,9 @@ The experience is designed for middle school learners, but the delivery model al
 - the MakeCode Arcade format keeps controls simple and lowers setup friction
 - the same activity can support a short demo, a guided lesson, or a remix challenge
 
-## What Adults Should Expect
+## What Educators Should Expect
 
-Learners will spend most of their time testing choices, comparing outcomes, and talking through why one setup performs differently from another. The role of the facilitator is to guide attention toward cause and effect, not to lecture through every mechanic.
+Learners will spend most of their time testing choices, comparing outcomes, and talking through why one setup performs differently from another. The role of the educator is to guide attention toward cause and effect, not to lecture through every mechanic.
 
 ## Best Fit Use Cases
 

@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Standards"
 permalink: /educators/standards/
+educator_nav: standards
 ---
 
 Use this section to connect the experience to standards conversations without turning the session into compliance-first paperwork.

@@ -34,7 +34,7 @@ Racing provides an immediate, visceral way to understand engineering principles:
 
 ## Educational Approach
 
-This project is designed with educators, facilitators, and learners in mind:
+This project is designed with educators and learners in mind:
 
 - ✅ **Classroom-ready**: No complex setup, works in browsers
 - ✅ **Remixable**: Students can modify and experiment with code
@@ -53,7 +53,7 @@ Built with **Microsoft MakeCode Arcade**, a block-based and text-based programmi
 
 ## Get Involved
 
-### For Educators and Facilitators
+### For Educators
 [Open the guide and session resources →]({{ site.baseurl }}/)
 
 ### Play the Skillmap

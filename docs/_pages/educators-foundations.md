@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Foundations"
 permalink: /educators/foundations/
+educator_nav: foundations
 ---
 
 Use this section to understand the core ideas behind the experience before you teach it.
@@ -27,7 +28,7 @@ Roles such as software engineer, test engineer, strategist, and sustainability l
 - keep failure states recoverable so iteration feels normal
 - keep the learning value tied to observable game outcomes
 
-## What Adults Should Listen For
+## What Educators Should Listen For
 
 - learners naming a change and its effect
 - teams disagreeing productively about the best tradeoff

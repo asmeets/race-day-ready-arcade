@@ -8,7 +8,7 @@ permalink: /educators/
 
 ### What This Project Is
 
-Driven by STEM Arcade is a Microsoft MakeCode Arcade project created for the F1 x Mercedes x Microsoft STEM and career exploration activation. It is designed as a playable game and a remixable learning experience for middle school students, facilitators, and live event audiences.
+Driven by STEM Arcade is a Microsoft MakeCode Arcade project created for the F1 x Mercedes x Microsoft STEM and career exploration activation. It is designed as a playable game and a remixable learning experience for middle school students, educators, and live event audiences.
 
 The project stays compatible with MakeCode Arcade conventions so it can be opened, explored, and modified without turning into a hard-to-teach codebase.
 
@@ -38,7 +38,7 @@ The game and the repository are shaped by a few non-negotiables:
 
 - **accessibility first:** short text, clear feedback, simple controls, and recoverable failure states
 - **remixability:** visible tuning values, readable helper functions, and code students can trace
-- **event reliability:** predictable behavior, projector-friendly clarity, and low-friction facilitator use
+- **event reliability:** predictable behavior, projector-friendly clarity, and low-friction educator use
 - **MakeCode Arcade compatibility:** editor-friendly files, assets, and patterns that stay inside the Arcade ecosystem
 - **meaningful tradeoffs:** gameplay should highlight performance, handling, and sustainability together
 
@@ -102,7 +102,7 @@ You can also have students import the full project into MakeCode Arcade:
 
 _Note: For guided learning, the skillmap URL above is recommended._
 
-## Facilitator Notes
+## Educator Notes
 
 This repository is meant to support more than a game build—it's designed to support a live learning moment.
 

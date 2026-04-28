@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Run of Show"
 permalink: /educators/run-of-show/
+educator_nav: run-of-show
 ---
 
 This section outlines the detailed facilitation moves for a classroom lesson, workshop, or live activation.
@@ -34,7 +35,7 @@ Use the session test track or another quick replay moment to ask what changed an
 - ask learners which tradeoff felt most important in their design
 - end with one takeaway about testing, iteration, or sustainability
 
-## Facilitator Moves That Help
+## Educator Moves That Help
 
 - point to one variable or block at a time
 - ask learners to predict before they test

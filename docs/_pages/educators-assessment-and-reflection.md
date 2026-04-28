@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Feedback"
 permalink: /educators/feedback/
+educator_nav: feedback
 ---
 
 Use this section to capture what learners understood, what they tried, and what should improve in the next run.

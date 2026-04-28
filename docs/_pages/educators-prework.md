@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Requirements"
 permalink: /educators/requirements/
+educator_nav: requirements
 ---
 
 Use this section to confirm the session has what it needs before learners arrive.
@@ -17,7 +18,7 @@ Use this section to confirm the session has what it needs before learners arrive
 
 ### Room and Delivery
 
-- queue the skillmap on the projector or facilitator machine
+- queue the skillmap on the projector or educator machine
 - decide whether learners will work solo, in pairs, or in small teams
 - identify where you want to pause for discussion or compare results
 - prepare one short explanation for what an engineering tradeoff means
@@ -29,7 +30,7 @@ Use this section to confirm the session has what it needs before learners arrive
 - keep the skillmap link and repository link easy to access during the session
 - decide whether you want note-catchers, reflection slips, or no printed materials at all
 
-### Facilitator Readiness
+### Educator Readiness
 
 - skim the [Summary]({{ site.baseurl }}/educators/summary/) and [Goals]({{ site.baseurl }}/educators/goals/) pages
 - review the [Definitions]({{ site.baseurl }}/educators/definitions/) page and choose which terms you will teach directly

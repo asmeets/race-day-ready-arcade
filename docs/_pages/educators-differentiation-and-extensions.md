@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Accessibility"
 permalink: /educators/accessibility/
+educator_nav: accessibility
 ---
 
 Use this section to keep the experience readable, inclusive, and reliable in classrooms and live events.

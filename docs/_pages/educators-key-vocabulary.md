@@ -1,7 +1,8 @@
 ---
-layout: default
+layout: educator-page
 title: "Definitions"
 permalink: /educators/definitions/
+educator_nav: definitions
 ---
 
 These terms help learners talk about what they are seeing, building, and improving.

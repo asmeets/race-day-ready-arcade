@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<div class="educator-page-shell">
+  <div class="educator-page-main">
+    {{ content }}
+  </div>
+
+  <aside class="educator-page-nav" aria-label="Educator guide sections">
+    <p class="educator-page-nav-label">Educator Guide</p>
+    <ul class="educator-page-nav-list">
+      <li>{% if page.educator_nav == "home" %}<span aria-current="page"><strong>Overview</strong></span>{% else %}<a href="{{ site.baseurl }}/">Overview</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "summary" %}<span aria-current="page"><strong>Summary</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/summary/">Summary</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "goals" %}<span aria-current="page"><strong>Goals</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/goals/">Goals</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "requirements" %}<span aria-current="page"><strong>Requirements</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/requirements/">Requirements</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "standards" %}<span aria-current="page"><strong>Standards</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/standards/">Standards</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "foundations" %}<span aria-current="page"><strong>Foundations</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/foundations/">Foundations</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "accessibility" %}<span aria-current="page"><strong>Accessibility</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/accessibility/">Accessibility</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "definitions" %}<span aria-current="page"><strong>Definitions</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/definitions/">Definitions</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "agenda" %}<span aria-current="page"><strong>Agenda</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/agenda/">Agenda</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "run-of-show" %}<span aria-current="page"><strong>Run of Show</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/run-of-show/">Run of Show</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "supplementals" %}<span aria-current="page"><strong>Supplementals</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/supplementals/">Supplementals</a>{% endif %}</li>
+      <li>{% if page.educator_nav == "feedback" %}<span aria-current="page"><strong>Feedback</strong></span>{% else %}<a href="{{ site.baseurl }}/educators/feedback/">Feedback</a>{% endif %}</li>
+    </ul>
+  </aside>
+</div>

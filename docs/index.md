@@ -1,20 +1,21 @@
 ---
-layout: default
-title: "For Educators and Facilitators"
+layout: educator-page
+title: "For Educators"
 permalink: /
+educator_nav: home
 ---
 
 ## Guide At A Glance
 
-This guide is meant to work like a cover sheet for the full facilitator packet. Start with the sections that help you orient yourself, then move into the pages that support planning, delivery, and reflection.
+This guide is meant to work like a cover sheet for the full educator packet. Start with the sections that help you orient yourself, then move into the pages that support planning, delivery, and reflection.
 
 ### What This Experience Supports
 
-Driven by STEM Arcade is designed to help adults run a playable, remixable learning experience that makes engineering tradeoffs visible.
+Driven by STEM is designed to help educators run a playable, remixable learning experience that makes engineering tradeoffs visible.
 
 - learners can see cause and effect between code changes and gameplay outcomes
 - teams can compare speed, handling, and efficiency decisions without long setup time
-- facilitators can connect gameplay moments to software, testing, strategy, sustainability, and data roles
+- educators can connect gameplay moments to software, testing, strategy, sustainability, and data roles
 - classrooms and live activations can use the same core flow with light adjustments
 
 ## Quick Start
@@ -37,7 +38,7 @@ Open this first for the quickest overview of what Driven by STEM is, who it is f
 Use this page to anchor the session around the intended learning outcomes, facilitation goals, and the design principles that should stay visible throughout delivery.
 
 ### [Requirements]({{ site.baseurl }}/educators/requirements/)
-This is the readiness checklist. Use it to confirm devices, room setup, launch links, and facilitator prep before learners arrive.
+This is the readiness checklist. Use it to confirm devices, room setup, launch links, and educator prep before learners arrive.
 
 ### [Standards]({{ site.baseurl }}/educators/standards/)
 Use this page when you need to connect the experience to instructional standards and program goals without letting the live session become paperwork-heavy.
