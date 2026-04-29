@@ -383,9 +383,32 @@ namespace drivenByStem {
     /**
      * Start the optional pseudo-3D test track using the saved setup values.
      */
+    //% block="start garage test bed"
+    //% blockId=raceday_start_garage_test_bed
+    //% group="Session" weight=61
+    export function startGarageTestBed(): void {
+        loadRaceProfile(80, 5)
+        drivenByStemSupport.startGarageTestBed()
+    }
+
+    /**
+     * Preview current tuning values on the garage test bed before the full shakedown.
+     */
+    //% block="preview garage test bed speed $speed efficiency $efficiency drain $drain"
+    //% blockId=raceday_preview_garage_test_bed
+    //% speed.defl=80 efficiency.defl=5 drain.defl=1
+    //% group="Session" weight=60
+    export function previewGarageTestBed(speed: number, efficiency: number, drain: number): void {
+        loadRaceProfile(80, 5)
+        drivenByStemSupport.previewGarageTestBed(speed, efficiency, drain)
+    }
+
+    /**
+     * Start the optional pseudo-3D test track using the saved setup values.
+     */
     //% block="start vehicle test track"
     //% blockId=raceday_start_vehicle_test_track
-    //% group="Session" weight=60
+    //% group="Session" weight=59
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
         drivenByStemSupport.startVehicleTestTrack()

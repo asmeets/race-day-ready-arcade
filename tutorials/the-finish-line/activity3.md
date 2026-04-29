@@ -634,7 +634,6 @@ If this still feels like gameplay, some older spawners are still running. Scan f
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
@@ -660,7 +659,6 @@ If confetti makes the text hard to read, tone it down. A good finish is clear fi
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 //@highlight
 //@validate-exists
@@ -690,7 +688,6 @@ If saved values won't drop into your variables, check that you created them firs
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
@@ -723,7 +720,6 @@ If your `next test focus` text is blank, that's a clue the Review gate didn't wr
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
@@ -766,7 +762,6 @@ hint~
 ```
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
@@ -803,7 +798,6 @@ If the takeaway is getting long, trim it. One clear line that's readable on a pr
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()
@@ -850,7 +844,6 @@ hint~
 ```
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
 effects.confetti.startScreenEffect()

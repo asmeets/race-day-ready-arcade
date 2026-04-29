@@ -634,7 +634,6 @@ If you can't find a variable later, check spelling first. One letter off or a di
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 //@highlight
 //@validate-exists
 let reviewScore = 0
@@ -670,7 +669,6 @@ If all your values are still zero, the final run probably didn't save. The revie
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0
@@ -712,7 +710,6 @@ If the summary feels hard to read, trim it. Short labels and fewer numbers usual
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0
@@ -755,7 +752,6 @@ There's no single correct answer here. Use whichever lens scored lowest as your 
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0
@@ -806,7 +802,6 @@ Keep the tone forward-looking. "Next test" language beats "I messed up" language
 hint~
 
 ```blocks
-drivenByStem.loadRaceProfile(80, 5)
 let reviewScore = 0
 let reviewEfficiency = 0
 let reviewStrategy = 0

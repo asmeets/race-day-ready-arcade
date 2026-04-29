@@ -4,6 +4,37 @@ namespace SpriteKind {
 }
 
 namespace drivenByStemSupport {
+    const GARAGE_TEST_BED_WIDTH = 160
+    const GARAGE_TEST_BED_HEIGHT = 120
+    const GARAGE_TEST_BED_FLOOR_Y = 90
+    const GARAGE_TEST_BED_ROLLER_Y = 88
+    const GARAGE_TEST_BED_ROLLER_X = 32
+    const GARAGE_TEST_BED_ROLLER_WIDTH = 96
+    const GARAGE_TEST_BED_GAUGE_X = 8
+    const GARAGE_TEST_BED_GAUGE_WIDTH = 144
+    const GARAGE_TEST_BED_GAUGE_HEIGHT = 6
+    const GARAGE_TEST_BED_GAUGE_SPEED_Y = 18
+    const GARAGE_TEST_BED_GAUGE_EFFICIENCY_Y = 38
+    const GARAGE_TEST_BED_GAUGE_DRAIN_Y = 58
+    const GARAGE_TEST_BED_LABEL_X = 8
+    const GARAGE_TEST_BED_VALUE_X = 112
+    const GARAGE_TEST_BED_HINT_X = 12
+    const GARAGE_TEST_BED_HINT_Y = 104
+    const GARAGE_TEST_BED_SPEED_MAX = 140
+    const GARAGE_TEST_BED_CAR_Y = 98
+    const GARAGE_TEST_BED_CAR_MIN_X = GARAGE_TEST_BED_ROLLER_X + 12
+    const GARAGE_TEST_BED_CAR_MAX_X = GARAGE_TEST_BED_ROLLER_X + GARAGE_TEST_BED_ROLLER_WIDTH - 12
+    const GARAGE_TEST_BED_HEADER_COLOR = 9
+    const GARAGE_TEST_BED_PANEL_COLOR = 13
+    const GARAGE_TEST_BED_FLOOR_COLOR = 6
+    const GARAGE_TEST_BED_TEXT_COLOR = 15
+    const GARAGE_TEST_BED_ROLLER_COLOR = 15
+    const GARAGE_TEST_BED_ROLLER_STRIPE_COLOR = 1
+    const GARAGE_TEST_BED_SLIDE_SPEED = 45
+    const GARAGE_TEST_BED_STEER_BONUS = 18
+    const GARAGE_TEST_BED_REV_BONUS = 24
+    const GARAGE_TEST_BED_BRAKE_PENALTY = 20
+
     const TEST_TRACK_LENGTH_MULTIPLIER = 1
     const TEST_TRACK_DURATION_SECONDS = 60
     const TEST_TRACK_COURSE_DISTANCE = 2000 * TEST_TRACK_LENGTH_MULTIPLIER
@@ -124,6 +155,36 @@ namespace drivenByStemSupport {
     let hooksInstalled = false
     let trackStarted = false
     let activeTrack: TestTrackState
+    let garagePreviewActive = false
+    let garagePreviewBaseSpeed = 0
+    let garagePreviewEfficiency = 0
+    let garagePreviewDrain = 0
+
+    export function startGarageTestBed(): void {
+        previewGarageTestBed(drivenByStem.savedDriveSpeed(), drivenByStem.savedEfficiency(), drivenByStem.savedEfficiencyCost())
+    }
+
+    export function previewGarageTestBed(speed: number, efficiency: number, drain: number): void {
+        ensureHooksInstalled()
+        resetTrack()
+
+        const playerCar = ensurePlayerCar()
+        garagePreviewActive = true
+        garagePreviewBaseSpeed = speed
+        garagePreviewEfficiency = efficiency
+        garagePreviewDrain = drain
+
+        controller.moveSprite(playerCar, GARAGE_TEST_BED_SLIDE_SPEED, 0)
+        playerCar.setFlag(SpriteFlag.StayInScreen, true)
+        playerCar.setFlag(SpriteFlag.Invisible, false)
+        playerCar.setPosition(TEST_TRACK_CAR_SCREEN_X, GARAGE_TEST_BED_CAR_Y)
+
+        drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+        info.stopCountdown()
+        info.showCountdown(false)
+        info.showScore(false)
+        renderGarageTestBed(playerCar, speed, efficiency, drain)
+    }
 
     class TestTrackObstacleData {
         constructor(public laneOffset: number, public worldZ: number, public variant: number) { }
@@ -239,6 +300,72 @@ namespace drivenByStemSupport {
         return playerCar
     }
 
+    function renderGarageTestBed(playerCar: Sprite, speed: number, efficiency: number, drain: number): void {
+        const canvas = image.create(GARAGE_TEST_BED_WIDTH, GARAGE_TEST_BED_HEIGHT)
+        const safeSpeed = clampToRange(speed, 0, GARAGE_TEST_BED_SPEED_MAX)
+        const safeEfficiency = clampToRange(efficiency, 0, 10)
+        const safeDrain = clampToRange(drain, 0, 5)
+        const speedWidth = integerDivide(safeSpeed * GARAGE_TEST_BED_GAUGE_WIDTH, GARAGE_TEST_BED_SPEED_MAX)
+        const efficiencyWidth = integerDivide(safeEfficiency * GARAGE_TEST_BED_GAUGE_WIDTH, 10)
+        const drainWidth = integerDivide(safeDrain * GARAGE_TEST_BED_GAUGE_WIDTH, 5)
+
+        canvas.fill(GARAGE_TEST_BED_PANEL_COLOR)
+        canvas.fillRect(0, 0, GARAGE_TEST_BED_WIDTH, 26, GARAGE_TEST_BED_HEADER_COLOR)
+        canvas.fillRect(0, GARAGE_TEST_BED_FLOOR_Y, GARAGE_TEST_BED_WIDTH, GARAGE_TEST_BED_HEIGHT - GARAGE_TEST_BED_FLOOR_Y, GARAGE_TEST_BED_FLOOR_COLOR)
+
+        canvas.fillRect(GARAGE_TEST_BED_ROLLER_X, GARAGE_TEST_BED_ROLLER_Y, GARAGE_TEST_BED_ROLLER_WIDTH, 8, GARAGE_TEST_BED_ROLLER_COLOR)
+        for (let x = GARAGE_TEST_BED_ROLLER_X + 4; x < GARAGE_TEST_BED_ROLLER_X + GARAGE_TEST_BED_ROLLER_WIDTH; x += 12) {
+            canvas.fillRect(x, GARAGE_TEST_BED_ROLLER_Y + 1, 4, 6, GARAGE_TEST_BED_ROLLER_STRIPE_COLOR)
+        }
+
+        drawGarageGauge(canvas, "Speed", GARAGE_TEST_BED_GAUGE_SPEED_Y, speedWidth, 8, safeSpeed + "")
+        drawGarageGauge(canvas, "Efficiency", GARAGE_TEST_BED_GAUGE_EFFICIENCY_Y, efficiencyWidth, 7, safeEfficiency + "/10")
+        drawGarageGauge(canvas, "Drain", GARAGE_TEST_BED_GAUGE_DRAIN_Y, drainWidth, 2, safeDrain + "/5")
+
+        canvas.print("Garage Test Bed", 28, 6, GARAGE_TEST_BED_TEXT_COLOR, image.font8)
+        canvas.print("Tune values, then preview", GARAGE_TEST_BED_LABEL_X, 78, GARAGE_TEST_BED_TEXT_COLOR, image.font8)
+        
+        scene.setBackgroundImage(canvas)
+        playerCar.y = GARAGE_TEST_BED_CAR_Y
+        playerCar.x = clampToRange(playerCar.x, GARAGE_TEST_BED_CAR_MIN_X, GARAGE_TEST_BED_CAR_MAX_X)
+    }
+
+    function drawGarageGauge(canvas: Image, label: string, y: number, width: number, fillColor: number, valueText: string): void {
+        canvas.print(label, GARAGE_TEST_BED_LABEL_X, y - 2, GARAGE_TEST_BED_TEXT_COLOR, image.font8)
+        canvas.drawRect(GARAGE_TEST_BED_GAUGE_X, y + 9, GARAGE_TEST_BED_GAUGE_WIDTH, GARAGE_TEST_BED_GAUGE_HEIGHT, GARAGE_TEST_BED_TEXT_COLOR)
+        canvas.fillRect(GARAGE_TEST_BED_GAUGE_X + 1, y + 10, Math.max(0, width - 2), GARAGE_TEST_BED_GAUGE_HEIGHT - 2, fillColor)
+        canvas.print(valueText, GARAGE_TEST_BED_VALUE_X, y - 2, GARAGE_TEST_BED_TEXT_COLOR, image.font8)
+    }
+
+    function updateGaragePreview(): void {
+        if (!garagePreviewActive) {
+            return
+        }
+
+        const playerCar = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!playerCar) {
+            return
+        }
+
+        let previewSpeed = garagePreviewBaseSpeed
+        playerCar.x = clampToRange(playerCar.x, GARAGE_TEST_BED_CAR_MIN_X, GARAGE_TEST_BED_CAR_MAX_X)
+        playerCar.y = GARAGE_TEST_BED_CAR_Y
+
+        if (controller.left.isPressed() || controller.right.isPressed()) {
+            previewSpeed += GARAGE_TEST_BED_STEER_BONUS + Math.abs(playerCar.x - TEST_TRACK_CAR_SCREEN_X)
+        }
+
+        if (controller.up.isPressed()) {
+            previewSpeed += GARAGE_TEST_BED_REV_BONUS
+        }
+
+        if (controller.down.isPressed()) {
+            previewSpeed = Math.max(0, previewSpeed - GARAGE_TEST_BED_BRAKE_PENALTY)
+        }
+
+        renderGarageTestBed(playerCar, previewSpeed, garagePreviewEfficiency, garagePreviewDrain)
+    }
+
     function ensureHooksInstalled(): void {
         if (hooksInstalled) {
             return
@@ -264,6 +391,10 @@ namespace drivenByStemSupport {
             }
 
             drawTrackFrame()
+        })
+
+        game.onUpdate(function () {
+            updateGaragePreview()
         })
 
         controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -913,6 +1044,7 @@ namespace drivenByStemSupport {
     }
 
     function resetTrack(): void {
+        garagePreviewActive = false
         if (trackStarted) {
             activeTrack.active = false
             activeTrack.car.setFlag(SpriteFlag.Invisible, false)

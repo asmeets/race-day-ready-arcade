@@ -613,7 +613,6 @@ In this gate, you'll build a pit stop that **reads the setup choice you saved ea
 ```template
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
@@ -642,7 +641,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
@@ -674,7 +672,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)
@@ -707,7 +704,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 info.setScore(0)

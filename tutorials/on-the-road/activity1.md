@@ -640,7 +640,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 //@highlight
@@ -671,7 +670,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
@@ -705,7 +703,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
@@ -742,7 +739,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
@@ -780,7 +776,6 @@ hint~
 ```blocks
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.Track)

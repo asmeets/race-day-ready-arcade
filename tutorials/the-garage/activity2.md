@@ -15,6 +15,36 @@ declare function drivenByStemSupportStartVehicleTestTrack(): void
 
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
+    const TEST_BED_WIDTH = 160
+    const TEST_BED_HEIGHT = 120
+    const TEST_BED_FLOOR_Y = 90
+    const TEST_BED_ROLLER_X = 32
+    const TEST_BED_ROLLER_Y = 88
+    const TEST_BED_ROLLER_WIDTH = 96
+    const TEST_BED_GAUGE_X = 8
+    const TEST_BED_GAUGE_WIDTH = 144
+    const TEST_BED_GAUGE_HEIGHT = 6
+    const TEST_BED_GAUGE_SPEED_Y = 18
+    const TEST_BED_GAUGE_EFFICIENCY_Y = 38
+    const TEST_BED_GAUGE_DRAIN_Y = 58
+    const TEST_BED_LABEL_X = 8
+    const TEST_BED_VALUE_X = 112
+    const TEST_BED_HINT_X = 12
+    const TEST_BED_HINT_Y = 104
+    const TEST_BED_SPEED_MAX = 140
+    const TEST_BED_CAR_Y = 98
+    const TEST_BED_CAR_MIN_X = TEST_BED_ROLLER_X + 12
+    const TEST_BED_CAR_MAX_X = TEST_BED_ROLLER_X + TEST_BED_ROLLER_WIDTH - 12
+    const TEST_BED_HEADER_COLOR = 9
+    const TEST_BED_PANEL_COLOR = 13
+    const TEST_BED_FLOOR_COLOR = 6
+    const TEST_BED_TEXT_COLOR = 15
+    const TEST_BED_ROLLER_COLOR = 15
+    const TEST_BED_ROLLER_STRIPE_COLOR = 1
+    const TEST_BED_SLIDE_SPEED = 45
+    const TEST_BED_STEER_BONUS = 18
+    const TEST_BED_REV_BONUS = 24
+    const TEST_BED_BRAKE_PENALTY = 20
     const DRIVE_SPEED_KEY = "driveSpeed"
     const EFFICIENCY_KEY = "efficiencyRating"
     const STRATEGY_KEY = "strategyPoints"
@@ -33,6 +63,10 @@ namespace drivenByStem {
     const ROLE_LENS_KEY = "roleLens"
     const SPEED_UNIT_KEY = "speedDisplayUnit"
     const FUEL_UNIT_KEY = "fuelDisplayUnit"
+    let garagePreviewActive = false
+    let garagePreviewBaseSpeed = 0
+    let garagePreviewEfficiency = 0
+    let garagePreviewDrain = 0
 
     export enum RaceStage {
         //% block="garage"
@@ -172,6 +206,86 @@ namespace drivenByStem {
         }
     }
 
+    function clampToRange(value: number, minValue: number, maxValue: number): number {
+        return Math.max(minValue, Math.min(value, maxValue))
+    }
+
+    function integerDivide(dividend: number, divisor: number): number {
+        return Math.idiv(dividend, divisor)
+    }
+
+    function drawGarageGauge(canvas: Image, label: string, y: number, width: number, fillColor: number, valueText: string): void {
+        canvas.print(label, TEST_BED_LABEL_X, y - 2, TEST_BED_TEXT_COLOR, image.font8)
+        canvas.drawRect(TEST_BED_GAUGE_X, y + 9, TEST_BED_GAUGE_WIDTH, TEST_BED_GAUGE_HEIGHT, TEST_BED_TEXT_COLOR)
+        canvas.fillRect(TEST_BED_GAUGE_X + 1, y + 10, Math.max(0, width - 2), TEST_BED_GAUGE_HEIGHT - 2, fillColor)
+        canvas.print(valueText, TEST_BED_VALUE_X, y - 2, TEST_BED_TEXT_COLOR, image.font8)
+    }
+
+    function renderGarageTestBed(speed: number, efficiency: number, drain: number): void {
+        const canvas = image.create(TEST_BED_WIDTH, TEST_BED_HEIGHT)
+        const playerCar = sprites.allOfKind(SpriteKind.Player)[0]
+        const safeSpeed = clampToRange(speed, 0, TEST_BED_SPEED_MAX)
+        const safeEfficiency = clampToRange(efficiency, 0, 10)
+        const safeDrain = clampToRange(drain, 0, 5)
+        const speedWidth = integerDivide(safeSpeed * TEST_BED_GAUGE_WIDTH, TEST_BED_SPEED_MAX)
+        const efficiencyWidth = integerDivide(safeEfficiency * TEST_BED_GAUGE_WIDTH, 10)
+        const drainWidth = integerDivide(safeDrain * TEST_BED_GAUGE_WIDTH, 5)
+
+        canvas.fill(TEST_BED_PANEL_COLOR)
+        canvas.fillRect(0, 0, TEST_BED_WIDTH, 26, TEST_BED_HEADER_COLOR)
+        canvas.fillRect(0, TEST_BED_FLOOR_Y, TEST_BED_WIDTH, TEST_BED_HEIGHT - TEST_BED_FLOOR_Y, TEST_BED_FLOOR_COLOR)
+        canvas.fillRect(TEST_BED_ROLLER_X, TEST_BED_ROLLER_Y, TEST_BED_ROLLER_WIDTH, 8, TEST_BED_ROLLER_COLOR)
+        for (let x = TEST_BED_ROLLER_X + 4; x < TEST_BED_ROLLER_X + TEST_BED_ROLLER_WIDTH; x += 12) {
+            canvas.fillRect(x, TEST_BED_ROLLER_Y + 1, 4, 6, TEST_BED_ROLLER_STRIPE_COLOR)
+        }
+
+        canvas.print("Garage Test Bed", 28, 6, TEST_BED_TEXT_COLOR, image.font8)
+        drawGarageGauge(canvas, "Speed", TEST_BED_GAUGE_SPEED_Y, speedWidth, 8, safeSpeed + "")
+        drawGarageGauge(canvas, "Efficiency", TEST_BED_GAUGE_EFFICIENCY_Y, efficiencyWidth, 7, safeEfficiency + "/10")
+        drawGarageGauge(canvas, "Drain", TEST_BED_GAUGE_DRAIN_Y, drainWidth, 2, safeDrain + "/5")
+        canvas.print("Tune values, then preview", TEST_BED_LABEL_X, 78, TEST_BED_TEXT_COLOR, image.font8)
+
+        scene.setBackgroundImage(canvas)
+        if (playerCar) {
+            playerCar.setFlag(SpriteFlag.StayInScreen, true)
+            playerCar.y = TEST_BED_CAR_Y
+            playerCar.x = clampToRange(playerCar.x, TEST_BED_CAR_MIN_X, TEST_BED_CAR_MAX_X)
+        }
+    }
+
+    function updateGaragePreview(): void {
+        if (!(garagePreviewActive)) {
+            return
+        }
+
+        const playerCar = sprites.allOfKind(SpriteKind.Player)[0]
+        if (!(playerCar)) {
+            return
+        }
+
+        let previewSpeed = garagePreviewBaseSpeed
+        playerCar.x = clampToRange(playerCar.x, TEST_BED_CAR_MIN_X, TEST_BED_CAR_MAX_X)
+        playerCar.y = TEST_BED_CAR_Y
+
+        if (controller.left.isPressed() || controller.right.isPressed()) {
+            previewSpeed += TEST_BED_STEER_BONUS + Math.abs(playerCar.x - 80)
+        }
+
+        if (controller.up.isPressed()) {
+            previewSpeed += TEST_BED_REV_BONUS
+        }
+
+        if (controller.down.isPressed()) {
+            previewSpeed = Math.max(0, previewSpeed - TEST_BED_BRAKE_PENALTY)
+        }
+
+        renderGarageTestBed(previewSpeed, garagePreviewEfficiency, garagePreviewDrain)
+    }
+
+    game.onUpdate(function () {
+        updateGaragePreview()
+    })
+
     function ensureNumberSetting(name: string, value: number): void {
         if (!(settings.exists(name))) {
             settings.writeNumber(name, value)
@@ -298,11 +412,35 @@ namespace drivenByStem {
     }
 
     /**
+     * Preview current tuning values on the garage test bed before the full shakedown.
+     */
+    //% block="preview garage test bed speed $speed efficiency $efficiency drain $drain"
+    //% blockId=raceday_preview_garage_test_bed
+    //% speed.defl=80 efficiency.defl=5 drain.defl=1
+    //% group="Session" weight=60
+    export function previewGarageTestBed(speed: number, efficiency: number, drain: number): void {
+        loadRaceProfile(80, 5)
+        garagePreviewActive = true
+        garagePreviewBaseSpeed = speed
+        garagePreviewEfficiency = efficiency
+        garagePreviewDrain = drain
+
+        const playerCar = sprites.allOfKind(SpriteKind.Player)[0]
+        if (playerCar) {
+            controller.moveSprite(playerCar, TEST_BED_SLIDE_SPEED, 0)
+            playerCar.setFlag(SpriteFlag.StayInScreen, true)
+            playerCar.setPosition(80, TEST_BED_CAR_Y)
+        }
+
+        renderGarageTestBed(speed, efficiency, drain)
+    }
+
+    /**
      * Start the optional pseudo-3D test track using the saved setup values.
      */
     //% block="start vehicle test track"
     //% blockId=raceday_start_vehicle_test_track
-    //% group="Session" weight=56
+    //% group="Session" weight=55
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
         drivenByStemSupportStartVehicleTestTrack()
@@ -606,7 +744,7 @@ namespace drivenByStem {
 
 Hi, I'm Riley, a performance engineer on the race team. I got hooked on engineering by one question: why did that change make it *better*... or *worse*? I studied physics and math in college, though great performance engineers also come through technical programs, apprenticeships, or the military. What matters is learning to test ideas with evidence.
 
-On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's fast and controllable. In this gate you'll tune the car's speed setting, make a prediction before you test, and add a rule that captures a core engineering truth: every strong option costs something somewhere else. Your custom car design stays in the project, and your dashboard unit choices carry forward from the last gate while you tune the setup.
+On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's fast and controllable. In this gate you'll tune the car's speed setting, make a prediction before you test, and add a rule that captures a core engineering truth: every strong option costs something somewhere else. Your custom car design stays in the project, and your dashboard unit choices carry forward from the last gate while you tune the setup. Before you leave the garage, you'll preview the setup on a test bed so the data grows with your build.
 
 ```template
 scene.setBackgroundImage(assets.image`garageBg`)
@@ -630,8 +768,12 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ---
 
 Engineers don't just change things and hope for the best — they predict outcomes first, then test. Making a prediction forces you to think through cause and effect before you make changes. This is how you turn random experiments into structured learning.
-
-**This activity starts from your Activity 1 garage code, so you will update that existing setup instead of rebuilding it.**
+<div class="ui info message">
+        <div class="content">
+            <h4 id="diffs-in-tutorials">Something Looks Familiar...</h4>
+            <p>This activity continues your Garage code from the last activity. You will continue <b>updating</b> that existing setup instead of <i>rebuilding it</i>.</p>
+        </div>
+    </div>
 
 ```validation.local
 # BlocksExistValidator
@@ -639,18 +781,18 @@ Engineers don't just change things and hope for the best — they predict outcom
 ```
 
 * :racing car: Find the `||drivenByStem:start stage||` block already in `||loops(noclick):on start||`.
-* :mouse pointer: Change that `||drivenByStem:start stage||` block from **Garage** to **Garage Setup**.
+* :mouse pointer: Change the `||drivenByStem:start stage||` block value from **Garage** to **Garage Setup**.
 * :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `driveSpeed`.
-* :paper plane: Add `||variables:set driveSpeed to||` inside `||loops(noclick):on start||` near your existing setup blocks.
+* :paper plane: Add `||variables:set driveSpeed to||` inside `||loops(noclick):on start||` immediately below `||sprites(noclick):set raceCar to sprite of kind Player||`.
 * :mouse pointer: Set `||variables:driveSpeed||` to the `||drivenByStem:saved drive speed||` output so `driveSpeed` starts with the same value as your current car setup.
-* :wrench: Leave the existing `||drivenByStem:set base car speed to||` block alone for now. In Step 3, you will swap it from `saved drive speed` to `driveSpeed` so one variable controls the tuning.
-* :game pad: Open `||game:Game||` in the Toolbox and add a `||game:splash||` to the bottom of `||loops(noclick):on start||` that asks: "Predict first" and "What will more speed do to control and energy?"
+* :wrench: Leave the existing `||drivenByStem:set base car speed to||` block alone for now. In Step 3, you will swap it from `||drivenByStem:saved drive speed||` to `||variables:driveSpeed||` so one variable controls the tuning.
+* :game pad: Before you test, pause and make a quick prediction with your team: what might more speed do to control and energy use?
 
 ~hint What's a variable? 📦
 
 ---
 
-In programming, a **VARIABLE** is a named container that holds a value you can use and change.
+In programming, a **variable** is a named container that holds a value you can use and change.
 
 Think of it like a labeled box: you can put a number in the box, check what's in the box, or replace the contents. The label stays the same, but what's inside can change.
 
@@ -658,11 +800,9 @@ In this project, `driveSpeed` is a variable that holds the car's speed value.
 
 hint~
 
-~hint Splash not showing? 📍
+~hint Can't find `driveSpeed` yet? 📍
 
 ---
-
-If your prediction splash doesn't show up, check placement. Make sure it's inside `on start` and not inside another event.
 
 If you do not see `driveSpeed` in the Variables toolbox yet, create it first with **Make a Variable**. The `set driveSpeed to` block only appears after the variable exists.
 
@@ -674,7 +814,6 @@ game.splash("Miami test session", "Build a car you can explain.")
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-drivenByStem.loadRaceProfile(80, 5)
 //@highlight
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
@@ -684,8 +823,6 @@ drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 //@highlight
 let driveSpeed = drivenByStem.savedDriveSpeed()
-//@highlight
-game.splash("Predict first", "What will more speed do to control and energy?")
 ```
 
 ## {2. Tune Speed}
@@ -703,7 +840,7 @@ Speed is one of the most important variables in racing. Changing it affects ever
 
 ---
 
-If your speed value keeps switching back, something is probably resetting it later. Scan your stacks and make sure there is only one `set driveSpeed to` block in `on start`.
+If your speed value keeps switching back, something is probably resetting it later. Scan your code stack and make sure there is only one `||variables.set driveSpeed to||` block in `on start`.
 
 hint~
 
@@ -712,7 +849,6 @@ drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 //@highlight
 //@validate-exists
 let driveSpeed = 110
-game.splash("Predict first", "What will more speed do to control and energy?")
 ```
 
 ## {3. Make Movement Use driveSpeed}
@@ -721,7 +857,7 @@ game.splash("Predict first", "What will more speed do to control and energy?")
 
 ---
 
-A variable is only useful if your code actually reads it. By wiring your movement system to the `driveSpeed` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
+A variable is only useful if your code actually reads it. By wiring your movement system to the `||variables.driveSpeed||` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
 
 * :racing car: Find the `||drivenByStem:set base car speed to||` block that already uses `||drivenByStem:saved drive speed||`.
 * :mouse pointer: Replace `||drivenByStem:saved drive speed||` with the `||variables:driveSpeed||` variable.
@@ -730,7 +866,7 @@ A variable is only useful if your code actually reads it. By wiring your movemen
 
 ---
 
-If you still see `saved drive speed` in the movement block, the tuning isn't connected yet. Replace it with the `driveSpeed` bubble so your change actually takes effect.
+If you still see `||drivenByStem.saved drive speed||` in the movement block, the tuning isn't connected yet. Replace it with the `||variables.driveSpeed||` bubble so your change actually takes effect.
 
 hint~
 
@@ -740,10 +876,8 @@ game.splash("Miami test session", "Build a car you can explain.")
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
-game.splash("Predict first", "What will more speed do to control and energy?")
 //@highlight
 //@validate-exists
 drivenByStem.setBaseCarSpeed(driveSpeed)
@@ -776,7 +910,6 @@ hint~
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
-game.splash("Predict first", "What will more speed do to control and energy?")
 drivenByStem.setBaseCarSpeed(driveSpeed)
 //@highlight
 //@validate-exists
@@ -825,7 +958,6 @@ hint~
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
-game.splash("Predict first", "What will more speed do to control and energy?")
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -842,7 +974,52 @@ if (driveSpeed > 100) {
 }
 ```
 
-## {6. Choose a Role Lens}
+## {6. Preview the Garage Test Bed}
+
+**Testing the Build Without Leaving the Garage**
+
+---
+
+Engineers often use a test stand before a full track run. A garage test bed gives you a safe place to preview the exact values your code is building.
+
+This is also a good moment to notice an important block programming rule: blocks only run when they are connected to an event or another running stack. Here, you will remove the repeated garage intro splash so testing stays quick, then preview the speed, efficiency, and drain values together.
+
+* :mouse pointer: Find the `||game:splash||` block that says `Miami test session` in `||loops(noclick):on start||`.
+* :mouse pointer: Drag that splash block away from the `on start` stack so it is no longer connected.
+* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `preview garage test bed speed efficiency drain` near the end of `||loops(noclick):on start||`.
+* :mouse pointer: Set the block inputs to `||variables:driveSpeed||`, `||variables:efficiencyRating||`, and `||variables:efficiencyDrain||`.
+* :game pad: Run the simulator and press the arrow keys.
+* :game pad: The left and right arrows make the car slide across the rollers, and the speed gauge should jump up to show what a more active test feels like.
+* :game pad: The up arrow gives the speed gauge a bigger rev, and the down arrow lowers it.
+* :game pad: In this preview, the arrows do not start the full track drive. They only help you test the speed gauge while efficiency and drain stay at your chosen setup.
+
+~hint Preview looks wrong? 🧪
+
+---
+
+If the test bed still feels wrong, check three things. First, make sure the `Miami test session` splash is disconnected from `on start` so it is not interrupting each test. Second, make sure the preview block comes after the `if driveSpeed > 100` rule so it can read the final values. Third, remember that the arrows only affect the garage preview gauge here. The full driving test comes in the next lesson.
+
+hint~
+
+```blocks
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+let driveSpeed = 110
+drivenByStem.setBaseCarSpeed(driveSpeed)
+let efficiencyRating = drivenByStem.savedEfficiency()
+let efficiencyDrain = 1
+if (driveSpeed > 100) {
+    efficiencyRating = drivenByStem.savedEfficiency() - 1
+    efficiencyDrain = 2
+} else {
+    efficiencyRating = drivenByStem.savedEfficiency()
+    efficiencyDrain = 1
+}
+//@highlight
+//@validate-exists
+drivenByStem.previewGarageTestBed(driveSpeed, efficiencyRating, efficiencyDrain)
+```
+
+## {7. Choose a Role Lens}
 
 **Selecting Your Engineering Perspective**
 
@@ -869,7 +1046,6 @@ hint~
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
-game.splash("Predict first", "What will more speed do to control and energy?")
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -893,7 +1069,7 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.Strategist)
 drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 ```
 
-## {7. Save the Setup Focus}
+## {8. Save the Setup Focus}
 
 **Recording Your Configuration Choice**
 
@@ -916,7 +1092,6 @@ hint~
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
-game.splash("Predict first", "What will more speed do to control and energy?")
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -945,8 +1120,6 @@ drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, driven
 
 ## Complete
 
-**Nice work!** You tuned your car's speed setting, made a prediction before testing, and built a conditional rule that captures a core engineering truth: every strong option costs something somewhere else. You also saved both the setup speed and the starting efficiency that later track and review steps will reuse.
+**Nice work!** You tuned your car's speed setting, made a prediction before testing, built a conditional rule that captures a core engineering truth, and previewed the result on a garage test bed before a full shakedown. You also saved both the setup speed and the starting efficiency that later track and review steps will reuse.
 
 You built a real engineering tradeoff. Physics idea: increasing speed raises system demand. Computer science idea: variables plus conditionals let one program adapt to different design choices.
-
-Team roles in this tutorial: performance engineer, sustainability engineer, and systems engineer.
