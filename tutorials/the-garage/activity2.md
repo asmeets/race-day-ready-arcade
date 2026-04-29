@@ -10,6 +10,9 @@ settings-blocks=github:microsoft/pxt-settings-blocks#v1.0.0
 /**
  * Custom blocks for the Driven by STEM skillmap.
  */
+//% shim=drivenByStemSupport::startVehicleTestTrack
+declare function drivenByStemSupportStartVehicleTestTrack(): void
+
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
     const DRIVE_SPEED_KEY = "driveSpeed"
@@ -302,7 +305,7 @@ namespace drivenByStem {
     //% group="Session" weight=56
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
-        drivenByStemSupport.startVehicleTestTrack()
+        drivenByStemSupportStartVehicleTestTrack()
     }
 
     /**
@@ -606,9 +609,18 @@ Hi, I'm Riley, a performance engineer on the race team. I got hooked on engineer
 On a real team I run A/B tests, translate driver feedback into data, and tune the car so it's fast and controllable. In this gate you'll tune the car's speed setting, make a prediction before you test, and add a rule that captures a core engineering truth: every strong option costs something somewhere else. Your custom car design stays in the project, and your dashboard unit choices carry forward from the last gate while you tune the setup.
 
 ```template
-let driveSpeed = 80
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.loadRaceProfile(80, 5)
-drivenByStem.buildBaseCar(assets.image`playerCar`)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
 
 ## {1. Start the Setup Stage and Make a Prediction}
@@ -617,44 +629,22 @@ drivenByStem.buildBaseCar(assets.image`playerCar`)
 
 ---
 
-Real engineers don't just change things and hope for the best — they predict outcomes first, then test. Making a prediction forces you to think through cause and effect before you make changes. This is how you turn random experiments into structured learning.
+Engineers don't just change things and hope for the best — they predict outcomes first, then test. Making a prediction forces you to think through cause and effect before you make changes. This is how you turn random experiments into structured learning.
+
+**This activity starts from your Activity 1 garage code, so you will update that existing setup instead of rebuilding it.**
 
 ```validation.local
 # BlocksExistValidator
 * Enabled: false
 ```
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `start stage` set to **Garage Setup** inside `||loops(noclick):on start||`.
-* :racing_car: Set `driveSpeed` to `saved drive speed` so your tuning carries in from the last gate.
-* :game pad: Open `||game:Game||` and add a `splash` that asks: "Predict first: What will more speed do to control and energy?"
-
-~hint Splash not showing? 📍
-
----
-
-If your prediction splash doesn't show up, check placement. Make sure it's inside `on start` and not inside another event.
-
-hint~
-
-```blocks
-//@highlight
-drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-//@highlight
-driveSpeed = drivenByStem.savedDriveSpeed()
-//@highlight
-game.splash("Predict first", "What will more speed do to control and energy?")
-```
-
-## {2. Tune Speed}
-
-**Adjusting a Key Performance Parameter**
-
----
-
-Speed is one of the most important variables in racing. Changing it affects everything — how quickly you navigate, how much energy you use, how hard it is to control the car. By storing speed in a variable, you create a single point of control that you can tune and test systematically.
-
-* :paper plane: Open `||variables:Variables||` and drag `set driveSpeed to` into `||loops(noclick):on start||`.
-* :keyboard: Change the value to `110`.
+* :racing car: Find the `||drivenByStem:start stage||` block already in `||loops(noclick):on start||`.
+* :mouse pointer: Change that `||drivenByStem:start stage||` block from **Garage** to **Garage Setup**.
+* :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `driveSpeed`.
+* :paper plane: Add `||variables:set driveSpeed to||` inside `||loops(noclick):on start||` near your existing setup blocks.
+* :mouse pointer: Set `||variables:driveSpeed||` to the `||drivenByStem:saved drive speed||` output so `driveSpeed` starts with the same value as your current car setup.
+* :wrench: Leave the existing `||drivenByStem:set base car speed to||` block alone for now. In Step 3, you will swap it from `saved drive speed` to `driveSpeed` so one variable controls the tuning.
+* :game pad: Open `||game:Game||` in the Toolbox and add a `||game:splash||` to the bottom of `||loops(noclick):on start||` that asks: "Predict first" and "What will more speed do to control and energy?"
 
 ~hint What's a variable? 📦
 
@@ -668,21 +658,61 @@ In this project, `driveSpeed` is a variable that holds the car's speed value.
 
 hint~
 
+~hint Splash not showing? 📍
+
+---
+
+If your prediction splash doesn't show up, check placement. Make sure it's inside `on start` and not inside another event.
+
+If you do not see `driveSpeed` in the Variables toolbox yet, create it first with **Make a Variable**. The `set driveSpeed to` block only appears after the variable exists.
+
+hint~
+
+```blocks
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+drivenByStem.loadRaceProfile(80, 5)
+//@highlight
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
+//@highlight
+let driveSpeed = drivenByStem.savedDriveSpeed()
+//@highlight
+game.splash("Predict first", "What will more speed do to control and energy?")
+```
+
+## {2. Tune Speed}
+
+**Adjusting a Key Performance Parameter**
+
+---
+
+Speed is one of the most important variables in racing. Changing it affects everything — how quickly you navigate, how much energy you use, how hard it is to control the car. By storing speed in a variable, you create a single point of control that you can tune and test systematically.
+
+* :mouse pointer: Find the `||variables.set driveSpeed to||` block you added in Step 1 inside `||loops(noclick):on start||`.
+* :keyboard: Change its value from `||drivenByStem:saved drive speed||` to `110`.
+
 ~hint Car still slow? 👀
 
 ---
 
-If the car still feels slow, something is probably resetting your speed later. Scan your stacks and look for another place where `driveSpeed` gets set.
+If your speed value keeps switching back, something is probably resetting it later. Scan your stacks and make sure there is only one `set driveSpeed to` block in `on start`.
 
 hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
-game.splash("Predict first", "What will more speed do to control and energy?")
 //@highlight
 //@validate-exists
-driveSpeed = 110
+let driveSpeed = 110
+game.splash("Predict first", "What will more speed do to control and energy?")
 ```
 
 ## {3. Make Movement Use driveSpeed}
@@ -693,25 +723,34 @@ driveSpeed = 110
 
 A variable is only useful if your code actually reads it. By wiring your movement system to the `driveSpeed` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `set base car speed to` into `||loops(noclick):on start||`.
-* :mouse pointer: Replace the number value with the `driveSpeed` variable.
+* :racing car: Find the `||drivenByStem:set base car speed to||` block that already uses `||drivenByStem:saved drive speed||`.
+* :mouse pointer: Replace `||drivenByStem:saved drive speed||` with the `||variables:driveSpeed||` variable.
 
 ~hint Speed not changing? 🔌
 
 ---
 
-If you still see numbers in the movement block, the tuning isn't connected yet. Replace those numbers with the `driveSpeed` bubble so your change actually takes effect.
+If you still see `saved drive speed` in the movement block, the tuning isn't connected yet. Replace it with the `driveSpeed` bubble so your change actually takes effect.
 
 hint~
 
 ```blocks
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
+let driveSpeed = 110
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
 //@highlight
 //@validate-exists
 drivenByStem.setBaseCarSpeed(driveSpeed)
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
 
 ## {4. Create the Efficiency Variables}
@@ -720,11 +759,11 @@ drivenByStem.setBaseCarSpeed(driveSpeed)
 
 ---
 
-In real racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `efficiencyRating` represents how much energy the car starts with, and `efficiencyDrain` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
+In racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `efficiencyRating` represents how much energy the car starts with, and `efficiencyDrain` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
 
 * :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyRating`.
-* :paper plane: Set `efficiencyRating` to `||drivenByStem:Driven by STEM||` `saved efficiency`.
-* :paper plane: Create `efficiencyDrain`, then add `set efficiencyDrain to 1` in `||loops(noclick):on start||`.
+* :paper plane: Set `||variables:efficiencyRating||` to `||drivenByStem:Driven by STEM:saved efficiency||`.
+* :paper plane: Create `||variables:efficiencyDrain||`, then add `||variables.set efficiencyDrain to 1||` in `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
 
@@ -736,9 +775,8 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
+let driveSpeed = 110
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 //@highlight
 //@validate-exists
@@ -756,8 +794,12 @@ let efficiencyDrain = 1
 
 This is where your simulation gets smart. A conditional statement lets your code make different choices based on the current situation. In this case, you're programming a realistic tradeoff: higher speed means higher energy cost. This is how engineers encode real-world physics into software systems.
 
-* :paper plane: Open `||logic:Logic||` and add `if then else` in `||loops(noclick):on start||` with the condition `driveSpeed > 100`.
-* :keyboard: In the `then` branch, set `efficiencyRating` to `saved efficiency - 1` and `efficiencyDrain` to `2`.
+* :paper plane: Open `||logic:Logic||` and add `||logic:if then else||` in `||loops(noclick):on start||`.
+* :mouse pointer: In `||logic:Logic||` select the 0 < 0 condition and drag it over the "true" value.
+* :mouse pointer: Select the `||variables:driveSpeed|| and drag it to the first 0 in the "if" block.
+* :mouse pointer: Change the direction of the operator from less than to greater than.
+* :keyboard: Enter the value of `100` to replace the `0` in the first line of the `if` block.
+* :keyboard: In the `then` branch, set `||efficiencyRating||` to `||saved efficiency - 1||` and `efficiencyDrain` to `2`.
 * :keyboard: In the `else` branch, set `efficiencyRating` to `saved efficiency` and `efficiencyDrain` to `1`.
 
 ~hint What's a conditional? 🔀
@@ -782,9 +824,8 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
+let driveSpeed = 110
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -827,9 +868,8 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
+let driveSpeed = 110
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -861,9 +901,9 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* :racing_car: In `||drivenByStem:Driven by STEM||`, use `save team setup` inside both branches of the `if driveSpeed > 100` structure.
+* :racing_car: In `||drivenByStem:Driven by STEM||`, add `save team setup` inside the same `if driveSpeed > 100` block you built in Step 5.
 * :racing_car: Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
-* :game pad: Add a `splash` in each branch that explains the tradeoff choice.
+* :game pad: Add a `splash` in each branch of that same `if` block that explains the tradeoff choice.
 
 ~hint Setup not saving? ⏱️
 
@@ -875,32 +915,27 @@ hint~
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
-driveSpeed = drivenByStem.savedDriveSpeed()
+let driveSpeed = 110
 game.splash("Predict first", "What will more speed do to control and energy?")
-driveSpeed = 110
 drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
 if (driveSpeed > 100) {
     efficiencyRating = drivenByStem.savedEfficiency() - 1
     efficiencyDrain = 2
-} else {
-    efficiencyRating = drivenByStem.savedEfficiency()
-    efficiencyDrain = 1
-}
-drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
-drivenByStem.showSavedDriverProfile()
-//@highlight
-if (driveSpeed > 100) {
     //@validate-exists
     drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Pace)
     //@validate-exists
     game.splash("Pace setup", "You chose raw pace. Monitor energy use.")
 } else {
+    efficiencyRating = drivenByStem.savedEfficiency()
+    efficiencyDrain = 1
     //@validate-exists
     drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Balance)
     game.splash("Balance setup", "You chose a more efficient setup.")
 }
+drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
+drivenByStem.showSavedDriverProfile()
 ```
 
 ```ghost

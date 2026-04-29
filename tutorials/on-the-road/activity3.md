@@ -11,6 +11,9 @@ Timers=github:microsoft/arcade-timers#v1.1.0
 /**
  * Custom blocks for the Driven by STEM skillmap.
  */
+//% shim=drivenByStemSupport::startVehicleTestTrack
+declare function drivenByStemSupportStartVehicleTestTrack(): void
+
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
     const DRIVE_SPEED_KEY = "driveSpeed"
@@ -303,7 +306,7 @@ namespace drivenByStem {
     //% group="Session" weight=56
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
-        drivenByStemSupport.startVehicleTestTrack()
+        drivenByStemSupportStartVehicleTestTrack()
     }
 
     /**
