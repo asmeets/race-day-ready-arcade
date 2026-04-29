@@ -1135,9 +1135,9 @@ drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, driven
 drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Balance)
 ```
 
-## Complete
+## Nice work!
 ![Riley - Performance Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/riley.png)
 
-**Nice work!** You tuned your car's speed setting, made a prediction before testing, built a conditional rule that captures a core engineering truth, and previewed the result on a garage test bed before a full shakedown. You also saved both the setup speed and the starting efficiency that later track and review steps will reuse.
+You tuned your car's speed setting, made a prediction before testing, built a conditional rule that captures a core engineering truth, and previewed the result on a garage test bed before a full shakedown. You also saved both the setup speed and the starting efficiency that later track and review steps will reuse.
 
 You built a real engineering tradeoff! In physics, increasing speed can put more demand on the system. In computer science, variables and conditionals help one program respond to different design choices.
