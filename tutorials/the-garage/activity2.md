@@ -752,7 +752,6 @@ game.splash("Miami test session", "Build a car you can explain.")
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.Garage)
 drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 drivenByStem.setTeamName("Apex Lab")
@@ -893,10 +892,10 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 
 ---
 
-In racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `efficiencyRating` represents how much energy the car starts with, and `efficiencyDrain` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
+In racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `||variables.efficiencyRating||` represents how much energy the car starts with, and `||variables.efficiencyDrain||` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
 
 * :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyRating`.
-* :paper plane: Set `||variables:efficiencyRating||` to `||drivenByStem:Driven by STEM:saved efficiency||`.
+* :paper plane: Set `||variables:efficiencyRating||` to `||drivenByStem:saved efficiency||`.
 * :paper plane: Create `||variables:efficiencyDrain||`, then add `||variables.set efficiencyDrain to 1||` in `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
@@ -927,15 +926,17 @@ let efficiencyDrain = 1
 
 This is where your simulation gets smart. A conditional statement lets your code make different choices based on the current situation. In this case, you're programming a realistic tradeoff: higher speed means higher energy cost. This is how engineers encode real-world physics into software systems.
 
-* :paper plane: Open `||logic:Logic||` and add `||logic:if then else||` in `||loops(noclick):on start||`.
+* :paper plane: Open `||logic:Logic||` and add `||logic:if then else||` in `||loops(noclick):on start||` directly below your `||variables:set efficiencyDrain to 1||` block.
 * :mouse pointer: In `||logic:Logic||` select the 0 < 0 condition and drag it over the "true" value.
-* :mouse pointer: Select the `||variables:driveSpeed|| and drag it to the first 0 in the "if" block.
-* :mouse pointer: Change the direction of the operator from less than to greater than.
-* :keyboard: Enter the value of `100` to replace the `0` in the first line of the `if` block.
-* :keyboard: In the `then` branch, set `||efficiencyRating||` to `||saved efficiency - 1||` and `efficiencyDrain` to `2`.
-* :keyboard: In the `else` branch, set `efficiencyRating` to `saved efficiency` and `efficiencyDrain` to `1`.
+* :mouse pointer: Select the `||variables:driveSpeed||` and drag it to the first 0 in the "if" block.
+* :mouse pointer: Change the direction of the operator from < (less than) to > (greater than).
+* :keyboard: Enter the value of `100` to replace the `0` value in the first line of the `||logic:if||` block.
+* :paper plane: In the `then` branch, add `||variables:set efficiencyRating to||` and `||variables:set efficiencyDrain to 2||`.
+* :mouse pointer: Open `||math:Math||`, drag a `||math:0 + 0||` block into `||variables:set efficiencyRating to||`, then change the `+` to `-`.
+* :mouse pointer: Put `||drivenByStem:saved efficiency||` in the first math slot and `1` in the second slot so the rule becomes `||drivenByStem:saved efficiency - 1||`.
+* :keyboard: In the `||logic:else||` branch, set `||variables.efficiencyRating||` to use `||drivenByStem.saved efficiency||` and `||drivenByStem.efficiencyDrain||` to `1`.
 
-~hint What's a conditional? 🔀
+~hint What's a conditional?
 
 ---
 
@@ -947,11 +948,19 @@ In this step, you're building a rule: IF speed is high, THEN the car starts with
 
 hint~
 
-~hint Rule not working? 🔢
+~hint Rule not working?
 
 ---
 
 If your tradeoff rule never seems to kick in, check that `driveSpeed` is set before the `if` block runs. Order matters when you're building a rule.
+
+hint~
+
+~hint Need the minus block?
+
+---
+
+The subtraction part comes from `||math:Math||`. Drag in the `||math:0 + 0||` block, click the `+`, and switch it to `-`. Then place `||drivenByStem:saved efficiency||` on the left and `1` on the right.
 
 hint~
 
@@ -982,16 +991,16 @@ if (driveSpeed > 100) {
 
 Engineers often use a test stand before a full track run. A garage test bed gives you a safe place to preview the exact values your code is building.
 
-This is also a good moment to notice an important block programming rule: blocks only run when they are connected to an event or another running stack. Here, you will remove the repeated garage intro splash so testing stays quick, then preview the speed, efficiency, and drain values together.
+This is also a good moment to notice an important block programming rule: **blocks only run when they are connected to an event or another running stack**. Here, you will remove the repeated garage intro splash so testing stays quick, then preview the speed, efficiency, and drain values together.
 
-* :mouse pointer: Find the `||game:splash||` block that says `Miami test session` in `||loops(noclick):on start||`.
-* :mouse pointer: Drag that splash block away from the `on start` stack so it is no longer connected.
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `preview garage test bed speed efficiency drain` near the end of `||loops(noclick):on start||`.
+* :mouse pointer: Find the `||game:splash||` block in your `||loops(noclick):on start||`.
+* :mouse pointer: Drag that splash block away from the `||loops(noclick):on start||` stack so it is no longer connected.
+* :racing car: Open `||drivenByStem:Driven by STEM||` in the Toolbox and add `||drivenByStem.preview garage test bed speed efficiency drain||` at the end of `||loops(noclick):on start||`.
 * :mouse pointer: Set the block inputs to `||variables:driveSpeed||`, `||variables:efficiencyRating||`, and `||variables:efficiencyDrain||`.
-* :game pad: Run the simulator and press the arrow keys.
-* :game pad: The left and right arrows make the car slide across the rollers, and the speed gauge should jump up to show what a more active test feels like.
-* :game pad: The up arrow gives the speed gauge a bigger rev, and the down arrow lowers it.
-* :game pad: In this preview, the arrows do not start the full track drive. They only help you test the speed gauge while efficiency and drain stay at your chosen setup.
+* :game pad: Run the simulator and press the arrow keys on your keyboard or using the joystick control. You may need to select the play button to activate the simulator.
+* :right arrow: The left and right arrows make the car slide across the rollers, and the speed gauge should jump up to show what a more active test feels like.
+* :up arrow: The up arrow gives the speed gauge a bigger rev, and the down arrow lowers it.
+* :binoculars: In this preview, the arrows do not start the full track drive. They only help you test the speed gauge while efficiency and drain stay at your chosen setup.
 
 ~hint Preview looks wrong? 🧪
 
@@ -1032,8 +1041,10 @@ On a real race team, different engineers focus on different things — some watc
 * Enabled: false
 ```
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and set a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
-* :id card: Add `show saved driver profile` to display the current profile.
+* :book: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem.setRoleLens||` near the top of your `||loops(noclick):on start||`.
+* :mouse pointer: Using the drop-down in `||drivenByStem.setRoleLens||`, select a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
+* :id card: Then, add `||drivenByStem.showSavedDriverProfile||` to display your selected profile. 
+* :lightbulb: Try changing your `||drivenByStem.setRoleLens||` value to review different information.
 
 ~hint Which role should I pick? ✨
 
@@ -1077,9 +1088,15 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* :racing_car: In `||drivenByStem:Driven by STEM||`, add `save team setup` inside the same `if driveSpeed > 100` block you built in Step 5.
-* :racing_car: Set the setup focus to `Pace` in the `then` branch and `Balance` in the `else` branch.
-* :game pad: Add a `splash` in each branch of that same `if` block that explains the tradeoff choice.
+* :mouse pointer: In `||drivenByStem:Driven by STEM||`, add `||drivenByStem.saveTeamSetup||` inside the same `||logic.if driveSpeed > 100||` block you built in Step 5.
+* :mouse pointer: In the drop-down, set the focus to `||Pace||`.
+* :mouse pointer: For `||drivenByStem.saveTeamSetup.savedDriveSpeed||` add the `||variables.driveSpeed||` variable you created.
+* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiency|` add the `||variables.efficiencyRating||` variable you created.
+* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiencyCost|` add the `||variables.efficiencyDrain||` variable you created.
+* :mouse pointer: Right-click on the `||drivenByStem.saveTeamSetup||` block you created. Select Duplicate.
+* :mouse pointer: Drag the duplicataed block inside the `||logic.else||` branch.
+* :mouse pointer: In the `||logic.else||` branch set the focus to `||Balance||`.
+* :game pad: Add a `splash` in each branch of that same `||logic.if||` block that explains the tradeoff choice. Use the lightbulb hint below for suggestions.
 
 ~hint Setup not saving? ⏱️
 
@@ -1119,7 +1136,8 @@ drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, driven
 ```
 
 ## Complete
+![Riley - Performance Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/riley.png)
 
 **Nice work!** You tuned your car's speed setting, made a prediction before testing, built a conditional rule that captures a core engineering truth, and previewed the result on a garage test bed before a full shakedown. You also saved both the setup speed and the starting efficiency that later track and review steps will reuse.
 
-You built a real engineering tradeoff. Physics idea: increasing speed raises system demand. Computer science idea: variables plus conditionals let one program adapt to different design choices.
+You built a real engineering tradeoff! In physics, increasing speed can put more demand on the system. In computer science, variables and conditionals help one program respond to different design choices.

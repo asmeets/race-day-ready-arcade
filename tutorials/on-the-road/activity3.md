@@ -614,7 +614,6 @@ In this gate, you'll **switch the track from dry to wet**, model how rain reduce
 ```template
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```

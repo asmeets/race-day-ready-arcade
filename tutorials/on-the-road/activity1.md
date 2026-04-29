@@ -613,7 +613,6 @@ In this gate, you'll drive under live conditions while the game **tracks every c
 ```template
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```

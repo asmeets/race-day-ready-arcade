@@ -611,7 +611,6 @@ Hey, I'm **Jordan**, the test engineer on this crew. I didn't start out coding; 
 In this gate you'll launch a **quick shakedown test track** that reads your saved speed, fuel, and display units. The dashboard will show **fuel, elapsed time, and speed** while you drive. At the end, the system saves those results so the next stage can build on what you actually learned.
 
 ```template
-drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.buildBaseCar(assets.image`playerCar`)
 ```
 

@@ -613,7 +613,6 @@ That's exactly what this gate is about. You've built your performance system, yo
 ```template
 let driveSpeed = 110
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-drivenByStem.loadRaceProfile(80, 5)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```

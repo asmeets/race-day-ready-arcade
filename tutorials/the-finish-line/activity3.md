@@ -611,7 +611,6 @@ Hi, I'm **Kai**, your operations lead. I got into this work the hands-on way: se
 In this last gate, you'll use your saved data to **celebrate what you built**, explore where these skills connect to real careers, and leave with a **clear next-step idea**. Finishing is great, and a good handoff means the work keeps going. This final screen works because every earlier tutorial saved one more piece of the story.
 
 ```template
-drivenByStem.loadRaceProfile(80, 5)
 ```
 
 ## {1. Start Winners Circle stage}

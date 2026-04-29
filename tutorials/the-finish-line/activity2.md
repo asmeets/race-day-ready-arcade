@@ -611,7 +611,6 @@ Nice to see you again, I'm **Drew**, UX and game designer on the team. Since you
 In this gate, you'll turn your run into a simple story: **one choice, one result, one next test**. Designers call it **"clear over clever."** Once you can read what your data is actually telling you, you'll be ready to make your final call before the winners circle. The next-test focus you save here becomes Kai's closing handoff.
 
 ```template
-drivenByStem.loadRaceProfile(80, 5)
 ```
 
 ## {1. Create review variables}
