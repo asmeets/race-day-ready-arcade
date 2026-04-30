@@ -622,7 +622,7 @@ In this last gate, you'll use your saved data to **celebrate what you built**, e
 You've completed the challenge, and now it's time to celebrate and reflect. Setting the stage to Winners Circle signals that the competitive phase is over and the focus shifts to recognizing achievement, reviewing what you built, and connecting your work to broader career pathways and CS concepts.
 
 * :binoculars: Open `||loops(noclick):on start||` and find your setup code.
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
+* :racing car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
 
 ~hint Still feels like gameplay? 🎮
 
@@ -706,9 +706,9 @@ let finalStrategy = 0
 
 The celebration is meaningful because it's personalized to your choices. Loading your `next test focus`, session strategy total, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and set `nextTestFocus` from the `next test focus` reporter.
-* :racing_car: Set `finalStrategy` from the saved strategy result.
-* :racing_car: Drag `show saved driver profile` into `on start`.
+* :racing car: Open `||drivenByStem:Driven by STEM||` and set `nextTestFocus` from the `next test focus` reporter.
+* :racing car: Set `finalStrategy` from the saved strategy result.
+* :racing car: Drag `show saved driver profile` into `on start`.
 
 ~hint Recommendation blank? 🔍
 

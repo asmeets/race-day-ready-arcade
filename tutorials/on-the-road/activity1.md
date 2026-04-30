@@ -744,7 +744,7 @@ let lastTrackCollisionCount = 0
 A racing session needs clear start and end points. The countdown sets the test window, while the score and life displays show real-time feedback. Setting these values at the start ensures every player gets the same fair test conditions. This is how you make comparisons meaningful.
 
 * :game pad: Open `||info:Info||` in the Toolbox and drag `||info:set score to 0||` into `||loops(noclick):on start||`.
-* :racing_car: Drag `||info.set life||` and connect `||drivenByStem.saved efficiency||` from `||drivenByStem:Driven by STEM||` as the value.
+* :racing car: Drag `||info.set life||` and connect `||drivenByStem.saved efficiency||` from `||drivenByStem:Driven by STEM||` as the value.
 * :game pad: Drag `||info.start countdown||` and set the time to `30` seconds.
 
 ~hint Life stuck at zero? 📊

@@ -655,9 +655,9 @@ let pitStopsVisited = 0
 
 Saved data becomes meaningful when you load it for analysis. Starting the Review stage and reading your latest saved Performance and Efficiency snapshot, plus your running Strategy score and pit-stop total, brings the abstract numbers from the full session into concrete variables you can compare, evaluate, and act upon. This is the moment raw results become insight.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and use `start stage` set to `Review`.
-* :racing_car: Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
-* :racing_car: Read the saved pit stop count into `pitStopsVisited`.
+* :racing car: Open `||drivenByStem:Driven by STEM||` and use `start stage` set to `Review`.
+* :racing car: Use the saved results blocks to read the last Performance, Efficiency, and Strategy scores into your variables.
+* :racing car: Read the saved pit stop count into `pitStopsVisited`.
 
 ~hint All values still zero? 🔢
 
@@ -739,7 +739,7 @@ This step has no single correct answer. Try your own logic.
 ```
 
 * :paper plane: Open `||logic:Logic||` and build an `if / else if / else` chain.
-* :racing_car: If `reviewEfficiency` is low, use `||drivenByStem:Driven by STEM||` to set an efficiency-focused next-test focus; else if `reviewStrategy` is low, set an adaptation-focused focus; otherwise set a balanced focus.
+* :racing car: If `reviewEfficiency` is low, use `||drivenByStem:Driven by STEM||` to set an efficiency-focused next-test focus; else if `reviewStrategy` is low, set an adaptation-focused focus; otherwise set a balanced focus.
 * :game pad: Show the recommendation with a `splash` block.
 
 ~hint Which lens to pick? 🤔

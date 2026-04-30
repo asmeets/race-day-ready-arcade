@@ -641,7 +641,7 @@ drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 In racing, clear communication prevents mistakes. A quick message at the start of the pit phase tells the player they've transitioned from driving to decision-making. This mirrors how race engineers brief drivers over the radio before critical moments—short, direct, and focused on what matters right now.
 
 * :game pad: Open `||game:Game||` and add a `||game:splash||` block below your existing stage setter in `||loops(noclick):on start||`.
-* :keyboard: Set the first field to `||splash:Pit wall||` and the second field to `||splash:Use data before you make the next call.||`
+* :keyboard: Set the first field to `||game:Pit wall||` and the second field to `||game:Use data before you make the next call.||`
 
 ~hint Message too long? ⚡
 

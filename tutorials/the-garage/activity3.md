@@ -1421,7 +1421,7 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 
 A shakedown needs a fair, repeatable test. The `||drivenByStem:start vehicle test track||` block opens the support track, uses your saved setup, and turns on the fuel, time, and speed dashboard automatically. That gives you one clean run to measure before you make the next decision.
 
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:start vehicle test track||` at the end of `||loops(noclick):on start||`.
+* :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:start vehicle test track||` at the end of `||loops(noclick):on start||`.
 * :game pad: Run the simulator and wait for the start lights before you drive. You can expand the simulator to full screen using the expand icon which is located at the top, above the sound icon.
 * :game pad: Watch the dashboard as you drive so you can compare fuel use, elapsed time, and speed.
 

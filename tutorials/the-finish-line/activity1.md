@@ -626,7 +626,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 This is it—the moment where all your subsystems run together. Setting the stage to Final Challenge tells every spawner, collision handler, and timer that you're now in full integration mode. Without this signal, events won't know which rules to follow, and your carefully tuned systems won't activate correctly.
 
 * :binoculars: Open `||loops(noclick):on start||` and find the `||drivenByStem:Driven by STEM||` drawer.
-* :racing_car: Add the **start stage** block and set it to **Final Challenge**.
+* :racing car: Add the **start stage** block and set it to **Final Challenge**.
 
 ~hint Wrong things showing up? 🔍
 
@@ -687,9 +687,9 @@ scene.setBackgroundImage(assets.image`finishBg`)
 
 Every tuning choice you made in the garage matters now. Loading your saved speed and efficiency cost ensures that this final run authentically reflects the tradeoffs you designed earlier, and keeping the same `raceCar` sprite keeps your team car consistent. This is how systems thinking works in practice—earlier decisions cascade forward through the entire experience.
 
-* :racing_car: In `||loops(noclick):on start||`, use `||drivenByStem:Driven by STEM||` to load saved `driveSpeed`.
-* :racing_car: Load `efficiencyDrain` from saved efficiency cost.
-* :racing_car: Keep using the same `raceCar` sprite you customized earlier.
+* :racing car: In `||loops(noclick):on start||`, use `||drivenByStem:Driven by STEM||` to load saved `driveSpeed`.
+* :racing car: Load `efficiencyDrain` from saved efficiency cost.
+* :racing car: Keep using the same `raceCar` sprite you customized earlier.
 
 ~hint Car doesn't match your setup? 🔧
 
@@ -956,7 +956,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 Integration testing isn't complete until you've captured the results. The countdown-end event is your only guaranteed moment to save performance data before the run terminates. This saved evidence becomes the foundation for reflection, comparison, and the next round of tuning decisions.
 
 * :game pad: Open `||info:Info||` and add an **on countdown end** event block.
-* :racing_car: Inside it, check if stage is **Final Challenge**, then use `||drivenByStem:Driven by STEM||` to save current run results.
+* :racing car: Inside it, check if stage is **Final Challenge**, then use `||drivenByStem:Driven by STEM||` to save current run results.
 
 ~hint Review shows nothing? 📊
 
