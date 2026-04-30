@@ -14,6 +14,7 @@ _site
 .venv-racetrack-slicer/
 .vscode/*
 .github/*
+!.github/workflows/*
 .vscode
 .github
 AGENTS.md
