@@ -68,8 +68,7 @@ drivenByStem.startVehicleTestTrack()
 
 Visuals matter for closure. A bright background and celebratory screen effect immediately communicate that this is a different moment—not a challenge, but a celebration. These visual cues help players transition from performance pressure to reflection mode, setting the right tone for reviewing achievements.
 
-* :tree: Open `||scene:Scene||` and set the background image to `finishBg`.
-* :paint brush: Open `||effects:Effects||` and start confetti or another screen effect.
+* :tree: Drag `||scene:set background image to finishBg||` and `||effects:start screen effect confetti||` from the toolbox.
 
 ~hint Text hard to read? 🎉
 
@@ -88,6 +87,10 @@ scene.setBackgroundImage("finishBg")
 //@validate-exists
 effects.confetti.startScreenEffect()
 ```
+```ghost
+scene.setBackgroundImage("finishBg")
+effects.confetti.startScreenEffect()
+```
 
 ## {3. Create closing variables}
 
@@ -97,8 +100,7 @@ effects.confetti.startScreenEffect()
 
 The Winners Circle displays both recommendations (text) and performance scores (numbers). Creating the right variable types before loading data ensures that your summary can present both qualitative insights and quantitative results cleanly, giving you a complete picture of what you accomplished.
 
-* :paper plane: Open `||variables:Variables||` and create a text variable named `||variables:nextTestFocus||`.
-* :paper plane: Create a second variable named `||variables:finalStrategy||` and give it a starting value of `0`.
+* :paper plane: Drag `||variables:set nextTestFocus to ''||` and `||variables:set finalStrategy to 0||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Variables not loading? 💾
 
@@ -119,6 +121,10 @@ let nextTestFocus = ""
 //@validate-exists
 let finalStrategy = 0
 ```
+```ghost
+let nextTestFocus = ""
+let finalStrategy = 0
+```
 
 ## {4. Read closing data}
 
@@ -128,9 +134,7 @@ let finalStrategy = 0
 
 The celebration is meaningful because it's personalized to your choices. Loading your `||variables:nextTestFocus||`, session strategy total, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
 
-* :racing car: Open `||drivenByStem:Driven by STEM||` and set `||variables:nextTestFocus||` from the `next test focus` reporter.
-* :racing car: Set `||variables:finalStrategy||` from the saved strategy result.
-* :racing car: Drag `||drivenByStem:show saved driver profile||` into `||on start||`.
+* :racing car: Drag `||variables:set nextTestFocus to next test focus||`, `||variables:set finalStrategy to last strategy result||`, and `||drivenByStem:show saved driver profile||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Recommendation blank? 🔍
 
@@ -152,6 +156,11 @@ nextTestFocus = drivenByStem.nextTestFocus()
 finalStrategy = drivenByStem.lastStrategyResult()
 //@highlight
 //@validate-exists
+drivenByStem.showSavedDriverProfile()
+```
+```ghost
+nextTestFocus = drivenByStem.nextTestFocus()
+finalStrategy = drivenByStem.lastStrategyResult()
 drivenByStem.showSavedDriverProfile()
 ```
 
@@ -198,6 +207,13 @@ if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
     game.splash("Career link", "You worked like a strategist balancing the whole system.")
 }
 ```
+```ghost
+if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
+game.splash("Career link", "You worked like a performance engineer.")
+} else {
+game.splash("Career link", "You worked like a strategist balancing the whole system.")
+}
+```
 
 ## {6. Show the CS takeaway}
 
@@ -207,8 +223,7 @@ if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
 
 Behind every racing decision was a computer science concept. Events detected collisions and pit stops, variables stored your tuning choices, and saved data carried those choices across tutorials. Explicitly naming these CS ideas helps you recognize that the technical skills you practiced here apply far beyond racing games.
 
-* :game pad: Open `||game:Game||` and drag a `splash` block into `on start`.
-* :keyboard: Set the text to `"Events, variables, and saved data carried your choices forward."`.
+* :game pad: Drag `||game:splash 'Computer science mattered'||` from the toolbox — the message text is already set.
 
 ~hint Message too long? 📱
 
@@ -234,6 +249,9 @@ if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
 }
 //@highlight
 //@validate-exists
+game.splash("Computer science mattered", "Events, variables, and saved data carried your choices forward.")
+```
+```ghost
 game.splash("Computer science mattered", "Events, variables, and saved data carried your choices forward.")
 ```
 
@@ -284,6 +302,13 @@ if (finalStrategy >= 3) {
     game.splash("Engineering takeaway", "You adapted well across the full session.")
 } else {
     game.splash("Engineering takeaway", "Next test: " + nextTestFocus)
+}
+```
+```ghost
+if (finalStrategy >= 3) {
+game.splash("Engineering takeaway", "You adapted well across the full session.")
+} else {
+game.splash("Engineering takeaway", "Next test: " + nextTestFocus)
 }
 ```
 

@@ -99,11 +99,8 @@ drivenByStem.setWeather(drivenByStem.WeatherMode.Rain)
 
 Your car doesn't reset to factory defaults every run—it carries forward the setup decisions you made earlier. Loading the saved speed and efficiency cost means this stage builds on your previous work rather than starting from scratch, and keeping the same `raceCar` sprite preserves the car you designed in the garage. Real race teams do this too: they tune the car once in the garage, then carry that configuration through multiple sessions.
 
-* :binoculars: Find the `||variables:set driveSpeed to||` block that is already in your project.
-* :racing car: Change that block so `||variables:driveSpeed||` uses `||drivenByStem:saved drive speed||`.
-* :racing car: Keep using the same `||variables:raceCar||` sprite you already carried forward from the earlier road activities.
-* :paper plane: Make a new variable named `||variables:efficiencyDrain||`.
-* :racing car: Set `||variables:efficiencyDrain||` to `||drivenByStem:saved efficiency cost||`.
+* :racing car: Drag `||variables:set driveSpeed to saved drive speed||` and `||variables:set efficiencyDrain to saved efficiency cost||` from the toolbox into `||loops(noclick):on start||`.
+* :id card: Keep using the same `||variables:raceCar||` sprite you already carried forward.
 
 ~hint Speed feels inconsistent? ⚡
 
@@ -122,6 +119,10 @@ scene.setBackgroundColor(7)
 driveSpeed = drivenByStem.savedDriveSpeed()
 //@highlight
 //@validate-exists
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
+```
+```ghost
+driveSpeed = drivenByStem.savedDriveSpeed()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 ```
 
@@ -178,6 +179,10 @@ let weatherChanged = 0
 //@validate-exists
 let weatherCollisions = 0
 ```
+```ghost
+let weatherChanged = 0
+let weatherCollisions = 0
+```
 
 ## {5. Update HUD + countdown}
 
@@ -187,10 +192,7 @@ let weatherCollisions = 0
 
 Score, life, and the countdown timer give players constant feedback about their current state and how much time they have left. In this stage, those blocks should carry forward the results you saved in Pit Stop Briefings instead of starting over from zero. That mirrors real race dashboards, which keep updating with the latest run data rather than pretending the last stage never happened.
 
-* :binoculars: In `||loops(noclick):on start||`, find the `||info:set score to||`, `||info:set life to||`, and `||info:start countdown||` blocks you already have from the earlier road test.
-* :score: Change the score block so it uses `||drivenByStem:last performance result||`.
-* :heart: Change the life block so it uses `||drivenByStem:last efficiency result||`.
-* :game pad: Change the existing countdown block to **25** seconds for this weather run.
+* :game pad: Drag `||info:set score to last performance result||`, `||info:set life to last efficiency result||`, and `||info:start countdown 25||` from the toolbox — they replace the old score, life, and countdown blocks already in `||loops(noclick):on start||`.
 
 ~hint Life value wrong? 🔎
 
@@ -216,6 +218,11 @@ info.setScore(drivenByStem.lastPerformanceResult())
 info.setLife(drivenByStem.lastEfficiencyResult())
 //@highlight
 //@validate-exists
+info.startCountdown(25)
+```
+```ghost
+info.setScore(drivenByStem.lastPerformanceResult())
+info.setLife(drivenByStem.lastEfficiencyResult())
 info.startCountdown(25)
 ```
 
@@ -371,6 +378,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 ```
+```ghost
+let puddle = sprites.create(assets.image`rainPuddle`, SpriteKind.Enemy)
+puddle.setPosition(randint(10, 150), randint(10, 110))
+puddle.vy = 40
+puddle.lifespan = 2000
+weatherCollisions += 1
+info.changeLifeBy(-efficiencyDrain)
+otherSprite.destroy(effects.fire, 200)
+```
 
 ## {9. Reward adaptation + save results (new event block)}
 
@@ -411,6 +427,11 @@ info.onCountdownEnd(function () {
         game.splash("Run complete", "Check your strategy score.")
     }
 })
+```
+```ghost
+drivenByStem.awardStrategyPoints(1)
+drivenByStem.saveCurrentRunResults()
+game.splash("Run complete", "Check your strategy score.")
 ```
 
 ## Great work!

@@ -15,7 +15,7 @@ let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image
 game.splash("Ready to build your F1 simulator!")
 ```
 
-## Mission Briefing @showdialog
+## Welcome to the Garage @showdialog
 
 ![Sam - Software Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/sam.png)
 
@@ -31,9 +31,7 @@ On a real racing team, I write and test control code, fix unexpected behavior, a
 
 Every game starts with a scene. Setting the garage background gives your game a clear location from the moment it launches. This is the first thing players experience, and it helps the whole racing setup feel like a real team workspace.
 
-* :tree: Open `||scene:Scene||` and drag `||scene:set background image to||` into `||loops(noclick):on start||`.
-* :mouse pointer: Select the gray image square on the block to open the image picker.
-* :mouse pointer: Select the "Gallery" button and choose the garage background image, `garageBg`.
+* :tree: Drag `||scene:set background image to garageBg||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Garage image missing? 🔍
 
@@ -46,6 +44,10 @@ hint~
 ```blocks
 //@highlight
 //@validate-exists
+scene.setBackgroundImage(assets.image`garageBg`)
+```
+
+```ghost
 scene.setBackgroundImage(assets.image`garageBg`)
 ```
 
@@ -73,6 +75,10 @@ hint~
 scene.setBackgroundImage(assets.image`garageBg`)
 //@highlight
 //@validate-exists
+game.splash("Miami test session", "Build a car you can explain.")
+```
+
+```ghost
 game.splash("Miami test session", "Build a car you can explain.")
 ```
 
@@ -117,6 +123,10 @@ game.splash("Miami test session", "Build a car you can explain.")
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 ```
 
+```ghost
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+```
+
 ## {4. Turn On Movement}
 
 **Connecting Input to Action**
@@ -125,11 +135,8 @@ let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 
 A car that can't move isn't much of a simulator. Wiring up controller input to sprite movement is how you transform button presses into on-screen action. Real racing simulators do the same thing — they translate driver input (steering, throttle, brakes) into vehicle behavior. Here you're building that connection.
 
-* :game pad: Open `||controller:Controller||` and drag `||controller:move mySprite with buttons||` into `||loops(noclick):on start||`.
-* :keyboard: Select the + icon and enter `80` for both horizontal and vertical velocity values (vx and vy).
-* :paper plane: Open `||sprites:Sprites||` and add `||sprites:set mysprite auto destroy off||`.
-* :mouse pointer: In the `||sprites:set raceCar auto destroy off||` change "auto destroy" to "stay in screen".
-* :mouse pointer: In the `||sprites:set raceCar auto destroy off||` change the "Off" to "On" so your car can't leave the view.
+* :game pad: Drag `||controller:move raceCar with buttons vx 80 vy 80||` from the toolbox into `||loops(noclick):on start||`.
+* :paper plane: Drag `||sprites:set raceCar stay in screen On||` under it.
 
 ~hint Car won't move? 🔧
 
@@ -151,6 +158,12 @@ controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
 
+```ghost
+let raceCar: Sprite = null
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+```
+
 ## {5. Load Saved Race State}
 
 **Building Persistent Systems**
@@ -159,10 +172,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 Professional race teams don't start from scratch every session — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. Loading saved data lets your choices carry forward across different stages, just like real engineering systems that remember past configurations and results.
 
-* :game pad: We first need to load our game defaults. Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:load race profile||` to `||loops(noclick):on start||`.
-* :game pad: Next we need to set the current stage of our game. Add the `||drivenByStem:start stage (Garage)||` block in the `||loops(noclick):on start||`. 
-* :mouse pointer: To set our car's speed we need to add the `||drivenByStem:set base car speed to||` block to `||loops(noclick):on start||`.
-* :racing car: Then we set the speed using the `||drivenByStem:saved drive speed||` variable from the ||`drivenByStem`|| toolbox in the `||drivenByStem:set base car speed to||` on top of the existing "80" value.
+* :racing car: Drag `||drivenByStem:load race profile||`, `||drivenByStem:start stage Garage||`, and `||drivenByStem:set base car speed to saved drive speed||` from the toolbox into `||loops(noclick):on start||` in that order.
 
 ~hint Blocks missing? 👀
 
@@ -186,6 +196,12 @@ drivenByStem.loadRaceProfile(80, 5)
 drivenByStem.startStage(drivenByStem.RaceStage.Garage)
 //@highlight
 //@validate-exists
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+```
+
+```ghost
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
 drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 ```
 
@@ -234,6 +250,12 @@ drivenByStem.setCarName("Velocity")
 drivenByStem.showSavedDriverProfile()
 ```
 
+```ghost
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.showSavedDriverProfile()
+```
+
 ## {7. Choose Dashboard Units}
 
 **Preparing the Shakedown Readout**
@@ -242,10 +264,8 @@ drivenByStem.showSavedDriverProfile()
 
 Racing teams need data they can read fast. Your shakedown dashboard will show speed and fuel during the test track, so this step lets you choose the units your team wants to read. Small display choices like this help teams compare results clearly.
 
-* :racing car: Add `||drivenByStem:set speed display unit to||` at the bottom of `||loops(noclick):on start||`.
-* :mouse pointer: Select `mph` or `km/h` for the speed readout.
-* :racing car: Add `||drivenByStem:set fuel display unit to||` at the bottom of `||loops(noclick):on start||`.
-* :mouse pointer: Choose `gallons` or `liters` for the fuel readout.
+* :racing car: Drag `||drivenByStem:set speed display unit to mph||` and `||drivenByStem:set fuel display unit to gallons||` from the toolbox into `||loops(noclick):on start||`.
+* :mouse pointer: Use the dropdowns to switch units if your team prefers `km/h` or `liters`.
 
 ~hint Wrong units later? 🐛
 
@@ -274,6 +294,11 @@ drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
 
+```ghost
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
+```
+
 ## {8. Add a Reset Button}
 
 **Preparing for Shared Use**
@@ -287,9 +312,7 @@ If you share your project with a friend, or multiple people want to try your gam
 * Enabled: false
 ```
 
-* :game pad: Open `||controller:Controller||` and drag `||controller:on button pressed||` into the workspace outside of `||loops(noclick):on start||`.
-* :mouse pointer: Change the button to `B`.
-* :racing car: Inside the `||controller:on button pressed||` event, add `||drivenByStem:reset saved session||` and `||game:reset game||`.
+* :game pad: Drag the `||controller:on B button pressed||` event from the toolbox into an empty area of the workspace — it already contains `||drivenByStem:reset saved session||` and `||game:reset game||`.
 
 ~hint Button not working? ⚠️
 
@@ -302,6 +325,13 @@ hint~
 ```blocks
 //@highlight
 //@validate-exists
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    drivenByStem.resetSavedSession()
+    game.reset()
+})
+```
+
+```ghost
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     drivenByStem.resetSavedSession()
     game.reset()

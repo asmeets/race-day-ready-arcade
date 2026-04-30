@@ -62,6 +62,12 @@ let reviewStrategy = 0
 //@validate-exists
 let pitStopsVisited = 0
 ```
+```ghost
+let reviewScore = 0
+let reviewEfficiency = 0
+let reviewStrategy = 0
+let pitStopsVisited = 0
+```
 
 ## {2. Start the Review stage and read saved results}
 
@@ -118,8 +124,7 @@ drivenByStem.startVehicleTestTrack()
 
 Numbers in variables are invisible to players. A well-designed summary screen takes your three core metrics and presents them in a single, readable snapshot that anyone can understand at a glance. Clear presentation turns data into communication, making results accessible to the entire team.
 
-* :game pad: Open `||game:Game||` and add a `||game:splash||` block.
-* :keyboard: Build the message to show `||variables:Perf||`, `||variables:Eff||`, and `||variables:Strat||` using your three variables.
+* :game pad: Drag `||game:splash "Race data"||` from the toolbox — it already formats your performance, efficiency, and strategy values into one message.
 
 ~hint Summary hard to read? 👀
 
@@ -141,6 +146,9 @@ reviewStrategy = drivenByStem.lastStrategyResult()
 pitStopsVisited = drivenByStem.savedPitStopCount()
 //@highlight
 //@validate-exists
+game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
+```
+```ghost
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 ```
 
@@ -195,6 +203,16 @@ if (reviewEfficiency < 3) {
 //@highlight
 game.splash("Next test focus", drivenByStem.nextTestFocus())
 ```
+```ghost
+if (reviewEfficiency < 3) {
+drivenByStem.setNextTestFocus("Protect efficiency during longer runs.")
+} else if (reviewStrategy < 3) {
+drivenByStem.setNextTestFocus("Adapt sooner when conditions change.")
+} else {
+drivenByStem.setNextTestFocus("Your setup stayed balanced under pressure.")
+}
+game.splash("Next test focus", drivenByStem.nextTestFocus())
+```
 
 ## {5. Connect results to a role}
 
@@ -247,6 +265,13 @@ if (pitStopsVisited > 0) {
     game.splash(drivenByStem.roleLens(), "You used pit information during the run.")
 } else {
     game.splash(drivenByStem.roleLens(), "Next time, use more mid-run data.")
+}
+```
+```ghost
+if (pitStopsVisited > 0) {
+game.splash(drivenByStem.roleLens(), "You used pit information during the run.")
+} else {
+game.splash(drivenByStem.roleLens(), "Next time, use more mid-run data.")
 }
 ```
 

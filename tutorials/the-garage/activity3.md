@@ -13,6 +13,16 @@ let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image
 let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image`finishBg`, assets.image`weatherBg`]
 ```
 
+# Garage Shakedown
+
+### @diffs true
+
+```template
+// Pre-load all assets so they appear in the gallery
+let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image`trackObstacle`, assets.image`pitMarker`, assets.image`rainPuddle`, assets.image`telemetryScreen`, assets.image`finishBanner`, assets.image`teamBadge`]
+let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image`finishBg`, assets.image`weatherBg`]
+```
+
 ## Garage Shakedown @showdialog
 
 ![Jordan - Test Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/jordan.png)
@@ -29,12 +39,10 @@ In this gate you'll launch a quick practice test track that reads your saved spe
 
 Before a good test starts, teams decide how they will read the data. Your edited car sprite already stays in the project from the garage steps, so here you can focus on the test readout. The track can show speed in `mph` or `km/h`, and fuel in `gallons` or `liters`. Setting those units now keeps your results readable and consistent when the run begins.
 
-* :mouse pointer: Find the `||drivenByStem:preview garage test bed||` block from the last activity and drag it away from `||loops(noclick):on start||` so the garage preview does not open again.
-* :mouse pointer: If `||drivenByStem:show saved driver profile||` is still connected in `||loops(noclick):on start||`, drag it away too so the shakedown can launch without an extra popup.
-* :racing car: Find the `||drivenByStem:start stage||` block already in `||loops(noclick):on start||` from the last activity.
-* :mouse pointer: Change the `||drivenByStem:start stage||` value from **Garage Setup** to **Garage Shakedown**.
-* :racing car: From the `||drivenByStem:Driven by STEM||` Toolbox, add `||drivenByStem:set speed display unit to||` and `||drivenByStem:set fuel display unit to||` in your `||loops(noclick):on start||`.
-* :mouse pointer: Choose the units your team wants to read by selecting the value from the dropdowns.
+* :mouse pointer: Find the `||drivenByStem:preview garage test bed||` block and drag it away from `||loops(noclick):on start||` so the garage preview does not open again.
+* :mouse pointer: If `||drivenByStem:show saved driver profile||` is still connected, drag it away too.
+* :racing car: Find the `||drivenByStem:start stage||` block in `||loops(noclick):on start||` and change its value from **Garage Setup** to **Garage Shakedown**.
+* :racing car: Drag `||drivenByStem:set speed display unit to mph||` and `||drivenByStem:set fuel display unit to gallons||` from the toolbox. Use the dropdowns to switch if your team prefers different units.
 
 ~hint Wrong units later? 🔍
 
@@ -54,6 +62,10 @@ drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 //@validate-exists
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
+```ghost
+drivenByStem.startStage(drivenByStem.RaceStage.GarageShakedown)
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+```
 
 ## {2. Launch the Test Track}
 
@@ -63,9 +75,8 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 
 A shakedown needs a fair, repeatable test. The `||drivenByStem:start vehicle test track||` block opens the support track, uses your saved setup, and turns on the fuel, time, and speed dashboard automatically. That gives you one clean run to measure before you make the next decision.
 
-* :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:start vehicle test track||` at the end of `||loops(noclick):on start||`.
-* :game pad: Run the simulator and wait for the start lights before you drive. You can expand the simulator to full screen using the expand icon which is located at the top, above the sound icon.
-* :game pad: Watch the dashboard as you drive so you can compare fuel use, elapsed time, and speed.
+* :racing car: Drag `||drivenByStem:start vehicle test track||` from the toolbox to the end of `||loops(noclick):on start||`.
+* :game pad: Run the simulator, wait for the start lights, and watch the dashboard as you drive.
 
 ~hint Track not starting?
 
@@ -85,6 +96,9 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 //@validate-exists
 drivenByStem.startVehicleTestTrack()
 ```
+```ghost
+drivenByStem.startVehicleTestTrack()
+```
 
 ## {3. Add a Retry Button}
 
@@ -96,9 +110,8 @@ One run gives you data. Two runs let you compare. Adding a retry button makes it
 
 Engineers repeat tests so they can trust the pattern, not just one result.
 
-* :game pad: Open `||controller:Controller||` and drag `||controller:on A button pressed||` into the workspace outside `||loops(noclick):on start||`.
-* :mouse pointer: Inside the `||controller:on A button pressed||`, add `||drivenByStem:start vehicle test track||`.
-* :game pad: After one run ends, press `A` to launch another run. When the second run finishes, the comparison will appear automatically.
+* :game pad: Drag the `||controller:on A button pressed||` event from the toolbox into an empty area of the workspace — `||drivenByStem:start vehicle test track||` is already inside.
+* :game pad: After one run ends, press `A` to launch another. When the second run finishes, the comparison will appear automatically.
 
 ~hint A button does nothing? 🔁
 
@@ -114,6 +127,11 @@ hint~
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     //@validate-exists
     drivenByStem.startVehicleTestTrack()
+})
+```
+```ghost
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+drivenByStem.startVehicleTestTrack()
 })
 ```
 

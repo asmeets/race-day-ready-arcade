@@ -2,11 +2,6 @@
 
 ### @diffs true
 
-```validation.global
-# BlocksExistValidator
-* markers: validate-exists
-```
-
 ```template
 // Pre-load all assets so they appear in the gallery
 let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image`trackObstacle`, assets.image`pitMarker`, assets.image`rainPuddle`, assets.image`telemetryScreen`, assets.image`finishBanner`, assets.image`teamBadge`]
@@ -58,9 +53,8 @@ drivenByStem.startVehicleTestTrack()
 
 The final challenge deserves its own visual identity. Start with a distinct background color so the scene stays readable, then add the shared finish background image to show that this is the culminating test. Strong contrast still matters because every obstacle and opportunity needs to stay visible during high-speed decision-making.
 
-* :tree: Open `||scene:Scene||` inside `||loops(noclick):on start||`.
-* :tree: Change your existing weather background color to one that fits the final challenge.
-* :tree: Add `||scene:set background image to||` under it and choose the shared `finishBg` image.
+* :tree: Change your existing background color block to one that fits the final challenge.
+* :tree: Drag `||scene:set background image to finishBg||` from the toolbox.
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
@@ -68,6 +62,9 @@ drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
 //@highlight
 //@validate-exists
+scene.setBackgroundImage(assets.image`finishBg`)
+```
+```ghost
 scene.setBackgroundImage(assets.image`finishBg`)
 ```
 
@@ -106,6 +103,11 @@ let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@validate-exists
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 ```
+```ghost
+driveSpeed = drivenByStem.savedDriveSpeed()
+let efficiencyDrain = drivenByStem.savedEfficiencyCost()
+controller.moveSprite(raceCar, driveSpeed, driveSpeed)
+```
 
 ## {4. Create final tracking variables}
 
@@ -115,8 +117,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 
 You can't improve what you don't measure. Creating dedicated variables for collisions and pit stops gives this final challenge clear evidence to show as it happens. These counters help you tell a specific story about how the run went under pressure, even before you save the final summary data.
 
-* :paper plane: Open `||variables:Variables||` and create `||variables:finalCollisions||`. Set it to `0`.
-* :paper plane: Create `||variables:finalPitStops||` and set it to `0`.
+* :paper plane: Drag `||variables:set finalCollisions to 0||` and `||variables:set finalPitStops to 0||` from the toolbox into `||loops(noclick):on start||`.
 
 ```blocks
 let driveSpeed = 110
@@ -152,6 +153,10 @@ let finalCollisions = 0
 //@validate-exists
 let finalPitStops = 0
 ```
+```ghost
+let finalCollisions = 0
+let finalPitStops = 0
+```
 
 ## {5. Update HUD + countdown}
 
@@ -161,11 +166,7 @@ let finalPitStops = 0
 
 Racing isn't just about going fast—it's about balancing three competing priorities under time pressure. Your HUD displays Performance through score, Efficiency through life, and Strategy through decisions. In this final challenge, those values should continue from the run you just finished in Changing Conditions so the full test really feels connected.
 
-* :binoculars: In `||loops(noclick):on start||`, find the `||info:set score to||`, `||info:set life to||`, and `||info:start countdown||` blocks you already have.
-* :heart: Change the score block so it uses `||drivenByStem:last performance result||`.
-* :heart: Change the life block so it uses `||drivenByStem:last efficiency result||`.
-* :game pad: Keep the countdown at `25` seconds for this final run.
-* :game pad: Add a `||game:splash||` that reminds players to balance Performance, Efficiency, and Strategy.
+* :game pad: Drag `||info:set score to last performance result||`, `||info:set life to last efficiency result||`, `||info:start countdown 25||`, and `||game:splash 'Balance all three'||` from the toolbox — they replace the old score, life, countdown, and any carry-over splash already in `||loops(noclick):on start||`.
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
@@ -188,6 +189,12 @@ info.startCountdown(25)
 //@validate-exists
 game.splash("Balance all three", "Performance. Efficiency. Strategy.")
 ```
+```ghost
+info.setScore(drivenByStem.lastPerformanceResult())
+info.setLife(drivenByStem.lastEfficiencyResult())
+info.startCountdown(25)
+game.splash("Balance all three", "Performance. Efficiency. Strategy.")
+```
 
 ## {6. Spawn obstacles (risk)}
 
@@ -197,9 +204,7 @@ game.splash("Balance all three", "Performance. Efficiency. Strategy.")
 
 Obstacles represent the unpredictable risks that every racing team faces—track debris, weather changes, mechanical stress. By spawning them continuously throughout the run, you create sustained pressure that tests whether your efficiency tuning can handle extended challenges, not just a single perfect moment.
 
-* :game pad: Open `||game:Game||` and add a new **on update interval** block set to `2500` ms.
-* :paper plane: Inside the update, check if stage is **Final Challenge**.
-* :mouse pointer: Spawn an **Enemy** sprite called trackObstacle near the top of the screen with downward velocity and auto-destroy enabled.
+* :game pad: Drag the `||game:on update every 2500ms||` obstacle spawner from the toolbox — the stage check, `trackObstacle` Enemy sprite, random position, speed, and lifespan are already inside.
 
 ~hint Too chaotic? 🌀
 
@@ -231,6 +236,16 @@ game.onUpdateInterval(2500, function () {
     }
 })
 ```
+```ghost
+game.onUpdateInterval(2500, function () {
+if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
+let obstacle = sprites.create(assets.image`trackObstacle`, SpriteKind.Enemy)
+obstacle.setPosition(randint(10, 150), 0)
+obstacle.vy = 50
+obstacle.lifespan = 3000
+}
+})
+```
 
 ## {7. Spawn pit opportunities (recovery)}
 
@@ -240,8 +255,7 @@ game.onUpdateInterval(2500, function () {
 
 Real racing isn't just about avoiding problems—it's about knowing when to recover. Pit markers transform the challenge from pure reflexes into strategic decision-making: do you maintain your current pace or take a moment to restore efficiency? This turns the game into a test of judgment, not just speed.
 
-* :game pad: Open `||game:Game||` and add a new **on update interval** block set to `7000` ms.
-* :paper plane: Inside the update, check if stage is **Final Challenge**, then spawn a `||sprites:Food||` sprite with a short lifespan.
+* :game pad: Drag the `||game:on update every 7000ms||` pit marker spawner from the toolbox — the stage check, `pitMarker` Food sprite, random position, and lifespan are already inside.
 
 ~hint Pit markers not showing? ⏱️
 
@@ -270,6 +284,15 @@ game.onUpdateInterval(7000, function () {
     }
 })
 ```
+```ghost
+game.onUpdateInterval(7000, function () {
+if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
+let pitMarker = sprites.create(assets.image`pitMarker`, SpriteKind.Food)
+pitMarker.setPosition(randint(20, 140), randint(20, 100))
+pitMarker.lifespan = 4000
+}
+})
+```
 
 ## {8. Score risk + recovery}
 
@@ -279,18 +302,8 @@ game.onUpdateInterval(7000, function () {
 
 Events without feedback are invisible to players. By wiring collision and pit stop overlaps to the HUD, you make every decision immediately visible through score changes, life updates, and visual effects. This feedback loop is what turns abstract code into a readable, learnable system.
 
-* :paper plane: Open `||sprites:Sprites||` and add an overlap event for **Player** vs **Enemy**.
-* :logic: Inside that overlap event, add an `||logic:if||` check so this code only runs when the stage is **Final Challenge**.
-* :heart: Inside the `if` block, reduce life by `||variables:efficiencyDrain||` so collisions cost Efficiency.
-* :sprites: Destroy the obstacle sprite with an effect so players can see the collision happened.
-* :paper plane: Add a second overlap event for **Player** vs **Food**.
-* :logic: Inside that second overlap event, add an `||logic:if||` check for whether the stage is **Final Challenge**.
-* :paper plane: In that `||logic:if||` block, change `||variables:finalPitStops||` by 1 so this run keeps track of how many recovery stops you used.
-* :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:record pit stop visit||` so the visit is saved in your run data too.
-* :heart: Open `||info:Info||` and add `||info:change life by 1||` so the pit stop restores some Efficiency.
-* :score: Add `||info:change score by 3||` so the pit stop also creates a visible Performance reward.
-* :racing car: Still in `||drivenByStem:Driven by STEM||`, add `||drivenByStem:award strategy points 1||` to show that choosing the pit at the right time is also a Strategy decision.
-* :sprites: Destroy the pit marker sprite so players can see that the recovery chance has been used.
+* :paper plane: Drag the `||sprites:on Player overlaps Enemy||` collision handler from the toolbox — the stage check, collision counter, life penalty, and destroy effect are all wired in.
+* :paper plane: Drag the `||sprites:on Player overlaps Food||` pit handler from the toolbox — the stage check, pit counter, life restore, score, strategy points, and destroy are all wired in.
 
 ~hint Events doing nothing? 🐛
 
@@ -345,6 +358,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     }
 })
 ```
+```ghost
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
+finalCollisions += 1
+info.changeLifeBy(-efficiencyDrain)
+otherSprite.destroy(effects.disintegrate, 200)
+}
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
+finalPitStops += 1
+drivenByStem.recordPitStopVisit()
+info.changeLifeBy(1)
+info.changeScoreBy(3)
+drivenByStem.awardStrategyPoints(1)
+otherSprite.destroy()
+}
+})
+```
 
 ## {9. Save final run data}
 
@@ -354,8 +386,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 
 Integration testing isn't complete until you've captured the results. The countdown-end event is your only guaranteed moment to save performance data before the run terminates. This saved evidence becomes the foundation for reflection, comparison, and the next round of tuning decisions.
 
-* :game pad: Open `||info:Info||` and add an **on countdown end** event block.
-* :racing car: Inside it, check if stage is **Final Challenge**, then use a block in `||drivenByStem:Driven by STEM||` to save current run results.
+* :game pad: Drag the `||info:on countdown end||` event from the toolbox — the stage check, `||drivenByStem:save current run results||`, and closing splash are already inside.
 
 ~hint Review shows nothing? 📊
 
@@ -379,6 +410,14 @@ info.onCountdownEnd(function () {
         //@validate-exists
         game.splash("Final run complete", "Open the data review.")
     }
+})
+```
+```ghost
+info.onCountdownEnd(function () {
+if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
+drivenByStem.saveCurrentRunResults()
+game.splash("Final run complete", "Open the data review.")
+}
 })
 ```
 

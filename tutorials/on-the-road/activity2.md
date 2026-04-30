@@ -2,11 +2,6 @@
 
 ### @diffs true
 
-```validation.global
-# BlocksExistValidator
-* markers: validate-exists
-```
-
 ```template
 // Pre-load all assets so they appear in the gallery
 let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image`trackObstacle`, assets.image`pitMarker`, assets.image`rainPuddle`, assets.image`telemetryScreen`, assets.image`finishBanner`, assets.image`teamBadge`]
@@ -58,8 +53,7 @@ drivenByStem.startVehicleTestTrack()
 
 In racing, clear communication prevents mistakes. A quick message at the start of the pit phase tells the player they've transitioned from driving to decision-making. This mirrors how race engineers brief drivers over the radio before critical moments—short, direct, and focused on what matters right now.
 
-* :game pad: Open `||game:Game||` and add a `||game:splash||` block below your existing stage setter in `||loops(noclick):on start||`.
-* :keyboard: Set the first field to `||game:Pit wall||` and the second field to `||game:Use data before you make the next call.||`
+* :game pad: Drag `||game:splash "Pit wall" "Use data before you make the next call."||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Message too long? ⚡
 
@@ -75,6 +69,9 @@ drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 //@validate-exists
 game.splash("Pit wall", "Use data before you make the next call.")
 ```
+```ghost
+game.splash("Pit wall", "Use data before you make the next call.")
+```
 
 ## {3. Track pit stops visited}
 
@@ -84,8 +81,7 @@ game.splash("Pit wall", "Use data before you make the next call.")
 
 Every pit stop costs time, so teams track how often they use them to evaluate their strategy later. Creating a counter variable gives you measurable evidence of your decision-making patterns. This is the same principle data analysts use when they review race logs to identify what worked and what didn't.
 
-* :paper plane: Open `||variables:Variables||` and make a new variable named `||variables:pitStopsVisited||`.
-* :paper plane: Drag `||variables:set pitStopsVisited to 0||` into `||loops(noclick):on start||` below the splash.
+* :paper plane: Drag `||variables:set pitStopsVisited to 0||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Lost evidence? 📊
 
@@ -102,6 +98,9 @@ game.splash("Pit wall", "Use data before you make the next call.")
 //@validate-exists
 let pitStopsVisited = 0
 ```
+```ghost
+let pitStopsVisited = 0
+```
 
 ## {4. Spawn pit markers}
 
@@ -113,17 +112,7 @@ Pit windows appear and disappear based on track position and race conditions. By
 
 Engineers design systems that create these windows, and strategists decide when to use them—both roles rely on timing.
 
-* :game pad: Open `||game:Game||` and add an `||game:on update every (8000) ms||` block. (Make sure you manually change 500 to 8000.)
-* :racing car: Inside the `||game:on update every (8000) ms||` block, add an `||logic:if stage is Pit Stop||`. HINT: You will need to use two different blocks to accomplish this step.
-* :mouse pointer: Create a new variable called `||variables:pitMarker||` which will represent a pit stop.
-* :paper plane: Simiilar to how we created an "enemy" sprite, we are going to add a `||sprites:set mysprite to sprite of kind player||` sprite inside the `||logic:if||` block. After adding the block, change "Player" to "Food".
-* :mouse pointer: Change `||sprites:mySprite||` to `||sprites:pitStop||`.
-* :mouse pointer: Select the image block next to sprite and select the pitStop image in the Gallery.
-* :racing car: Add `||sprites:set mySprite position to x0 y0||` under the previous block. Change `||sprites:mySprite||` to `||sprites:pitMarker||`.
-* :racing car: To make sure pit stops are randomly placed add `||math:pick random 0 to 0||` to both "X" and "Y". 
-* :mouse pointer: For "X" pick random numbers between 20 and 140. For "Y", pick random numbers between 20 and 100.
-* :racing car: Add `||sprites:set mySprite x to 0||` under the previous block. Change `||sprites:mySprite||` to `||sprites:pitMarker||`.
-* :racing car: Change "X" to lifespan and set the value to 4000 to make it a timed decision.
+* :game pad: Drag the `||game:on update every 8000ms||` pit marker spawner from the toolbox into an empty area of the workspace — the stage check, `pitMarker` Food sprite, random position, and lifespan are already configured inside.
 
 ~hint Markers vanishing too fast? ⏱️
 
@@ -146,6 +135,15 @@ game.onUpdateInterval(8000, function () {
         //@highlight
         pitMarker.lifespan = 4000
     }
+})
+```
+```ghost
+game.onUpdateInterval(8000, function () {
+if (drivenByStem.stageIs(drivenByStem.RaceStage.PitStop)) {
+let pitMarker = sprites.create(assets.image`pitMarker`, SpriteKind.Food)
+pitMarker.setPosition(randint(20, 140), randint(20, 100))
+pitMarker.lifespan = 4000
+}
 })
 ```
 

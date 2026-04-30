@@ -49,11 +49,8 @@ Engineers don't just change things and hope for the best — they predict outcom
 * Enabled: false
 ```
 
-* :racing car: Find the `||drivenByStem:start stage||` block already in `||loops(noclick):on start||`.
-* :mouse pointer: Change the `||drivenByStem:start stage||` block value from **Garage** to **Garage Setup**.
-* :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `driveSpeed`.
-* :paper plane: Add `||variables:set driveSpeed to||` inside `||loops(noclick):on start||` immediately below `||sprites(noclick):set raceCar to sprite of kind Player||`.
-* :mouse pointer: Set `||variables:driveSpeed||` to the `||drivenByStem:saved drive speed||` output so `driveSpeed` starts with the same value as your current car setup.
+* :racing car: Find the `||drivenByStem:start stage||` block already in `||loops(noclick):on start||` and change its value from **Garage** to **Garage Setup**.
+* :paper plane: Drag `||variables:set driveSpeed to saved drive speed||` from the toolbox into `||loops(noclick):on start||` below `||sprites(noclick):set raceCar to sprite of kind Player||`.
 * :wrench: Leave the existing `||drivenByStem:set base car speed to||` block alone for now. In Step 3, you will swap it from `||drivenByStem:saved drive speed||` to `||variables:driveSpeed||` so one variable controls the tuning.
 * :game pad: Before you test, pause and make a quick prediction with your team: what might more speed do to control and energy use?
 
@@ -93,6 +90,10 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 //@highlight
 let driveSpeed = drivenByStem.savedDriveSpeed()
 ```
+```ghost
+drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
+let driveSpeed = drivenByStem.savedDriveSpeed()
+```
 
 ## {2. Tune Speed}
 
@@ -117,6 +118,9 @@ hint~
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 //@highlight
 //@validate-exists
+let driveSpeed = 110
+```
+```ghost
 let driveSpeed = 110
 ```
 
@@ -155,6 +159,9 @@ drivenByStem.setCarName("Velocity")
 drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
+```ghost
+drivenByStem.setBaseCarSpeed(driveSpeed)
+```
 
 ## {4. Create the Efficiency Variables}
 
@@ -164,9 +171,7 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 
 In racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `||variables:efficiencyRating||` represents how much energy the car starts with, and `||variables:efficiencyDrain||` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
 
-* :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyRating`.
-* :paper plane: Set `||variables:efficiencyRating||` to `||drivenByStem:saved efficiency||`.
-* :paper plane: Create `||variables:efficiencyDrain||`, then add `||variables:set efficiencyDrain to 1||` in `||loops(noclick):on start||`.
+* :paper plane: Drag `||variables:set efficiencyRating to saved efficiency||` and `||variables:set efficiencyDrain to 1||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
 
@@ -185,6 +190,10 @@ drivenByStem.setBaseCarSpeed(driveSpeed)
 let efficiencyRating = drivenByStem.savedEfficiency()
 //@highlight
 //@validate-exists
+let efficiencyDrain = 1
+```
+```ghost
+let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
 ```
 
@@ -252,6 +261,15 @@ if (driveSpeed > 100) {
     efficiencyDrain = 1
 }
 ```
+```ghost
+if (driveSpeed > 100) {
+efficiencyRating = drivenByStem.savedEfficiency() - 1
+efficiencyDrain = 2
+} else {
+efficiencyRating = drivenByStem.savedEfficiency()
+efficiencyDrain = 1
+}
+```
 
 ## {6. Preview the Garage Test Bed}
 
@@ -263,14 +281,9 @@ Engineers often use a test stand before a full track run. A garage test bed give
 
 This is also a good moment to notice an important block programming rule: **blocks only run when they are connected to an event or another running stack**. Here, you will remove the repeated garage intro splash so testing stays quick, then preview the speed, efficiency, and drain values together.
 
-* :mouse pointer: Find the `||game:splash||` block in your `||loops(noclick):on start||`.
-* :mouse pointer: Drag that splash block away from the `||loops(noclick):on start||` stack so it is no longer connected.
-* :racing car: Open `||drivenByStem:Driven by STEM||` in the Toolbox and add `||drivenByStem:preview garage test bed speed efficiency drain||` at the end of `||loops(noclick):on start||`.
-* :mouse pointer: Set the block inputs to `||variables:driveSpeed||`, `||variables:efficiencyRating||`, and `||variables:efficiencyDrain||`.
-* :game pad: Run the simulator and press the arrow keys on your keyboard or using the joystick control. You may need to select the play button to activate the simulator.
-* :right arrow: The left and right arrows make the car slide across the rollers, and the speed gauge should jump up to show what a more active test feels like.
-* :up arrow: The up arrow gives the speed gauge a bigger rev, and the down arrow lowers it.
-* :binoculars: In this preview, the arrows do not start the full track drive. They only help you test the speed gauge while efficiency and drain stay at your chosen setup.
+* :mouse pointer: Find the `||game:splash||` block in your `||loops(noclick):on start||` and drag it away from the stack so it is no longer connected.
+* :racing car: Drag `||drivenByStem:preview garage test bed driveSpeed efficiencyRating efficiencyDrain||` from the toolbox to the end of `||loops(noclick):on start||` — the three variables are already wired in.
+* :game pad: Run the simulator and press the arrow keys to test the speed gauge.
 
 ~hint Preview looks wrong? 🧪
 
@@ -295,6 +308,9 @@ if (driveSpeed > 100) {
 }
 //@highlight
 //@validate-exists
+drivenByStem.previewGarageTestBed(driveSpeed, efficiencyRating, efficiencyDrain)
+```
+```ghost
 drivenByStem.previewGarageTestBed(driveSpeed, efficiencyRating, efficiencyDrain)
 ```
 
@@ -358,15 +374,9 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* :mouse pointer: In `||drivenByStem:Driven by STEM||`, add `||drivenByStem:saveTeamSetup||` inside the same `||logic:if driveSpeed > 100||` block you built in Step 5.
-* :mouse pointer: In the drop-down, set the focus to `||Pace||`.
-* :mouse pointer: For `||drivenByStem:saveTeamSetup:savedDriveSpeed||` add the `||variables:driveSpeed||` variable you created.
-* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiency|` add the `||variables:efficiencyRating||` variable you created.
-* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiencyCost|` add the `||variables:efficiencyDrain||` variable you created.
-* :mouse pointer: Right-click on the `||drivenByStem:saveTeamSetup||` block you created. Select Duplicate.
-* :mouse pointer: Drag the duplicataed block inside the `||logic:else||` branch.
-* :mouse pointer: In the `||logic:else||` branch set the focus to `||Balance||`.
-* :game pad: Add a `splash` in each branch of that same `||logic:if||` block that explains the tradeoff choice. Use the lightbulb hint below for suggestions.
+* :racing car: Drag `||drivenByStem:save team setup Pace||` from the toolbox into the **`if`** branch of your `||logic:if driveSpeed > 100||` block.
+* :racing car: Duplicate it (right-click → Duplicate), drag the copy into the **`else`** branch, and change the focus dropdown to **Balance**.
+* :game pad: Add a `||game:splash||` in each branch that explains the tradeoff choice to the player.
 
 ~hint Setup not saving? ⏱️
 

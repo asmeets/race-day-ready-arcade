@@ -5,6 +5,7 @@
 // Pre-load all assets so they appear in the gallery
 let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image`trackObstacle`, assets.image`pitMarker`, assets.image`rainPuddle`, assets.image`telemetryScreen`, assets.image`finishBanner`, assets.image`teamBadge`]
 let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image`finishBg`, assets.image`weatherBg`]
+game.splash("Ready to learn MakeCode Arcade!")
 ```
 
 ## Welcome! Let's Learn the Essentials @showdialog
@@ -157,6 +158,10 @@ scene.setBackgroundColor(7)
 game.splash("Let's start coding!")
 ```
 
+```ghost
+scene.setBackgroundColor(7)
+```
+
 
 
 ## {6. Creating Your First Sprite}
@@ -210,6 +215,10 @@ let mySprite = sprites.create(img`
 `, SpriteKind.Player)
 
 
+```
+
+```ghost
+let mySprite = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 ```
 
 
@@ -270,8 +279,11 @@ Now let's give players control! Container blocks like this one run code when spe
 
 ```blocks
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    let mySprite: Sprite = null
 })
+```
+
+```ghost
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {})
 ```
 
 
@@ -312,13 +324,15 @@ Visual effects make games more exciting and give players instant feedback. When 
 
 #### ~ tutorialhint
 ```blocks
-let mySprite: Sprite = null;
-
+let mySprite: Sprite = null
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.startEffect(effects.confetti, 500)
 })
 ```
-
+```ghost
+let mySprite: Sprite = null
+mySprite.startEffect(effects.confetti, 500)
+```
 
 
 ## Value Blocks  @showdialog
@@ -353,11 +367,15 @@ Randomness makes games unpredictable and replayable. Instead of the same effect 
 
 #### ~ tutorialhint
 ```blocks
-let mySprite: Sprite = null;
-
+let mySprite: Sprite = null
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-  mySprite.startEffect(effects.confetti, randint(100,600))
-}
+    mySprite.startEffect(effects.confetti, randint(100, 600))
+})
+```
+
+```ghost
+let mySprite: Sprite = null
+mySprite.startEffect(effects.confetti, randint(100, 600))
 ```
 
 
@@ -405,10 +423,4 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {})
 controller.moveSprite(mySprite)
 game.splash("")
 randint(0, 10)
-```
-
-
-```template
-game.splash("Ready to learn MakeCode Arcade!")
-
 ```
