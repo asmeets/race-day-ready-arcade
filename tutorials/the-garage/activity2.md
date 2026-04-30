@@ -36,7 +36,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 ---
 
-Engineers don't just change things and hope for the best — they predict outcomes first, then test. Making a prediction forces you to think through cause and effect before you make changes. This is how you turn random experiments into structured learning.
+The question I ask before every test is: **what do I expect to happen, and why?** If you change a setting without a prediction, you're just observing noise. When you make a prediction first, you create a standard to measure against. That's what separates engineering from guessing. Before you change a single number in this gate, pause and answer: if speed goes up, what do you expect to happen to control and energy use? Write it down. The answer you give now becomes your hypothesis, and the data you collect becomes your evidence.
 <div class="ui info message">
         <div class="content">
             <h4 id="diffs-in-tutorials">Something Looks Familiar...</h4>
@@ -101,7 +101,7 @@ let driveSpeed = drivenByStem.savedDriveSpeed()
 
 ---
 
-Speed is one of the most important variables in racing. Changing it affects everything — how quickly you navigate, how much energy you use, how hard it is to control the car. By storing speed in a variable, you create a single point of control that you can tune and test systematically.
+Speed is the variable everyone wants to tune first, which is exactly why I teach people to be careful with it. In physics, increasing velocity increases kinetic energy — and kinetic energy scales with the square of speed. That means a small speed increase creates a much larger energy demand. Storing speed in a variable gives you one place to change, one number to report, and one value to trace when something goes wrong. That is the single-source-of-truth principle, and it is one of the most valuable habits in both software engineering and performance analysis.
 
 * :mouse pointer: Find the `||variables:set driveSpeed to||` block you added in Step 1 inside `||loops(noclick):on start||`.
 * :keyboard: Change its value from `||drivenByStem:saved drive speed||` to `110`.
@@ -130,7 +130,7 @@ let driveSpeed = 110
 
 ---
 
-A variable is only useful if your code actually reads it. By wiring your movement system to the `||variables:driveSpeed||` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
+A variable that isn't connected to anything is just a label. The moment you wire `driveSpeed` into the movement system, it becomes a live parameter — change the number, the car responds. That's the difference between data and a control input. Performance engineers spend a lot of time making sure the right variables are actually driving the right behaviors. If a tuning change doesn't seem to do anything, the first question is always: is this variable actually connected to what I think it's connected to?
 
 * :racing car: Find the `||drivenByStem:set base car speed to||` block that already uses `||drivenByStem:saved drive speed||`.
 * :mouse pointer: Replace `||drivenByStem:saved drive speed||` with the `||variables:driveSpeed||` variable.
@@ -169,7 +169,7 @@ drivenByStem.setBaseCarSpeed(driveSpeed)
 
 ---
 
-In racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `||variables:efficiencyRating||` represents how much energy the car starts with, and `||variables:efficiencyDrain||` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
+Every performance gain has a cost somewhere else in the system — that is one of the most important truths in engineering, and it also matters for sustainability. A car running at higher speed burns more fuel, generates more heat, and creates more wear on components. In your simulation, `efficiencyRating` models the energy budget you start with, and `efficiencyDrain` models what mistakes cost you. Together they let you ask the same question I ask on a real team: at what speed does the cost outweigh the gain?
 
 * :paper plane: Drag `||variables:set efficiencyRating to saved efficiency||` and `||variables:set efficiencyDrain to 1||` from the toolbox into `||loops(noclick):on start||`.
 
@@ -203,7 +203,7 @@ let efficiencyDrain = 1
 
 ---
 
-This is where your simulation gets smart. A conditional statement lets your code make different choices based on the current situation. In this case, you're programming a realistic tradeoff: higher speed means higher energy cost. This is how engineers encode real-world physics into software systems.
+This is where the physics becomes code. In the real world, a car running above a certain speed threshold crosses into a regime where aerodynamic drag and thermal load grow significantly — engineers call this the efficiency cliff. Your `if/else` rule encodes that same idea: above the threshold, the car starts with a smaller energy budget and each collision costs more. That is not an arbitrary game rule — it is a model. And modeling real-world behavior is exactly what simulation software is for. This is the kind of conditional logic that appears in every engineering system, from engine management software to climate models.
 
 * :paper plane: Open `||logic:Logic||` and add `||logic:if else||` in `||loops(noclick):on start||` directly below your `||variables:set efficiencyDrain to 1||` block.
 * :mouse pointer: In `||logic:Logic||` select the 0 < 0 condition and drag it over the "true" value.
@@ -277,9 +277,7 @@ efficiencyDrain = 1
 
 ---
 
-Engineers often use a test stand before a full track run. A garage test bed gives you a safe place to preview the exact values your code is building.
-
-This is also a good moment to notice an important block programming rule: **blocks only run when they are connected to an event or another running stack**. Here, you will remove the repeated garage intro splash so testing stays quick, then preview the speed, efficiency, and drain values together.
+Before any car goes on track, engineers run a bench test — they check every value in a controlled environment before adding the complexity of a live run. That is what the garage test bed does here: it surfaces the exact numbers your conditional rule is producing so you can verify them before you leave the garage. This is also a good moment to notice an important block programming rule: **blocks only run when they are connected to an event or another running stack**. A disconnected block is like a sensor that isn't plugged in — it does nothing. Here you will disconnect the intro splash so testing stays fast, then read the speed, efficiency rating, and drain values together to confirm your tradeoff rule is working the way you intended.
 
 * :mouse pointer: Find the `||game:splash||` block in your `||loops(noclick):on start||` and drag it away from the stack so it is no longer connected.
 * :racing car: Drag `||drivenByStem:preview garage test bed||` from the toolbox to the end of `||loops(noclick):on start||` — the three variables are already wired in.
@@ -320,7 +318,7 @@ drivenByStem.previewGarageTestBed(driveSpeed, efficiencyRating, efficiencyDrain)
 
 ---
 
-On a real race team, different engineers focus on different things — some watch performance, others track efficiency, some monitor reliability. Choosing a role lens determines how you'll interpret the data you collect. There's no single "right" lens, just different ways of looking at the same system.
+On a real race team, everyone watches the same data but asks different questions. A performance engineer asks: is the car fast enough? A strategist asks: will that pace hold for the full race? A data analyst asks: what does the pattern tell us about future runs? Choosing a role lens sets the frame for how you interpret results. I switch lenses constantly — the same setup can look like a success or a problem depending on which metric you're prioritizing. There is no single right lens, and that is exactly the point.
 
 ```validation.local
 # BlocksExistValidator
@@ -372,7 +370,7 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 
 ---
 
-Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
+One of the most common mistakes I see in early engineering work is making a good decision and not recording it. The next session arrives, someone changes something, and nobody remembers why the previous setting existed. Saving your setup focus solves that problem: it documents not just what you set, but which priority drove the choice — pace or balance. Real engineering teams track setup changes with exactly this kind of metadata, and the teams that improve fastest are usually the ones with the most disciplined records.
 
 * :racing car: Drag `||drivenByStem:save team setup [Pace]||` from the toolbox into the **`if`** branch of your `||logic:if||` block.
 * :racing car: Duplicate it (right-click → Duplicate), drag the copy into the **`else`** branch, and change the focus dropdown to **Balance**.
@@ -418,6 +416,8 @@ drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, driven
 ## Nice work!
 ![Riley - Performance Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/riley.png)
 
-You tuned your car's speed setting, made a prediction before testing, built a conditional rule that captures a core engineering truth, and previewed the result on a garage test bed before a full shakedown. You also saved both the setup speed and the starting efficiency that later track and review steps will reuse.
+You just did what performance engineers do: you made a prediction, encoded a physical tradeoff into code, tested the result in a controlled environment, and recorded your configuration choice before moving forward. That sequence — hypothesis, model, test, document — is the core loop of engineering work at every level.
 
-You built a real engineering tradeoff! In physics, increasing speed can put more demand on the system. In computer science, variables and conditionals help one program respond to different design choices.
+The speed and efficiency values you saved here will travel into every later stage. If a later run gives you unexpected results, the first place to check is whether this setup still reflects what you intended. Good setup documentation is what makes debugging fast.
+
+In computer science, variables and conditionals let one program respond to different design choices. In engineering, modeling tradeoffs before you test saves time and resources — including energy. Both ideas show up in every serious STEM career.

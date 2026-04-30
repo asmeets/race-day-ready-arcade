@@ -29,7 +29,7 @@ On a real racing team, I write and test control code, fix unexpected behavior, a
 
 ---
 
-Every game starts with a scene. Setting the garage background gives your game a clear location from the moment it launches. This is the first thing players experience, and it helps the whole racing setup feel like a real team workspace.
+Every project starts somewhere. When I begin building a new system — a dashboard, a control interface, or a game — I always set the scene first. A garage background tells everyone instantly "we are in the engineering space now." Context matters: a blank screen gives users nothing to work with, and the first thing people see shapes how much they trust the whole system.
 
 * :tree: Drag `||scene:set background image to garageBg||` from the toolbox into `||loops(noclick):on start||`.
 
@@ -57,7 +57,7 @@ scene.setBackgroundImage(assets.image`garageBg`)
 
 ---
 
-Clear communication is essential in both games and engineering. A mission message tells players what they're about to do and why it matters. Think of it like a team briefing before a test session - everyone needs to know the objective.
+A clear opening message is something I think about carefully in every project. In software engineering, the first screen a user reads sets expectations for everything that follows. I have shipped dashboards where the opening text was ambiguous, and that one moment of uncertainty made people hesitant about the whole system. Short, direct, and honest — that is the standard. Think of this splash like a team radio call before a session: everyone needs the same objective before anything starts.
 
 * :game pad: Open `||game:Game||` and drag `||game:splash||` under the background block in `||loops(noclick):on start||`.
 * :keyboard: Type a short, one-sentence mission line like "Miami test session."
@@ -88,7 +88,7 @@ game.splash("Miami test session", "Build a car you can explain.")
 
 ---
 
-In racing games and simulations, the car is more than just an image — it's an interactive object with properties like position, speed, and collision detection.<br><br>Building and designing a sprite gives you a programmable object you can control, move, and respond to events. This is how digital simulations represent real-world objects.
+When I first started remixing games, sprites were the moment object-oriented thinking clicked for me. An image stopped being just a picture — it became an object with properties: position, speed, collision type. Once you understand that an image is actually a data structure you can program, building interactive systems starts to make sense in a completely new way. Your race car is exactly that kind of object.
 
 * :paper plane: Open `||sprites:Sprites||` and drag `||sprites:set mySprite to sprite of kind Player||` into `||loops(noclick):on start||`.
 * :mouse pointer: Select the `mySprite` drop-down in the `||sprites:set mySprite to sprite of kind Player||` block and select `||variables(sprites):Rename variable...||`
@@ -133,7 +133,7 @@ let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 
 ---
 
-A car that can't move isn't much of a simulator. Wiring up controller input to sprite movement is how you transform button presses into on-screen action. Real racing simulators do the same thing — they translate driver input (steering, throttle, brakes) into vehicle behavior. Here you're building that connection.
+Movement is always the first thing I test when I start a new project. If the thing I'm controlling doesn't respond to input, nothing else matters yet. Wiring controller input to sprite movement is the most fundamental software loop there is: user acts, system responds. Real racing simulators do the same with physical hardware — steering wheel turns, sensors detect the input, code translates it into vehicle behavior. You're building that same connection right here.
 
 * :game pad: Drag `||controller:move [raceCar] with buttons vx [80] vy [80]||` from the toolbox into `||loops(noclick):on start||`.
 * :paper plane: Drag `||sprites:set [raceCar] stay in screen [On]||` under it.
@@ -170,7 +170,7 @@ raceCar.setFlag(SpriteFlag.StayInScreen, true)
 
 ---
 
-Professional race teams don't start from scratch every session — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. Loading saved data lets your choices carry forward across different stages, just like real engineering systems that remember past configurations and results.
+State management is one of the most important software engineering concepts you can learn. How a system saves and restores data is the difference between a prototype that works once and a system you can actually rely on run after run. Real race teams don't start each session from scratch — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. The choices you save here will carry forward through every later stage of the experience.
 
 * :racing car: Drag `||drivenByStem:load race profile||`, `||drivenByStem:start stage [Garage]||`, and `||drivenByStem:set base car speed to saved drive speed||` from the toolbox into `||loops(noclick):on start||` in that order.
 
@@ -211,7 +211,7 @@ drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 
 ---
 
-Every racing team has an identity — a name, a car name, and a look. In this step, you'll save your team details and then edit the sprite directly so the car on screen feels like your own design. That gives students practice with the image editor while keeping the project personal and remixable.
+In software, user identity isn't a bonus feature — it is how a system shows it remembers you. When an app loads and shows your name, your settings, and your history, the experience feels personal and trustworthy. When it forgets everything, it feels broken. Saving your team name and customizing your car gives the whole experience that personal feel, and it is what makes this project genuinely yours to own and remix.
 
 * :id card: Set your own team name using the `||drivenByStem:set team name to||` block.
 * :id card: Customize your car with a name using the `||drivenByStem:set car name to||` block.
@@ -262,7 +262,7 @@ drivenByStem.showSavedDriverProfile()
 
 ---
 
-Racing teams need data they can read fast. Your shakedown dashboard will show speed and fuel during the test track, so this step lets you choose the units your team wants to read. Small display choices like this help teams compare results clearly.
+Data you can't read fast is data you can't use. A dashboard that shows speed in the wrong unit, or fuel in units nobody on your team uses, creates friction at exactly the moment when quick decisions matter. Localization choices like this are a real software problem that teams solve at every scale, from individual app settings to large international deployments. This same dashboard will later show fuel efficiency — so the units you set here are the first step in measuring sustainability too.
 
 * :racing car: Drag `||drivenByStem:set speed display unit to [mph]||` and `||drivenByStem:set fuel display unit to [gallons]||` from the toolbox into `||loops(noclick):on start||`.
 * :mouse pointer: Use the dropdowns to switch units if your team prefers `km/h` or `liters`.
@@ -305,7 +305,7 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 
 ---
 
-If you share your project with a friend, or multiple people want to try your game, a reset button clears saved data so each new group starts fresh. This is good systems thinking — designing for the context where your project will actually be used.
+Reset paths are the thing that gets skipped in first builds, and then someone hits a wall the first time they try to share the project. I learned this the hard way: built something I was proud of, tried to pass it to a friend, and there was no clean way for them to start fresh. A reset button is also essential for shared classroom use — each new team gets a fair start, and no leftover data from a previous group affects their run.
 
 ```validation.local
 # BlocksExistValidator
@@ -340,4 +340,4 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 
 ## Complete
 
-**You did it!** You just built the foundation of a working race simulator. You created a car sprite, wired up controller movement, connected the game to saved data, customized your team's car, and chose how your shakedown dashboard will show speed and fuel. The team details you saved and the car you customized here are now ready to travel into the next tutorial.<br><br>In the next stage, you'll take this setup onto the test track and start collecting data on your car's performance. That data will be the key to improving your design and climbing the leaderboard, so get ready to put it to work!<br><br> Select the "Done" button to go to the next stage.
+**That was real software engineering work.** You created a car sprite, wired up controller input, connected saved state, customized your team's identity, and set up the dashboard readout — the same sequence you follow when standing up any new interactive system from scratch.<br><br>The team name, the car design, and the unit choices you made here will carry forward through every later stage. That is how real software is built: decisions made early travel with you through the whole project. Good setup makes everything that comes after it faster and more reliable.<br><br>Select **Done** to head into Setup and Tradeoffs with Riley.

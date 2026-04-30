@@ -28,7 +28,7 @@ You've already started by reading these instructions — that's the most importa
 
 ---
 
-I'll be guiding you through each step. Reading instructions carefully is how I learned to code, and it's still how I work today. Every tutorial gives you clear guidance to build something new.
+I'll be guiding you through each step. Reading instructions carefully is actually something I do every single day — if you can't follow instructions, you can't write them either. Game designers and UX designers create the onboarding flows, tutorials, and tooltips that other people have to use. Being good at reading instructions makes you better at writing ones that actually make sense. That is a real career skill.
 
 - :lightbulb: Sometimes you'll need to scroll to read all of the instructions.
 
@@ -114,7 +114,7 @@ Keep going to learn more about blocks.
 
 ---
 
-Blocks don't always start in the workspace. The toolbox on the left organizes hundreds of blocks into categories. When I'm prototyping menus, tutorials, or HUD screens, I need to find the right block quickly — learning to navigate your tools fast is an essential skill that will serve you well.
+Blocks don't always start in the workspace. The toolbox is your component library — it organizes every building block by category, the same way a designer organizes a UI kit. You can't design a great experience with tools you don't know exist. When I join a new platform or engine, the first thing I do is explore what's in the toolbox. That habit is how UX and game designers get fast on new tools quickly — and it's how you will too.
 
 When you need to add a block, I'll either suggest it using an image like this:
 ```block
@@ -230,7 +230,7 @@ let mySprite = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 
 ---
 
-Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go. The simulator is your testing lab — it shows you exactly what your code does. I test my code constantly during development. Testing frequently helps you catch bugs early and track your progress, just like running a systems check before the race.
+Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go. As a game designer I call this **playtesting**, and it is not optional — it is the job. The moment you stop checking the simulator, small bugs quietly pile into confusing ones. I run the game after every change, even tiny ones. That habit is exactly what game designers, software engineers, and QA testers use to catch problems before players ever see them.
 
 - :binoculars: Check the simulator. <br/>
 Is there a message that needs to be cleared? Then check if the sprite you chose is present.
@@ -269,7 +269,7 @@ _(This block runs code when the A button is pressed.)_
 
 ---
 
-Now let's give players control! Container blocks like this one run code when specific events happen — in this case, when the player presses a button. In the race car, our control systems respond to sensor events in real time. Event-driven programming is how we build responsive systems, and it's how games respond to player actions.
+**A button press that produces nothing is the number one friction point in any interactive system.** Container blocks like this one run code when specific events happen — a button pressed, a timer fires, a sprite collides. From a design perspective, this is how you build the feedback loop: something happens, the game responds. Event-driven programming is the foundation of every app, dashboard, and game that actually feels alive. When I playtest, the first question I ask every time is: "did something happen when I pressed that?"
 
 - :game pad: Find the ``||controller:on [A] button pressed||`` container and drag it into **an empty area of** the workspace.
 
@@ -314,7 +314,7 @@ _(This block sends water spraying from the center of your sprite.)_
 
 ---
 
-Visual effects make games more exciting and give players instant feedback. When you trigger an effect from a button press, players immediately experience the result of their action. In our race dashboards, instant feedback tells the driver exactly what's happening — this feedback loop is essential to both racing and good game design.
+**Effects are communication, not decoration.** When a player presses a button and something bursts on screen, they instantly know: that action worked. That moment — you acted, the game responded — is called the **feedback loop**, and it is the most important concept in interactive design. I study these moments every time I playtest: does the effect feel satisfying? Does it make sense? Is it too distracting? Every visual choice you make is a design decision. Designing clear, readable feedback is a skill used in game development, app UX, product design, and any career that involves building things people interact with.
 
 - :paper plane: Find a ``||sprites:[mySprite] start [spray] effect ⊕||`` block and snap it into the ``||controller(noclick):on [A] button pressed||`` container that's already in your workspace...then choose a new effect!
 
@@ -357,7 +357,7 @@ fit in certain types of spaces._
 
 ---
 
-Randomness makes games unpredictable and replayable. Instead of the same effect duration every time, we'll use a random value so each button press creates a slightly different experience. In playtesting, small variations help me check whether an interaction still feels fun and readable each time. This technique keeps players engaged and tests their adaptability.
+Randomness makes games unpredictable and replayable — two things every game designer wants. When I'm running a playtest, one thing I watch for is whether players get bored because the outcome is always the same. A random range means each button press feels slightly different, which keeps the interaction alive. It is also a sustainable design principle: a mechanic that stays interesting over many sessions means you don't have to constantly add new content just to hold attention.
 
 - :calculator: From the ``||math:Math||`` category, grab a ``||math: pick random [0] to [10]||`` value block and snap it in to replace **500**.
 
@@ -389,7 +389,7 @@ mySprite.startEffect(effects.confetti, randint(100, 600))
 
 ---
 
-**Time to test!** This is how I work every day — add a feature, test it, make sure it works as expected. Testing frequently helps you catch bugs early and track your progress. On race day, we don't get second chances, so we test everything thoroughly beforehand.
+**Time to test!** This is how I work every day — build something, then immediately check whether it behaves the way I intended. Right now you are both the designer and the player, which is actually the best position for catching bugs. When I playtest my own work, I try to forget I built it and experience it the way a stranger would. If something feels wrong, unexpected, or confusing, write it down. That observation is the designer's eye at work, and noticing it is more than half of what the job actually is.
 
 - :binoculars: Check the simulator and press the **Ⓐ** button (or space bar) to clear your splash screen message.
 
@@ -409,7 +409,9 @@ You now know how to:
 
 **Ready for the next challenge?**
 
-Now you're ready to head into the **Garage** and meet **Sam**, the software engineer on the team. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. Sam will guide you through that next stage. **Let's go!** 🏎️
+Now you're ready to head into the **Garage** and meet **Sam**, the software engineer on the team. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. Sam will guide you through that next stage.
+
+One last thing from me before you go: the skills you just practiced — reading instructions, exploring tools, testing your work, building feedback loops — connect directly to careers in game design, UX research, software development, educational technology, and product design. Any field where people interact with computers needs someone who asks "does this make sense?" That person is often a designer. **Let's go!** 🏎️
 
 ```ghost
 let mySprite: Sprite = null;
