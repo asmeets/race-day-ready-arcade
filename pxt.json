@@ -16,6 +16,7 @@
         "main.blocks",
         "main.ts",
         "custom.ts",
+        "test-track.ts",
         "images.g.jres",
         "images.g.ts",
         "tilemap.g.jres",
