@@ -13,6 +13,16 @@ settings-blocks=github:microsoft/pxt-settings-blocks#v1.0.0
 //% shim=drivenByStemSupport::startVehicleTestTrack
 declare function drivenByStemSupportStartVehicleTestTrack(): void
 
+namespace SpriteKind {
+    export const TestTrackObstacle = SpriteKind.create()
+}
+
+namespace drivenByStemSupport {
+    export function startVehicleTestTrack(): void {
+        game.splash("Full test track", "Open Garage Shakedown to launch the full simulator track.")
+    }
+}
+
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
     const DRIVE_SPEED_KEY = "driveSpeed"
@@ -305,7 +315,7 @@ namespace drivenByStem {
     //% group="Session" weight=56
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
-        drivenByStemSupportStartVehicleTestTrack()
+        drivenByStemSupport.startVehicleTestTrack()
     }
 
     /**
@@ -606,12 +616,17 @@ namespace drivenByStem {
 
 ![Winners circle banner](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/finishBanner.png)
 
-Hi, I'm **Kai**, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because **reliability isn't luck, it's something you build**. On a real team I coordinate timelines, make sure resets go smoothly, and create **handoffs** so the next shift can pick up right where we left off.
+Hi, I'm Kai, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because reliability isn't luck, it's something you build. On a real team I coordinate timelines, make sure resets go smoothly, and create handoffs so the next shift can pick up right where we left off.
 
-In this last gate, you'll use your saved data to **celebrate what you built**, explore where these skills connect to real careers, and leave with a **clear next-step idea**. Finishing is great, and a good handoff means the work keeps going. This final screen works because every earlier tutorial saved one more piece of the story.
+In this last gate, you'll use your saved data to celebrate what you built, explore where these skills connect to real careers, and leave with a clear next-step idea. Finishing is great, and a good handoff means the work keeps going. This final screen works because every earlier tutorial saved one more piece of the story.
 
-```template
-```
+<div class="ui info message">
+        <div class="content">
+            <h4 id="diffs-in-tutorials">One More Tool You Can Still Use</h4>
+            <p>The start vehicle test track block is still available in the Driven by STEM category if you want one more full-track run in the simulator before you celebrate your results.</p>
+        </div>
+    </div>
+
 
 ## {1. Start Winners Circle stage}
 
@@ -622,7 +637,7 @@ In this last gate, you'll use your saved data to **celebrate what you built**, e
 You've completed the challenge, and now it's time to celebrate and reflect. Setting the stage to Winners Circle signals that the competitive phase is over and the focus shifts to recognizing achievement, reviewing what you built, and connecting your work to broader career pathways and CS concepts.
 
 * :binoculars: Open `||loops(noclick):on start||` and find your setup code.
-* :racing car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `on start`, then set it to `Winners Circle`.
+* :racing car: Locate your `||drivenByStem:start stage||` block in `||loops(noclick):on start||`, then set it to `Winners Circle`.
 
 ~hint Still feels like gameplay? 🎮
 
@@ -638,6 +653,10 @@ hint~
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 ```
 
+```ghost
+drivenByStem.startVehicleTestTrack()
+```
+
 ## {2. Set the celebration scene}
 
 **Create a Victory Environment**
@@ -646,7 +665,7 @@ drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 
 Visuals matter for closure. A bright background and celebratory screen effect immediately communicate that this is a different moment—not a challenge, but a celebration. These visual cues help players transition from performance pressure to reflection mode, setting the right tone for reviewing achievements.
 
-* :tree: Open `||scene:Scene||` and set the background to a bright color.
+* :tree: Open `||scene:Scene||` and set the background image to `finishBg`.
 * :paint brush: Open `||effects:Effects||` and start confetti or another screen effect.
 
 ~hint Text hard to read? 🎉
@@ -661,7 +680,7 @@ hint~
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 //@highlight
 //@validate-exists
-scene.setBackgroundColor(8)
+scene.setBackgroundImage("finishBg")
 //@highlight
 //@validate-exists
 effects.confetti.startScreenEffect()
@@ -675,8 +694,8 @@ effects.confetti.startScreenEffect()
 
 The Winners Circle displays both recommendations (text) and performance scores (numbers). Creating the right variable types before loading data ensures that your summary can present both qualitative insights and quantitative results cleanly, giving you a complete picture of what you accomplished.
 
-* :paper plane: Open `||variables:Variables||` and create a text variable named `nextTestFocus`.
-* :paper plane: Create a second variable named `finalStrategy` and give it a starting value of `0`.
+* :paper plane: Open `||variables:Variables||` and create a text variable named `||variables:nextTestFocus||`.
+* :paper plane: Create a second variable named `||variables:finalStrategy||` and give it a starting value of `0`.
 
 ~hint Variables not loading? 💾
 
@@ -704,11 +723,11 @@ let finalStrategy = 0
 
 ---
 
-The celebration is meaningful because it's personalized to your choices. Loading your `next test focus`, session strategy total, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
+The celebration is meaningful because it's personalized to your choices. Loading your `||variables:nextTestFocus||`, session strategy total, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
 
-* :racing car: Open `||drivenByStem:Driven by STEM||` and set `nextTestFocus` from the `next test focus` reporter.
-* :racing car: Set `finalStrategy` from the saved strategy result.
-* :racing car: Drag `show saved driver profile` into `on start`.
+* :racing car: Open `||drivenByStem:Driven by STEM||` and set `||variables:nextTestFocus||` from the `next test focus` reporter.
+* :racing car: Set `||variables:finalStrategy||` from the saved strategy result.
+* :racing car: Drag `||drivenByStem:show saved driver profile||` into `||on start||`.
 
 ~hint Recommendation blank? 🔍
 
@@ -826,8 +845,8 @@ Every great team finishes one test by planning the next. Whether your session st
 This step has no single correct answer. Try your own logic.
 
 * :paper plane: Open `||logic:Logic||` and add an `if / else` block.
-* :game pad: If `finalStrategy` is `≥ 3`, show an "adaptation success" message.
-* :game pad: Otherwise show `"Next test: "` joined with `nextTestFocus`.
+* :game pad: If `||variables:finalStrategy||` is `≥ 3`, show an "adaptation success" message.
+* :game pad: Otherwise show `"Next test: "` joined with `||variables:nextTestFocus||`.
 
 ~hint Stuck on what to write? ✍️
 

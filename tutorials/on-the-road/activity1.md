@@ -13,6 +13,482 @@ settings-blocks=github:microsoft/pxt-settings-blocks#v1.0.0
 //% shim=drivenByStemSupport::startVehicleTestTrack
 declare function drivenByStemSupportStartVehicleTestTrack(): void
 
+namespace SpriteKind {
+    export const TestTrackObstacle = SpriteKind.create()
+}
+
+namespace drivenByStemSupport {
+    const TRACK_WIDTH = 160
+    const TRACK_HEIGHT = 120
+    const HUD_HEIGHT = 22
+    const ROAD_LEFT = 42
+    const ROAD_WIDTH = 76
+    const ROAD_RIGHT = ROAD_LEFT + ROAD_WIDTH
+    const ROAD_CENTER = ROAD_LEFT + (ROAD_WIDTH >> 1)
+    const BORDER_WIDTH = 8
+    const CAR_Y = 100
+    const RUN_DURATION_MILLISECONDS = 20000
+    const START_LIGHT_COUNT = 5
+    const STAGE_LIGHT_STEP_MILLISECONDS = 450
+    const STAGE_LIGHT_HOLD_MILLISECONDS = 500
+    const GO_FLASH_MILLISECONDS = 700
+    const FALSE_START_PENALTY_MILLISECONDS = 5000
+    const MAX_OBSTACLES = 5
+    const OBSTACLE_MIN_SPACING = 95
+    const OBSTACLE_MAX_SPACING = 150
+    const MAX_SPEED = 180
+    const MIN_SPEED = 60
+    const ACCELERATION = 95
+    const BRAKE_DECELERATION = 140
+    const COAST_DECELERATION = 55
+    const STEER_DRAG = 15
+    const OFFROAD_DRAG = 110
+    const FUEL_BASE_DRAIN = 0.45
+    const FUEL_SPEED_DRAIN_DIVISOR = 160
+    const FUEL_OFFROAD_DRAIN = 0.5
+    const COLLISION_SPEED_LOSS = 35
+    const SCORE_DIVISOR = 10
+    const MPH_FACTOR = 0.621371
+    const STRIPE_SEGMENT_HEIGHT = 7
+
+    const coneImage = img`
+        . . . 4 4 . . .
+        . . 4 4 4 4 . .
+        . 4 4 4 4 4 4 .
+        4 4 4 4 4 4 4 4
+        1 1 4 4 4 4 1 1
+        . 1 1 1 1 1 1 .
+        . . 1 1 1 1 . .
+        . . . 1 1 . . .
+    `
+
+    let hooksInstalled = false
+    let activeTrack: TutorialTrackState = null
+    let previousStage = ""
+    let previousBackground: Image = null
+
+    class TutorialTrackState {
+        car: Sprite
+        speed: number
+        maxDriveSpeed: number
+        fuelRemaining: number
+        fuelMax: number
+        fuelDrainBase: number
+        elapsedMilliseconds: number
+        starterElapsedMilliseconds: number
+        starterLightsAnnounced: number
+        goFlashMilliseconds: number
+        topSpeed: number
+        reactionMilliseconds: number
+        collisionCount: number
+        distance: number
+        nextObstacleDistance: number
+        displayUnit: string
+        obstacles: Sprite[]
+        active: boolean
+        raceStarted: boolean
+        falseStartLocked: boolean
+
+        constructor(car: Sprite, maxDriveSpeed: number, fuelMax: number, fuelDrainBase: number, displayUnit: string) {
+            this.car = car
+            this.speed = 0
+            this.maxDriveSpeed = maxDriveSpeed
+            this.fuelRemaining = fuelMax
+            this.fuelMax = fuelMax
+            this.fuelDrainBase = fuelDrainBase
+            this.elapsedMilliseconds = 0
+            this.starterElapsedMilliseconds = 0
+            this.starterLightsAnnounced = 0
+            this.goFlashMilliseconds = 0
+            this.topSpeed = 0
+            this.reactionMilliseconds = -1
+            this.collisionCount = 0
+            this.distance = 0
+            this.nextObstacleDistance = randint(OBSTACLE_MIN_SPACING, OBSTACLE_MAX_SPACING)
+            this.displayUnit = displayUnit
+            this.obstacles = []
+            this.active = true
+            this.raceStarted = false
+            this.falseStartLocked = false
+        }
+    }
+
+    export function startVehicleTestTrack(): void {
+        ensureHooksInstalled()
+        resetTrack()
+
+        previousStage = settings.exists("currentStage") ? settings.readString("currentStage") : "garage"
+        previousBackground = scene.backgroundImage() ? scene.backgroundImage().clone() : null
+
+        const playerCar = ensurePlayerCar()
+        const maxDriveSpeed = clampToRange(drivenByStem.savedDriveSpeed() * 2, MIN_SPEED, MAX_SPEED)
+        const fuelMax = clampToRange(drivenByStem.savedEfficiency() * 10, 30, 100)
+        const fuelDrainBase = FUEL_BASE_DRAIN * Math.max(1, drivenByStem.savedEfficiencyCost())
+        const displayUnit = settings.exists("speedDisplayUnit") ? settings.readString("speedDisplayUnit") : "mph"
+
+        controller.moveSprite(playerCar, 0, 0)
+        playerCar.setFlag(SpriteFlag.StayInScreen, true)
+        playerCar.setFlag(SpriteFlag.Invisible, false)
+        playerCar.setPosition(ROAD_CENTER, CAR_Y)
+        playerCar.z = 6
+
+        scene.setBackgroundImage(image.create(TRACK_WIDTH, TRACK_HEIGHT))
+        info.stopCountdown()
+        info.showCountdown(false)
+        info.showScore(false)
+        activeTrack = new TutorialTrackState(playerCar, maxDriveSpeed, fuelMax, fuelDrainBase, displayUnit)
+        playEngineRev()
+    }
+
+    function ensureHooksInstalled(): void {
+        if (hooksInstalled) {
+            return
+        }
+
+        hooksInstalled = true
+
+        sprites.onOverlap(SpriteKind.Player, SpriteKind.TestTrackObstacle, function (sprite, otherSprite) {
+            if (!trackIsActive() || sprite != activeTrack.car) {
+                return
+            }
+
+            removeObstacle(otherSprite)
+            otherSprite.destroy(effects.disintegrate, 150)
+            activeTrack.collisionCount += 1
+            activeTrack.speed = Math.max(0, activeTrack.speed - COLLISION_SPEED_LOSS)
+            scene.cameraShake(2, 100)
+        })
+
+        game.onUpdate(function () {
+            updateTrack()
+        })
+
+        game.onPaint(function () {
+            if (trackIsActive()) {
+                drawTrackFrame()
+            }
+        })
+    }
+
+    function ensurePlayerCar(): Sprite {
+        let playerCar = sprites.allOfKind(SpriteKind.Player)[0]
+        if (playerCar) {
+            return playerCar
+        }
+
+        const savedCar = assets.image`playerCar`
+        playerCar = sprites.create(savedCar ? savedCar.clone() : defaultPlayerCarImage(), SpriteKind.Player)
+        return playerCar
+    }
+
+    function updateTrack(): void {
+        if (!trackIsActive()) {
+            return
+        }
+
+        const deltaTime = game.eventContext().deltaTime
+
+        if (!activeTrack.raceStarted) {
+            activeTrack.car.x = ROAD_CENTER
+            activeTrack.car.y = CAR_Y
+            activeTrack.speed = 0
+
+            if (launchInputPressed()) {
+                triggerFalseStart()
+                return
+            }
+
+            activeTrack.starterElapsedMilliseconds += deltaTime * 1000
+            const lightsOn = Math.min(START_LIGHT_COUNT, integerDivide(activeTrack.starterElapsedMilliseconds, STAGE_LIGHT_STEP_MILLISECONDS))
+            if (lightsOn > activeTrack.starterLightsAnnounced) {
+                activeTrack.starterLightsAnnounced = lightsOn
+                playStarterBeep()
+            }
+
+            if (activeTrack.starterElapsedMilliseconds >= starterDurationMilliseconds()) {
+                activeTrack.raceStarted = true
+                activeTrack.goFlashMilliseconds = GO_FLASH_MILLISECONDS
+                playGoTone()
+            }
+            return
+        }
+
+        const steeringLeft = controller.left.isPressed()
+        const steeringRight = controller.right.isPressed()
+        const accelerating = controller.up.isPressed() && !controller.down.isPressed()
+        const braking = controller.down.isPressed() && !controller.up.isPressed()
+
+        if (activeTrack.reactionMilliseconds < 0 && (steeringLeft || steeringRight || accelerating || braking)) {
+            activeTrack.reactionMilliseconds = activeTrack.elapsedMilliseconds
+        }
+
+        if (steeringLeft) {
+            activeTrack.car.x -= 70 * deltaTime
+        }
+        if (steeringRight) {
+            activeTrack.car.x += 70 * deltaTime
+        }
+        activeTrack.car.x = clampToRange(activeTrack.car.x, ROAD_LEFT + 6, ROAD_RIGHT - 6)
+        activeTrack.car.y = CAR_Y
+
+        let speedChange = 0
+        if (accelerating) {
+            speedChange += ACCELERATION * deltaTime
+        } else if (braking) {
+            speedChange -= BRAKE_DECELERATION * deltaTime
+        } else {
+            speedChange -= COAST_DECELERATION * deltaTime
+        }
+
+        if (steeringLeft || steeringRight) {
+            speedChange -= STEER_DRAG * deltaTime
+        }
+
+        const offRoad = activeTrack.car.x <= ROAD_LEFT + 8 || activeTrack.car.x >= ROAD_RIGHT - 8
+        if (offRoad) {
+            speedChange -= OFFROAD_DRAG * deltaTime
+        }
+
+        activeTrack.speed = clampToRange(activeTrack.speed + speedChange, 0, activeTrack.maxDriveSpeed)
+        activeTrack.elapsedMilliseconds += deltaTime * 1000
+        activeTrack.distance += activeTrack.speed * deltaTime
+        activeTrack.topSpeed = Math.max(activeTrack.topSpeed, activeTrack.speed)
+        activeTrack.goFlashMilliseconds = Math.max(0, activeTrack.goFlashMilliseconds - deltaTime * 1000)
+
+        updateFuel(deltaTime, offRoad)
+        updateObstacles(deltaTime)
+
+        if (activeTrack.fuelRemaining <= 0 || activeTrack.elapsedMilliseconds >= RUN_DURATION_MILLISECONDS) {
+            finishTrack(activeTrack.elapsedMilliseconds >= RUN_DURATION_MILLISECONDS)
+        }
+    }
+
+    function updateFuel(deltaTime: number, offRoad: boolean): void {
+        const fuelDrain = activeTrack.fuelDrainBase + activeTrack.speed / FUEL_SPEED_DRAIN_DIVISOR + (offRoad ? FUEL_OFFROAD_DRAIN : 0)
+        activeTrack.fuelRemaining = Math.max(0, activeTrack.fuelRemaining - fuelDrain * deltaTime)
+    }
+
+    function updateObstacles(deltaTime: number): void {
+        if (activeTrack.speed > 0 && activeTrack.distance >= activeTrack.nextObstacleDistance && activeTrack.obstacles.length < MAX_OBSTACLES) {
+            spawnObstacle()
+            activeTrack.nextObstacleDistance = activeTrack.distance + randint(OBSTACLE_MIN_SPACING, OBSTACLE_MAX_SPACING)
+        }
+
+        const obstacleStep = activeTrack.speed * 0.12 * deltaTime
+        for (let obstacle of activeTrack.obstacles) {
+            obstacle.y += obstacleStep
+            if (obstacle.y > TRACK_HEIGHT + 10) {
+                obstacle.destroy()
+                removeObstacle(obstacle)
+            }
+        }
+    }
+
+    function spawnObstacle(): void {
+        const obstacle = sprites.create(coneImage, SpriteKind.TestTrackObstacle)
+        obstacle.setPosition(randint(ROAD_LEFT + 12, ROAD_RIGHT - 12), HUD_HEIGHT + 2)
+        obstacle.z = 4
+        activeTrack.obstacles.push(obstacle)
+    }
+
+    function drawTrackFrame(): void {
+        const canvas = scene.backgroundImage()
+        if (!canvas) {
+            return
+        }
+
+        canvas.fill(7)
+        canvas.fillRect(0, 0, TRACK_WIDTH, HUD_HEIGHT, 12)
+        canvas.fillRect(0, HUD_HEIGHT - 1, TRACK_WIDTH, 1, 15)
+        canvas.fillRect(0, HUD_HEIGHT, TRACK_WIDTH, TRACK_HEIGHT - HUD_HEIGHT, 7)
+        drawRoadBorder(canvas, ROAD_LEFT - BORDER_WIDTH, HUD_HEIGHT, BORDER_WIDTH, TRACK_HEIGHT - HUD_HEIGHT, 0 - integerDivide(activeTrack.distance, 4))
+        canvas.fillRect(ROAD_LEFT, HUD_HEIGHT, ROAD_WIDTH, TRACK_HEIGHT - HUD_HEIGHT, 11)
+        drawRoadBorder(canvas, ROAD_RIGHT, HUD_HEIGHT, BORDER_WIDTH, TRACK_HEIGHT - HUD_HEIGHT, 1 - integerDivide(activeTrack.distance, 4))
+
+        const stripeOffset = integerDivide(activeTrack.distance, 10) % 18
+        for (let y = HUD_HEIGHT - 10 + stripeOffset; y < TRACK_HEIGHT; y += 18) {
+            canvas.fillRect(ROAD_CENTER - 2, y, 4, 9, 1)
+        }
+
+        canvas.print("FUEL " + roundToTenth(activeTrack.fuelRemaining) + " gal", 5, 6, 1, image.font8)
+        drawRightAlignedHudText(canvas, formatSpeed(activeTrack.speed, activeTrack.displayUnit), 6)
+
+        if (!activeTrack.raceStarted) {
+            drawStartLights(canvas)
+        }
+    }
+
+    function drawStartLights(canvas: Image): void {
+        const overlayX = 34
+        const overlayY = 30
+        const lightsOn = Math.min(START_LIGHT_COUNT, integerDivide(activeTrack.starterElapsedMilliseconds, STAGE_LIGHT_STEP_MILLISECONDS))
+        const launched = activeTrack.raceStarted && activeTrack.goFlashMilliseconds > 0
+
+        canvas.fillRect(overlayX, overlayY, 92, 20, 15)
+        canvas.fillRect(overlayX + 2, overlayY + 2, 88, 16, 12)
+        for (let i = 0; i < START_LIGHT_COUNT; i++) {
+            const lightX = overlayX + 8 + i * 16
+            const lightColor = i < lightsOn ? (launched ? 7 : 2) : 1
+            canvas.fillRect(lightX - 1, overlayY + 4, 10, 10, 15)
+            canvas.fillRect(lightX, overlayY + 5, 8, 8, lightColor)
+        }
+
+        canvas.print(launched ? "GO!" : "Ready", overlayX + 26, overlayY + 12, launched ? 7 : 1, image.font8)
+    }
+
+    function drawRoadBorder(canvas: Image, x: number, y: number, width: number, height: number, offsetSeed: number): void {
+        for (let row = 0; row < height; row += STRIPE_SEGMENT_HEIGHT) {
+            const colorIndex = integerDivide(row + offsetSeed, STRIPE_SEGMENT_HEIGHT) % 3
+            const stripeColor = colorIndex == 0 ? 5 : colorIndex == 1 ? 1 : 15
+            canvas.fillRect(x, y + row, width, Math.min(STRIPE_SEGMENT_HEIGHT, height - row), stripeColor)
+        }
+    }
+
+    function finishTrack(completedRun: boolean): void {
+        if (!trackIsActive()) {
+            return
+        }
+
+        const summary = (completedRun ? "Shakedown complete" : "Shakedown report")
+            + "\nTime: " + roundToTenth(activeTrack.elapsedMilliseconds / 1000) + " s"
+            + "\nTop speed: " + formatSpeed(activeTrack.topSpeed, activeTrack.displayUnit)
+            + "\nFuel left: " + roundToTenth(activeTrack.fuelRemaining) + " gal"
+            + "\nHits: " + activeTrack.collisionCount
+
+        resetTrack()
+        if (previousStage) {
+            settings.writeString("currentStage", previousStage)
+        }
+        if (previousBackground) {
+            scene.setBackgroundImage(previousBackground.clone())
+        }
+        controller.moveSprite(ensurePlayerCar(), drivenByStem.savedDriveSpeed(), drivenByStem.savedDriveSpeed())
+        info.showCountdown(true)
+        info.showScore(true)
+        game.showLongText(summary, DialogLayout.Full)
+    }
+
+    function trackIsActive(): boolean {
+        return !!activeTrack && activeTrack.active
+    }
+
+    function resetTrack(): void {
+        if (!activeTrack) {
+            return
+        }
+
+        activeTrack.active = false
+        for (let obstacle of activeTrack.obstacles) {
+            obstacle.destroy()
+        }
+        activeTrack.obstacles = []
+
+        for (let obstacle of sprites.allOfKind(SpriteKind.TestTrackObstacle)) {
+            obstacle.destroy()
+        }
+
+        activeTrack.car.setFlag(SpriteFlag.Invisible, false)
+        activeTrack.car.setPosition(ROAD_CENTER, CAR_Y)
+    }
+
+    function removeObstacle(target: Sprite): void {
+        if (!activeTrack) {
+            return
+        }
+
+        const obstacleIndex = activeTrack.obstacles.indexOf(target)
+        if (obstacleIndex >= 0) {
+            activeTrack.obstacles.removeAt(obstacleIndex)
+        }
+    }
+
+    function drawRightAlignedHudText(canvas: Image, text: string, y: number): void {
+        const x = TRACK_WIDTH - 6 - text.length * image.font8.charWidth
+        canvas.print(text, x, y, 1, image.font8)
+    }
+
+    function formatSpeed(baseSpeed: number, unit: string): string {
+        return roundToTenth(unit == "mph" ? baseSpeed * MPH_FACTOR : baseSpeed) + " " + unit
+    }
+
+    function starterDurationMilliseconds(): number {
+        return START_LIGHT_COUNT * STAGE_LIGHT_STEP_MILLISECONDS + STAGE_LIGHT_HOLD_MILLISECONDS
+    }
+
+    function playStarterBeep(): void {
+        control.runInParallel(function () {
+            music.playTone(659, 80)
+        })
+    }
+
+    function playGoTone(): void {
+        control.runInParallel(function () {
+            music.playTone(988, 180)
+        })
+    }
+
+    function playEngineRev(): void {
+        control.runInParallel(function () {
+            music.playTone(196, 70)
+            music.playTone(262, 70)
+            music.playTone(330, 80)
+            music.playTone(392, 120)
+        })
+    }
+
+    function launchInputPressed(): boolean {
+        return controller.up.isPressed() || controller.down.isPressed() || controller.left.isPressed() || controller.right.isPressed()
+    }
+
+    function triggerFalseStart(): void {
+        if (!trackIsActive() || activeTrack.falseStartLocked || activeTrack.raceStarted) {
+            return
+        }
+
+        activeTrack.falseStartLocked = true
+        scene.cameraShake(2, 200)
+        game.splash("False start", "+5.0 s penalty")
+        activeTrack.falseStartLocked = false
+        activeTrack.elapsedMilliseconds += FALSE_START_PENALTY_MILLISECONDS
+        activeTrack.starterElapsedMilliseconds = 0
+        activeTrack.starterLightsAnnounced = 0
+        activeTrack.goFlashMilliseconds = 0
+    }
+
+    function roundToTenth(value: number): number {
+        return Math.round(value * 10) / 10
+    }
+
+    function clampToRange(value: number, minValue: number, maxValue: number): number {
+        return Math.max(minValue, Math.min(value, maxValue))
+    }
+
+    function integerDivide(dividend: number, divisor: number): number {
+        return (dividend / divisor) | 0
+    }
+
+    function defaultPlayerCarImage(): Image {
+        return img`
+            . . . . . . 1 1 1 1 . . . . . .
+            . . . . . 1 1 9 9 1 1 . . . . .
+            . . . . 1 1 1 9 9 1 1 1 . . . .
+            . . . 1 1 1 1 9 9 1 1 1 1 . . .
+            . . . 1 1 1 1 9 9 1 1 1 1 . . .
+            . . . 1 1 1 1 9 9 1 1 1 1 . . .
+            . . . . 1 1 1 9 9 1 1 1 . . . .
+            . . . . 1 1 1 9 9 1 1 1 . . . .
+            . . . . 1 1 1 9 9 1 1 1 . . . .
+            . . . . 1 1 1 9 9 1 1 1 . . . .
+            . . . 1 1 1 1 9 9 1 1 1 1 . . .
+            . . 1 1 1 1 1 9 9 1 1 1 1 1 . .
+            . . 1 1 1 1 1 9 9 1 1 1 1 1 . .
+            . . . . 5 5 5 . . 5 5 5 . . . .
+            . . . . 5 . 5 . . 5 . 5 . . . .
+            . . . . . . . . . . . . . . . .
+        `
+    }
+}
+
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
     const DRIVE_SPEED_KEY = "driveSpeed"
@@ -305,7 +781,7 @@ namespace drivenByStem {
     //% group="Session" weight=56
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
-        drivenByStemSupportStartVehicleTestTrack()
+        drivenByStemSupport.startVehicleTestTrack()
     }
 
     /**
@@ -622,6 +1098,7 @@ Real racing teams do something similar — they declare whether it's a practice 
         <div class="content">
             <h4 id="diffs-in-tutorials">Something Looks Familiar...</h4>
             <p>This activity continues the code you already built in the garage. You will keep updating that same project instead of rebuilding it.</p>
+            <p>The start vehicle test track block is still available in the Driven by STEM category if you want a full shakedown run in the simulator. For this activity, remove it from on start so your Track stage code can run.</p>
         </div>
     </div>
 
@@ -642,6 +1119,10 @@ hint~
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
+```
+
+```ghost
+drivenByStem.startVehicleTestTrack()
 ```
 
 ## {2. Make the Track Readable}

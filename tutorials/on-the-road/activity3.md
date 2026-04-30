@@ -14,6 +14,16 @@ Timers=github:microsoft/arcade-timers#v1.1.0
 //% shim=drivenByStemSupport::startVehicleTestTrack
 declare function drivenByStemSupportStartVehicleTestTrack(): void
 
+namespace SpriteKind {
+    export const TestTrackObstacle = SpriteKind.create()
+}
+
+namespace drivenByStemSupport {
+    export function startVehicleTestTrack(): void {
+        game.splash("Full test track", "Open Garage Shakedown to launch the full simulator track.")
+    }
+}
+
 //% color=#b40707 weight=100 icon="\uf1b9" block="Driven by STEM" groups='["Session", "Profile", "Setup", "Telemetry", "Review"]'
 namespace drivenByStem {
     const DRIVE_SPEED_KEY = "driveSpeed"
@@ -306,7 +316,7 @@ namespace drivenByStem {
     //% group="Session" weight=56
     export function startVehicleTestTrack(): void {
         loadRaceProfile(80, 5)
-        drivenByStemSupportStartVehicleTestTrack()
+        drivenByStemSupport.startVehicleTestTrack()
     }
 
     /**
@@ -621,6 +631,7 @@ Racing conditions don't stay constant—weather changes everything. Setting the 
         <div class="content">
             <h4 id="diffs-in-tutorials">Keep Building On Your Last Stage</h4>
             <p>This activity continues the project you already updated in Pit Stop Briefings. You will change your existing blocks instead of starting over.</p>
+            <p>The start vehicle test track block still lives in the Driven by STEM category, so you can drag it in anytime if you want another full-track test run. When you return to this lesson, make sure your Weather stage blocks are the ones still connected.</p>
         </div>
     </div>
 
@@ -639,6 +650,10 @@ hint~
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.Weather)
+```
+
+```ghost
+drivenByStem.startVehicleTestTrack()
 ```
 
 ## {2. Set starting conditions (Dry)}
@@ -729,7 +744,24 @@ hint~
 
 ```blocks
 let driveSpeed = 110
-let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+let raceCar = sprites.create(img`
+    . . . . . . 1 1 1 1 . . . . . .
+    . . . . . 1 1 9 9 1 1 . . . . .
+    . . . . 1 1 1 9 9 1 1 1 . . . .
+    . . . 1 1 1 1 9 9 1 1 1 1 . . .
+    . . . 1 1 1 1 9 9 1 1 1 1 . . .
+    . . . 1 1 1 1 9 9 1 1 1 1 . . .
+    . . . . 1 1 1 9 9 1 1 1 . . . .
+    . . . . 1 1 1 9 9 1 1 1 . . . .
+    . . . . 1 1 1 9 9 1 1 1 . . . .
+    . . . . 1 1 1 9 9 1 1 1 . . . .
+    . . . 1 1 1 1 9 9 1 1 1 1 . . .
+    . . 1 1 1 1 1 9 9 1 1 1 1 1 . .
+    . . 1 1 1 1 1 9 9 1 1 1 1 1 . .
+    . . . . 5 5 5 . . 5 5 5 . . . .
+    . . . . 5 . 5 . . 5 . 5 . . . .
+    . . . . . . . . . . . . . . . .
+`, SpriteKind.Player)
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 drivenByStem.startStage(drivenByStem.RaceStage.Weather)
