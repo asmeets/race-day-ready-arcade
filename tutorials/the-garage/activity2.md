@@ -1,6 +1,7 @@
 # Setup and Tradeoffs
 
 ### @diffs true
+### @explicitHints true
 
 ```validation.global
 # BlocksExistValidator
@@ -21,12 +22,6 @@ game.splash("Miami test session", "Build a car you can explain.")
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 controller.moveSprite(raceCar, 80, 80)
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
-drivenByStem.startStage(drivenByStem.RaceStage.Garage)
-drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
-drivenByStem.setTeamName("Apex Lab")
-drivenByStem.setCarName("Velocity")
-drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
-drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
 
 ## {1. Start the Setup Stage and Make a Prediction}

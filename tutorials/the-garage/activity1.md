@@ -1,10 +1,15 @@
 # Mission Briefing
 
 ### @diffs true
+### @explicitHints true
 
 ```validation.global
 # BlocksExistValidator
 * markers: validate-exists
+```
+
+```template
+// Continue your F1 simulator build
 ```
 
 ## Mission Briefing @showdialog
