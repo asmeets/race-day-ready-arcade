@@ -2,12 +2,6 @@
 
 ### @diffs true
 
-```package
-settings-blocks=github:microsoft/pxt-settings-blocks#v1.0.0
-Timers=github:microsoft/arcade-timers#v1.1.0
-```
-
-
 ```validation.global
 # BlocksExistValidator
 * markers: validate-exists
