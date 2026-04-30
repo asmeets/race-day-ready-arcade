@@ -82,13 +82,13 @@ hint~
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 //@highlight
 //@validate-exists
-scene.setBackgroundImage("finishBg")
+scene.setBackgroundImage(assets.image`finishBg`)
 //@highlight
 //@validate-exists
 effects.confetti.startScreenEffect()
 ```
 ```ghost
-scene.setBackgroundImage("finishBg")
+scene.setBackgroundImage(assets.image`finishBg`)
 effects.confetti.startScreenEffect()
 ```
 
@@ -223,7 +223,7 @@ game.splash("Career link", "You worked like a strategist balancing the whole sys
 
 Behind every racing decision was a computer science concept. Events detected collisions and pit stops, variables stored your tuning choices, and saved data carried those choices across tutorials. Explicitly naming these CS ideas helps you recognize that the technical skills you practiced here apply far beyond racing games.
 
-* :game pad: Drag `||game:splash 'Computer science mattered'||` from the toolbox — the message text is already set.
+* :game pad: Drag `||game:splash||` from the toolbox — the message text is already set.
 
 ~hint Message too long? 📱
 

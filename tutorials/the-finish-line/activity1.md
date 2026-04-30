@@ -166,7 +166,7 @@ let finalPitStops = 0
 
 Racing isn't just about going fast—it's about balancing three competing priorities under time pressure. Your HUD displays Performance through score, Efficiency through life, and Strategy through decisions. In this final challenge, those values should continue from the run you just finished in Changing Conditions so the full test really feels connected.
 
-* :game pad: Drag `||info:set score to last performance result||`, `||info:set life to last efficiency result||`, `||info:start countdown 25||`, and `||game:splash 'Balance all three'||` from the toolbox — they replace the old score, life, countdown, and any carry-over splash already in `||loops(noclick):on start||`.
+* :game pad: Drag `||info:set score to last performance result||`, `||info:set life to last efficiency result||`, `||info:start countdown 25||`, and `||game:splash||` (with text `Balance all three` and `Performance. Efficiency. Strategy.`) from the toolbox — they replace the old score, life, countdown, and any carry-over splash already in `||loops(noclick):on start||`.
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
@@ -204,7 +204,7 @@ game.splash("Balance all three", "Performance. Efficiency. Strategy.")
 
 Obstacles represent the unpredictable risks that every racing team faces—track debris, weather changes, mechanical stress. By spawning them continuously throughout the run, you create sustained pressure that tests whether your efficiency tuning can handle extended challenges, not just a single perfect moment.
 
-* :game pad: Drag the `||game:on update every 2500ms||` obstacle spawner from the toolbox — the stage check, `trackObstacle` Enemy sprite, random position, speed, and lifespan are already inside.
+* :game pad: Drag the `||game:on game update every [2500] ms||` obstacle spawner from the toolbox — the stage check, `trackObstacle` Enemy sprite, random position, speed, and lifespan are already inside.
 
 ~hint Too chaotic? 🌀
 
@@ -255,7 +255,7 @@ obstacle.lifespan = 3000
 
 Real racing isn't just about avoiding problems—it's about knowing when to recover. Pit markers transform the challenge from pure reflexes into strategic decision-making: do you maintain your current pace or take a moment to restore efficiency? This turns the game into a test of judgment, not just speed.
 
-* :game pad: Drag the `||game:on update every 7000ms||` pit marker spawner from the toolbox — the stage check, `pitMarker` Food sprite, random position, and lifespan are already inside.
+* :game pad: Drag the `||game:on game update every [7000] ms||` pit marker spawner from the toolbox — the stage check, `pitMarker` Food sprite, random position, and lifespan are already inside.
 
 ~hint Pit markers not showing? ⏱️
 
@@ -302,8 +302,8 @@ pitMarker.lifespan = 4000
 
 Events without feedback are invisible to players. By wiring collision and pit stop overlaps to the HUD, you make every decision immediately visible through score changes, life updates, and visual effects. This feedback loop is what turns abstract code into a readable, learnable system.
 
-* :paper plane: Drag the `||sprites:on Player overlaps Enemy||` collision handler from the toolbox — the stage check, collision counter, life penalty, and destroy effect are all wired in.
-* :paper plane: Drag the `||sprites:on Player overlaps Food||` pit handler from the toolbox — the stage check, pit counter, life restore, score, strategy points, and destroy are all wired in.
+* :paper plane: Drag the `||sprites:on [Player] overlaps [Enemy]||` collision handler from the toolbox — the stage check, collision counter, life penalty, and destroy effect are all wired in.
+* :paper plane: Drag the `||sprites:on [Player] overlaps [Food]||` pit handler from the toolbox — the stage check, pit counter, life restore, score, strategy points, and destroy are all wired in.
 
 ~hint Events doing nothing? 🐛
 

@@ -37,8 +37,7 @@ Before you can analyze performance, you need somewhere to store the evidence. Cr
         </div>
     </div>
 
-* :paper plane: Open `||variables:Variables||` and create `||variables:reviewScore`, `||variables:reviewEfficiency`, `reviewStrategy`, and `||variables:pitStopsVisited`.
-* :keyboard: Set each variable to `0`. This means nothing has loaded yet.
+* :paper plane: Drag `||variables:set reviewScore to 0||`, `||variables:set reviewEfficiency to 0||`, `||variables:set reviewStrategy to 0||`, and `||variables:set pitStopsVisited to 0||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
 
@@ -79,8 +78,8 @@ Saved data becomes meaningful when you load it for analysis. Starting the Review
 
 * :binoculars: In `||loops(noclick):on start||`, find the `||drivenByStem:start stage||` block that is currently set to **Final Challenge**.
 * :racing car: Change that same block so it is set to **Review**.
-* :racing car: Use the saved results blocks to read the last Performance (`||drivenByStem:lastPerformanceResult||`), Efficiency `||drivenByStem:lastEfficiencyResult||`, and Strategy scores `||drivenByStem:lastStrategyResult||` into your variables.
-* :racing car: Read the saved pit stop count `||drivenByStem:savedPitStopCount||` into `||variables:pitStopsVisited||`.
+* :racing car: Use the saved results blocks to read the last Performance (`||drivenByStem:last performance result||`), Efficiency (`||drivenByStem:last efficiency result||`), and Strategy scores (`||drivenByStem:last strategy result||`) into your variables.
+* :racing car: Read the saved pit stop count (`||drivenByStem:saved pit stop count||`) into `||variables:pitStopsVisited||`.
 
 ~hint All values still zero? 🔢
 
@@ -124,7 +123,7 @@ drivenByStem.startVehicleTestTrack()
 
 Numbers in variables are invisible to players. A well-designed summary screen takes your three core metrics and presents them in a single, readable snapshot that anyone can understand at a glance. Clear presentation turns data into communication, making results accessible to the entire team.
 
-* :game pad: Drag `||game:splash "Race data"||` from the toolbox — it already formats your performance, efficiency, and strategy values into one message.
+* :game pad: Drag `||game:splash||` from the toolbox — it already formats your performance, efficiency, and strategy values into one message.
 
 ~hint Summary hard to read? 👀
 
@@ -170,8 +169,8 @@ This step has no single correct answer. Try your own logic.
 * :paper plane: Open `||logic:Logic||` and build an `if / else if / else` chain.
 * :racing car: If `||variables:reviewEfficiency||` is low (less than 3), use `||drivenByStem:Driven by STEM||` to set an efficiency-focused next-test focus; else if `||variables:reviewStrategy||` is low (less than 3), set an adaptation-focused focus; otherwise set a balanced focus.
 * :game pad: Add a `||game:splash||` block after your `if / else if / else` chain.
-* :keyboard: In the first text box, type `||game:Next test focus||` so players know what message they are reading.
-* :racing car: In the second text box, use `||drivenByStem:nextTestFocus||` to show the recommendation your code just saved.
+* :keyboard: In the first text box, type `Next test focus` so players know what message they are reading.
+* :racing car: In the second text box, use `||drivenByStem:next test focus||` to show the recommendation your code just saved.
 
 ~hint Which lens to pick? 🤔
 

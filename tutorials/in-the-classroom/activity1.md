@@ -271,7 +271,7 @@ _(This block runs code when the A button is pressed.)_
 
 Now let's give players control! Container blocks like this one run code when specific events happen — in this case, when the player presses a button. In the race car, our control systems respond to sensor events in real time. Event-driven programming is how we build responsive systems, and it's how games respond to player actions.
 
-- :game pad: Find the ``||controller:on [A] button pressed ||`` container and drag it into **an empty area of** the workspace.
+- :game pad: Find the ``||controller:on [A] button pressed||`` container and drag it into **an empty area of** the workspace.
 
 
 

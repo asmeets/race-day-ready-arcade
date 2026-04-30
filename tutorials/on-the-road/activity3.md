@@ -66,7 +66,7 @@ drivenByStem.startVehicleTestTrack()
 
 Every experiment needs a control condition. Starting with dry weather and a clear background gives you a known baseline so that when conditions change, the contrast is obvious. Engineers design systems this way so they can isolate variables and measure the impact of each change accurately.
 
-* :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:set weather to Dry||` below the stage block in `||loops(noclick):on start||`.
+* :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:set weather to [Dry]||` below the stage block in `||loops(noclick):on start||`.
 * :tree: Open `||scene:Scene||` and add `||scene:set background color||` below it to show a dry-track color.
 
 ~hint Can't see the car? 🎨
@@ -134,8 +134,7 @@ let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 
 To reward smart adaptation, you need evidence that conditions changed and how the driver responded. These two variables—one to mark when weather shifted, another to count collisions—give you the data you need to evaluate performance. This is how telemetry analysts track driver behavior under pressure: they log events and compare them to thresholds.
 
-* :paper plane: Open `||variables:Variables||` and create variables named `||variables:weatherChanged||` and `weatherCollisions`.
-* :keyboard: Set both `||variables:weatherChanged||` and `||variables:weatherCollisions||` to **0** in `||loops(noclick):on start||`.
+* :paper plane: Drag `||variables:set weatherChanged to 0||` and `||variables:set weatherCollisions to 0||` from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Never earning adaptation reward? 🏆
 
@@ -234,13 +233,13 @@ info.startCountdown(25)
 
 Weather doesn't wait for you to be ready. By triggering rain after 5 seconds, you're modeling how real conditions change without warning, forcing drivers and teams to adapt in real time. This delayed event tests whether your system can handle dynamic state changes—a core challenge in motorsport engineering.
 
-* :game pad: Open `||Timer:Timer||` and add an `||timer:after (5000) ms do||` event block. Be sure to set this value to 5000.
+* :game pad: Open `||timer:Timer||` and add an `||timer:after (5000) ms do||` event block. Be sure to set this value to 5000.
 * :logic: Inside that timer block, add an `||logic:if||` check for whether the current stage is **Weather**.
 * :racing car: Inside the `if` block, open `||drivenByStem:Driven by STEM||` and set weather to **Rain**.
 * :paper plane: Set `||variables:weatherChanged||` to **1**.
 * :tree: Open `||scene:Scene||` and change the background color to show the track is getting wetter.
-* :tree: Add `||scene:set background image||` and switch to the shared `||images:weatherBg||` image.
-* :game pad: Open `||game:Game||` and add a splash that says `||game:Rain lowers grip||` and `||game:Adapt your driving.||`
+* :tree: Add `||scene:set background image to||` and switch to the shared `weatherBg` image.
+* :game pad: Open `||game:Game||` and add a `||game:splash||` that says `Rain lowers grip` and `Adapt your driving.`
 
 ~hint Rain never starts? ☔
 
@@ -283,12 +282,12 @@ drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 
 Wet surfaces reduce tire grip, which means lower safe cornering speed. This update loop continuously checks current weather and adjusts controller speed accordingly—not by stacking penalties, but by setting the correct value for the current condition. This mirrors how traction control systems monitor grip levels and adjust power delivery in real time.
 
-* :game pad: Open `||game:Game||` and add an `||game:on game update every (1000) ms||` event block.
+* :game pad: Open `||game:Game||` and add an `||game:on game update every [1000] ms||` event block.
 * :logic: Just like you did in earlier stages, start by adding an `||logic:if||` check to make sure this code only runs when the stage is **Weather**.
 * :logic: Inside that block, add an `||logic:if else||` to check the current weather.
 * :racing car: In the first branch, use `||drivenByStem:weather is Rain||`.
-* :controller: When it is raining, set `||controller:move sprite with buttons vx vy||` for `||variables:raceCar||` to `||math:driveSpeed - 30||` for both speed values.
-* :controller: In the `||logic:else||` branch, set the same `||controller:controller||` block back to `||variables:driveSpeed||` for both speed values.
+* :controller: When it is raining, set `||controller:move [raceCar] with buttons vx vy||` using `||math:0 - 0||` with `||variables:driveSpeed||` minus `30` for both speed values.
+* :controller: In the `||logic:else||` branch, set the same `||controller:move [raceCar] with buttons vx vy||` block back to `||variables:driveSpeed||` for both speed values.
 
 ~hint Car getting slower forever? 🐌
 
@@ -326,14 +325,14 @@ drivenByStem.weatherIs(drivenByStem.WeatherMode.Dry)
 
 Puddles are more than just visual elements—they're hazards that test the driver's ability to avoid obstacles under reduced grip. Spawning them on a timer and applying efficiency penalties on collision simulates how water accumulation on track creates unpredictable danger zones. Race teams study these patterns to advise drivers on optimal racing lines.
 
-* :game pad: Open `||game:Game||` and add an `||game:on game update every (2500) ms||` block.
+* :game pad: Open `||game:Game||` and add an `||game:on game update every [2500] ms||` block.
 * :logic: Just like the other weather code, add an `||logic:if||` check so this puddle code only runs when the stage is **Weather**.
 * :sprites: Inside that `||logic:if||` block, open `||sprites:Sprites||` and create an **Enemy** sprite for the puddle.
-* :mouse pointer: Change the image to the shared `||images:rainPuddle||` asset.
+* :mouse pointer: Change the image to the shared `rainPuddle` asset.
 * :racing car: Set the puddle position so it appears at a random place on the track.
 * :racing car: Give the puddle a small downward speed.
 * :racing car: Set a short lifespan so old puddles disappear on their own.
-* :paper plane: Open `||sprites:Sprites||` and add an `on sprite of kind Player overlaps Enemy` event.
+* :paper plane: Open `||sprites:Sprites||` and add an `||sprites:on [Player] overlaps [Enemy]||` event.
 * :logic: Inside that overlap event, add an `||logic:if||` check for whether the stage is **Weather**.
 * :paper plane: Increase `||variables:weatherCollisions||` by 1.
 * :heart: Reduce life by `||variables:efficiencyDrain||`.
@@ -401,7 +400,7 @@ Successful adaptation means recognizing when conditions changed and adjusting yo
 * :logic: Inside the Weather block, add another `||logic:if||` to check whether `||variables:weatherChanged||` is **1** and `||variables:weatherCollisions||` is **less than or equal to 1**.
 * :racing car: Inside that second `if` block, open `||drivenByStem:Driven by STEM||` and award **Strategy +1**.
 * :racing car: Back in the main Weather block, add `||drivenByStem:save current run results||`.
-* :game pad: Below that, add a splash that says `||Game:Run complete||` and `||Game:Check your strategy score.||`
+* :game pad: Below that, add a `||game:splash||` that says `Run complete` and `Check your strategy score.`
 
 ~hint Strategy never awards? 🏆
 

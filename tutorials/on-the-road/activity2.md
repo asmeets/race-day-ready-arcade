@@ -53,7 +53,7 @@ drivenByStem.startVehicleTestTrack()
 
 In racing, clear communication prevents mistakes. A quick message at the start of the pit phase tells the player they've transitioned from driving to decision-making. This mirrors how race engineers brief drivers over the radio before critical moments—short, direct, and focused on what matters right now.
 
-* :game pad: Drag `||game:splash "Pit wall" "Use data before you make the next call."||` from the toolbox into `||loops(noclick):on start||`.
+* :game pad: Drag `||game:splash||` (with text `Pit wall` and `Use data before you make the next call.`) from the toolbox into `||loops(noclick):on start||`.
 
 ~hint Message too long? ⚡
 
@@ -112,7 +112,7 @@ Pit windows appear and disappear based on track position and race conditions. By
 
 Engineers design systems that create these windows, and strategists decide when to use them—both roles rely on timing.
 
-* :game pad: Drag the `||game:on update every 8000ms||` pit marker spawner from the toolbox into an empty area of the workspace — the stage check, `pitMarker` Food sprite, random position, and lifespan are already configured inside.
+* :game pad: Drag the `||game:on game update every [8000] ms||` pit marker spawner from the toolbox into an empty area of the workspace — the stage check, `pitMarker` Food sprite, random position, and lifespan are already configured inside.
 
 ~hint Markers vanishing too fast? ⏱️
 
@@ -155,15 +155,15 @@ pitMarker.lifespan = 4000
 
 The pit stop doesn't give the same reward to everyone—it responds to the setup choice you saved earlier. If you optimized for pace, you get a score boost; if you optimized for balance, you get efficiency back. This conditional logic mirrors how real teams tune their strategies to their car's strengths and the current race situation.
 
-* :paper plane: Open `||sprites:Sprites||` and add an `||sprites:on Player overlaps Food||` block.
-* :racing car: Inside the overlap block, add an `||logic:if stage is Pit Stop||` check.
+* :paper plane: Open `||sprites:Sprites||` and add an `||sprites:on [Player] overlaps [Food]||` block.
+* :racing car: Inside the overlap block, add an `||logic:if||` check using `||drivenByStem:stage is||` set to **Pit Stop**.
 * :paper plane: Inside that `if` block, change `||variables:pitStopsVisited||` by 1.
 * :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:record pit stop visit||`.
 * :racing car: Add `||drivenByStem:award strategy points||` and set it to 1.
-* :logic: Add an `||logic:if/else||` block inside the pit stop check. (This is a nested if/else block.)
-* :racing car: In the `||logic:if||` condition, use `||drivenByStem:saved setup focus is pace||`.
-* :score: In the true branch, add the pace reward by increasing score. (Hint: this block lives in `||info||`.)
-* :heart: In the else branch, add the balance reward by increasing life. (Hint: this block lives in `||info||`.)
+* :logic: Add an `||logic:if else||` block inside the pit stop check. (This is a nested if/else block.)
+* :racing car: In the `||logic:if||` condition, use `||drivenByStem:setup focus is||` set to **Pace**.
+* :score: In the true branch, add the pace reward by increasing score. (Hint: this block lives in `||info:Info||`.)
+* :heart: In the else branch, add the balance reward by increasing life. (Hint: this block lives in `||info:Info||`.)
 
 ~hint Rewards feel backwards? 🔄
 
@@ -214,8 +214,8 @@ drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Balance)
 
 Your pit decision only matters if it carries forward to the next stage. Saving the updated results at the end of the countdown ensures that later gates can see the score, efficiency, and strategy impact of what you did here. The pit-stop total itself is already being recorded every time you use a marker, and this end-of-run save captures the rest of the session snapshot.
 
-* :game pad: Open `||info:Info||` and add an `||info:on countdown end||` block so this stage saves the updated run state when the carried race timer finishes. Inside this block, add two blocks which will create an "if/then" for the curent stage is pit stop.
-* :racing car: Inside the `||logic:if current stage is Pit Stop||` check, open `||drivenByStem:Driven by STEM||` and drag in `save current run results`.
+* :game pad: Open `||info:Info||` and add an `||info:on countdown end||` block so this stage saves the updated run state when the carried race timer finishes. Inside this block, add an `||logic:if||` using `||drivenByStem:stage is||` set to **Pit Stop**.
+* :racing car: Inside the `||logic:if||` check, open `||drivenByStem:Driven by STEM||` and drag in `||drivenByStem:save current run results||`.
 
 ~hint Next gate forgot your choice? 💾
 

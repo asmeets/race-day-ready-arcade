@@ -13,16 +13,6 @@ let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image
 let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image`finishBg`, assets.image`weatherBg`]
 ```
 
-# Garage Shakedown
-
-### @diffs true
-
-```template
-// Pre-load all assets so they appear in the gallery
-let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image`trackObstacle`, assets.image`pitMarker`, assets.image`rainPuddle`, assets.image`telemetryScreen`, assets.image`finishBanner`, assets.image`teamBadge`]
-let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image`finishBg`, assets.image`weatherBg`]
-```
-
 ## Garage Shakedown @showdialog
 
 ![Jordan - Test Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/jordan.png)
@@ -42,7 +32,7 @@ Before a good test starts, teams decide how they will read the data. Your edited
 * :mouse pointer: Find the `||drivenByStem:preview garage test bed||` block and drag it away from `||loops(noclick):on start||` so the garage preview does not open again.
 * :mouse pointer: If `||drivenByStem:show saved driver profile||` is still connected, drag it away too.
 * :racing car: Find the `||drivenByStem:start stage||` block in `||loops(noclick):on start||` and change its value from **Garage Setup** to **Garage Shakedown**.
-* :racing car: Drag `||drivenByStem:set speed display unit to mph||` and `||drivenByStem:set fuel display unit to gallons||` from the toolbox. Use the dropdowns to switch if your team prefers different units.
+* :racing car: Drag `||drivenByStem:set speed display unit to [mph]||` and `||drivenByStem:set fuel display unit to [gallons]||` from the toolbox. Use the dropdowns to switch if your team prefers different units.
 
 ~hint Wrong units later? 🔍
 
@@ -110,7 +100,7 @@ One run gives you data. Two runs let you compare. Adding a retry button makes it
 
 Engineers repeat tests so they can trust the pattern, not just one result.
 
-* :game pad: Drag the `||controller:on A button pressed||` event from the toolbox into an empty area of the workspace — `||drivenByStem:start vehicle test track||` is already inside.
+* :game pad: Drag the `||controller:on [A] button pressed||` event from the toolbox into an empty area of the workspace — `||drivenByStem:start vehicle test track||` is already inside.
 * :game pad: After one run ends, press `A` to launch another. When the second run finishes, the comparison will appear automatically.
 
 ~hint A button does nothing? 🔁

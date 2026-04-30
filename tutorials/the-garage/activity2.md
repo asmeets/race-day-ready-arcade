@@ -205,15 +205,15 @@ let efficiencyDrain = 1
 
 This is where your simulation gets smart. A conditional statement lets your code make different choices based on the current situation. In this case, you're programming a realistic tradeoff: higher speed means higher energy cost. This is how engineers encode real-world physics into software systems.
 
-* :paper plane: Open `||logic:Logic||` and add `||logic:if then else||` in `||loops(noclick):on start||` directly below your `||variables:set efficiencyDrain to 1||` block.
+* :paper plane: Open `||logic:Logic||` and add `||logic:if else||` in `||loops(noclick):on start||` directly below your `||variables:set efficiencyDrain to 1||` block.
 * :mouse pointer: In `||logic:Logic||` select the 0 < 0 condition and drag it over the "true" value.
 * :mouse pointer: Select the `||variables:driveSpeed||` and drag it to the first 0 in the "if" block.
 * :mouse pointer: Change the direction of the operator from < (less than) to > (greater than).
 * :keyboard: Enter the value of `100` to replace the `0` value in the first line of the `||logic:if||` block.
 * :paper plane: In the `then` branch, add `||variables:set efficiencyRating to||` and `||variables:set efficiencyDrain to 2||`.
 * :mouse pointer: Open `||math:Math||`, drag a `||math:0 + 0||` block into `||variables:set efficiencyRating to||`, then change the `+` to `-`.
-* :mouse pointer: Put `||drivenByStem:saved efficiency||` in the first math slot and `1` in the second slot so the rule becomes `||drivenByStem:saved efficiency - 1||`.
-* :keyboard: In the `||logic:else||` branch, set `||variables:efficiencyRating||` to use `||drivenByStem:saved efficiency||` and `||drivenByStem:efficiencyDrain||` to `1`.
+* :mouse pointer: Put `||drivenByStem:saved efficiency||` in the first math slot and `1` in the second slot so the rule subtracts one from the saved value.
+* :keyboard: In the `||logic:else||` branch, set `||variables:efficiencyRating||` to use `||drivenByStem:saved efficiency||` and `||variables:efficiencyDrain||` to `1`.
 
 ~hint What's a conditional?
 
@@ -282,7 +282,7 @@ Engineers often use a test stand before a full track run. A garage test bed give
 This is also a good moment to notice an important block programming rule: **blocks only run when they are connected to an event or another running stack**. Here, you will remove the repeated garage intro splash so testing stays quick, then preview the speed, efficiency, and drain values together.
 
 * :mouse pointer: Find the `||game:splash||` block in your `||loops(noclick):on start||` and drag it away from the stack so it is no longer connected.
-* :racing car: Drag `||drivenByStem:preview garage test bed driveSpeed efficiencyRating efficiencyDrain||` from the toolbox to the end of `||loops(noclick):on start||` — the three variables are already wired in.
+* :racing car: Drag `||drivenByStem:preview garage test bed||` from the toolbox to the end of `||loops(noclick):on start||` — the three variables are already wired in.
 * :game pad: Run the simulator and press the arrow keys to test the speed gauge.
 
 ~hint Preview looks wrong? 🧪
@@ -327,10 +327,10 @@ On a real race team, different engineers focus on different things — some watc
 * Enabled: false
 ```
 
-* :book: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:setRoleLens||` near the top of your `||loops(noclick):on start||`.
-* :mouse pointer: Using the drop-down in `||drivenByStem:setRoleLens||`, select a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
-* :id card: Then, add `||drivenByStem:showSavedDriverProfile||` to display your selected profile. 
-* :lightbulb: Try changing your `||drivenByStem:setRoleLens||` value to review different information.
+* :book: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:set role lens to||` near the top of your `||loops(noclick):on start||`.
+* :mouse pointer: Using the drop-down in `||drivenByStem:set role lens to||`, select a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
+* :id card: Then, add `||drivenByStem:show saved driver profile||` to display your selected profile. 
+* :lightbulb: Try changing your `||drivenByStem:set role lens to||` value to review different information.
 
 ~hint Which role should I pick? ✨
 
@@ -374,7 +374,7 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* :racing car: Drag `||drivenByStem:save team setup Pace||` from the toolbox into the **`if`** branch of your `||logic:if driveSpeed > 100||` block.
+* :racing car: Drag `||drivenByStem:save team setup [Pace]||` from the toolbox into the **`if`** branch of your `||logic:if||` block.
 * :racing car: Duplicate it (right-click → Duplicate), drag the copy into the **`else`** branch, and change the focus dropdown to **Balance**.
 * :game pad: Add a `||game:splash||` in each branch that explains the tradeoff choice to the player.
 

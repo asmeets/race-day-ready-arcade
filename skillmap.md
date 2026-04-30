@@ -6,7 +6,7 @@
 * tertiarycolor: #EAF3F8
 * highlightcolor: #42cdf4
 * completednodecolor: #067d14
-* allowcodecarryover: True
+* allowcodecarryover: true
 * backgroundurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/background.gif
 * bannerurl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/banner.png
 
@@ -125,7 +125,8 @@
 * rewards:
     * certificate:
         * url: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/driven-by-stem.pdf
-        * preview: PNG
+        * preview: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/driven-by-stem.png
     * completion-badge:
         * image: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/badges/badge-driven-by-stem.png
+        * name: Driven by STEM
         * name: Driven by STEM

@@ -99,12 +99,12 @@ scene.setBackgroundImage(assets.image`trackBg`)
 
 ---
 
-Your speed choice and efficiency tradeoff from the garage should carry into this session. Loading saved values ensures that the car behaves consistently with what you tuned earlier, and keeping the same `||sprites:raceCar||` sprite means you're still testing the team car you designed. 
+Your speed choice and efficiency tradeoff from the garage should carry into this session. Loading saved values ensures that the car behaves consistently with what you tuned earlier, and keeping the same `||variables:raceCar||` sprite means you're still testing the team car you designed. 
 
 This is how engineers maintain setup continuity across test sessions — load the baseline, then measure what happens.
 
 * :racing car: Drag `||variables:set driveSpeed to saved drive speed||` and `||variables:set efficiencyDrain to saved efficiency cost||` from the toolbox into `||loops(noclick):on start||`.
-* :id card: Keep using the same `||sprites:raceCar||` sprite you customized in the garage.
+* :id card: Keep using the same `||variables:raceCar||` sprite you customized in the garage.
 
 ~hint Life draining wrong? 🔎
 
@@ -208,7 +208,7 @@ info.startCountdown(30)
 
 A static track doesn't challenge your setup. Spawning obstacles at regular intervals creates consistent, repeatable test conditions — you face the same challenge density every run, so differences in performance reflect your setup, not random luck. This is controlled testing at work.
 
-* :game pad: Drag the `||game:on update every 2000ms||` obstacle spawner from the toolbox into an empty area of the workspace — the stage check, `trackObstacle` sprite, random position, speed, and lifespan are already configured inside.
+* :game pad: Drag the `||game:on game update every [2000] ms||` obstacle spawner from the toolbox into an empty area of the workspace — the stage check, `trackObstacle` sprite, random position, speed, and lifespan are already configured inside.
 
 ~hint Too chaotic? 🎶
 
@@ -261,7 +261,7 @@ Collisions aren't just visual — they represent mistakes that cost resources. T
 
 Race engineers use telemetry data exactly like this to identify where drivers lose time or damage equipment.
 
-* :paper plane: Drag the `||sprites:on Player overlaps Enemy||` collision handler from the toolbox — the stage check, collision counter, life penalty, and obstacle destroy are all wired in.
+* :paper plane: Drag the `||sprites:on [Player] overlaps [Enemy]||` collision handler from the toolbox — the stage check, collision counter, life penalty, and obstacle destroy are all wired in.
 
 ~hint Collisions not working?
 
@@ -308,7 +308,7 @@ otherSprite.destroy()
 
 Consistency is as important as speed. This event checks whether collision count changed since the last check. If it didn't, you drove cleanly and earn bonus points. This is how systems recognize patterns — by comparing current state to previous state and rewarding improvement or consistency.
 
-* :game pad: Drag the `||game:on update every 4000ms||` clean-driving reward from the toolbox — the stage check, collision comparison, score change, strategy points, and counter reset are all inside.
+* :game pad: Drag the `||game:on game update every [4000] ms||` clean-driving reward from the toolbox — the stage check, collision comparison, score change, strategy points, and counter reset are all inside.
 
 ~hint Reward logic broken? 🔀
 
