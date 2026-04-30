@@ -723,7 +723,7 @@ To reward smart adaptation, you need evidence that conditions changed and how th
 
 ---
 
-If you never earn the adaptation reward, check whether `||variables.weatherChanged||` ever flips to 1 and whether collisions are actually being counted.
+If you never earn the adaptation reward, check whether `||variables:weatherChanged||` ever flips to 1 and whether collisions are actually being counted.
 
 hint~
 

@@ -832,14 +832,14 @@ let driveSpeed = drivenByStem.savedDriveSpeed()
 
 Speed is one of the most important variables in racing. Changing it affects everything — how quickly you navigate, how much energy you use, how hard it is to control the car. By storing speed in a variable, you create a single point of control that you can tune and test systematically.
 
-* :mouse pointer: Find the `||variables.set driveSpeed to||` block you added in Step 1 inside `||loops(noclick):on start||`.
+* :mouse pointer: Find the `||variables:set driveSpeed to||` block you added in Step 1 inside `||loops(noclick):on start||`.
 * :keyboard: Change its value from `||drivenByStem:saved drive speed||` to `110`.
 
 ~hint Car still slow? 👀
 
 ---
 
-If your speed value keeps switching back, something is probably resetting it later. Scan your code stack and make sure there is only one `||variables.set driveSpeed to||` block in `on start`.
+If your speed value keeps switching back, something is probably resetting it later. Scan your code stack and make sure there is only one `||variables:set driveSpeed to||` block in `on start`.
 
 hint~
 
@@ -856,7 +856,7 @@ let driveSpeed = 110
 
 ---
 
-A variable is only useful if your code actually reads it. By wiring your movement system to the `||variables.driveSpeed||` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
+A variable is only useful if your code actually reads it. By wiring your movement system to the `||variables:driveSpeed||` variable, you ensure that changes to that one value immediately affect how the car moves. This is how engineers create centralized control — change one setting, update the whole system.
 
 * :racing car: Find the `||drivenByStem:set base car speed to||` block that already uses `||drivenByStem:saved drive speed||`.
 * :mouse pointer: Replace `||drivenByStem:saved drive speed||` with the `||variables:driveSpeed||` variable.
@@ -865,7 +865,7 @@ A variable is only useful if your code actually reads it. By wiring your movemen
 
 ---
 
-If you still see `||drivenByStem.saved drive speed||` in the movement block, the tuning isn't connected yet. Replace it with the `||variables.driveSpeed||` bubble so your change actually takes effect.
+If you still see `||drivenByStem:saved drive speed||` in the movement block, the tuning isn't connected yet. Replace it with the `||variables:driveSpeed||` bubble so your change actually takes effect.
 
 hint~
 
@@ -892,11 +892,11 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 
 ---
 
-In racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `||variables.efficiencyRating||` represents how much energy the car starts with, and `||variables.efficiencyDrain||` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
+In racing, every decision has a cost. Going faster burns more fuel and stresses components. In your simulation, `||variables:efficiencyRating||` represents how much energy the car starts with, and `||variables:efficiencyDrain||` represents how much each mistake costs. Creating both variables lets you model tradeoffs clearly.
 
 * :paper plane: Open `||variables:Variables||`, click **Make a Variable**, and name it `efficiencyRating`.
 * :paper plane: Set `||variables:efficiencyRating||` to `||drivenByStem:saved efficiency||`.
-* :paper plane: Create `||variables:efficiencyDrain||`, then add `||variables.set efficiencyDrain to 1||` in `||loops(noclick):on start||`.
+* :paper plane: Create `||variables:efficiencyDrain||`, then add `||variables:set efficiencyDrain to 1||` in `||loops(noclick):on start||`.
 
 ~hint Can't find your variable? ⌨️
 
@@ -934,7 +934,7 @@ This is where your simulation gets smart. A conditional statement lets your code
 * :paper plane: In the `then` branch, add `||variables:set efficiencyRating to||` and `||variables:set efficiencyDrain to 2||`.
 * :mouse pointer: Open `||math:Math||`, drag a `||math:0 + 0||` block into `||variables:set efficiencyRating to||`, then change the `+` to `-`.
 * :mouse pointer: Put `||drivenByStem:saved efficiency||` in the first math slot and `1` in the second slot so the rule becomes `||drivenByStem:saved efficiency - 1||`.
-* :keyboard: In the `||logic:else||` branch, set `||variables.efficiencyRating||` to use `||drivenByStem.saved efficiency||` and `||drivenByStem.efficiencyDrain||` to `1`.
+* :keyboard: In the `||logic:else||` branch, set `||variables:efficiencyRating||` to use `||drivenByStem:saved efficiency||` and `||drivenByStem:efficiencyDrain||` to `1`.
 
 ~hint What's a conditional?
 
@@ -995,7 +995,7 @@ This is also a good moment to notice an important block programming rule: **bloc
 
 * :mouse pointer: Find the `||game:splash||` block in your `||loops(noclick):on start||`.
 * :mouse pointer: Drag that splash block away from the `||loops(noclick):on start||` stack so it is no longer connected.
-* :racing car: Open `||drivenByStem:Driven by STEM||` in the Toolbox and add `||drivenByStem.preview garage test bed speed efficiency drain||` at the end of `||loops(noclick):on start||`.
+* :racing car: Open `||drivenByStem:Driven by STEM||` in the Toolbox and add `||drivenByStem:preview garage test bed speed efficiency drain||` at the end of `||loops(noclick):on start||`.
 * :mouse pointer: Set the block inputs to `||variables:driveSpeed||`, `||variables:efficiencyRating||`, and `||variables:efficiencyDrain||`.
 * :game pad: Run the simulator and press the arrow keys on your keyboard or using the joystick control. You may need to select the play button to activate the simulator.
 * :right arrow: The left and right arrows make the car slide across the rollers, and the speed gauge should jump up to show what a more active test feels like.
@@ -1041,10 +1041,10 @@ On a real race team, different engineers focus on different things — some watc
 * Enabled: false
 ```
 
-* :book: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem.setRoleLens||` near the top of your `||loops(noclick):on start||`.
-* :mouse pointer: Using the drop-down in `||drivenByStem.setRoleLens||`, select a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
-* :id card: Then, add `||drivenByStem.showSavedDriverProfile||` to display your selected profile. 
-* :lightbulb: Try changing your `||drivenByStem.setRoleLens||` value to review different information.
+* :book: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:setRoleLens||` near the top of your `||loops(noclick):on start||`.
+* :mouse pointer: Using the drop-down in `||drivenByStem:setRoleLens||`, select a role lens: Performance Engineer, Strategist, Software Engineer, or Data Analyst.
+* :id card: Then, add `||drivenByStem:showSavedDriverProfile||` to display your selected profile. 
+* :lightbulb: Try changing your `||drivenByStem:setRoleLens||` value to review different information.
 
 ~hint Which role should I pick? ✨
 
@@ -1088,15 +1088,15 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.DataAnalyst)
 
 Engineering isn't just about making good decisions in the moment — it's about documenting those decisions so you can learn from them later. Saving your setup focus means future stages of your simulation will remember whether you prioritized speed or balance. This is how professional teams track setup changes across test sessions.
 
-* :mouse pointer: In `||drivenByStem:Driven by STEM||`, add `||drivenByStem.saveTeamSetup||` inside the same `||logic.if driveSpeed > 100||` block you built in Step 5.
+* :mouse pointer: In `||drivenByStem:Driven by STEM||`, add `||drivenByStem:saveTeamSetup||` inside the same `||logic:if driveSpeed > 100||` block you built in Step 5.
 * :mouse pointer: In the drop-down, set the focus to `||Pace||`.
-* :mouse pointer: For `||drivenByStem.saveTeamSetup.savedDriveSpeed||` add the `||variables.driveSpeed||` variable you created.
-* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiency|` add the `||variables.efficiencyRating||` variable you created.
-* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiencyCost|` add the `||variables.efficiencyDrain||` variable you created.
-* :mouse pointer: Right-click on the `||drivenByStem.saveTeamSetup||` block you created. Select Duplicate.
-* :mouse pointer: Drag the duplicataed block inside the `||logic.else||` branch.
-* :mouse pointer: In the `||logic.else||` branch set the focus to `||Balance||`.
-* :game pad: Add a `splash` in each branch of that same `||logic.if||` block that explains the tradeoff choice. Use the lightbulb hint below for suggestions.
+* :mouse pointer: For `||drivenByStem:saveTeamSetup:savedDriveSpeed||` add the `||variables:driveSpeed||` variable you created.
+* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiency|` add the `||variables:efficiencyRating||` variable you created.
+* :mouse pointer: For `||drivenByStem.saveTeamSetup.efficiencyCost|` add the `||variables:efficiencyDrain||` variable you created.
+* :mouse pointer: Right-click on the `||drivenByStem:saveTeamSetup||` block you created. Select Duplicate.
+* :mouse pointer: Drag the duplicataed block inside the `||logic:else||` branch.
+* :mouse pointer: In the `||logic:else||` branch set the focus to `||Balance||`.
+* :game pad: Add a `splash` in each branch of that same `||logic:if||` block that explains the tradeoff choice. Use the lightbulb hint below for suggestions.
 
 ~hint Setup not saving? ⏱️
 

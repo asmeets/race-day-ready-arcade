@@ -679,14 +679,14 @@ scene.setBackgroundImage(assets.image`trackBg`)
 
 ---
 
-Your speed choice and efficiency tradeoff from the garage should carry into this session. Loading saved values ensures that the car behaves consistently with what you tuned earlier, and keeping the same `||sprites.raceCar||` sprite means you're still testing the team car you designed. 
+Your speed choice and efficiency tradeoff from the garage should carry into this session. Loading saved values ensures that the car behaves consistently with what you tuned earlier, and keeping the same `||sprites:raceCar||` sprite means you're still testing the team car you designed. 
 
 This is how engineers maintain setup continuity across test sessions — load the baseline, then measure what happens.
 
 * :paper plane: Find your existing `||variables:driveSpeed||` variable from the garage code.
 * :racing car: In `||loops(noclick):on start||`, set `||variables:driveSpeed||` to `||drivenByStem:saved drive speed||` so your movement still matches the saved setup.
-* :id card: Keep using the same `||sprites.raceCar||` sprite you customized in the garage so this session tests the same car.
-* :racing car: Set `||variables.efficiencyDrain||` to `||drivenByStem:Driven by STEM.saved efficiency cost||`.
+* :id card: Keep using the same `||sprites:raceCar||` sprite you customized in the garage so this session tests the same car.
+* :racing car: Set `||variables:efficiencyDrain||` to `||drivenByStem:Driven by STEM:saved efficiency cost||`.
 
 ~hint Life draining wrong? 🔎
 
@@ -718,8 +718,8 @@ You can't improve what you don't measure. These variables let the game track how
 
 Data analysts use patterns like this to identify trends and reward consistency. Tracking isn't just counting — it's building evidence.
 
-* :paper plane: Open `||variables:Variables||`, select `||variables:Make a Variable||`, and name it `||variables.trackCollisions||`.
-* :paper plane: Make a second variable called `||variables.lastTrackCollisionCount||`.
+* :paper plane: Open `||variables:Variables||`, select `||variables:Make a Variable||`, and name it `||variables:trackCollisions||`.
+* :paper plane: Make a second variable called `||variables:lastTrackCollisionCount||`.
 * :keyboard: Set both to `0` inside `||loops(noclick):on start||`.
 
 ```blocks
@@ -744,8 +744,8 @@ let lastTrackCollisionCount = 0
 A racing session needs clear start and end points. The countdown sets the test window, while the score and life displays show real-time feedback. Setting these values at the start ensures every player gets the same fair test conditions. This is how you make comparisons meaningful.
 
 * :game pad: Open `||info:Info||` in the Toolbox and drag `||info:set score to 0||` into `||loops(noclick):on start||`.
-* :racing car: Drag `||info.set life||` and connect `||drivenByStem.saved efficiency||` from `||drivenByStem:Driven by STEM||` as the value.
-* :game pad: Drag `||info.start countdown||` and set the time to `30` seconds.
+* :racing car: Drag `||info:set life||` and connect `||drivenByStem:saved efficiency||` from `||drivenByStem:Driven by STEM||` as the value.
+* :game pad: Drag `||info:start countdown||` and set the time to `30` seconds.
 
 ~hint Life stuck at zero? 📊
 
@@ -782,18 +782,18 @@ info.startCountdown(30)
 A static track doesn't challenge your setup. Spawning obstacles at regular intervals creates consistent, repeatable test conditions — you face the same challenge density every run, so differences in performance reflect your setup, not random luck. This is controlled testing at work.
 
 * :game pad: Open `||game:Game||` and add `||game:on game update every 2000 ms||`. Make sure that the time is 2 seconds.
-* :racing car: Add an `||logic.if||` block inside the `||game:on game update every 2000 ms||`.
-* :racing car: Add the `||drivenByStem:current stage is garage||` to the `||logic.if||` condition.
-* :mouse pointer: Change the current stage to `||drivenByStem.Track||`.
-* :keyboard: Create a new variable `||variables.obs||` to store our sprite.
+* :racing car: Add an `||logic:if||` block inside the `||game:on game update every 2000 ms||`.
+* :racing car: Add the `||drivenByStem:current stage is garage||` to the `||logic:if||` condition.
+* :mouse pointer: Change the current stage to `||drivenByStem:Track||`.
+* :keyboard: Create a new variable `||variables:obs||` to store our sprite.
 * :paper plane: Create an obstacle sprite from `||sprites:Sprites||` by dragging the `||set mysprite to sprite of kind player||` to `||loops(noclick):on start||`.
-* :mouse pointer: Change `||sprites.mySprite||` to the `||variables.obs||` you created earlier.
-* :mouse pointer: Change `||sprites.Player||` to `||sprites.Enemy||`.
-* :mouse pointer: Add `||sprites.set mysprite position to x 0 y 0||` to `||loops(noclick):on start||`. Change mySprite to Obs.
-* :game pad: To make the obstacles randomly appear, drag the `||math.pick random 0 to 160||` into the "X" position.
-* :mouse pointer: Add `||sprites.set mysprite x to 0||` to `||loops(noclick):on start||`. Change mySprite to Obs.
+* :mouse pointer: Change `||sprites:mySprite||` to the `||variables:obs||` you created earlier.
+* :mouse pointer: Change `||sprites:Player||` to `||sprites:Enemy||`.
+* :mouse pointer: Add `||sprites:set mysprite position to x 0 y 0||` to `||loops(noclick):on start||`. Change mySprite to Obs.
+* :game pad: To make the obstacles randomly appear, drag the `||math:pick random 0 to 160||` into the "X" position.
+* :mouse pointer: Add `||sprites:set mysprite x to 0||` to `||loops(noclick):on start||`. Change mySprite to Obs.
 * :game pad: To set the speed of the obstacles, change "X" to vy (velocity y) and set a value of 60.
-* :mouse pointer: Add `||sprites.set mysprite x to 0||` to `||loops(noclick):on start||`. Change mySprite to Obs.
+* :mouse pointer: Add `||sprites:set mysprite x to 0||` to `||loops(noclick):on start||`. Change mySprite to Obs.
 * :game pad: To make sure obstacles disappear, change "X" to "lifespan" and set a value of 2500.
 
 ~hint Too chaotic? 🎶
@@ -842,7 +842,7 @@ Race engineers use telemetry data exactly like this to identify where drivers lo
 * :mouse pointer: Add an `||logic:if||` block and the `||drivenByStem:current stage is track||` condition.
 * :racing car: Inside the `||logic:if||` block, add `||variables:change trackCollisions by 1||` 
 * :mouse pointer: Inside the `||logic:if||` block, add `||info:change life by||`. Add `||math:0-0||` to replace the -1 in `||info:change life by||`.
-* :mouse pointer: Add the `||variables.efficinecyDrain||` in place of the second 0.
+* :mouse pointer: Add the `||variables:efficinecyDrain||` in place of the second 0.
 * :paper plane: To destroy the obstacle sprite, add the `||sprites:destroy otherSprite||` to the end of your `||logic:if||` block.
 
 ~hint Collisions not working?
@@ -882,7 +882,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 Consistency is as important as speed. This event checks whether collision count changed since the last check. If it didn't, you drove cleanly and earn bonus points. This is how systems recognize patterns — by comparing current state to previous state and rewarding improvement or consistency.
 
 * :game pad: Open `||game:Game||` and add `||game:on game update every 4000 ms||`.
-* :racing car: Now's your chance to flex your muscles. If `||variables:trackCollisions||` equals `||variables:lastTrackCollisionCount||`, you need to award `||info:score +2||` and `||variables.Strategy +1||`. Can you do it?
+* :racing car: Now's your chance to flex your muscles. If `||variables:trackCollisions||` equals `||variables:lastTrackCollisionCount||`, you need to award `||info:score +2||` and `||variables:Strategy +1||`. Can you do it?
 * :paper plane: One more opportunity, set `||variables:lastTrackCollisionCount||` to `||variables:trackCollisions||` so the next check compares fresh data.
 
 ~hint Reward logic broken? 🔀

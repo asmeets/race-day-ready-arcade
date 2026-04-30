@@ -1391,7 +1391,7 @@ Before a good test starts, teams decide how they will read the data. Your edited
 * :mouse pointer: If `||drivenByStem:show saved driver profile||` is still connected in `||loops(noclick):on start||`, drag it away too so the shakedown can launch without an extra popup.
 * :racing car: Find the `||drivenByStem:start stage||` block already in `||loops(noclick):on start||` from the last activity.
 * :mouse pointer: Change the `||drivenByStem:start stage||` value from **Garage Setup** to **Garage Shakedown**.
-* :racing car: From the `||drivenByStem:Driven by STEM||` Toolbox, add `||drivenByStem.set speed display unit to||` and `||drivenByStem.set fuel display unit to||` in your `||loops(noclick):on start||`.
+* :racing car: From the `||drivenByStem:Driven by STEM||` Toolbox, add `||drivenByStem:set speed display unit to||` and `||drivenByStem:set fuel display unit to||` in your `||loops(noclick):on start||`.
 * :mouse pointer: Choose the units your team wants to read by selecting the value from the dropdowns.
 
 ~hint Wrong units later? 🔍

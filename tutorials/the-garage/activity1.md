@@ -872,9 +872,9 @@ If you share your project with a friend, or multiple people want to try your gam
 * Enabled: false
 ```
 
-* :game pad: Open `||controller:Controller||` and drag `||controller.on button pressed||` into the workspace outside of `||loops(noclick):on start||`.
+* :game pad: Open `||controller:Controller||` and drag `||controller:on button pressed||` into the workspace outside of `||loops(noclick):on start||`.
 * :mouse pointer: Change the button to `B`.
-* :racing car: Inside the `||controller.on button pressed||` event, add `||drivenByStem.reset saved session||` and `||game.reset game||`.
+* :racing car: Inside the `||controller:on button pressed||` event, add `||drivenByStem:reset saved session||` and `||game:reset game||`.
 
 ~hint Button not working? ⚠️
 
