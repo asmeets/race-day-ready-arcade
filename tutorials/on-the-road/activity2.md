@@ -1013,7 +1013,7 @@ Engineers design systems that create these windows, and strategists decide when 
 * :mouse pointer: Create a new variable called `||variables:pitMarker||` which will represent a pit stop.
 * :paper plane: Simiilar to how we created an "enemy" sprite, we are going to add a `||sprites:set mysprite to sprite of kind player||` sprite inside the `||logic:if||` block. After adding the block, change "Player" to "Food".
 * :mouse pointer: Change `||sprites:mySprite||` to `||sprites:pitStop||`.
-* :mouse pointer: Select the image block next to sprite and select the pitStop image in My Assets.
+* :mouse pointer: Select the image block next to sprite and select the pitStop image in the Gallery.
 * :racing car: Add `||sprites:set mySprite position to x0 y0||` under the previous block. Change `||sprites:mySprite||` to `||sprites:pitMarker||`.
 * :racing car: To make sure pit stops are randomly placed add `||math:pick random 0 to 0||` to both "X" and "Y". 
 * :mouse pointer: For "X" pick random numbers between 20 and 140. For "Y", pick random numbers between 20 and 100.

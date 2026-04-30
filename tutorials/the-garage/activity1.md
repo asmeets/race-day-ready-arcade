@@ -618,13 +618,13 @@ Every game starts with a scene. Setting the garage background gives your game a 
 
 * :tree: Open `||scene:Scene||` and drag `||scene:set background image to||` into `||loops(noclick):on start||`.
 * :mouse pointer: Select the gray image square on the block to open the image picker.
-* :mouse pointer: Select the "My Assets" button and choose the garage background image, `garageBg`.
+* :mouse pointer: Select the "Gallery" button and choose the garage background image, `garageBg`.
 
 ~hint Garage image missing? 🔍
 
 ---
 
-If the garage scene does not appear, make sure the block is snapped into the `on start` stack. Then open the gray image square, go to `My Assets`, and check that `garageBg` is selected.
+If the garage scene does not appear, make sure the block is snapped into the `on start` stack. Then open the gray image square, go to `the Gallery`, and check that `garageBg` is selected.
 
 hint~
 
@@ -672,7 +672,7 @@ In racing games and simulations, the car is more than just an image — it's an 
 * :paper plane: Open `||sprites:Sprites||` and drag `||sprites:set mySprite to sprite of kind Player||` into `||loops(noclick):on start||`.
 * :mouse pointer: Select the `mySprite` drop-down in the `||sprites:set mySprite to sprite of kind Player||` block and select `||variables(sprites):Rename variable...||`
 * :keyboard: Rename the variable to `raceCar`.
-* :mouse pointer: Select the image square to choose a car from My Assets or draw your own car.
+* :mouse pointer: Select the image square to choose a car from the Gallery or draw your own car.
 
 ~hint What's a sprite? 💡
 
