@@ -604,20 +604,9 @@ namespace drivenByStem {
 
 ![Morgan - Strategist](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/morgan.png)
 
-![Pit stop marker concept](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/pitMarker.png)
+Hey, I'm Morgan, your strategist. I didn't start out crunching data; I started in track operations, learning timing and logistics by doing the work and talking with the engineers and analysts around me. On a real team, I monitor live conditions, weigh safer options against riskier ones, and help everyone make fast calls with different pieces of information.
 
-Hey, I'm **Morgan**, your strategist. I didn't start out crunching data; I started in track operations, learning **timing and logistics** by doing the work and talking with the engineers and analysts around me. On a real team, I monitor live conditions, **weigh safer options against riskier ones**, and help everyone make fast calls with different pieces of information.
-
-In this gate, you'll build a pit stop that **reads the setup choice you saved earlier** and turns it into a **real decision with real consequences**. The call you make here won't just happen and disappear. Each pit stop visit you record here shows up again in Reflect and Review.
-
-```template
-let driveSpeed = 110
-let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
-raceCar.setFlag(SpriteFlag.StayInScreen, true)
-info.setScore(0)
-info.setLife(drivenByStem.savedEfficiency())
-```
+In this gate, you'll build a pit stop that reads the setup choice you saved earlier and turns it into a real decision with real consequences. The call you make here won't just happen and disappear. Each pit stop visit you record here shows up again in Reflect and Review.
 
 ## {1. Start the Pit Stop stage}
 
@@ -627,24 +616,17 @@ info.setLife(drivenByStem.savedEfficiency())
 
 Before any pit decisions can happen, the game needs to know which mode it's running in. Setting the stage tells all your event blocks whether they should execute pit logic or stay quiet. This is how real systems coordinate different operational modes—one clear signal that every subsystem can check.
 
-* :binoculars: Open `||loops(noclick):on start||` and find the existing setup code at the bottom.
-* :racing_car: Open `||drivenByStem:Driven by STEM||` and drag `start stage` into `on start`, set to **Pit Stop**.
+<div class="ui info message">
+        <div class="content">
+            <h4 id="diffs-in-tutorials">Something Looks Familiar...</h4>
+            <p>This activity continues the code you already built in Hit the Track. You will keep updating that same project instead of rebuilding it.</p>
+        </div>
+    </div>
 
-~hint Markers in wrong place? 🚨
-
----
-
-If pit markers show up on the track, that's a stage-mismatch clue. Search for a missing "if stage is Pit Stop" check.
-
-hint~
+* :binoculars: Open `||loops(noclick):on start||` and find the `||drivenByStem:start stage||` block you already changed to **Track** in the last activity.
+* :racing car: Change that same `||drivenByStem:start stage||` block from **Track** to **Pit Stop**.
 
 ```blocks
-let driveSpeed = 110
-let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
-raceCar.setFlag(SpriteFlag.StayInScreen, true)
-info.setScore(0)
-info.setLife(drivenByStem.savedEfficiency())
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
@@ -656,10 +638,10 @@ drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 
 ---
 
-In real racing, clear communication prevents mistakes. A quick message at the start of the pit phase tells the player they've transitioned from driving to decision-making. This mirrors how race engineers brief drivers over the radio before critical moments—short, direct, and focused on what matters right now.
+In racing, clear communication prevents mistakes. A quick message at the start of the pit phase tells the player they've transitioned from driving to decision-making. This mirrors how race engineers brief drivers over the radio before critical moments—short, direct, and focused on what matters right now.
 
-* :game pad: Open `||game:Game||` and add a `splash` block below the stage setter.
-* :keyboard: Set the first field to `Pit wall` and the second field to `Use data before you make the next call.`
+* :game pad: Open `||game:Game||` and add a `||game:splash||` block below your existing stage setter in `||loops(noclick):on start||`.
+* :keyboard: Set the first field to `||splash:Pit wall||` and the second field to `||splash:Use data before you make the next call.||`
 
 ~hint Message too long? ⚡
 
@@ -670,12 +652,6 @@ Keep this briefing tight. If you need more than a few seconds to explain it, the
 hint~
 
 ```blocks
-let driveSpeed = 110
-let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
-raceCar.setFlag(SpriteFlag.StayInScreen, true)
-info.setScore(0)
-info.setLife(drivenByStem.savedEfficiency())
 drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 //@highlight
 //@validate-exists
@@ -690,24 +666,18 @@ game.splash("Pit wall", "Use data before you make the next call.")
 
 Every pit stop costs time, so teams track how often they use them to evaluate their strategy later. Creating a counter variable gives you measurable evidence of your decision-making patterns. This is the same principle data analysts use when they review race logs to identify what worked and what didn't.
 
-* :paper plane: Open `||variables:Variables||` and make a new variable named `pitStopsVisited`.
-* :paper plane: Drag `set pitStopsVisited to 0` into `on start` below the splash.
+* :paper plane: Open `||variables:Variables||` and make a new variable named `||variables:pitStopsVisited||`.
+* :paper plane: Drag `||variables:set pitStopsVisited to 0||` into `||loops(noclick):on start||` below the splash.
 
 ~hint Lost evidence? 📊
 
 ---
 
-If you skip the counter, you lose evidence. I like having at least one number I can point to: "We used the pit stop ___ times."
+If you skip the counter, you lose evidence. You should have at least one number you can point to: "We used the pit stop ___ times."
 
 hint~
 
 ```blocks
-let driveSpeed = 110
-let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
-controller.moveSprite(raceCar, driveSpeed, driveSpeed)
-raceCar.setFlag(SpriteFlag.StayInScreen, true)
-info.setScore(0)
-info.setLife(drivenByStem.savedEfficiency())
 drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 game.splash("Pit wall", "Use data before you make the next call.")
 //@highlight
@@ -721,11 +691,21 @@ let pitStopsVisited = 0
 
 ---
 
-Pit windows appear and disappear based on track position and race conditions. By spawning markers on a timer with a limited lifespan, you're modeling the reality that strategic opportunities don't wait forever. Engineers design systems that create these windows, and strategists decide when to use them—both roles rely on timing.
+Pit windows appear and disappear based on track position and race conditions. By spawning markers on a timer with a limited lifespan, you're modeling the reality that strategic opportunities don't wait forever. 
 
-* :game pad: Open `||game:Game||` and add an `on update every (8000) ms` block.
-* :racing_car: Inside it, add an `if stage is Pit Stop` check from `||drivenByStem:Driven by STEM||`.
-* :paper plane: Create a `Food` sprite inside that check and set a short `lifespan` to make it a timed decision.
+Engineers design systems that create these windows, and strategists decide when to use them—both roles rely on timing.
+
+* :game pad: Open `||game:Game||` and add an `||game:on update every (8000) ms||` block. (Make sure you manually change 500 to 8000.)
+* :racing car: Inside the `||game:on update every (8000) ms||` block, add an `||logic:if stage is Pit Stop||`. HINT: You will need to use two different blocks to accomplish this step.
+* :mouse pointer: Create a new variable called `||variables:pitMarker||` which will represent a pit stop.
+* :paper plane: Simiilar to how we created an "enemy" sprite, we are going to add a `||sprites:set mysprite to sprite of kind player||` sprite inside the `||logic:if||` block. After adding the block, change "Player" to "Food".
+* :mouse pointer: Change `||sprites:mySprite||` to `||sprites:pitStop||`.
+* :mouse pointer: Select the image block next to sprite and select the pitStop image in My Assets.
+* :racing car: Add `||sprites:set mySprite position to x0 y0||` under the previous block. Change `||sprites:mySprite||` to `||sprites:pitMarker||`.
+* :racing car: To make sure pit stops are randomly placed add `||math:pick random 0 to 0||` to both "X" and "Y". 
+* :mouse pointer: For "X" pick random numbers between 20 and 140. For "Y", pick random numbers between 20 and 100.
+* :racing car: Add `||sprites:set mySprite x to 0||` under the previous block. Change `||sprites:mySprite||` to `||sprites:pitMarker||`.
+* :racing car: Change "X" to lifespan and set the value to 4000 to make it a timed decision.
 
 ~hint Markers vanishing too fast? ⏱️
 
@@ -759,9 +739,15 @@ game.onUpdateInterval(8000, function () {
 
 The pit stop doesn't give the same reward to everyone—it responds to the setup choice you saved earlier. If you optimized for pace, you get a score boost; if you optimized for balance, you get efficiency back. This conditional logic mirrors how real teams tune their strategies to their car's strengths and the current race situation.
 
-* :paper plane: Open `||sprites:Sprites||` and add an `on overlap Player and Food` block.
-* :racing_car: Inside an `if stage is Pit Stop` check, change `pitStopsVisited` by 1, use `||drivenByStem:Driven by STEM||` to record the pit stop visit, and award a Strategy point.
-* :racing_car: Add an `if/else` using `setupFocusIs Pace`. Apply a pace reward in the true branch, a balance reward in the else branch.
+* :paper plane: Open `||sprites:Sprites||` and add an `||sprites:on Player overlaps Food||` block.
+* :racing car: Inside the overlap block, add an `||logic:if stage is Pit Stop||` check.
+* :paper plane: Inside that `if` block, change `||variables:pitStopsVisited||` by 1.
+* :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:record pit stop visit||`.
+* :racing car: Add `||drivenByStem:award strategy points||` and set it to 1.
+* :logic: Add an `||logic:if/else||` block inside the pit stop check. (This is a nested if/else block.)
+* :racing car: In the `||logic:if||` condition, use `||drivenByStem:saved setup focus is pace||`.
+* :score: In the true branch, add the pace reward by increasing score. (Hint: this block lives in `||info||`.)
+* :heart: In the else branch, add the balance reward by increasing life. (Hint: this block lives in `||info||`.)
 
 ~hint Rewards feel backwards? 🔄
 
@@ -812,8 +798,8 @@ drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Balance)
 
 Your pit decision only matters if it carries forward to the next stage. Saving the updated results at the end of the countdown ensures that later gates can see the score, efficiency, and strategy impact of what you did here. The pit-stop total itself is already being recorded every time you use a marker, and this end-of-run save captures the rest of the session snapshot.
 
-* :game pad: Open `||info:Info||` and add an `on countdown end` block so this stage saves the updated run state when the carried race timer finishes.
-* :racing_car: Inside the `if stage is Pit Stop` check, open `||drivenByStem:Driven by STEM||` and drag in `save current run results`.
+* :game pad: Open `||info:Info||` and add an `||info:on countdown end||` block so this stage saves the updated run state when the carried race timer finishes. Inside this block, add two blocks which will create an "if/then" for the curent stage is pit stop.
+* :racing car: Inside the `||logic:if current stage is Pit Stop||` check, open `||drivenByStem:Driven by STEM||` and drag in `save current run results`.
 
 ~hint Next gate forgot your choice? 💾
 
@@ -840,10 +826,10 @@ drivenByStem.recordPitStopVisit()
 
 ## Complete
 
-**Great job!** You built a pit stop system that reads your saved setup focus and turns it into a real mid-run decision. You created a spawner that generates pit markers on a timer, an overlap event that applies different rewards based on your earlier choice, and a save system that carries your strategy forward into review.
+You just turned a pit stop into a real strategy decision. You built a system that created pit chances, tracked when you used them, changed the reward based on your earlier setup choice, and saved those results for the next stage.
 
-Computer science idea: conditionals and persistent counters let one decision show up again later in the project.
+In computer science, conditionals and saved values help one choice affect what happens later in the project.
 
-Engineering idea: optimization means choosing the best next move with limited time and information.
+In engineering, strategy is about making the best next move with limited time and limited information.
 
-Team roles in this tutorial: strategist, pit crew, data analyst, and operations lead.
+In this activity, you worked like a strategist, pit crew teammate, data analyst, and operations lead.
