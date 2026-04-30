@@ -1,0 +1,15 @@
+name: MakeCode Build
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - run: npx makecode
