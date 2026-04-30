@@ -9,7 +9,7 @@
 ```
 
 ```template
-// Continue your F1 simulator build
+game.splash("Ready to build your F1 simulator!")
 ```
 
 ## Mission Briefing @showdialog
