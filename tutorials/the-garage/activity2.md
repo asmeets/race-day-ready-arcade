@@ -799,7 +799,7 @@ In this project, `driveSpeed` is a variable that holds the car's speed value.
 
 hint~
 
-~hint Can't find `driveSpeed` yet? 📍
+~hint Can't find driveSpeed yet? 📍
 
 ---
 
