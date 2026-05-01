@@ -15,15 +15,15 @@
 * description: Move from the Garage to the track and all the way to the winner's circle through one guided path of tutorials, tests, and remix-ready decisions.
 * layout: manual
 
-### intro-to-makecode
-* name: Intro to MakeCode [CACHE-B v1]
+### intro-to-makecode-v2
+* name: Intro to MakeCode
 * type: tutorial
 * description: Learn about MakeCode Arcade and block-based coding that you'll use to build your F1 simulator, and how to get around the editor.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-intro-to-makecode.png
 * position: 0 9
 * tags: beginner, start-here, introduction, makecode, blocks
 * next: garage-activity1
-* url: github:asmeets/driven-by-stem/tutorials/in-the-classroom/activity1
+* url: github:asmeets/driven-by-stem/tutorials/in-the-classroom/makecode-basics-v2
 
 ### garage-activity1
 * name: Mission Briefing
@@ -128,5 +128,4 @@
         * preview: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/certificates/driven-by-stem.png
     * completion-badge:
         * image: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/badges/badge-driven-by-stem.png
-        * name: Driven by STEM
         * name: Driven by STEM
