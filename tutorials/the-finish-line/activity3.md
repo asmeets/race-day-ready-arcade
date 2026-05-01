@@ -17,8 +17,6 @@ let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image
 
 ![Kai - Operations Lead](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/kai.png)
 
-![Winners circle banner](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/sprites/finishBanner.png)
-
 Hi, I'm Kai, your operations lead. I got into this work the hands-on way: setting up equipment, keeping things running, and figuring out systems by doing them. Over time I added project planning and process design, because reliability isn't luck, it's something you build. On a real team I coordinate timelines, make sure resets go smoothly, and create handoffs so the next shift can pick up right where we left off.
 
 In this last gate, you'll use your saved data to celebrate what you built, explore where these skills connect to real careers, and leave with a clear next-step idea. Finishing is great, and a good handoff means the work keeps going. This final screen works because every earlier tutorial saved one more piece of the story.
@@ -37,7 +35,7 @@ In this last gate, you'll use your saved data to celebrate what you built, explo
 
 ---
 
-You've completed the challenge, and now it's time to celebrate and reflect. Setting the stage to Winners Circle signals that the competitive phase is over and the focus shifts to recognizing achievement, reviewing what you built, and connecting your work to broader career pathways and CS concepts.
+Every phase of an operation needs a clear transition signal. I learned this running resets on track days — if you don't announce the phase change, someone is still running warmup procedures while someone else is trying to close out the session. Setting the stage to Winners Circle is that announcement. Every block in the project that checks the stage will now behave correctly for the celebration phase. Operations work is full of moments like this: one clear signal, and every part of the system lines up.
 
 * :binoculars: Open `||loops(noclick):on start||` and find your setup code.
 * :racing car: Locate your `||drivenByStem:start stage||` block in `||loops(noclick):on start||`, then set it to `Winners Circle`.
@@ -66,7 +64,7 @@ drivenByStem.startVehicleTestTrack()
 
 ---
 
-Visuals matter for closure. A bright background and celebratory screen effect immediately communicate that this is a different moment—not a challenge, but a celebration. These visual cues help players transition from performance pressure to reflection mode, setting the right tone for reviewing achievements.
+The environment communicates the phase shift before a single word is read. In operations, we use visual and physical cues to signal to the whole crew that the session has changed — different lighting in a pit bay, a flag change on the wall, a specific broadcast message to the team channel. A celebration scene does the same thing: the background image and confetti tell the player immediately that they are no longer being tested. They finished. That distinction matters for how people experience the moment.
 
 * :tree: Drag `||scene:set background image to finishBg||` and `||effects:start screen effect confetti||` from the toolbox.
 
@@ -98,7 +96,7 @@ effects.confetti.startScreenEffect()
 
 ---
 
-The Winners Circle displays both recommendations (text) and performance scores (numbers). Creating the right variable types before loading data ensures that your summary can present both qualitative insights and quantitative results cleanly, giving you a complete picture of what you accomplished.
+Good operations work requires the right container for each piece of information. A text recommendation and a strategy score are fundamentally different types — one is a string, one is a number — and trying to store or display them incorrectly is a common source of silent bugs. Creating the right variable types before you load anything is a discipline I apply every time I set up a new process or system: get the containers right before you fill them.
 
 * :paper plane: Drag `||variables:set nextTestFocus to ''||` and `||variables:set finalStrategy to 0||` from the toolbox into `||loops(noclick):on start||`.
 
@@ -132,7 +130,7 @@ let finalStrategy = 0
 
 ---
 
-The celebration is meaningful because it's personalized to your choices. Loading your `||variables:nextTestFocus||`, session strategy total, and driver profile ensures that every message you see reflects the actual decisions you made throughout the experience, making the reflection authentic rather than generic.
+A good handoff is specific and personal. When I close out a shift or hand a project to the next team, the worst thing I can leave them is a generic note that could apply to anyone. Loading the saved next-test focus and strategy total — instead of hardcoding a placeholder — means every player who reaches this screen sees a celebration that reflects what they actually did. That personalization is not a small thing. It is the difference between a ceremony that feels earned and one that feels like wallpaper.
 
 * :racing car: Drag `||variables:set nextTestFocus to next test focus||`, `||variables:set finalStrategy to last strategy result||`, and `||drivenByStem:show saved driver profile||` from the toolbox into `||loops(noclick):on start||`.
 
@@ -170,7 +168,7 @@ drivenByStem.showSavedDriverProfile()
 
 ---
 
-Your engineering focus reveals the kind of work you prioritized. Whether you emphasized raw performance or balanced sustainability, each approach connects to real roles on a racing team—from performance engineers who squeeze every millisecond from a setup to strategists who optimize the whole system. This helps you see how your choices reflect actual career pathways.
+Operations leads think about role match constantly. Every task on a team gets done better when it is assigned to someone whose strengths fit the work. Checking setup focus here and connecting it to a role isn't just a game mechanic — it is a career awareness exercise. If you optimized for pace, you were thinking like a performance engineer. If you balanced the whole system, you were thinking like a strategist or sustainability lead. Neither is the "right" answer. Both are real roles on real teams, and knowing which mode you naturally work in is genuinely useful self-knowledge.
 
 This step has no single correct answer. Try your own logic.
 
@@ -221,7 +219,7 @@ game.splash("Career link", "You worked like a strategist balancing the whole sys
 
 ---
 
-Behind every racing decision was a computer science concept. Events detected collisions and pit stops, variables stored your tuning choices, and saved data carried those choices across tutorials. Explicitly naming these CS ideas helps you recognize that the technical skills you practiced here apply far beyond racing games.
+I want you to notice something about this step: the message is already written and pre-loaded. That is a feature, not a shortcut. In operations, you prepare the closing communication in advance so it is reliable and consistent regardless of who is at the keyboard when it runs. Pre-loading critical messages is a standard reliability practice. If the message only works when someone types it correctly under pressure at the end of a session, it will eventually fail. Prepared, tested, and ready to fire — that is the operations standard.
 
 * :game pad: Drag `||game:splash||` from the toolbox — the message text is already set.
 
@@ -261,7 +259,7 @@ game.splash("Computer science mattered", "Events, variables, and saved data carr
 
 ---
 
-Every great team finishes one test by planning the next. Whether your session strategy total is high or you identified an area to strengthen, closing with a specific next-test idea models how real engineering teams maintain momentum. Completion isn't the end—it's a handoff to the next iteration.
+Every operation ends with a handoff. In my experience, the teams that improve fastest are not the teams with the best single run — they are the teams that close every session by naming what they learned and where they are going next. This final check does exactly that: if the strategy total is strong, the message confirms the session was well run. If it isn't, the next-test focus from the review gate becomes the opening brief for the next round. That is the operations loop: finish, document, hand off, restart.
 
 This step has no single correct answer. Try your own logic.
 
@@ -314,10 +312,10 @@ game.splash("Engineering takeaway", "Next test: " + nextTestFocus)
 
 ## Complete
 
-**You finished the full journey!** You built a celebration screen that reads saved data, displays your team identity, shows performance metrics, and connects your choices to real career pathways. Events, variables, and saved data let choices made in one tutorial carry forward into the next. That's how you built a system that remembers.
+**You finished the full journey.** You built a celebration screen that reads saved data, displays your team identity, shows performance metrics, connects your choices to real career pathways, and leaves a specific next-test handoff.
 
-Computer science idea: events, variables, and saved data let choices made in one tutorial carry forward into the next.
+Reliability isn't luck. It is something you build, step by step, gate by gate: consistent setup, repeatable tests, saved results, clear communication, and a handoff that the next person can actually use. That is operations thinking. That is also what every role on this team has been practicing in their own way.
 
-Engineering idea: reliable teams celebrate results and leave a clear handoff for the next test.
+Computer science idea: events, variables, and saved data let choices made in one tutorial carry forward into the next. Engineering idea: reliable teams celebrate results and leave a clear handoff for the next test.
 
-Roles connected across the path: software engineer, systems engineer, performance engineer, strategist, data analyst, reliability engineer, and operations team.
+Roles connected across the full path: software engineer, systems engineer, performance engineer, strategist, sustainability lead, data analyst, test engineer, UX designer, and operations lead. Every one of those is a real career. Every one of them uses what you built here.

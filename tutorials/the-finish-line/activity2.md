@@ -27,7 +27,7 @@ In this gate, you'll turn your run into a simple story: one choice, one result, 
 
 ---
 
-Before you can analyze performance, you need somewhere to store the evidence. Creating these four variables establishes named containers that will soon hold your actual run results. This separation between structure (the variables) and content (the loaded data) is a fundamental pattern in data analysis workflows.
+Data review starts with a structure question: where does the information live, and what shape is it in? I think about this the same way I think about a UI layout. Before you can show anything clearly, you need named containers in the right places. Variables that are declared before they are needed give your code a predictable structure — and predictable structure is what makes a screen readable instead of chaotic. In UX work we call this "information architecture." In code, it is just good variable setup.
 
 <div class="ui info message">
         <div class="content">
@@ -74,7 +74,7 @@ let pitStopsVisited = 0
 
 ---
 
-Saved data becomes meaningful when you load it for analysis. Starting the Review stage and reading your latest saved Performance and Efficiency snapshot, plus your running Strategy score and pit-stop total, brings the abstract numbers from the full session into concrete variables you can compare, evaluate, and act upon. This is the moment raw results become insight.
+This is the moment raw numbers become something you can actually read and act on. In UX design, the review screen is one of the hardest screens to get right because it has to hold a lot of information without overwhelming the person looking at it. Loading saved performance, efficiency, and strategy scores into named variables gives you the material to work with. The `Review` stage tag tells every block in the project that we are now in analysis mode — not collecting data anymore, but examining what we collected.
 
 * :binoculars: In `||loops(noclick):on start||`, find the `||drivenByStem:start stage||` block that is currently set to **Final Challenge**.
 * :racing car: Change that same block so it is set to **Review**.
@@ -121,7 +121,7 @@ drivenByStem.startVehicleTestTrack()
 
 ---
 
-Numbers in variables are invisible to players. A well-designed summary screen takes your three core metrics and presents them in a single, readable snapshot that anyone can understand at a glance. Clear presentation turns data into communication, making results accessible to the entire team.
+"Clear over clever" is a principle I use every time I design a results screen. The temptation is to show everything — every metric, every subscore, every detail. But if a player has to parse for more than two seconds, the message has already failed. One screen. Three numbers. Short labels. That is the entire brief for this step. A readable summary is not a dumbed-down one. It is a designed one — and designing for clarity is harder than it looks.
 
 * :game pad: Drag `||game:splash||` from the toolbox — it already formats your performance, efficiency, and strategy values into one message.
 
@@ -157,7 +157,7 @@ game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " 
 
 ---
 
-Reviewing data without deciding what to do next leaves teams stuck. By evaluating which metric scored lowest, your program can suggest a specific focus for the next test cycle. This transforms passive observation into active engineering iteration—the core of how real teams improve performance over time.
+The question I ask after every playtest is: "OK, and what does that mean we should do next?" If the answer is "we're not sure," the data isn't being read clearly enough. This step turns the lowest score into a concrete next-test suggestion — not a judgment about what went wrong, but a specific, actionable focus for the next run. Designers and engineers both work this way: close every feedback loop with a forward-looking action item, not just an observation.
 
 This step has no single correct answer. Try your own logic.
 
@@ -219,7 +219,7 @@ game.splash("Next test focus", drivenByStem.nextTestFocus())
 
 ---
 
-Every role on a racing team views data differently. By checking whether you used pit stops across the session, you're evaluating strategic adaptation—a skill that data analysts and strategists value highly. Connecting your results to a professional role helps you see how these decisions map to real career pathways.
+One of the most powerful UX patterns is connecting behavior to identity. When the screen says "you worked like a strategist" instead of just showing a score, it gives the player a frame for understanding what their choices actually meant. The pit-stop check is a proxy for strategic behavior — if you used the pit stops, you were actively managing information during the run. That behavior connects directly to careers in race strategy, data analysis, and operations. This is what it looks like when a number becomes a story.
 
 This step has no single correct answer. Try your own logic.
 
@@ -276,10 +276,8 @@ game.splash(drivenByStem.roleLens(), "Next time, use more mid-run data.")
 
 ## Complete
 
-You used the data from your run to make a real team decision. By looking at your performance, efficiency, strategy, and pit-stop results together, you figured out what your car handled well and what your team should pay attention to next.
+You used your run data to make a real team decision. Performance, efficiency, strategy, and pit-stop count, read together and turned into a forward-looking focus and a career connection.
 
-That is an important computer science idea: saved information matters when your program brings it back, compares it, and helps you choose what to do.
+That is the UX principle at work: information is not valuable because it exists. It is valuable when someone can read it quickly, understand what it means, and know what to do next. "Clear over clever" applies here the same way it applies to a game menu or a dashboard screen.
 
-That is also real engineering work. Teams do not just test and move on. They pause, review what happened, and use that evidence to plan a smarter next run.
-
-In this activity, you were thinking like a UX/game designer, strategist, and data analyst all at once.
+In computer science, saved information matters when your program brings it back, compares it, and helps someone choose what to do. In design, the review screen is the moment you find out whether the whole experience communicated clearly. In this activity you were thinking like a UX designer, strategist, and data analyst all at once.

@@ -22,7 +22,7 @@ That's exactly what this gate is about. You've built your performance system, yo
 
 ---
 
-This is it—the moment where all your subsystems run together. Setting the stage to Final Challenge tells every spawner, collision handler, and timer that you're now in full integration mode. Without this signal, events won't know which rules to follow, and your carefully tuned systems won't activate correctly.
+Integration testing always starts with a mode check. In my field, you don't fire up all subsystems simultaneously and hope for the best. You signal to each component that full-system mode is now active, and you verify that they each respond correctly to that signal before anything else runs. Changing the stage to Final Challenge is that signal. Every spawner, collision handler, and timer in this project checks the stage before it does anything. If this block isn't right, the whole integrated test runs on the wrong settings and the results mean nothing.
 
 <div class="ui info message">
         <div class="content">
@@ -51,7 +51,7 @@ drivenByStem.startVehicleTestTrack()
 
 ---
 
-The final challenge deserves its own visual identity. Start with a distinct background color so the scene stays readable, then add the shared finish background image to show that this is the culminating test. Strong contrast still matters because every obstacle and opportunity needs to stay visible during high-speed decision-making.
+Visual environment is part of the integrated system too. In electronics, we sometimes call this the "power-on state" — what does the system look like when everything is live and ready? A distinct background and color scheme that differ from earlier stages tells the player, at a glance, that this is a different operating mode. Contrast still matters. Every obstacle and pit marker needs to be clearly readable because this is the run where every decision counts. Readability is a reliability concern, not just an aesthetic one.
 
 * :tree: Change your existing background color block to one that fits the final challenge.
 * :tree: Drag `||scene:set background image to finishBg||` from the toolbox.
@@ -74,7 +74,7 @@ scene.setBackgroundImage(assets.image`finishBg`)
 
 ---
 
-Every tuning choice you made in the garage matters now. Loading your saved speed and efficiency cost ensures that this final run authentically reflects the tradeoffs you designed earlier, and keeping the same `raceCar` sprite keeps your team car consistent. This is how systems thinking works in practice—earlier decisions cascade forward through the entire experience.
+In integration testing, one of the most common failure modes is a subsystem that silently uses a default value instead of the shared configuration. The car feels slightly wrong, performance is inconsistent, and it takes a while to realize that somewhere a hardcoded number is overriding a saved setting. Keeping your saved speed and efficiency cost loaded in this final stage ensures that the car running this integrated test is the same car you tuned in the garage — not a different car that happens to look the same on screen.
 
 * :binoculars: In `||loops(noclick):on start||`, find the `||variables:set driveSpeed to||` block that already uses your saved speed.
 * :racing car: Keep that block connected so this final run still uses your saved `||variables:driveSpeed||`.
@@ -115,7 +115,7 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 
 ---
 
-You can't improve what you don't measure. Creating dedicated variables for collisions and pit stops gives this final challenge clear evidence to show as it happens. These counters help you tell a specific story about how the run went under pressure, even before you save the final summary data.
+Dedicated tracking variables are a systems engineering discipline. When multiple subsystems are active simultaneously, you need a way to separate signal sources. A collision in the final challenge is different from a collision in the weather stage, even if the code that handles it looks similar. `finalCollisions` and `finalPitStops` tag this run's events separately so the data from this integrated test doesn't blur with data from earlier isolated tests. That separation is what makes the review gate's comparisons meaningful.
 
 * :paper plane: Drag `||variables:set finalCollisions to 0||` and `||variables:set finalPitStops to 0||` from the toolbox into `||loops(noclick):on start||`.
 
@@ -164,7 +164,7 @@ let finalPitStops = 0
 
 ---
 
-Racing isn't just about going fast—it's about balancing three competing priorities under time pressure. Your HUD displays Performance through score, Efficiency through life, and Strategy through decisions. In this final challenge, those values should continue from the run you just finished in Changing Conditions so the full test really feels connected.
+The HUD in an integrated test carries more weight than in any isolated stage. Score is the performance subsystem. Life is the efficiency subsystem. The countdown is the mission clock. All three running at once is what integration looks like. Starting from the last saved performance and efficiency values — rather than zero — means this run is a true continuation of the full session, not an isolated replay. The splash text is the final system briefing before the run starts: three metrics, one sentence, total clarity.
 
 * :game pad: Drag `||info:set score to last performance result||`, `||info:set life to last efficiency result||`, `||info:start countdown 25||`, and `||game:splash||` (with text `Balance all three` and `Performance. Efficiency. Strategy.`) from the toolbox — they replace the old score, life, countdown, and any carry-over splash already in `||loops(noclick):on start||`.
 
@@ -202,7 +202,7 @@ game.splash("Balance all three", "Performance. Efficiency. Strategy.")
 
 ---
 
-Obstacles represent the unpredictable risks that every racing team faces—track debris, weather changes, mechanical stress. By spawning them continuously throughout the run, you create sustained pressure that tests whether your efficiency tuning can handle extended challenges, not just a single perfect moment.
+Obstacles are the stress test in an integration run. In electronics and systems engineering, you don't just test that each subsystem works correctly in isolation — you test that the whole system holds up under sustained load. Continuous obstacle spawning creates that sustained load here: the efficiency system, the scoring system, the collision handler, and the display all have to work together correctly, repeatedly, for the full 25-second window. If any of those connections breaks under pressure, the integrated test surface it.
 
 * :game pad: Drag the `||game:on game update every [2500] ms||` obstacle spawner from the toolbox — the stage check, `trackObstacle` Enemy sprite, random position, speed, and lifespan are already inside.
 
@@ -253,7 +253,7 @@ obstacle.lifespan = 3000
 
 ---
 
-Real racing isn't just about avoiding problems—it's about knowing when to recover. Pit markers transform the challenge from pure reflexes into strategic decision-making: do you maintain your current pace or take a moment to restore efficiency? This turns the game into a test of judgment, not just speed.
+Recovery paths are a systems engineering requirement. A system that can fail but has no way to recover is a brittle system. Pit markers give the player a way to restore efficiency mid-run, which turns the final challenge from a pure punishment run into a test of judgment: do you absorb the collision cost or spend time on a recovery? That decision, repeated over 25 seconds, is what makes the integrated test show you how the whole system behaves under realistic conditions rather than ideal ones.
 
 * :game pad: Drag the `||game:on game update every [7000] ms||` pit marker spawner from the toolbox — the stage check, `pitMarker` Food sprite, random position, and lifespan are already inside.
 
@@ -300,7 +300,7 @@ pitMarker.lifespan = 4000
 
 ---
 
-Events without feedback are invisible to players. By wiring collision and pit stop overlaps to the HUD, you make every decision immediately visible through score changes, life updates, and visual effects. This feedback loop is what turns abstract code into a readable, learnable system.
+Wired feedback is what makes an integrated system legible. Without it, collisions and pit stops are invisible events — things happen but there is no signal that they happened, and you cannot tell whether the system is working correctly. Connecting every action to an immediate HUD change means the integration test is observable: you can watch it run and know, in real time, whether each subsystem is responding the way it should. Legibility in testing is a reliability practice.
 
 * :paper plane: Drag the `||sprites:on [Player] overlaps [Enemy]||` collision handler from the toolbox — the stage check, collision counter, life penalty, and destroy effect are all wired in.
 * :paper plane: Drag the `||sprites:on [Player] overlaps [Food]||` pit handler from the toolbox — the stage check, pit counter, life restore, score, strategy points, and destroy are all wired in.
@@ -384,7 +384,7 @@ otherSprite.destroy()
 
 ---
 
-Integration testing isn't complete until you've captured the results. The countdown-end event is your only guaranteed moment to save performance data before the run terminates. This saved evidence becomes the foundation for reflection, comparison, and the next round of tuning decisions.
+The save at the end of the countdown is the integration test's closing gate. In my field, a test that doesn't produce a record is an incomplete test. The results need to be written somewhere persistent so they can be reviewed, compared to previous runs, and used to inform the next iteration. This event is the only moment in the run where all the accumulated state — score, efficiency, strategy, pit stops, collisions — gets packaged and committed. If the review gate shows blank values, this is the first place to look.
 
 * :game pad: Drag the `||info:on countdown end||` event from the toolbox — the stage check, `||drivenByStem:save current run results||`, and closing splash are already inside.
 
@@ -423,10 +423,10 @@ game.splash("Final run complete", "Open the data review.")
 
 ## Great work!
 
-You just brought all of your systems together in one final run. You used obstacles, pit stops, collisions, and saved results to test how your full design works when everything is running at the same time.
+You brought all of your systems together in one final run. Obstacles, pit stops, collisions, scored recovery, and a complete results save — everything you built across the garage and road stages ran simultaneously and communicated through shared state.
 
-In computer science, shared events and saved data help different parts of one project work together.
+That is what integration testing is: not checking that each piece works, but checking that they all work together, under load, at the same time.
 
-In engineering, integration testing means checking that all the parts still work when you connect them into one complete system.
+In computer science, shared events and saved data let different parts of one project operate as a connected system. In systems engineering, the integration test is the moment of truth — the first time you learn whether your architecture actually holds up when it is all running at once.
 
-In this activity, you worked like a systems engineer, lead engineer, strategist, and cross-functional race team member.
+Systems engineers, lead engineers, integration specialists, and cross-functional team members all do this work. The career path does not require a four-year degree to start — it requires curiosity about how things connect.

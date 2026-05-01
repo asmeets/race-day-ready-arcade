@@ -22,7 +22,7 @@ In this gate, you'll build a pit stop that reads the setup choice you saved earl
 
 ---
 
-Before any pit decisions can happen, the game needs to know which mode it's running in. Setting the stage tells all your event blocks whether they should execute pit logic or stay quiet. This is how real systems coordinate different operational modes—one clear signal that every subsystem can check.
+Strategy only works when the whole system knows it's in strategy mode. I came up through track operations, and the thing I learned fastest is that every subsystem on a pit wall — the timing board, the radio channel, the fuel calculator — needs to be tuned to the same phase of the race. If one part thinks you're still in qualifying while everyone else is managing a live pit window, the call falls apart. Switching the stage here is that synchronization signal: every event block, every timer, every handler now knows the pit phase is active.
 
 <div class="ui info message">
         <div class="content">
@@ -51,7 +51,7 @@ drivenByStem.startVehicleTestTrack()
 
 ---
 
-In racing, clear communication prevents mistakes. A quick message at the start of the pit phase tells the player they've transitioned from driving to decision-making. This mirrors how race engineers brief drivers over the radio before critical moments—short, direct, and focused on what matters right now.
+In live race operations, the briefing is the fastest thing on the pit wall. When conditions shift, I don't have time for a paragraph — I need one sentence that tells the driver what changed and what to do. Short, direct, and focused on the decision in front of them. This splash is that briefing: the driver knows they have left the track and entered a decision space where data matters more than pace. If a player has to read for more than a few seconds, the message is too long.
 
 * :game pad: Drag `||game:splash||` (with text `Pit wall` and `Use data before you make the next call.`) from the toolbox into `||loops(noclick):on start||`.
 
@@ -79,7 +79,7 @@ game.splash("Pit wall", "Use data before you make the next call.")
 
 ---
 
-Every pit stop costs time, so teams track how often they use them to evaluate their strategy later. Creating a counter variable gives you measurable evidence of your decision-making patterns. This is the same principle data analysts use when they review race logs to identify what worked and what didn't.
+Strategy without a ledger is just instinct. I track pit visits because frequency is one of the most informative signals in a race — teams that pit often are either managing a problem or buying speed in short bursts. Teams that rarely pit are betting on their baseline setup. Neither is always right, but both leave a footprint in the data. This counter gives you that footprint. When the Review gate reads it back, your pit-stop total becomes part of the story of how you ran the race.
 
 * :paper plane: Drag `||variables:set pitStopsVisited to 0||` from the toolbox into `||loops(noclick):on start||`.
 
@@ -108,9 +108,7 @@ let pitStopsVisited = 0
 
 ---
 
-Pit windows appear and disappear based on track position and race conditions. By spawning markers on a timer with a limited lifespan, you're modeling the reality that strategic opportunities don't wait forever. 
-
-Engineers design systems that create these windows, and strategists decide when to use them—both roles rely on timing.
+Pit windows are one of the most time-sensitive things in race strategy. They open, they close, and a team that hesitates too long misses the opportunity. Spawning markers on a timer with a limited lifespan models exactly that dynamic: the window is real, but it will not wait for you. Part of my job is designing these windows — knowing when to open them, how long to hold them, and when to close them based on the live situation. The timing values here are tunable; if your team finds the windows too short or too easy to hit, those numbers are the first things to adjust.
 
 * :game pad: Drag the `||game:on game update every [8000] ms||` pit marker spawner from the toolbox into an empty area of the workspace — the stage check, `pitMarker` Food sprite, random position, and lifespan are already configured inside.
 
@@ -153,7 +151,7 @@ pitMarker.lifespan = 4000
 
 ---
 
-The pit stop doesn't give the same reward to everyone—it responds to the setup choice you saved earlier. If you optimized for pace, you get a score boost; if you optimized for balance, you get efficiency back. This conditional logic mirrors how real teams tune their strategies to their car's strengths and the current race situation.
+The most important thing about a pit stop decision isn't whether you take it — it's whether the reward fits the situation. A car tuned for pace gets a score boost because pace teams are optimizing for position. A car tuned for balance gets efficiency back because balance teams are optimizing for the whole race distance. Same action, different consequence, based on context saved earlier. That is what strategy software actually does: it reads the situation and applies different rules to different teams. The conditional logic you're building here is the same pattern used in real-time race management tools.
 
 * :paper plane: Open `||sprites:Sprites||` and add an `||sprites:on [Player] overlaps [Food]||` block.
 * :racing car: Inside the overlap block, add an `||logic:if||` check using `||drivenByStem:stage is||` set to **Pit Stop**.
@@ -212,7 +210,7 @@ drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Balance)
 
 ---
 
-Your pit decision only matters if it carries forward to the next stage. Saving the updated results at the end of the countdown ensures that later gates can see the score, efficiency, and strategy impact of what you did here. The pit-stop total itself is already being recorded every time you use a marker, and this end-of-run save captures the rest of the session snapshot.
+A decision that isn't saved is a decision that doesn't exist in the next phase. On a real pit wall, every call I make gets logged — fuel delta, lap number, tire choice, time cost. That log is what the post-race debrief works from. If the data isn't there, the debrief is just opinions. Saving at the end of the countdown makes sure that your updated score, efficiency state, and strategy total all make it into the record that the Review gate will read. The pit-stop count is already tracked — this save captures the rest of the picture.
 
 * :game pad: Open `||info:Info||` and add an `||info:on countdown end||` block so this stage saves the updated run state when the carried race timer finishes. Inside this block, add an `||logic:if||` using `||drivenByStem:stage is||` set to **Pit Stop**.
 * :racing car: Inside the `||logic:if||` check, open `||drivenByStem:Driven by STEM||` and drag in `||drivenByStem:save current run results||`.
@@ -242,10 +240,8 @@ drivenByStem.recordPitStopVisit()
 
 ## Complete
 
-You just turned a pit stop into a real strategy decision. You built a system that created pit chances, tracked when you used them, changed the reward based on your earlier setup choice, and saved those results for the next stage.
+You turned a pit stop into a real strategic decision. The system created timed windows, tracked how often you used them, applied a different reward based on your earlier setup choice, and saved those results for the next stage.
 
-In computer science, conditionals and saved values help one choice affect what happens later in the project.
+In computer science, conditionals and saved values let one choice affect what happens later in the program. In race strategy, the same principle applies: every call you make during a live session changes the landscape of decisions available to you afterward.
 
-In engineering, strategy is about making the best next move with limited time and limited information.
-
-In this activity, you worked like a strategist, pit crew teammate, data analyst, and operations lead.
+Strategists, operations coordinators, data analysts, and race engineers all build and use systems like this one. The underlying skill is learning to make a call with incomplete information — and design the system so the consequences of that call carry forward cleanly.

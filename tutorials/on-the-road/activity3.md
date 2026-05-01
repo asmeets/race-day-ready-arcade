@@ -27,7 +27,7 @@ In this gate, you'll switch the track from dry to wet, model how rain reduces gr
 
 ---
 
-Racing conditions don't stay constant—weather changes everything. Setting the stage to Weather tells your code that it should now respond to environmental factors instead of standard track logic. This is the same principle used in real simulation systems where engineers model how rain, temperature, and grip affect performance before race day.
+When I talk about sustainability, people sometimes think I mean recycling or solar panels. But the core of the work is this: every condition your system operates in has a different impact profile. A car running in dry conditions has different energy demands, tire wear rates, and cooling requirements than the same car in the rain. Before you can design for variable conditions, you have to tell your system which mode it is in. Switching the stage to Weather is that declaration — the code now knows to apply environmental rules instead of standard track logic.
 
 <div class="ui info message">
         <div class="content">
@@ -64,7 +64,7 @@ drivenByStem.startVehicleTestTrack()
 
 ---
 
-Every experiment needs a control condition. Starting with dry weather and a clear background gives you a known baseline so that when conditions change, the contrast is obvious. Engineers design systems this way so they can isolate variables and measure the impact of each change accurately.
+Every sustainability analysis starts with a control case. Before I can say "rain increases energy cost by X percent" I need to know what the dry baseline looks like. Without that reference point, I have nothing to measure against. Setting weather to Dry and establishing a clear background gives your simulation that same starting condition: a known, documented state that every subsequent change can be compared to. The dry-to-wet transition you build later only means something because you defined dry first.
 
 * :racing car: Open `||drivenByStem:Driven by STEM||` and add `||drivenByStem:set weather to [Dry]||` below the stage block in `||loops(noclick):on start||`.
 * :tree: Open `||scene:Scene||` and add `||scene:set background color||` below it to show a dry-track color.
@@ -97,7 +97,7 @@ drivenByStem.setWeather(drivenByStem.WeatherMode.Rain)
 
 ---
 
-Your car doesn't reset to factory defaults every run—it carries forward the setup decisions you made earlier. Loading the saved speed and efficiency cost means this stage builds on your previous work rather than starting from scratch, and keeping the same `raceCar` sprite preserves the car you designed in the garage. Real race teams do this too: they tune the car once in the garage, then carry that configuration through multiple sessions.
+One of the mistakes I see early in sustainability engineering is starting each analysis from scratch. If every session reinitializes all the variables, you're measuring a fresh car, not the actual car that went through the previous conditions. Carrying forward your saved speed and efficiency cost means this weather session builds on the history your car already has. The setup decisions from the garage are still in play here — and they will matter more when the conditions get harder.
 
 * :racing car: Drag `||variables:set driveSpeed to saved drive speed||` and `||variables:set efficiencyDrain to saved efficiency cost||` from the toolbox into `||loops(noclick):on start||`.
 * :id card: Keep using the same `||variables:raceCar||` sprite you already carried forward.
@@ -132,7 +132,7 @@ let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 
 ---
 
-To reward smart adaptation, you need evidence that conditions changed and how the driver responded. These two variables—one to mark when weather shifted, another to count collisions—give you the data you need to evaluate performance. This is how telemetry analysts track driver behavior under pressure: they log events and compare them to thresholds.
+You can't score adaptation without first measuring what changed and how the driver responded to it. In sustainability work, I track two things when conditions shift: did the system detect the change, and did performance stay within acceptable bounds after it? These two variables do exactly that. `weatherChanged` flags when the shift happened. `weatherCollisions` tells you whether the driver held their line under new conditions. Together they give you the evidence to say whether the adaptation was successful — or just lucky.
 
 * :paper plane: Drag `||variables:set weatherChanged to 0||` and `||variables:set weatherCollisions to 0||` from the toolbox into `||loops(noclick):on start||`.
 
@@ -189,7 +189,7 @@ let weatherCollisions = 0
 
 ---
 
-Score, life, and the countdown timer give players constant feedback about their current state and how much time they have left. In this stage, those blocks should carry forward the results you saved in Pit Stop Briefings instead of starting over from zero. That mirrors real race dashboards, which keep updating with the latest run data rather than pretending the last stage never happened.
+Live dashboards are how sustainability engineers stay connected to a system that is actively changing. Static snapshots are useful in the garage. On the road, in changing conditions, you need a readout that keeps up with what is happening right now. Carrying forward the performance and efficiency values from Pit Stop Briefings instead of restarting from zero means your HUD reflects the cumulative state of the session, not just the last 25 seconds. Real environmental monitoring systems work the same way: they accumulate state over time and report the running picture.
 
 * :game pad: Drag `||info:set score to last performance result||`, `||info:set life to last efficiency result||`, and `||info:start countdown 25||` from the toolbox — they replace the old score, life, and countdown blocks already in `||loops(noclick):on start||`.
 
@@ -231,7 +231,7 @@ info.startCountdown(25)
 
 ---
 
-Weather doesn't wait for you to be ready. By triggering rain after 5 seconds, you're modeling how real conditions change without warning, forcing drivers and teams to adapt in real time. This delayed event tests whether your system can handle dynamic state changes—a core challenge in motorsport engineering.
+Weather in the real world doesn't announce itself. It shifts mid-race, mid-lap, sometimes mid-corner. The five-second delay before rain starts is a direct model of that unpredictability: you have a brief window of awareness, then the conditions change whether you're ready or not. In sustainability engineering, one of the core challenges is designing systems that respond correctly to environmental state changes they didn't cause and can't fully predict. This timer event is your first taste of that problem.
 
 * :game pad: Open `||timer:Timer||` and add an `||timer:after (5000) ms do||` event block. Be sure to set this value to 5000.
 * :logic: Inside that timer block, add an `||logic:if||` check for whether the current stage is **Weather**.
@@ -280,7 +280,7 @@ drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 
 ---
 
-Wet surfaces reduce tire grip, which means lower safe cornering speed. This update loop continuously checks current weather and adjusts controller speed accordingly—not by stacking penalties, but by setting the correct value for the current condition. This mirrors how traction control systems monitor grip levels and adjust power delivery in real time.
+Tire grip is one of the most studied variables in motorsport sustainability. Wet surfaces reduce friction, which reduces the safe cornering speed, which changes how much energy the system can efficiently transfer to the road. Engineers model this relationship to set traction control thresholds, adjust regenerative braking windows, and predict how much extra energy a wet race will cost compared to a dry one. Your grip loop models this at the most direct level: rain is active, speed comes down; rain clears, speed restores. Setting the correct value for the current condition instead of stacking subtractions is how you avoid compounding errors in the model.
 
 * :game pad: Open `||game:Game||` and add an `||game:on game update every [1000] ms||` event block.
 * :logic: Just like you did in earlier stages, start by adding an `||logic:if||` check to make sure this code only runs when the stage is **Weather**.
@@ -323,7 +323,7 @@ drivenByStem.weatherIs(drivenByStem.WeatherMode.Dry)
 
 ---
 
-Puddles are more than just visual elements—they're hazards that test the driver's ability to avoid obstacles under reduced grip. Spawning them on a timer and applying efficiency penalties on collision simulates how water accumulation on track creates unpredictable danger zones. Race teams study these patterns to advise drivers on optimal racing lines.
+Puddles are a real environmental hazard that sustainability engineers think about in terms of standing water management, drainage design, and track surface materials. In the simulation they're dynamic hazards: they appear, they create risk, and if the driver can't see them clearly or react in time, they cost efficiency. The readability principle from the dry baseline step matters here too — if puddles blend into the background, they become invisible hazards instead of navigable ones. Good environmental design makes the hazard visible and avoidable, not hidden and unfair.
 
 * :game pad: Open `||game:Game||` and add an `||game:on game update every [2500] ms||` block.
 * :logic: Just like the other weather code, add an `||logic:if||` check so this puddle code only runs when the stage is **Weather**.
@@ -393,7 +393,7 @@ otherSprite.destroy(effects.fire, 200)
 
 ---
 
-Successful adaptation means recognizing when conditions changed and adjusting your driving to minimize mistakes. This final check rewards players who kept collisions low after the weather shift, then saves the results so future stages can reference this run. It's how real teams measure driver skill under pressure—not just speed, but smart, responsive decision-making.
+The adaptation reward captures something I care about deeply: resilience matters more than perfect conditions. It is not that hard to perform well in dry conditions with a well-tuned car. What separates strong engineering from fragile engineering is what happens when something changes. This final event checks whether the weather shifted and whether collisions stayed low after it did. If both are true, the driver adapted. That is the result sustainability engineering is always trying to produce: a system that keeps working well when the environment stops cooperating.
 
 * :game pad: Open `||info:Info||` and add an `||info:on countdown end||` event block.
 * :logic: Inside that block, add an `||logic:if||` check so this code only runs when the stage is **Weather**.
@@ -435,10 +435,8 @@ game.splash("Run complete", "Check your strategy score.")
 
 ## Great work!
 
-You just taught your car how to react when conditions changed. You built a weather shift, changed the way the car handled in the rain, added puddle hazards, and saved the results of your run for the Final Challenge.
+You taught your car how to react when conditions changed. You built the shift, modeled grip reduction, added environmental hazards, and saved the results of your run for the Final Challenge.
 
-In computer science, timers, conditionals, and saved values help your project react when something changes.
+In computer science, timers, conditionals, and saved values help your project respond when something changes. In sustainability engineering, designing for change is the whole point. Perfect conditions are temporary. Resilient systems are what last.
 
-In engineering, strong systems do not assume everything stays perfect. They adapt when conditions change.
-
-In this activity, you worked like a sustainability lead, systems engineer, telemetry analyst, and performance engineer.
+Every design choice in this gate had a ripple effect: the speed adjustment changed how much life you could preserve; the puddle spawn rate changed how often the driver faced a real decision; the adaptation check connected the whole chain of events to a consequence. That is systems thinking, and it shows up in sustainability engineering, environmental science, data analysis, and any career that involves designing things that operate in a world that does not stay the same.

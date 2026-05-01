@@ -27,7 +27,7 @@ In this gate you'll launch a quick practice test track that reads your saved spe
 
 ---
 
-Before a good test starts, teams decide how they will read the data. Your edited car sprite already stays in the project from the garage steps, so here you can focus on the test readout. The track can show speed in `mph` or `km/h`, and fuel in `gallons` or `liters`. Setting those units now keeps your results readable and consistent when the run begins.
+The first thing I do before any test is set up how I am going to read it. A run with ambiguous units is a run I can't compare to anything. If speed is in `mph` now and `km/h` later, my two runs are measuring different things and I don't even know it. Consistent test conditions are what make data usable. Your car sprite and saved setup are already carrying forward from the last gate — here your job is to document the readout configuration before the run starts, exactly the way a test engineer prepares the measurement system before the car leaves the garage.
 
 * :mouse pointer: Find the `||drivenByStem:preview garage test bed||` block and drag it away from `||loops(noclick):on start||` so the garage preview does not open again.
 * :mouse pointer: If `||drivenByStem:show saved driver profile||` is still connected, drag it away too.
@@ -63,7 +63,7 @@ drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 
 ---
 
-A shakedown needs a fair, repeatable test. The `||drivenByStem:start vehicle test track||` block opens the support track, uses your saved setup, and turns on the fuel, time, and speed dashboard automatically. That gives you one clean run to measure before you make the next decision.
+A shakedown is not about going fast. It is about getting one clean, controlled run that you can actually point to. The whole point is to remove as many unknowns as possible so that what you observe reflects the setup, not chaos. When I run a shakedown on a real system, I am not trying to win anything — I am trying to collect a baseline I trust. This block loads your saved configuration and starts the dashboard automatically, so the conditions are the same every time you press run.
 
 * :racing car: Drag `||drivenByStem:start vehicle test track||` from the toolbox to the end of `||loops(noclick):on start||`.
 * :game pad: Run the simulator, wait for the start lights, and watch the dashboard as you drive.
@@ -96,9 +96,7 @@ drivenByStem.startVehicleTestTrack()
 
 ---
 
-One run gives you data. Two runs let you compare. Adding a retry button makes it easy to test again after a setup change and notice whether your pace, fuel use, or reaction improves. 
-
-Engineers repeat tests so they can trust the pattern, not just one result.
+One run gives you a number. Two runs let you ask whether that number is real. This is the part of test engineering that people underestimate: a single result tells you almost nothing because there is no way to separate signal from luck. When I document problems before automating them, the first thing I write down is whether I saw it more than once. The retry button is how you go from "I think that happened" to "I saw it twice and the numbers matched." That is the difference between an observation and evidence.
 
 * :game pad: Drag the `||controller:on [A] button pressed||` event from the toolbox into an empty area of the workspace — `||drivenByStem:start vehicle test track||` is already inside.
 * :game pad: After one run ends, press `A` to launch another. When the second run finishes, the comparison will appear automatically.
@@ -127,10 +125,10 @@ drivenByStem.startVehicleTestTrack()
 
 ## Nice work!
 
-You just tested your car setup in a repeatable way, watched the dashboard data as you drove, and gave yourself a fast way to try again. That is what engineers do: test, notice patterns, and use the results to make better decisions.
+You set up consistent test conditions, ran a controlled shakedown, and built a fast way to repeat the run. That is the core test engineering loop: prepare, run, observe, repeat.
 
-In computer science, saved settings and reusable events help you run the same system more than once without rebuilding everything each time.
+The data you collect in a shakedown is the most honest data you will get. No obstacles yet, no weather changes, no strategy decisions — just the car and the setup. That clean baseline is what every later comparison is measured against.
 
-In engineering, repeated tests matter because they help you decide whether a result was a real improvement or just one lucky run.
+In computer science, saved settings and reusable events let you run the same system more than once without rebuilding it. In test engineering, repeatability is what turns an observation into a fact you can defend.
 
-In this activity, you worked like a test engineer, reliability engineer, and data engineer.
+In this activity you worked like a test engineer, reliability engineer, and data engineer — three roles that show up on every team that builds things people depend on.
