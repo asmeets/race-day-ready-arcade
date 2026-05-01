@@ -1,431 +1,386 @@
-# Intro to MakeCode Arcade
+# Mission Briefing
+
+### @diffs true
 ### @explicitHints true
 
+```validation.global
+# BlocksExistValidator
+* markers: validate-exists
+```
+
 ```template
-game.splash("Ready to learn MakeCode Arcade!")
+game.splash("Ready to build your F1 simulator!")
 ```
 
-## Welcome! Let's Learn the Essentials @showdialog
+## Welcome to the Garage @showdialog
 
-**Cache marker:** `CACHE-B-v1 (2026-04-30)`
+![Sam - Software Engineer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/sam.png)
 
-![Drew - UX/Game Designer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/drew.png)
+**Hi, I'm Sam, your software engineer on this team.** I got into coding by remixing games and following tutorials. No formal degree at first, just curiosity and small projects with friends. Later I added structured courses and certifications as I got more serious, and that mix of self-taught plus structured learning is what got me here.
 
-Hi, I'm Drew, UX and game designer on the team. I got into this field by being the person who always asked "Wait... what am I supposed to do?" I started self-taught, watching tutorials and redesigning menus in my own projects, then added a formal design class and a lot of play testing with friends. 
+On a real racing team, I write and test control code, fix unexpected behavior, and keep the dashboard reliable when it matters most. In this gate, you'll do that same foundational work: get the game running, build your car sprite, wire up the controls, and set up your dashboard. That's the setup every project starts with, and the team identity you save here will carry forward through the whole path.
 
-Before you join Sam in the garage to build your racing simulator, you need to learn the essentials of MakeCode Arcade: following instructions, finding blocks, building code, and testing your work. These are the same skills I use when I test game flow, write clearer prompts, and figure out where players get stuck.
+## {1. Set the Garage Background}
 
-- **Why blocks?** Block-based coding lets you drag and snap together visual pieces instead of typing syntax. It's how I learned — you focus on logic and problem-solving first, then typing comes naturally later. Many professional developers still use visual tools for prototyping because they're fast and clear.
-
-- **Why 8-bit style?** Arcade uses classic pixel art and simple mechanics so you can build complete games quickly. The constraints teach you to solve problems creatively — the same way Formula 1 engineers work within strict regulations to build the fastest cars. Simple foundations, powerful results.
-
-You've already started by reading these instructions — that's the most important step! Let's get you ready to join the team.
-
-## {1. Reading Tutorial Instructions}
-
-**Your First Essential Skill**
+**Creating the Visual Environment**
 
 ---
 
-I'll be guiding you through each step. Reading instructions carefully is actually something I do every single day — if you can't follow instructions, you can't write them either. Game designers and UX designers create the onboarding flows, tutorials, and tooltips that other people have to use. Being good at reading instructions makes you better at writing ones that actually make sense. That is a real career skill.
+Every project starts somewhere. When I begin building a new system — a dashboard, a control interface, or a game — I always set the scene first. A garage background tells everyone instantly "we are in the engineering space now." Context matters: a blank screen gives users nothing to work with, and the first thing people see shapes how much they trust the whole system.
 
-- :lightbulb: Sometimes you'll need to scroll to read all of the instructions.
+* :tree: Drag `||scene:set background image to||` from the toolbox into `||loops(noclick):on start||`.
+* :mouse pointer: Select the blank image square in that block, open **My Assets** or the **Gallery**, and choose `garageBg`.
 
-- :arrow right: When you're ready to move to the next step, select **Next** to continue.
-
-## {2. Finding Hidden Hints}
-
-**Discovering Tutorial Features**
+~hint Garage image missing? 🔍
 
 ---
 
-I like to hide extra info in "clue boxes" to keep the main instructions focused. These collapsible hints give you troubleshooting tips, definitions, and extra guidance — the same kind of notes I write when we're playtesting and figuring out where someone got stuck.
+If the garage scene does not appear, make sure the block is snapped into the `on start` stack. Then open the blank image square and check that `garageBg` is selected.
 
-- :mouse pointer: Select the clue box below to reveal what's inside.
-
-~hint Select here to reveal a clue 🕵🏽
-
----
-
-**Congrats!**
-
-You found a clue!
+```blocks
+//@highlight
+//@validate-exists
+scene.setBackgroundImage(assets.image`garageBg`)
+```
 
 hint~
 
-
-Sometimes, I like to show you recommended blocks for a step.
-
-- :mouse pointer: Select the round lightbulb button below to reveal an example.
-
-
-
-
-#### ~ tutorialhint
-```blocks
-game.splash("You found me!")
-```
-
-
-
-## {3. Using the Workspace}
-
-**Building Your First Code**
-
----
-
-Your [__*workspace*__](#workIt "The area where you build code") is where you'll connect code blocks to build your program. I spend a lot of my day in a workspace like this, building and testing interactions so the next step feels clear. Only blocks connected in the workspace will run when your game starts.
-
-- :mouse pointer: Select inside the ``||game(noclick):splash " "||`` block that's already in the workspace and **change the message** to something you'd like to say.
-
-~hint What's a workspace? 🕵🏽
-
----
-
-![The Workspace](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/workspace.png " " )
-
-The **workspace** is the area to the right of the toolbox where you build your program.
-
-Only blocks connected in the workspace will be run by the computer.
-
-hint~
-
-
-#### ~ tutorialhint
-```blocks
-game.splash("Let's start coding!")
-```
-
-
-## Meet the Blocks  @showdialog
-
-Blocks can be dragged out from the  [__*toolbox*__](#tools "The strip to the left of your workspace that lists block categories."), connected, duplicated, and deleted.
-
-Keep going to learn more about blocks.
-
-![Block Animation](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/use_blocks.gif "Blocks appear, duplicate, and delete." )
-
-
-
-## {4. Finding Blocks in the Toolbox}
-
-**Navigating Your Block Categories**
-
----
-
-Blocks don't always start in the workspace. The toolbox is your component library — it organizes every building block by category, the same way a designer organizes a UI kit. You can't design a great experience with tools you don't know exist. When I join a new platform or engine, the first thing I do is explore what's in the toolbox. That habit is how UX and game designers get fast on new tools quickly — and it's how you will too.
-
-When you need to add a block, I'll either suggest it using an image like this:
-```block
-game.splash(" ")
-```
-or with highlighted text, like this:
- ``||game:splash " "||``
-
-
-
-~hint Want to discover something cool? 🕵🏽
-
----
-
-When you need to find a block in the toolbox and we use highlighted text in the instruction, you can select the colored section of text and it will automatically open the toolbox category you need.
-
-Try it now by selecting the block below!<br/>
-
-``||game:splash " "||``
-
-hint~
-
-
-
-## {5. Setting the Scene}
-
-**Creating Your Game Environment**
-
----
-
-Let's see how this works. Every game needs a visual environment, and setting the background color is often the first step. When I'm building a dashboard or simulator, I start with the basics like this. Simple choices like color set the mood and make your work instantly recognizable.
-
-- :tree: Find the ``||scene:set background color to [ ]||`` block and snap it in **at the top of**
-the ``||loops(noclick):on start||`` container already in the workspace.
-
-- :paint brush:  Select the empty square to set the background to your favorite color.
-
-#### ~ tutorialhint
-```blocks
-scene.setBackgroundColor(7)
-game.splash("Let's start coding!")
+```blockconfig.local
+scene.setBackgroundImage(img`.`)
 ```
 
 ```ghost
-scene.setBackgroundColor(7)
+scene.setBackgroundImage(img`.`)
 ```
 
+## {2. Add a Mission Message}
 
-
-## {6. Creating Your First Sprite}
-
-**Adding a Character to Your Game**
+**Communicating the Player's Goal**
 
 ---
 
-If you can't find the block you need, select the highlighted text and the correct category will open for you. Now let's add a character! In game development, any character or moving object is called a sprite. When I prototype a game, I use objects with properties like position, speed, and state to test how the experience feels. Sprites work the same way, and they're the foundation of almost every game you'll build.
+A clear opening message is something I think about carefully in every project. In software engineering, the first screen a user reads sets expectations for everything that follows. I have shipped dashboards where the opening text was ambiguous, and that one moment of uncertainty made people hesitant about the whole system. Short, direct, and honest — that is the standard. Think of this splash like a team radio call before a session: everyone needs the same objective before anything starts.
 
-- :paper plane: Snap ``||variables(sprites):set [my sprite] to sprite [ ] of kind [Player]||`` into **the end** of the ``||loops(noclick):on start||`` container.
+* :game pad: Open `||game:Game||` and drag `||game:splash||` under the background block in `||loops(noclick):on start||`.
+* :keyboard: Type a short, one-sentence mission line like "Miami test session."
+* :keyboard: Select the + icon in the `||game:splash||` block to add a second line that provides what the player will do like "Build a car you can explain."
 
+~hint Message too long? ⚡
 
-- :paint brush:  Select the empty box to draw a [__*sprite*__](#sprote "A 2-D image that moves on the screen")
- or switch to the **Gallery** to pick one of ours.
+---
 
+Keep this message short. If a player has to read a paragraph at launch, it's too much.
 
- ~hint What's a sprite? 🕵🏽
+```blocks
+scene.setBackgroundImage(assets.image`garageBg`)
+//@highlight
+//@validate-exists
+game.splash("Miami test session", "Build a car you can explain.")
+```
+
+hint~
+
+```blockconfig.local
+game.splash("Miami test session", "Build a car you can explain.")
+```
+
+```ghost
+game.splash("Miami test session", "Build a car you can explain.")
+```
+
+## {3. Create the Player Car}
+
+**Building the Interactive Game Object**
+
+---
+
+When I first started remixing games, sprites were the moment object-oriented thinking clicked for me. An image stopped being just a picture — it became an object with properties: position, speed, collision type. Once you understand that an image is actually a data structure you can program, building interactive systems starts to make sense in a completely new way. Your race car is exactly that kind of object.
+
+* :paper plane: Open `||sprites:Sprites||` and drag `||sprites:set mySprite to sprite of kind Player||` into `||loops(noclick):on start||`.
+* :mouse pointer: Select the `mySprite` drop-down in the `||sprites:set mySprite to sprite of kind Player||` block and select `||variables(sprites):Rename variable...||`
+* :keyboard: Rename the variable to `raceCar`.
+* :mouse pointer: Select the blank image square, open **My Assets** or the **Gallery**, and choose `playerCar`. You can also draw your own car.
+
+~hint What's a sprite? 💡
 
 ---
 
 In Arcade, each character or image that does something is called a **SPRITE**.
 
-Sprites have properties that you can use and change — things like scale, position, and lifespan are all properties of sprites.
+Sprites have properties that you can use and change — things like position, speed, and image are all properties of sprites.
+
+Your race car will be a sprite, too.
 
 hint~
 
+~hint Variable names confusing? 🎯
 
-#### ~ tutorialhint
+---
+
+Use `raceCar` consistently. One mismatched name can make the right blocks feel wrong.
 
 ```blocks
-scene.setBackgroundColor(5)
-game.splash("Let's start coding!")
-let mySprite = sprites.create(img`
-. . . . . f f f f f . . . . . .
-. . . . f e e e e e f . . . . .
-. . . f d d d d d d e f . . . .
-. . f d f f d d f f d f f . . .
-. c d d d e e d d d d e d f . .
-. c d c d d d d c d d e f f . .
-. c d d c c c c d d d e f f f f
-. . c d d d d d d d e f f b d f
-. . . c d d d d e e f f f d d f
-. . . . f f f e e f e e e f f f
-. . . . f e e e e e e e f f f .
-. . . f e e e e e e f f f e f .
-. . f f e e e e f f f f f e f .
-. f b d f e e f b b f f f e f .
-. f d d f f f f d d b f f f f .
-. f f f f f f f f f f f f f . .
-`, SpriteKind.Player)
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+//@highlight
+//@validate-exists
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+```
 
+hint~
 
+```blockconfig.local
+let raceCar = sprites.create(img`.`, SpriteKind.Player)
 ```
 
 ```ghost
-let mySprite = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+let raceCar = sprites.create(img`.`, SpriteKind.Player)
 ```
 
+## {4. Turn On Movement}
 
-
-
-## {7. Testing in the Simulator}
-
-**Seeing Your Code in Action**
+**Connecting Input to Action**
 
 ---
 
-Make sure to keep checking your [__*simulator*__](#gamez "simulator that shows the result of the code you have written") as you go. As a game designer I call this **playtesting**, and it is not optional — it is the job. The moment you stop checking the simulator, small bugs quietly pile into confusing ones. I run the game after every change, even tiny ones. That habit is exactly what game designers, software engineers, and QA testers use to catch problems before players ever see them.
+Movement is always the first thing I test when I start a new project. If the thing I'm controlling doesn't respond to input, nothing else matters yet. Wiring controller input to sprite movement is the most fundamental software loop there is: user acts, system responds. Real racing simulators do the same with physical hardware — steering wheel turns, sensors detect the input, code translates it into vehicle behavior. You're building that same connection right here.
 
-- :binoculars: Check the simulator. <br/>
-Is there a message that needs to be cleared? Then check if the sprite you chose is present.
+* :game pad: Drag `||controller:move [raceCar] with buttons vx [80] vy [80]||` from the toolbox into `||loops(noclick):on start||`.
+* :paper plane: Drag `||sprites:set [raceCar] stay in screen [On]||` under it.
 
-
-![Find the simulator in the lower right](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/game-window.png "Select the mini simulator to open the bigger view.")
-
-
-
-
-
-
-## Container Blocks  @showdialog
-
-This is a [__*container block*__](#blockIt "Block that holds other blocks").
-
-
-Container blocks have a flat edge at the the top and bottom with an open space
-in the middle where other blocks connect. Container blocks control when the code inside runs.
-
-Here is an example:
-
-```blocks
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {})
-```
-
-_(This block runs code when the A button is pressed.)_
-
-
-
-
-
-## {8. Adding Player Controls}
-
-**Responding to Button Presses**
+~hint Car won't move? 🔧
 
 ---
 
-**A button press that produces nothing is the number one friction point in any interactive system.** Container blocks like this one run code when specific events happen — a button pressed, a timer fires, a sprite collides. From a design perspective, this is how you build the feedback loop: something happens, the game responds. Event-driven programming is the foundation of every app, dashboard, and game that actually feels alive. When I playtest, the first question I ask every time is: "did something happen when I pressed that?"
-
-- :game pad: Find the ``||controller:on [A] button pressed||`` container and drag it into **an empty area of** the workspace.
-
-
-
-#### ~ tutorialhint
+If the car won't move, check which sprite the controller block is targeting. This is usually a naming issue.
 
 ```blocks
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+//@highlight
+//@validate-exists
+controller.moveSprite(raceCar, 80, 80)
+//@highlight
+//@validate-exists
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+```
+
+hint~
+
+```blockconfig.local
+let raceCar: Sprite = null
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+```
+
+```ghost
+let raceCar: Sprite = null
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+```
+
+## {5. Load Saved Race State}
+
+**Building Persistent Systems**
+
+---
+
+State management is one of the most important software engineering concepts you can learn. How a system saves and restores data is the difference between a prototype that works once and a system you can actually rely on run after run. Real race teams don't start each session from scratch — they load saved setups, previous lap data, and driver preferences. Your game does the same thing. The choices you save here will carry forward through every later stage of the experience.
+
+* :racing car: Drag `||drivenByStem:load race profile||`, `||drivenByStem:start stage [Garage]||`, and `||drivenByStem:set base car speed to saved drive speed||` from the toolbox into `||loops(noclick):on start||` in that order.
+
+~hint Blocks missing? 👀
+
+---
+
+If the blocks are missing, scroll the toolbox. Custom categories can hide farther down the list.
+
+```blocks
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+//@highlight
+//@validate-exists
+drivenByStem.loadRaceProfile(80, 5)
+//@highlight
+//@validate-exists
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+//@highlight
+//@validate-exists
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+```
+
+hint~
+
+```blockconfig.local
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+```
+
+```ghost
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+```
+
+## {6. Save Team Identity}
+
+**Creating Personalized Experience**
+
+---
+
+In software, user identity isn't a bonus feature — it is how a system shows it remembers you. When an app loads and shows your name, your settings, and your history, the experience feels personal and trustworthy. When it forgets everything, it feels broken. Saving your team name and customizing your car gives the whole experience that personal feel, and it is what makes this project genuinely yours to own and remix.
+
+* :id card: Set your own team name using the `||drivenByStem:set team name to||` block.
+* :id card: Customize your car with a name using the `||drivenByStem:set car name to||` block.
+* :mouse pointer: Click the image in your existing `||sprites(noclick):set raceCar to sprite of kind Player||` block and change a few colors, add a stripe, or add a number for your team.
+* :game pad: Run the simulator and make sure your edited car shows up on screen.
+* :mouse pointer: Lastly, add `||drivenByStem:show saved driver profile||` to check that your team details were saved.
+
+~hint Car not changing? 🎨
+
+---
+
+If your car is not changing, edit the image inside the existing `raceCar` sprite block from Step 3. If you drag in a second sprite block, you may end up customizing the wrong car.
+
+```blocks
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+//@highlight
+//@validate-exists
+drivenByStem.setTeamName("Apex Lab")
+//@validate-exists
+drivenByStem.setCarName("Velocity")
+//@validate-exists
+drivenByStem.showSavedDriverProfile()
+```
+
+hint~
+
+```validation.local
+# BlocksExistValidator
+* Enabled: false
+```
+
+```blockconfig.local
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.showSavedDriverProfile()
+```
+
+```ghost
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.showSavedDriverProfile()
+```
+
+## {7. Choose Dashboard Units}
+
+**Preparing the Shakedown Readout**
+
+---
+
+Data you can't read fast is data you can't use. A dashboard that shows speed in the wrong unit, or fuel in units nobody on your team uses, creates friction at exactly the moment when quick decisions matter. Localization choices like this are a real software problem that teams solve at every scale, from individual app settings to large international deployments. This same dashboard will later show fuel efficiency — so the units you set here are the first step in measuring sustainability too.
+
+* :racing car: Drag `||drivenByStem:set speed display unit to [mph]||` and `||drivenByStem:set fuel display unit to [gallons]||` from the toolbox into `||loops(noclick):on start||`.
+* :mouse pointer: Use the dropdowns to switch units if your team prefers `km/h` or `liters`.
+
+~hint Wrong units later? 🐛
+
+---
+
+If the test track later shows the wrong units, check these blocks in `on start`. The last unit blocks in that stack are the settings the dashboard will use.
+
+```blocks
+scene.setBackgroundImage(assets.image`garageBg`)
+game.splash("Miami test session", "Build a car you can explain.")
+let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
+controller.moveSprite(raceCar, 80, 80)
+raceCar.setFlag(SpriteFlag.StayInScreen, true)
+drivenByStem.loadRaceProfile(80, 5)
+drivenByStem.startStage(drivenByStem.RaceStage.Garage)
+drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
+drivenByStem.setTeamName("Apex Lab")
+drivenByStem.setCarName("Velocity")
+drivenByStem.showSavedDriverProfile()
+//@highlight
+//@validate-exists
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+//@validate-exists
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
+```
+
+hint~
+
+```blockconfig.local
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
+```
+
+```ghost
+drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
+drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
+```
+
+## {8. Add a Reset Button}
+
+**Preparing for Shared Use**
+
+---
+
+Reset paths are the thing that gets skipped in first builds, and then someone hits a wall the first time they try to share the project. I learned this the hard way: built something I was proud of, tried to pass it to a friend, and there was no clean way for them to start fresh. A reset button is also essential for shared classroom use — each new team gets a fair start, and no leftover data from a previous group affects their run.
+
+```validation.local
+# BlocksExistValidator
+* Enabled: false
+```
+
+* :game pad: Drag the `||controller:on [B] button pressed||` event from the toolbox into an empty area of the workspace — it already contains `||drivenByStem:reset saved session||` and `||game:reset game||`.
+
+~hint Button not working? ⚠️
+
+---
+
+If pressing B does nothing, check that this event is standalone. Events don't work when nested inside another stack.
+
+```blocks
+//@highlight
+//@validate-exists
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    drivenByStem.resetSavedSession()
+    game.reset()
+})
+```
+
+hint~
+
+```blockconfig.local
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    drivenByStem.resetSavedSession()
+    game.reset()
 })
 ```
 
 ```ghost
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {})
-```
-
-
-
-## Standard Blocks  @showdialog
-
-Next, there are [__*standard blocks*__](#sBlockIt "Single line blocks that make up the majority of most programs").
-
-Standard blocks are single-line blocks with notches at the top and bottom that
-allow them to attach to other pieces. These blocks run in order from top
-to bottom in the container where they're placed.
-
-Here is an example of a standard block:
-
-```block
-let mySprite: Sprite = null;
-mySprite.startEffect(effects.spray)
-```
-
-_(This block sends water spraying from the center of your sprite.)_
-
-
-
-
-## {9. Adding Visual Effects}
-
-**Making Your Game More Engaging**
-
----
-
-**Effects are communication, not decoration.** When a player presses a button and something bursts on screen, they instantly know: that action worked. That moment — you acted, the game responded — is called the **feedback loop**, and it is the most important concept in interactive design. I study these moments every time I playtest: does the effect feel satisfying? Does it make sense? Is it too distracting? Every visual choice you make is a design decision. Designing clear, readable feedback is a skill used in game development, app UX, product design, and any career that involves building things people interact with.
-
-- :paper plane: Find a ``||sprites:[mySprite] start [spray] effect ⊕||`` block and snap it into the ``||controller(noclick):on [A] button pressed||`` container that's already in your workspace...then choose a new effect!
-
-- :mouse pointer: Select the **+** to the right of the new block to reveal an extra option.
-
-
-
-#### ~ tutorialhint
-```blocks
-let mySprite: Sprite = null
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.startEffect(effects.confetti, 500)
-})
-```
-```ghost
-let mySprite: Sprite = null
-mySprite.startEffect(effects.confetti, 500)
-```
-
-
-## Value Blocks  @showdialog
-
-Finally, we have [__*value blocks*__](#aBlockIt "special pieces that provide values for other blocks").
-Value blocks are special pieces that add information to other
-blocks. Sometimes they're pointy, sometimes they're rounded,
-but they always need another block to snap into. Value blocks look something like this:
-
-![Value Blocks](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/intro/parameter-blocks.png "This is what the shape of an value block looks like" )
-
-_💡 Value blocks have different shapes
-depending on what kind of information they add. Each value will only
-fit in certain types of spaces._
-
-
-
-
-## {10. Adding Randomness}
-
-**Making Your Game More Dynamic**
-
----
-
-Randomness makes games unpredictable and replayable — two things every game designer wants. When I'm running a playtest, one thing I watch for is whether players get bored because the outcome is always the same. A random range means each button press feels slightly different, which keeps the interaction alive. It is also a sustainable design principle: a mechanic that stays interesting over many sessions means you don't have to constantly add new content just to hold attention.
-
-- :calculator: From the ``||math:Math||`` category, grab a ``||math: pick random [0] to [10]||`` value block and snap it in to replace **500**.
-
-- :mouse pointer: Update the random range to pick between **100** and **600**.
-
-
-
-#### ~ tutorialhint
-```blocks
-let mySprite: Sprite = null
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.startEffect(effects.confetti, randint(100, 600))
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    drivenByStem.resetSavedSession()
+    game.reset()
 })
 ```
 
-```ghost
-let mySprite: Sprite = null
-mySprite.startEffect(effects.confetti, randint(100, 600))
-```
+## Complete
 
-
-
-
-
-
-## {11. Testing Your Interactive Game}
-
-**Playing What You Built**
-
----
-
-**Time to test!** This is how I work every day — build something, then immediately check whether it behaves the way I intended. Right now you are both the designer and the player, which is actually the best position for catching bugs. When I playtest my own work, I try to forget I built it and experience it the way a stranger would. If something feels wrong, unexpected, or confusing, write it down. That observation is the designer's eye at work, and noticing it is more than half of what the job actually is.
-
-- :binoculars: Check the simulator and press the **Ⓐ** button (or space bar) to clear your splash screen message.
-
-- :game pad: Now press **Ⓐ** over and over again to activate your effects!
-
-## {Finale @unplugged}
-
-**Congratulations!**
-
-You've completed the Intro to MakeCode Arcade tutorial!
-
-You now know how to:
-- ✅ Follow tutorial instructions
-- ✅ Find blocks in the toolbox
-- ✅ Build code in the workspace
-- ✅ Test your work in the simulator
-
-**Ready for the next challenge?**
-
-Now you're ready to head into the **Garage** and meet **Sam**, the software engineer on the team. You'll build your own racing simulator, make real engineering decisions about speed and efficiency, and test your code on the track. Sam will guide you through that next stage.
-
-One last thing from me before you go: the skills you just practiced — reading instructions, exploring tools, testing your work, building feedback loops — connect directly to careers in game design, UX research, software development, educational technology, and product design. Any field where people interact with computers needs someone who asks "does this make sense?" That person is often a designer. **Let's go!** 🏎️
-
-```ghost
-let mySprite: Sprite = null;
-scene.setBackgroundColor(9)
-scene.setBackgroundImage()
-mySprite.startEffect(effects.spray)
-mySprite.startEffect(effects.confetti)
-mySprite.x += 0
-mySprite.y += 0
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {})
-controller.moveSprite(mySprite)
-game.splash("")
-randint(0, 10)
-```
-
+**That was real software engineering work.** You created a car sprite, wired up controller input, connected saved state, customized your team's identity, and set up the dashboard readout — the same sequence you follow when standing up any new interactive system from scratch.<br><br>The team name, the car design, and the unit choices you made here will carry forward through every later stage. That is how real software is built: decisions made early travel with you through the whole project. Good setup makes everything that comes after it faster and more reliable.<br><br>Select **Done** to head into Setup and Tradeoffs with Riley.
 
 ```assetjson
 {

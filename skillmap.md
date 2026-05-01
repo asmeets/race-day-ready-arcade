@@ -1,6 +1,6 @@
 # driven-by-stem
 * name: Driven by STEM, enabled by Microsoft
-* description: Join Mercedes as an engineer for the day! Code your own F1 simulator, balance speed against efficiency, and test your decisions on the track. Explore real STEM careers while building systems that perform under pressure.
+* description: Join Mercedes as an engineer for the day! Code your own F1 simulator, balance speed against efficiency, and test your decisions on the track. Explore real STEM careers while building systems that perform under pressure. (Release 7.0.4 / Tutorials 0.2)
 * primarycolor: #ffd84d
 * secondarycolor: #000
 * tertiarycolor: #EAF3F8
@@ -22,97 +22,97 @@
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-intro-to-makecode.png
 * position: 0 9
 * tags: beginner, start-here, introduction, makecode, blocks
-* next: garage-activity1
-* url: github:asmeets/driven-by-stem/tutorials/in-the-classroom/makecode-basics-v2
+* next: garage-activity1-v2
+* url: github:asmeets/driven-by-stem/tutorials/in-the-classroom/activity1-v2
 
-### garage-activity1
+### garage-activity1-v2
 * name: Mission Briefing
 * type: tutorial
 * description: Build your race car, wire up the controls, and choose how your shakedown dashboard reads speed and fuel.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-mission-briefing.png
 * position: 0 5
 * tags: beginner, kick-off, mission, controls, points
-* next: garage-activity2
-* url: github:asmeets/driven-by-stem/tutorials/the-garage/activity1
+* next: garage-activity2-v2
+* url: github:asmeets/driven-by-stem/tutorials/the-garage/activity1-v2
 
-### garage-activity2
+### garage-activity2-v2
 * name: Setup and Tradeoffs
 * type: tutorial
 * description: Choose your speed setting and discover the tradeoff: higher speed costs more energy.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-setup-tradeoffs.png
 * position: 1 5
 * tags: beginner, car-setup, choices, tune, strategy
-* next: garage-activity3
-* url: github:asmeets/driven-by-stem/tutorials/the-garage/activity2
+* next: garage-activity3-v2
+* url: github:asmeets/driven-by-stem/tutorials/the-garage/activity2-v2
 
-### garage-activity3
+### garage-activity3-v2
 * name: Garage Shakedown
 * type: tutorial
 * description: Launch the shakedown test track, read fuel, time, and speed, and compare what your setup really does.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-garage-shakedown.png
 * position: 3 6
 * tags: beginner, test-run, compare, feedback, improve
-* next: road-activity1
-* url: github:asmeets/driven-by-stem/tutorials/the-garage/activity3
+* next: road-activity1-v2
+* url: github:asmeets/driven-by-stem/tutorials/the-garage/activity3-v2
 
-### road-activity1
+### road-activity1-v2
 * name: Hit the Track
 * type: tutorial
 * description: Drive a full track session, dodge obstacles, collect boosts, and let the data show how your setup performs.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-hit-the-track.png
 * position: 5 7
 * tags: beginner, drive, dodge, movement, points
-* next: road-activity2
-* url: github:asmeets/driven-by-stem/tutorials/on-the-road/activity1
+* next: road-activity2-v2
+* url: github:asmeets/driven-by-stem/tutorials/on-the-road/activity1-v2
 
-### road-activity2
+### road-activity2-v2
 * name: Pit Stop Briefings
 * type: tutorial
 * description: Build a pit stop system that lets you recover energy mid-run and discover how strategy changes results.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-pit-stop-briefings.png
 * position: 7 6
 * tags: level-up, pit-stop, team-roles, upgrades, strategy
-* next: road-activity3
-* url: github:asmeets/driven-by-stem/tutorials/on-the-road/activity2
+* next: road-activity3-v2
+* url: github:asmeets/driven-by-stem/tutorials/on-the-road/activity2-v2
 
-### road-activity3
+### road-activity3-v2
 * name: Changing Conditions
 * type: tutorial
 * description: Code a weather shift that changes grip mid-run and rewards drivers who adapt quickly.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-changing-conditions.png
 * position: 8 5
 * tags: level-up, weather, grip, adapt, track
-* next: finish-activity1
-* url: github:asmeets/driven-by-stem/tutorials/on-the-road/activity3
+* next: finish-activity1-v2
+* url: github:asmeets/driven-by-stem/tutorials/on-the-road/activity3-v2
 
-### finish-activity1
+### finish-activity1-v2
 * name: Final Challenge
 * type: tutorial
 * description: Run all your systems together in one integrated challenge where every choice matters.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-final-challenge.png
 * position: 8 7
 * tags: level-up, final-challenge, best-score, strategy, improve
-* next: finish-activity2
-* url: github:asmeets/driven-by-stem/tutorials/the-finish-line/activity1
+* next: finish-activity2-v2
+* url: github:asmeets/driven-by-stem/tutorials/the-finish-line/activity1-v2
 
-### finish-activity2
+### finish-activity2-v2
 * name: Reflect and Review
 * type: tutorial
 * description: Turn your saved data into a readable summary and find out what to improve next time.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-reflect-review.png
 * position: 9 7
 * tags: wrap-up, results, review, compare, next-steps
-* next: finish-activity3
-* url: github:asmeets/driven-by-stem/tutorials/the-finish-line/activity2
+* next: finish-activity3-v2
+* url: github:asmeets/driven-by-stem/tutorials/the-finish-line/activity2-v2
 
-### finish-activity3
+### finish-activity3-v2
 * name: Winners Circle
 * type: tutorial
 * description: Celebrate your results, explore career connections, and discover where these skills can take you next.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-winners-circle.png
 * position: 10 7
 * tags: celebrate, careers, stem, remix, reflection
-* url: github:asmeets/driven-by-stem/tutorials/the-finish-line/activity3
+* url: github:asmeets/driven-by-stem/tutorials/the-finish-line/activity3-v2
 * next: race-day-finish
 
 ### race-day-finish
