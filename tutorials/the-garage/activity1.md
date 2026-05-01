@@ -9,9 +9,6 @@
 ```
 
 ```template
-// Pre-load all assets so they appear in the gallery
-let __sprites = [assets.image`playerCar`, assets.image`garageCone`, assets.image`trackObstacle`, assets.image`pitMarker`, assets.image`rainPuddle`, assets.image`telemetryScreen`, assets.image`finishBanner`, assets.image`teamBadge`]
-let __backgrounds = [assets.image`garageBg`, assets.image`trackBg`, assets.image`finishBg`, assets.image`weatherBg`]
 game.splash("Ready to build your F1 simulator!")
 ```
 
