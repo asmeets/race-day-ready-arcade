@@ -40,13 +40,13 @@ When I talk about sustainability, people sometimes think I mean recycling or sol
 
 If rain effects spill into other gates, your stage checks are missing somewhere. Search for "Weather" in your code and make sure every weather action is guarded by a stage check.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 ```
+
+hint~
 
 ```ghost
 drivenByStem.startVehicleTestTrack()
@@ -69,8 +69,6 @@ Every sustainability analysis starts with a control case. Before I can say "rain
 
 If you can't clearly see the car and hazards, adjust colors before you adjust difficulty. Readability is part of sustainability too.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 //@highlight
@@ -80,6 +78,8 @@ drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
 //@validate-exists
 scene.setBackgroundColor(7)
 ```
+
+hint~
 
 ```ghost
 drivenByStem.setWeather(drivenByStem.WeatherMode.Rain)
@@ -102,8 +102,6 @@ One of the mistakes I see early in sustainability engineering is starting each a
 
 If speed feels inconsistent, check whether your code resets speed when conditions return to dry. Rain logic should change speed temporarily, not permanently.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
@@ -115,6 +113,9 @@ driveSpeed = drivenByStem.savedDriveSpeed()
 //@validate-exists
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 ```
+
+hint~
+
 ```ghost
 driveSpeed = drivenByStem.savedDriveSpeed()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
@@ -135,8 +136,6 @@ You can't score adaptation without first measuring what changed and how the driv
 ---
 
 If you never earn the adaptation reward, check whether `||variables:weatherChanged||` ever flips to 1 and whether collisions are actually being counted.
-
-hint~
 
 ```blocks
 let driveSpeed = 110
@@ -172,6 +171,9 @@ let weatherChanged = 0
 //@validate-exists
 let weatherCollisions = 0
 ```
+
+hint~
+
 ```ghost
 let weatherChanged = 0
 let weatherCollisions = 0
@@ -193,8 +195,6 @@ Live dashboards are how sustainability engineers stay connected to a system that
 
 If life looks wrong, trace it like a scientist. Find where it is set and every place it is changed.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.Weather)
 drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
@@ -213,6 +213,9 @@ info.setLife(drivenByStem.lastEfficiencyResult())
 //@validate-exists
 info.startCountdown(25)
 ```
+
+hint~
+
 ```ghost
 info.setScore(drivenByStem.lastPerformanceResult())
 info.setLife(drivenByStem.lastEfficiencyResult())
@@ -241,8 +244,6 @@ Weather in the real world doesn't announce itself. It shifts mid-race, mid-lap, 
 
 If rain never starts, verify that your timer block exists and is allowed to run while the stage is Weather.
 
-hint~
-
 ```blocks
 timer.after(5000, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
@@ -263,6 +264,8 @@ timer.after(5000, function () {
     }
 })
 ```
+
+hint~
 
 ```ghost
 drivenByStem.setWeather(drivenByStem.WeatherMode.Dry)
@@ -289,8 +292,6 @@ Tire grip is one of the most studied variables in motorsport sustainability. Wet
 
 If your car gets slower and slower forever, you have a stacking bug. Set speed for the current condition, don't keep subtracting.
 
-hint~
-
 ```blocks
 game.onUpdateInterval(1000, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
@@ -306,6 +307,8 @@ game.onUpdateInterval(1000, function () {
     }
 })
 ```
+
+hint~
 
 ```ghost
 drivenByStem.weatherIs(drivenByStem.WeatherMode.Dry)
@@ -338,8 +341,6 @@ Puddles are a real environmental hazard that sustainability engineers think abou
 
 If the screen fills with puddles, slow the spawn rate or shorten lifespan so the situation stays readable.
 
-hint~
-
 ```blocks
 game.onUpdateInterval(2500, function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
@@ -371,6 +372,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 ```
+
+hint~
+
 ```ghost
 let puddle = sprites.create(assets.image`rainPuddle`, SpriteKind.Enemy)
 puddle.setPosition(randint(10, 150), randint(10, 110))
@@ -402,8 +406,6 @@ The adaptation reward captures something I care about deeply: resilience matters
 
 If Strategy never awards, check whether `weatherChanged` became 1 and whether `weatherCollisions` stayed at 1 or below.
 
-hint~
-
 ```blocks
 info.onCountdownEnd(function () {
     if (drivenByStem.stageIs(drivenByStem.RaceStage.Weather)) {
@@ -421,6 +423,9 @@ info.onCountdownEnd(function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 drivenByStem.awardStrategyPoints(1)
 drivenByStem.saveCurrentRunResults()

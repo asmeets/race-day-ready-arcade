@@ -40,13 +40,13 @@ Every phase of an operation needs a clear transition signal. I learned this runn
 
 If this still feels like gameplay, some older spawners are still running. Scan for any "update every" blocks that don't check the Winners Circle stage.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 ```
+
+hint~
 
 ```ghost
 drivenByStem.startVehicleTestTrack()
@@ -68,8 +68,6 @@ The environment communicates the phase shift before a single word is read. In op
 
 If confetti makes the text hard to read, tone it down. A good finish is clear first, flashy second.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 //@highlight
@@ -79,6 +77,9 @@ scene.setBackgroundImage(assets.image`finishBg`)
 //@validate-exists
 effects.confetti.startScreenEffect()
 ```
+
+hint~
+
 ```ghost
 scene.setBackgroundImage(assets.image`finishBg`)
 effects.confetti.startScreenEffect()
@@ -100,8 +101,6 @@ Good operations work requires the right container for each piece of information.
 
 If saved values won't drop into your variables, check that you created them first. Always create variables before you load data into them.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
@@ -113,6 +112,9 @@ let nextTestFocus = ""
 //@validate-exists
 let finalStrategy = 0
 ```
+
+hint~
+
 ```ghost
 let nextTestFocus = ""
 let finalStrategy = 0
@@ -134,8 +136,6 @@ A good handoff is specific and personal. When I close out a shift or hand a proj
 
 If your `next test focus` text is blank, that's a clue the Review gate didn't write it yet. Trace where it's supposed to be saved.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
@@ -150,6 +150,9 @@ finalStrategy = drivenByStem.lastStrategyResult()
 //@validate-exists
 drivenByStem.showSavedDriverProfile()
 ```
+
+hint~
+
 ```ghost
 nextTestFocus = drivenByStem.nextTestFocus()
 finalStrategy = drivenByStem.lastStrategyResult()
@@ -176,13 +179,6 @@ This step has no single correct answer. Try your own logic.
 
 Keep the message inclusive. If your text sounds like "only one right way," try rewriting it as "here's what this choice prioritized."
 
-hint~
-
-```validation.local
-# BlocksExistValidator
-* Enabled: false
-```
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
@@ -199,6 +195,14 @@ if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
     game.splash("Career link", "You worked like a strategist balancing the whole system.")
 }
 ```
+
+hint~
+
+```validation.local
+# BlocksExistValidator
+* Enabled: false
+```
+
 ```ghost
 if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
 game.splash("Career link", "You worked like a performance engineer.")
@@ -223,8 +227,6 @@ I want you to notice something about this step: the message is already written a
 
 If the takeaway is getting long, trim it. One clear line that's readable on a projector beats five lines nobody reads.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
@@ -243,6 +245,9 @@ if (drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Pace)) {
 //@validate-exists
 game.splash("Computer science mattered", "Events, variables, and saved data carried your choices forward.")
 ```
+
+hint~
+
 ```ghost
 game.splash("Computer science mattered", "Events, variables, and saved data carried your choices forward.")
 ```
@@ -267,13 +272,6 @@ This step has no single correct answer. Try your own logic.
 
 If you're stuck on what to write, pick the lens that felt weakest and make that your next test.
 
-hint~
-
-```validation.local
-# BlocksExistValidator
-* Enabled: false
-```
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.WinnersCircle)
 scene.setBackgroundColor(8)
@@ -296,6 +294,14 @@ if (finalStrategy >= 3) {
     game.splash("Engineering takeaway", "Next test: " + nextTestFocus)
 }
 ```
+
+hint~
+
+```validation.local
+# BlocksExistValidator
+* Enabled: false
+```
+
 ```ghost
 if (finalStrategy >= 3) {
 game.splash("Engineering takeaway", "You adapted well across the full session.")

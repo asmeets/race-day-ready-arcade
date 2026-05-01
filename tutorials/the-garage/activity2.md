@@ -66,8 +66,6 @@ hint~
 
 If you do not see `driveSpeed` in the Variables toolbox yet, create it first with **Make a Variable**. The `set driveSpeed to` block only appears after the variable exists.
 
-hint~
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
@@ -84,6 +82,9 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 //@highlight
 let driveSpeed = drivenByStem.savedDriveSpeed()
 ```
+
+hint~
+
 ```ghost
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = drivenByStem.savedDriveSpeed()
@@ -106,14 +107,15 @@ Speed is the variable everyone wants to tune first, which is exactly why I teach
 
 If your speed value keeps switching back, something is probably resetting it later. Scan your code stack and make sure there is only one `||variables:set driveSpeed to||` block in `on start`.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 //@highlight
 //@validate-exists
 let driveSpeed = 110
 ```
+
+hint~
+
 ```ghost
 let driveSpeed = 110
 ```
@@ -135,8 +137,6 @@ A variable that isn't connected to anything is just a label. The moment you wire
 
 If you still see `||drivenByStem:saved drive speed||` in the movement block, the tuning isn't connected yet. Replace it with the `||variables:driveSpeed||` bubble so your change actually takes effect.
 
-hint~
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
@@ -153,6 +153,9 @@ drivenByStem.setCarName("Velocity")
 drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
+
+hint~
+
 ```ghost
 drivenByStem.setBaseCarSpeed(driveSpeed)
 ```
@@ -173,8 +176,6 @@ Every performance gain has a cost somewhere else in the system — that is one o
 
 If you can't find one of the efficiency variables in a dropdown, it usually means it was created with a different spelling. Double-check the exact variable name.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
@@ -186,6 +187,9 @@ let efficiencyRating = drivenByStem.savedEfficiency()
 //@validate-exists
 let efficiencyDrain = 1
 ```
+
+hint~
+
 ```ghost
 let efficiencyRating = drivenByStem.savedEfficiency()
 let efficiencyDrain = 1
@@ -235,8 +239,6 @@ hint~
 
 The subtraction part comes from `||math:Math||`. Drag in the `||math:0 + 0||` block, click the `+`, and switch it to `-`. Then place `||drivenByStem:saved efficiency||` on the left and `1` on the right.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
@@ -255,6 +257,9 @@ if (driveSpeed > 100) {
     efficiencyDrain = 1
 }
 ```
+
+hint~
+
 ```ghost
 if (driveSpeed > 100) {
 efficiencyRating = drivenByStem.savedEfficiency() - 1
@@ -283,8 +288,6 @@ Before any car goes on track, engineers run a bench test — they check every va
 
 If the test bed still feels wrong, check three things. First, make sure the `Miami test session` splash is disconnected from `on start` so it is not interrupting each test. Second, make sure the preview block comes after the `if driveSpeed > 100` rule so it can read the final values. Third, remember that the arrows only affect the garage preview gauge here. The full driving test comes in the next lesson.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
@@ -302,6 +305,9 @@ if (driveSpeed > 100) {
 //@validate-exists
 drivenByStem.previewGarageTestBed(driveSpeed, efficiencyRating, efficiencyDrain)
 ```
+
+hint~
+
 ```ghost
 drivenByStem.previewGarageTestBed(driveSpeed, efficiencyRating, efficiencyDrain)
 ```
@@ -330,8 +336,6 @@ On a real race team, everyone watches the same data but asks different questions
 
 There isn't one correct role here. Pick the lens that matches what you're watching: speed, efficiency, reliability, or data.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
@@ -350,6 +354,8 @@ drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
 //@highlight
 drivenByStem.showSavedDriverProfile()
 ```
+
+hint~
 
 ```ghost
 drivenByStem.setRoleLens(drivenByStem.RoleLens.SoftwareEngineer)
@@ -376,8 +382,6 @@ One of the most common mistakes I see in early engineering work is making a good
 
 If later gates don't seem to remember your setup, check when you save. Make sure it happens after your speed and efficiency choices are finalized.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageSetup)
 let driveSpeed = 110
@@ -398,6 +402,14 @@ if (driveSpeed > 100) {
     drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Balance)
     game.splash("Balance setup", "You chose a more efficient setup.")
 }
+```
+
+hint~
+
+```ghost
+drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Pace)
+drivenByStem.saveTeamSetup(driveSpeed, efficiencyRating, efficiencyDrain, drivenByStem.SetupFocus.Balance)
+```
 drivenByStem.setRoleLens(drivenByStem.RoleLens.PerformanceEngineer)
 drivenByStem.showSavedDriverProfile()
 ```

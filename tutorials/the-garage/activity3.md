@@ -34,8 +34,6 @@ The first thing I do before any test is set up how I am going to read it. A run 
 
 If the track later shows the wrong units, check these blocks first. The last speed and fuel unit blocks in `on start` are the settings the shakedown will use.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -46,6 +44,9 @@ drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 //@validate-exists
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
+
+hint~
+
 ```ghost
 drivenByStem.startStage(drivenByStem.RaceStage.GarageShakedown)
 drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
@@ -70,8 +71,6 @@ If the track does not open, make sure `start vehicle test track` is in `on start
 
 If the garage preview or driver profile keeps appearing first, check that those older blocks from Activity 2 are no longer connected to `on start`.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.GarageShakedown)
 drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
@@ -80,6 +79,9 @@ drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 //@validate-exists
 drivenByStem.startVehicleTestTrack()
 ```
+
+hint~
+
 ```ghost
 drivenByStem.startVehicleTestTrack()
 ```
@@ -101,8 +103,6 @@ One run gives you a number. Two runs let you ask whether that number is real. Th
 
 If `A` does nothing, check that the button event is a separate stack. Button events do not work when they are nested inside `on start`.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -111,6 +111,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     drivenByStem.startVehicleTestTrack()
 })
 ```
+
+hint~
+
 ```ghost
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 drivenByStem.startVehicleTestTrack()

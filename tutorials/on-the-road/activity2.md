@@ -29,11 +29,17 @@ Strategy only works when the whole system knows it's in strategy mode. I came up
 * :binoculars: Open `||loops(noclick):on start||` and find the `||drivenByStem:start stage||` block you already changed to **Track** in the last activity.
 * :racing car: Change that same `||drivenByStem:start stage||` block from **Track** to **Pit Stop**.
 
+~hint Show me the blocks 👀
+
+---
+
 ```blocks
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 ```
+
+hint~
 
 ```ghost
 drivenByStem.startVehicleTestTrack()
@@ -55,14 +61,15 @@ In live race operations, the briefing is the fastest thing on the pit wall. When
 
 Keep this briefing tight. If you need more than a few seconds to explain it, the prompt should be clearer, not longer.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 //@highlight
 //@validate-exists
 game.splash("Pit wall", "Use data before you make the next call.")
 ```
+
+hint~
+
 ```ghost
 game.splash("Pit wall", "Use data before you make the next call.")
 ```
@@ -83,8 +90,6 @@ Strategy without a ledger is just instinct. I track pit visits because frequency
 
 If you skip the counter, you lose evidence. You should have at least one number you can point to: "We used the pit stop ___ times."
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.PitStop)
 game.splash("Pit wall", "Use data before you make the next call.")
@@ -92,6 +97,9 @@ game.splash("Pit wall", "Use data before you make the next call.")
 //@validate-exists
 let pitStopsVisited = 0
 ```
+
+hint~
+
 ```ghost
 let pitStopsVisited = 0
 ```
@@ -112,8 +120,6 @@ Pit windows are one of the most time-sensitive things in race strategy. They ope
 
 If markers vanish instantly, your lifespan is probably too short. Increase it a little and test again.
 
-hint~
-
 ```blocks
 //@highlight
 game.onUpdateInterval(8000, function () {
@@ -129,6 +135,9 @@ game.onUpdateInterval(8000, function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 game.onUpdateInterval(8000, function () {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.PitStop)) {
@@ -163,8 +172,6 @@ The most important thing about a pit stop decision isn't whether you take it —
 
 If rewards feel "backwards," double-check what you saved as your setup focus earlier. The pit logic is only as smart as the saved choice it reads.
 
-hint~
-
 ```blocks
 //@highlight
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -194,6 +201,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 ```
 
+hint~
+
 ```ghost
 drivenByStem.setupFocusIs(drivenByStem.SetupFocus.Balance)
 ```
@@ -215,8 +224,6 @@ A decision that isn't saved is a decision that doesn't exist in the next phase. 
 
 If the next gate doesn't seem to remember your updated score or efficiency, check two things: the carried countdown from Hit the Track still exists in your code, and this save happens after the pit decision changes something.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -228,6 +235,9 @@ info.onCountdownEnd(function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 drivenByStem.recordPitStopVisit()
 ```

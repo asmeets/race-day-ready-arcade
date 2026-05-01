@@ -29,11 +29,17 @@ Integration testing always starts with a mode check. In my field, you don't fire
 * :binoculars: Open `||loops(noclick):on start||` and find the `||drivenByStem:start stage||` block that is currently set to **Weather**.
 * :racing car: Change that same block so it is set to **Final Challenge**.
 
+~hint Show me the blocks 👀
+
+---
+
 ```blocks
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 ```
+
+hint~
 
 ```ghost
 drivenByStem.startVehicleTestTrack()
@@ -50,6 +56,10 @@ Visual environment is part of the integrated system too. In electronics, we some
 * :tree: Change your existing background color block to one that fits the final challenge.
 * :tree: Drag `||scene:set background image to finishBg||` from the toolbox.
 
+~hint Show me the blocks 👀
+
+---
+
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 //@validate-exists
@@ -58,6 +68,9 @@ scene.setBackgroundColor(8)
 //@validate-exists
 scene.setBackgroundImage(assets.image`finishBg`)
 ```
+
+hint~
+
 ```ghost
 scene.setBackgroundImage(assets.image`finishBg`)
 ```
@@ -81,8 +94,6 @@ In integration testing, one of the most common failure modes is a subsystem that
 
 If the car doesn't match your setup, hunt for a leftover hardcoded value in movement. One stray number can override your saved tuning.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
 scene.setBackgroundColor(8)
@@ -97,6 +108,9 @@ let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 //@validate-exists
 controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 ```
+
+hint~
+
 ```ghost
 driveSpeed = drivenByStem.savedDriveSpeed()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
@@ -112,6 +126,10 @@ controller.moveSprite(raceCar, driveSpeed, driveSpeed)
 Dedicated tracking variables are a systems engineering discipline. When multiple subsystems are active simultaneously, you need a way to separate signal sources. A collision in the final challenge is different from a collision in the weather stage, even if the code that handles it looks similar. `finalCollisions` and `finalPitStops` tag this run's events separately so the data from this integrated test doesn't blur with data from earlier isolated tests. That separation is what makes the review gate's comparisons meaningful.
 
 * :paper plane: Drag `||variables:set finalCollisions to 0||` and `||variables:set finalPitStops to 0||` from the toolbox into `||loops(noclick):on start||`.
+
+~hint Show me the blocks 👀
+
+---
 
 ```blocks
 let driveSpeed = 110
@@ -147,6 +165,9 @@ let finalCollisions = 0
 //@validate-exists
 let finalPitStops = 0
 ```
+
+hint~
+
 ```ghost
 let finalCollisions = 0
 let finalPitStops = 0
@@ -161,6 +182,10 @@ let finalPitStops = 0
 The HUD in an integrated test carries more weight than in any isolated stage. Score is the performance subsystem. Life is the efficiency subsystem. The countdown is the mission clock. All three running at once is what integration looks like. Starting from the last saved performance and efficiency values — rather than zero — means this run is a true continuation of the full session, not an isolated replay. The splash text is the final system briefing before the run starts: three metrics, one sentence, total clarity.
 
 * :game pad: Drag `||info:set score to last performance result||`, `||info:set life to last efficiency result||`, `||info:start countdown 25||`, and `||game:splash||` (with text `Balance all three` and `Performance. Efficiency. Strategy.`) from the toolbox — they replace the old score, life, countdown, and any carry-over splash already in `||loops(noclick):on start||`.
+
+~hint Show me the blocks 👀
+
+---
 
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.FinalChallenge)
@@ -183,6 +208,9 @@ info.startCountdown(25)
 //@validate-exists
 game.splash("Balance all three", "Performance. Efficiency. Strategy.")
 ```
+
+hint~
+
 ```ghost
 info.setScore(drivenByStem.lastPerformanceResult())
 info.setLife(drivenByStem.lastEfficiencyResult())
@@ -206,8 +234,6 @@ Obstacles are the stress test in an integration run. In electronics and systems 
 
 If the run feels too chaotic, slow spawns first. If it's readable, you can always ramp it back up.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -230,6 +256,9 @@ game.onUpdateInterval(2500, function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 game.onUpdateInterval(2500, function () {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
@@ -257,8 +286,6 @@ Recovery paths are a systems engineering requirement. A system that can fail but
 
 If pit markers never show up, check timing and lifespan. If they show up but feel useless, check that your overlap event is looking for the right kind.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -278,6 +305,9 @@ game.onUpdateInterval(7000, function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 game.onUpdateInterval(7000, function () {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
@@ -304,8 +334,6 @@ Wired feedback is what makes an integrated system legible. Without it, collision
 ---
 
 If a collision or pit stop does "nothing," that's usually a kind mismatch. Verify your Enemy vs Food overlap events match what you actually spawned.
-
-hint~
 
 ```blocks
 //@highlight
@@ -352,6 +380,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     }
 })
 ```
+
+hint~
+
 ```ghost
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {
@@ -388,8 +419,6 @@ The save at the end of the countdown is the integration test's closing gate. In 
 
 If review shows blank or zero values, results probably weren't saved at the end. Confirm the save runs inside countdown-end.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -406,6 +435,9 @@ info.onCountdownEnd(function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 info.onCountdownEnd(function () {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.FinalChallenge)) {

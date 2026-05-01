@@ -39,8 +39,6 @@ Data review starts with a structure question: where does the information live, a
 
 If you can't find a variable later, check spelling first. One letter off or a different capital is the most common cause.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -55,6 +53,9 @@ let reviewStrategy = 0
 //@validate-exists
 let pitStopsVisited = 0
 ```
+
+hint~
+
 ```ghost
 let reviewScore = 0
 let reviewEfficiency = 0
@@ -81,8 +82,6 @@ This is the moment raw numbers become something you can actually read and act on
 
 If all your values are still zero, the final run probably didn't save. The review has nothing real to read yet.
 
-hint~
-
 ```blocks
 let reviewScore = 0
 let reviewEfficiency = 0
@@ -104,6 +103,8 @@ reviewStrategy = drivenByStem.lastStrategyResult()
 //@validate-exists
 pitStopsVisited = drivenByStem.savedPitStopCount()
 ```
+
+hint~
 
 ```ghost
 drivenByStem.startVehicleTestTrack()
@@ -125,8 +126,6 @@ drivenByStem.startVehicleTestTrack()
 
 If the summary feels hard to read, trim it. Short labels and fewer numbers usually land better than more explanation.
 
-hint~
-
 ```blocks
 let reviewScore = 0
 let reviewEfficiency = 0
@@ -141,6 +140,9 @@ pitStopsVisited = drivenByStem.savedPitStopCount()
 //@validate-exists
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 ```
+
+hint~
+
 ```ghost
 game.splash("Race data", "Perf " + reviewScore + " Eff " + reviewEfficiency + " Strat " + reviewStrategy)
 ```
@@ -172,8 +174,6 @@ This step has no single correct answer. Try your own logic.
 
 There's no single correct answer here. Use whichever lens scored lowest as your starting point.
 
-hint~
-
 ```blocks
 let reviewScore = 0
 let reviewEfficiency = 0
@@ -196,6 +196,9 @@ if (reviewEfficiency < 3) {
 //@highlight
 game.splash("Next test focus", drivenByStem.nextTestFocus())
 ```
+
+hint~
+
 ```ghost
 if (reviewEfficiency < 3) {
 drivenByStem.setNextTestFocus("Protect efficiency during longer runs.")
@@ -232,8 +235,6 @@ This step has no single correct answer. Try your own logic.
 
 Keep the tone forward-looking. "Next test" language beats "I messed up" language. Same facts, better learning vibe.
 
-hint~
-
 ```blocks
 let reviewScore = 0
 let reviewEfficiency = 0
@@ -260,6 +261,9 @@ if (pitStopsVisited > 0) {
     game.splash(drivenByStem.roleLens(), "Next time, use more mid-run data.")
 }
 ```
+
+hint~
+
 ```ghost
 if (pitStopsVisited > 0) {
 game.splash(drivenByStem.roleLens(), "You used pit information during the run.")

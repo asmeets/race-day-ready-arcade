@@ -42,13 +42,13 @@ Every data session starts with a mode declaration. I used to think that was a fo
 
 If obstacles or scoring run at the wrong time, check the stage setting first. That's usually why something is "running right now."
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
 ```
+
+hint~
 
 ```ghost
 drivenByStem.startVehicleTestTrack()
@@ -71,8 +71,6 @@ Readability matters to me because confusing data is the same as missing data. In
 
 If your car blends into the scene, keep the background simple and test again. Readability matters more than decoration.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
 //@validate-exists
@@ -81,6 +79,9 @@ scene.setBackgroundColor(11)
 //@validate-exists
 scene.setBackgroundImage(assets.image`trackBg`)
 ```
+
+hint~
+
 ```ghost
 scene.setBackgroundImage(assets.image`trackBg`)
 ```
@@ -102,8 +103,6 @@ When I first started tracking stats, I would start fresh every session and lose 
 
 If life drains at a fixed rate instead of your tuned setup, check that `efficiencyDrain` reads from saved efficiency cost, not a hardcoded number.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
 scene.setBackgroundColor(11)
@@ -115,6 +114,9 @@ driveSpeed = drivenByStem.savedDriveSpeed()
 //@validate-exists
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
 ```
+
+hint~
+
 ```ghost
 driveSpeed = drivenByStem.savedDriveSpeed()
 let efficiencyDrain = drivenByStem.savedEfficiencyCost()
@@ -130,6 +132,10 @@ The question that hooked me on data work wasn't "how fast?" — it was "how ofte
 
 * :paper plane: Drag `||variables:set trackCollisions to 0||` and `||variables:set lastTrackCollisionCount to 0||` from the toolbox into `||loops(noclick):on start||`.
 
+~hint Show me the blocks 👀
+
+---
+
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
 scene.setBackgroundColor(11)
@@ -142,6 +148,9 @@ let trackCollisions = 0
 //@validate-exists
 let lastTrackCollisionCount = 0
 ```
+
+hint~
+
 ```ghost
 let trackCollisions = 0
 let lastTrackCollisionCount = 0
@@ -163,8 +172,6 @@ A racing session without boundaries isn't a session — it's a joyride. Score, l
 
 If life stays at `0`, the saved value didn't load. Trace where life is set and make sure it reads from saved efficiency.
 
-hint~
-
 ```blocks
 drivenByStem.startStage(drivenByStem.RaceStage.Track)
 scene.setBackgroundColor(11)
@@ -182,6 +189,9 @@ info.setLife(drivenByStem.savedEfficiency())
 //@validate-exists
 info.startCountdown(30)
 ```
+
+hint~
+
 ```ghost
 info.setScore(0)
 info.setLife(drivenByStem.savedEfficiency())
@@ -203,8 +213,6 @@ Random spawning at a consistent rate is how you model real traffic density witho
 ---
 
 If it feels chaotic, adjust one setting at a time: slower spawn rate, lower speed, or shorter lifespan. Keep decisions readable.
-
-hint~
 
 ```blocks
 //@highlight
@@ -228,6 +236,9 @@ game.onUpdateInterval(2000, function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 game.onUpdateInterval(2000, function () {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
@@ -255,8 +266,6 @@ Collisions are the events I watch most carefully in any driving dataset. Every c
 
 If collisions don't change life, check that you're subtracting the right variable and that the overlap event targets `Player` vs `Enemy`.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -276,6 +285,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 ```
+
+hint~
+
 ```ghost
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
@@ -302,8 +314,6 @@ Rewarding consistency is actually a harder problem than penalizing mistakes, and
 
 If it rewards every time, `lastTrackCollisionCount` probably isn't updating; if it never rewards, double-check your comparison.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -327,6 +337,9 @@ game.onUpdateInterval(4000, function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 game.onUpdateInterval(4000, function () {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {
@@ -355,8 +368,6 @@ Saving at the end of the countdown is the moment the session becomes permanent e
 
 If the end-of-run message doesn't display, check that your countdown is running and that you added the countdown-end event.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -370,6 +381,9 @@ info.onCountdownEnd(function () {
     }
 })
 ```
+
+hint~
+
 ```ghost
 info.onCountdownEnd(function () {
 if (drivenByStem.stageIs(drivenByStem.RaceStage.Track)) {

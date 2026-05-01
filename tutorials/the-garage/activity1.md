@@ -36,13 +36,13 @@ Every project starts somewhere. When I begin building a new system — a dashboa
 
 If the garage scene does not appear, make sure the block is snapped into the `on start` stack. Then open the gray image square, go to `the Gallery`, and check that `garageBg` is selected.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
 scene.setBackgroundImage(assets.image`garageBg`)
 ```
+
+hint~
 
 ```ghost
 scene.setBackgroundImage(assets.image`garageBg`)
@@ -66,14 +66,14 @@ A clear opening message is something I think about carefully in every project. I
 
 Keep this message short. If a player has to read a paragraph at launch, it's too much.
 
-hint~
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 //@highlight
 //@validate-exists
 game.splash("Miami test session", "Build a car you can explain.")
 ```
+
+hint~
 
 ```ghost
 game.splash("Miami test session", "Build a car you can explain.")
@@ -110,8 +110,6 @@ hint~
 
 Use `raceCar` consistently. One mismatched name can make the right blocks feel wrong.
 
-hint~
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
@@ -119,6 +117,8 @@ game.splash("Miami test session", "Build a car you can explain.")
 //@validate-exists
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
 ```
+
+hint~
 
 ```ghost
 let raceCar = sprites.create(assets.image`playerCar`, SpriteKind.Player)
@@ -141,8 +141,6 @@ Movement is always the first thing I test when I start a new project. If the thi
 
 If the car won't move, check which sprite the controller block is targeting. This is usually a naming issue.
 
-hint~
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
@@ -154,6 +152,8 @@ controller.moveSprite(raceCar, 80, 80)
 //@validate-exists
 raceCar.setFlag(SpriteFlag.StayInScreen, true)
 ```
+
+hint~
 
 ```ghost
 let raceCar: Sprite = null
@@ -177,8 +177,6 @@ State management is one of the most important software engineering concepts you 
 
 If the blocks are missing, scroll the toolbox. Custom categories can hide farther down the list.
 
-hint~
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
@@ -195,6 +193,8 @@ drivenByStem.startStage(drivenByStem.RaceStage.Garage)
 //@validate-exists
 drivenByStem.setBaseCarSpeed(drivenByStem.savedDriveSpeed())
 ```
+
+hint~
 
 ```ghost
 drivenByStem.loadRaceProfile(80, 5)
@@ -222,13 +222,6 @@ In software, user identity isn't a bonus feature — it is how a system shows it
 
 If your car is not changing, edit the image inside the existing `raceCar` sprite block from Step 3. If you drag in a second sprite block, you may end up customizing the wrong car.
 
-hint~
-
-```validation.local
-# BlocksExistValidator
-* Enabled: false
-```
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
@@ -245,6 +238,13 @@ drivenByStem.setTeamName("Apex Lab")
 drivenByStem.setCarName("Velocity")
 //@validate-exists
 drivenByStem.showSavedDriverProfile()
+```
+
+hint~
+
+```validation.local
+# BlocksExistValidator
+* Enabled: false
 ```
 
 ```ghost
@@ -270,8 +270,6 @@ Data you can't read fast is data you can't use. A dashboard that shows speed in 
 
 If the test track later shows the wrong units, check these blocks in `on start`. The last unit blocks in that stack are the settings the dashboard will use.
 
-hint~
-
 ```blocks
 scene.setBackgroundImage(assets.image`garageBg`)
 game.splash("Miami test session", "Build a car you can explain.")
@@ -290,6 +288,8 @@ drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
 //@validate-exists
 drivenByStem.setFuelDisplayUnit(drivenByStem.FuelUnit.Gallons)
 ```
+
+hint~
 
 ```ghost
 drivenByStem.setSpeedDisplayUnit(drivenByStem.SpeedUnit.MilesPerHour)
@@ -317,8 +317,6 @@ Reset paths are the thing that gets skipped in first builds, and then someone hi
 
 If pressing B does nothing, check that this event is standalone. Events don't work when nested inside another stack.
 
-hint~
-
 ```blocks
 //@highlight
 //@validate-exists
@@ -327,6 +325,8 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     game.reset()
 })
 ```
+
+hint~
 
 ```ghost
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
