@@ -16,7 +16,7 @@
 * layout: manual
 
 ### intro-to-makecode
-* name: Intro to MakeCode
+* name: Intro to MakeCode [CACHE-B v1]
 * type: tutorial
 * description: Learn about MakeCode Arcade and block-based coding that you'll use to build your F1 simulator, and how to get around the editor.
 * imageUrl: https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/skillmap/node-intro-to-makecode.png

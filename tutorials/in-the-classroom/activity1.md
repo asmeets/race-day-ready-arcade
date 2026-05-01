@@ -7,6 +7,8 @@ game.splash("Ready to learn MakeCode Arcade!")
 
 ## Welcome! Let's Learn the Essentials @showdialog
 
+**Cache marker:** `CACHE-B-v1 (2026-04-30)`
+
 ![Drew - UX/Game Designer](https://raw.githubusercontent.com/asmeets/driven-by-stem/main/assets/guides/drew.png)
 
 Hi, I'm Drew, UX and game designer on the team. I got into this field by being the person who always asked "Wait... what am I supposed to do?" I started self-taught, watching tutorials and redesigning menus in my own projects, then added a formal design class and a lot of play testing with friends. 
